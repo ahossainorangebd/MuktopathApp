@@ -116,8 +116,7 @@
                     android:hint="Full Name"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:visibility="gone
-"
+                    android:visibility="gone"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:singleLine="true" />
