@@ -219,41 +219,19 @@
                 android:layout_gravity="center"
                 >
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorVoldemort"
                     android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    >
+                    android:text="By creating an account, you accept Muktopath's"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorVoldemort"
-                        android:layout_marginLeft="5dp"
-                        android:text="By creating an account, you accept Muktopath's"/>
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorVoldemort"
                     android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorVoldemort"
-                        android:layout_marginLeft="5dp"
-                        android:text="Terms of Service and Privacy Policy"/>
-
-
-
-                </LinearLayout>
+                    android:text="Terms of Service and Privacy Policy"/>
 
             </LinearLayout>
 
