@@ -280,7 +280,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorVoldemort"
-                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
                         android:text="By creating an account, you accept Muktopath's"/>
 
 
@@ -298,7 +298,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorVoldemort"
-                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
                         android:text="Terms of Service and Privacy Policy"/>
 
 
