@@ -6,15 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-    Context mContext;
+
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mContext=this;
-        finish();
-        Intent i=new Intent(mContext,LoginActivity.class);
+
+        Intent i=new Intent(mContext,SplashActivity.class);
         startActivity(i);
+        finish();
+
+
         //TODO
         //this is to check if git hub is working properly or not
     }

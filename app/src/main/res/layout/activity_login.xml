@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".LoginActivity"
+    tools:context=".CreateAccountActivity"
     android:background="#fff"
     >
 
@@ -116,6 +116,8 @@
                     android:hint="Full Name"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:visibility="gone
+"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:singleLine="true" />
@@ -183,10 +185,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Create New Account"
+                android:text="LOG IN"
                 android:focusable="true"
                 android:textColor="#fff"
-                android:background="#524fa8"
+                android:background="@drawable/gradient_background"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:focusableInTouchMode="true"
@@ -259,52 +261,6 @@
                         android:layout_marginLeft="5dp"
                         android:textStyle="bold"
                         android:text="Continue with Facebook"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="center"
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorVoldemort"
-                        android:layout_marginLeft="5dp"
-                        android:text="By creating an account, you accept Muktopath's"/>
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorVoldemort"
-                        android:layout_marginLeft="5dp"
-                        android:text="Terms of Service and Privacy Policy"/>
-
-
 
                 </LinearLayout>
 

@@ -34,10 +34,22 @@
             android:layout_height="55dp"
             android:gravity="center"
             android:layout_centerInParent="true"
+
             android:layout_marginLeft="145dp"
             android:layout_marginRight="145dp"
+
             android:layout_marginTop="10dp"
             android:background="@drawable/muktopath_logo"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create New Account"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
             />
 
         <LinearLayout
@@ -97,11 +109,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <AutoCompleteTextView
+                    android:id="@+id/nameBoxId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Name"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:singleLine="true" />
+
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/emailId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -127,10 +161,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:imeActionId="6"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/splashActvtyCreateAccountId"
+                android:id="@+id/regiPageSignUpId"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -197,15 +245,20 @@
                     android:orientation="horizontal"
                     >
 
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/fb_logo"
+                        />
+
                     <TextView
-                        android:id="@+id/slpashActLoginId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPain"
-                        android:layout_marginTop="3dp"
                         android:layout_marginLeft="5dp"
                         android:textStyle="bold"
-                        android:text="LOG IN"/>
+                        android:text="Continue with Facebook"/>
 
                 </LinearLayout>
 
