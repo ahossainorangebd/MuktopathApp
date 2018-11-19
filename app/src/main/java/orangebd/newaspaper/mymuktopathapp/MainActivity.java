@@ -15,5 +15,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
         Intent i=new Intent(mContext,LoginActivity.class);
         startActivity(i);
+        //TODO
+        //this is to check if git hub is working properly or not
     }
 }
