@@ -22,6 +22,7 @@ public class SplashActivity extends AppCompatActivity {
 
         mContext=this;
 
+        getSupportActionBar().hide();
 
         splashActvtyCreateAccountBtn=findViewById(R.id.splashActvtyCreateAccountId);
         splashActvtyCreateAccountBtn.setOnClickListener(new View.OnClickListener() {

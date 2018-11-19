@@ -73,14 +73,17 @@ public class CreateAccountActivity extends AppCompatActivity implements LoaderCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createaccount);
 
-
         mContext=this;
+
+        getSupportActionBar().hide();
+
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
         populateAutoComplete();
 
         regiPageSignUpBtn=findViewById(R.id.regiPageSignUpId);
         regiPageSignUpBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
