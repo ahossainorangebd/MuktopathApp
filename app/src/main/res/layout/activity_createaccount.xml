@@ -25,15 +25,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         >
 
         <ImageView
             android:layout_width="80dp"
-            android:layout_height="85dp"
+            android:layout_height="75dp"
 
             android:layout_gravity="center"
+
+            android:layout_marginTop="10dp"
             android:background="@drawable/muktopath_logo"
             />
 
@@ -104,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/nameBoxId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/emailId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -138,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -223,6 +225,7 @@
                         android:layout_width="120dp"
                         android:layout_height="1dp"
                         android:orientation="vertical"
+
                         android:layout_marginTop="10dp"
                         android:background="@color/colorPrimaryDark"
                         >
@@ -242,7 +245,7 @@
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="3dp"
                         android:background="@drawable/fb_logo"
                         />
 
@@ -252,7 +255,6 @@
                         android:textColor="@color/colorPain"
                         android:layout_marginLeft="5dp"
                         android:textStyle="bold"
-                        android:layout_marginTop="6dp"
                         android:text="Continue with Facebook"/>
 
                 </LinearLayout>
@@ -271,7 +273,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     >
 
                     <TextView
@@ -281,15 +283,33 @@
                         android:layout_gravity="center"
                         android:text="By creating an account, you accept Muktopath's"/>
 
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorVoldemort"
                         android:layout_gravity="center"
                         android:text="Terms of Service and Privacy Policy"/>
+
+
+
                 </LinearLayout>
 
             </LinearLayout>
+
+
+
+
 
         </LinearLayout>
     </ScrollView>
