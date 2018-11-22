@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
         finish();
 
-
         //TODO
         //this is to check if git hub is working properly or not
     }
