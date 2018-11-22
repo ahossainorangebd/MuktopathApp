@@ -282,9 +282,6 @@
                         android:textColor="@color/colorVoldemort"
                         android:layout_gravity="center"
                         android:text="By creating an account, you accept Muktopath's"/>
-
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -300,17 +297,9 @@
                         android:textColor="@color/colorVoldemort"
                         android:layout_gravity="center"
                         android:text="Terms of Service and Privacy Policy"/>
-
-
-
                 </LinearLayout>
 
             </LinearLayout>
-
-
-
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
