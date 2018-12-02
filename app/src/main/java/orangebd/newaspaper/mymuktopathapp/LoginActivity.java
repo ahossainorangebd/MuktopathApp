@@ -29,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -65,6 +66,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    private Button mRegiPageSignUpBtn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,13 +93,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+
+
+        mRegiPageSignUpBtn=findViewById(R.id.regiPageSignUpId);
+        mRegiPageSignUpBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(mContext,AllCourseActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
         Button mEmailSignInButton = findViewById(R.id.regiPageSignUpId);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 //attemptLogin();
                 finish();
-                Intent i=new Intent(mContext,MainActivity.class);
+                Intent i=new Intent(mContext,AllCourseActivity.class);
                 view.getContext().startActivity(i);
             }
         });

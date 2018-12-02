@@ -15,13 +15,11 @@
         android:roundIcon="@drawable/muktopath_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".CreateAccountActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".SplashActivity" >
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,9 +28,9 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
-
-        </activity>
+            android:label="@string/title_activity_login" />
+        <activity android:name=".AllCourseActivity" />
+        <activity android:name=".RecomendedActivity"></activity>
     </application>
 
 </manifest>

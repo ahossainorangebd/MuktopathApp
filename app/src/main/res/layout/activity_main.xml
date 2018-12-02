@@ -9,6 +9,30 @@
     android:padding="5dp"
     android:background="#a1a1a1"
     >
+    <LinearLayout
+        android:id="@+id/searchBarId"
+        android:background="@color/Colorpeace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/scrollToTop"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="right"
+            android:background="@drawable/search_for_muktopath"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="45sp" />
+
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/featureCoursesLayoutId"
@@ -16,6 +40,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/AppBackgroundColor"
+        android:layout_below="@+id/searchBarId"
         >
 
         <HorizontalScrollView
@@ -47,6 +72,9 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         />
+
+
+
 
                 </LinearLayout>
 
@@ -101,42 +129,149 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="160dp"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:layout_marginLeft="3dp"
-                    android:background="@drawable/ic_launcher_background"
+                    android:background="@color/Colorpeace"
                     >
-                    <TextView
-                        android:layout_width="120dp"
+
+                    <LinearLayout
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/tec2"
+                        >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Computer Fundamental"
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:orientation="vertical"
+                        >
+
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="#515151"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয় প্রাথমিক অধিদপ্তর"
+                            android:textColor="#a4a4a4"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="160dp"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:layout_marginLeft="3dp"
-                    android:background="@drawable/ic_launcher_background"
+                    android:background="@color/Colorpeace"
                     >
-                    <TextView
-                        android:layout_width="120dp"
+
+                    <LinearLayout
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/tec2"
+                        >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Descrete Mathemetics"
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:orientation="vertical"
+                        >
+
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="#515151"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয় প্রাথমিক অধিদপ্তর"
+                            android:textColor="#a4a4a4"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="3dp"
+                    android:background="@color/Colorpeace"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/tec2"
+                        >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="#515151"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয় প্রাথমিক অধিদপ্তর"
+                            android:textColor="#a4a4a4"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
@@ -289,49 +424,264 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="160dp"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:layout_marginLeft="3dp"
-                    android:background="@drawable/ic_launcher_background"
+                    android:background="@color/Colorpeace"
                     >
-                    <TextView
-                        android:layout_width="120dp"
+
+                    <LinearLayout
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/tec"
+                        >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Computer Fundamental"
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:orientation="vertical"
+                        >
+
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="#515151"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয় প্রাথমিক অধিদপ্তর"
+                            android:textColor="#a4a4a4"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="160dp"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:layout_marginLeft="3dp"
-                    android:background="@drawable/ic_launcher_background"
+                    android:background="@color/Colorpeace"
                     >
-                    <TextView
-                        android:layout_width="120dp"
+
+                    <LinearLayout
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/tec2"
+                        >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Descrete Mathemetics"
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:orientation="vertical"
+                        >
+
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="#515151"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয় প্রাথমিক অধিদপ্তর"
+                            android:textColor="#a4a4a4"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="3dp"
+                    android:background="@color/Colorpeace"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/tec2"
+                        >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="#515151"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয় প্রাথমিক অধিদপ্তর"
+                            android:textColor="#a4a4a4"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="8dp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
             </LinearLayout>
 
 
+
+
         </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp"
+            >
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:background="@color/Colorpeace"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="পছন্দের ক্যাটেগরি"
+                    android:textColor="@color/AppTextColor"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="225dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/AppBackgroundColor"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@color/Colorpeace"
+                        >
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@color/Colorpeace"
+                        >
+
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:background="@color/Colorpeace"
+                        >
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@color/Colorpeace"
+                        >
+
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -360,18 +710,19 @@
             >
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:src="@drawable/search_icon"/>
+                android:layout_height="45dp"
+                android:src="@drawable/khujun"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:textSize="12sp"
+                android:textColor="@color/AppTextColor"
+                android:textSize="13sp"
                 android:layout_gravity="center"
                 android:text="খুঁজুন"/>
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/recomendedBtnId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -379,7 +730,7 @@
             <ImageView
                 android:id="@+id/recomendedLogoId"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:src="@drawable/recommended_icon"/>
             <TextView
@@ -388,25 +739,27 @@
                 android:textColor="#000"
                 android:text="রিকমেন্ডেড"
                 android:layout_below="@+id/recomendedLogoId"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/allCourseId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:orientation="vertical">
             <ImageView
+                android:id="@+id/allCourseLogo"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:src="@drawable/open_book"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:text="সকল কোর্স"/>
         </LinearLayout>
 
@@ -418,13 +771,13 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_gravity="center"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:src="@drawable/downloadicon"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:text="ডাউনলোড"/>
         </LinearLayout>
 
@@ -436,14 +789,14 @@
             >
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:src="@drawable/profileicon"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:text="প্রোফাইল"/>
         </LinearLayout>
 
