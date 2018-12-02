@@ -6,4 +6,7 @@
 
     <color name="colorPain">#004fce</color>
     <color name="colorVoldemort">#000000</color>
+    <color name="AppBackgroundColor">#b3bbd1</color>
+    <color name="Colorpeace">#fff</color>
+    <color name="AppTextColor">#7a19aa</color>
 </resources>
