@@ -30,7 +30,12 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".AllCourseActivity" />
-        <activity android:name=".RecomendedActivity"></activity>
+        <activity android:name=".RecomendedActivity" />
+        <activity android:name=".TempActivity" />
+        <activity android:name=".CourseDetailActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".DownloadActivity"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:padding="5dp"
     android:background="#a1a1a1"
     >
 
@@ -15,6 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/AppBackgroundColor"
+        android:padding="5dp"
         >
 
         <LinearLayout
@@ -167,7 +167,6 @@
                     android:orientation="vertical"
                     >
 
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -208,8 +207,6 @@
                     android:background="@drawable/tec"
                     android:orientation="vertical"
                     >
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -332,7 +329,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#c1c1c1"
+        android:background="@color/AppBackgroundColor"
         android:layout_alignParentBottom="true"
         >
         <LinearLayout
@@ -341,29 +338,52 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_gravity="center"
-            android:background="#c1c1c1"
+            android:background="@color/AppBackgroundColor"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             >
 
             <LinearLayout
+                android:id="@+id/myPageId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/khujun"/>
+                    android:id="@+id/allCourseLogo"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/open_book"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/AppTextColor"
+                    android:textColor="#000"
+                    android:textSize="13sp"
+                    android:text="আমার পাতা"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/khujunBtnId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/khujun2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorVoldemort"
                     android:textSize="13sp"
                     android:layout_gravity="center"
                     android:text="খুঁজুন"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/recomendedBtnId"
                 android:layout_width="wrap_content"
@@ -372,8 +392,8 @@
                 android:orientation="vertical">
                 <ImageView
                     android:id="@+id/recomendedLogoId"
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:src="@drawable/recommended_icon"/>
                 <TextView
@@ -386,35 +406,17 @@
                     />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/allCourseId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/allCourseLogo"
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/open_book"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:textSize="13sp"
-                    android:text="সকল কোর্স"/>
-            </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/downloadsBtnId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_width="40dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_height="50dp"
                     android:src="@drawable/downloadicon"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -425,14 +427,15 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/profilePageBtnId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical"
                 >
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:src="@drawable/profileicon"/>
                 <TextView

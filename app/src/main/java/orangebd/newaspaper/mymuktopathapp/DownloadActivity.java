@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class AllCourseActivity extends AppCompatActivity {
+public class DownloadActivity extends AppCompatActivity {
 
-    private Button mSplashActvtySearchSomething;
     private Context mContext;
 
     // Button Layout of footer
@@ -24,7 +22,7 @@ public class AllCourseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_course);
+        setContentView(R.layout.activity_download);
 
         mContext=this;
 
@@ -35,18 +33,18 @@ public class AllCourseActivity extends AppCompatActivity {
         myProfileBtn = findViewById(R.id.profilePageBtnId);
 
 
-        myKhujunBtn.setOnClickListener(new View.OnClickListener() {
+        myPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(mContext,SearchActivity.class);
+                Intent i=new Intent(mContext,AllCourseActivity.class);
                 v.getContext().startActivity(i);
             }
         });
 
-        myDownloadsBtn.setOnClickListener(new View.OnClickListener() {
+        myKhujunBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(mContext,DownloadActivity.class);
+                Intent i=new Intent(mContext,SearchActivity.class);
                 v.getContext().startActivity(i);
             }
         });
@@ -66,19 +64,6 @@ public class AllCourseActivity extends AppCompatActivity {
                 v.getContext().startActivity(i);
             }
         });
-
-
-        getSupportActionBar().hide();
-
-        mSplashActvtySearchSomething=findViewById(R.id.splashActvtySearchSomething);
-        mSplashActvtySearchSomething.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(mContext,MainActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
 
     }
 }

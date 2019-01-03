@@ -2,22 +2,60 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private Context mContext;
 
-    private LinearLayout allCourseBtn;
-    private ImageView mAllCourseLogo;
+    private Button mSearchBtnIcon;
 
-    private LinearLayout recomendedBtn;
+    private LinearLayout searchBar;
+
+    private ArrayList<DetailDataModel> detailList=new ArrayList<>();
+
+    private RecyclerView recyclerView;
+    private RecyclerView recyclerView2;
+    private RecyclerView recyclerView3;
+    private RecyclerView recyclerView4;
+    private RecyclerView recyclerView5;
+    private RecyclerView recyclerView6;
+    private RecyclerView recyclerView7;
+    private RecyclerView recyclerView8;
+    private RecyclerView recyclerView9;
+    private RecyclerView recyclerView10;
+
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.Adapter adapter2;
+    private RecyclerView.Adapter adapter3;
+    private RecyclerView.Adapter adapter4;
+    private RecyclerView.Adapter adapter5;
+    private RecyclerView.Adapter adapter6;
+    private RecyclerView.Adapter adapter7;
+    private RecyclerView.Adapter adapter8;
+    private RecyclerView.Adapter adapter9;
+    private RecyclerView.Adapter adapter10;
+
+    // Button Layout of footer
+
+    private LinearLayout myPageBtn;
+    private LinearLayout myKhujunBtn;
+    private LinearLayout myRecommendedBtn;
+    private LinearLayout myDownloadsBtn;
+    private LinearLayout myProfileBtn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,37 +66,1078 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        mAllCourseLogo=findViewById(R.id.allCourseLogo);
 
-        allCourseBtn=findViewById(R.id.allCourseId);
-        allCourseBtn.setOnClickListener(new View.OnClickListener() {
+        myPageBtn = findViewById(R.id.myPageId);
+        myKhujunBtn = findViewById(R.id.khujunBtnId);
+        myRecommendedBtn = findViewById(R.id.recomendedBtnId);
+        myDownloadsBtn = findViewById(R.id.downloadsBtnId);
+        myProfileBtn = findViewById(R.id.profilePageBtnId);
+
+        mSearchBtnIcon=findViewById(R.id.searchBtnIcon);
+
+
+        myPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent i=new Intent(mContext,AllCourseActivity.class);
                 v.getContext().startActivity(i);
             }
         });
 
-
-        recomendedBtn=findViewById(R.id.recomendedBtnId);
-        recomendedBtn.setOnClickListener(new View.OnClickListener() {
+        myKhujunBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(mContext,RecomendedActivity.class);
+                Intent i=new Intent(mContext,SearchActivity.class);
                 v.getContext().startActivity(i);
             }
         });
 
-        /*
-        mContext=this;
+        myDownloadsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(mContext,DownloadActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
-        Intent i=new Intent(mContext,SplashActivity.class);
-        startActivity(i);
-        finish();
-        */
+        myProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(mContext,ProfileActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
-        //TODO
-        //this is to check if git hub is working properly or not
+
+        searchBar=findViewById(R.id.searchBarId);
+        searchBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(mContext,SearchActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        mSearchBtnIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(mContext,SearchActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+
+        setRecyclerView();
+    }
+
+
+    private void setRecyclerView() {
+        recyclerView = findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView.setNestedScrollingEnabled(false);
+
+        new GetCategory1Courses().execute("http://rtvonline.com/json-feed/latest.json");
+    }
+
+    private void setRecyclerView2() {
+        recyclerView2 = findViewById(R.id.my_recycler_view2);
+        recyclerView2.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView2.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView2.setNestedScrollingEnabled(false);
+    }
+
+    private void setRecyclerView3() {
+        recyclerView3 = findViewById(R.id.my_recycler_view3);
+        recyclerView3.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView3.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView3.setNestedScrollingEnabled(false);
+    }
+
+    private void setRecyclerView4() {
+        recyclerView4 = findViewById(R.id.my_recycler_view4);
+        recyclerView4.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView4.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView4.setNestedScrollingEnabled(false);
+    }
+
+    private void setRecyclerView5() {
+        recyclerView5 = findViewById(R.id.my_recycler_view5);
+        recyclerView5.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView5.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView5.setNestedScrollingEnabled(false);
+    }
+
+    private void setRecyclerView6() {
+        recyclerView6 = findViewById(R.id.my_recycler_view6);
+        recyclerView6.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView6.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView6.setNestedScrollingEnabled(false);
+    }
+
+    private void setRecyclerView7() {
+        recyclerView7 = findViewById(R.id.my_recycler_view7);
+        recyclerView7.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView7.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView7.setNestedScrollingEnabled(false);
+    }
+
+    private void setRecyclerView8() {
+        recyclerView8 = findViewById(R.id.my_recycler_view8);
+        recyclerView8.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView8.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView8.setNestedScrollingEnabled(false);
+    }
+
+    private void setRecyclerView9() {
+        recyclerView9 = findViewById(R.id.my_recycler_view9);
+        recyclerView9.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView9.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView9.setNestedScrollingEnabled(false);
+    }
+
+    private void setRecyclerView10() {
+        recyclerView10 = findViewById(R.id.my_recycler_view10);
+        recyclerView10.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView10.setLayoutManager(layoutManager);
+
+
+
+
+        //nestedScrollView.setSmoothScrollingEnabled(true);
+        //nestedScrollView.fullScroll(View.FOCUS_UP);
+        recyclerView10.setNestedScrollingEnabled(false);
+    }
+
+
+
+    public class GetCategory1Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            adapter=new RecyclerViewAdapterCategory1(detailList,mContext);
+            //
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+            new GetCategory2Courses().execute("http://rtvonline.com/json-feed/bangladesh.json");
+        }
+    }
+
+    public class GetCategory2Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView2();
+
+            adapter2=new RecyclerViewAdapterCategory2(detailList,mContext);
+            //
+            recyclerView2.setAdapter(adapter2);
+            adapter2.notifyDataSetChanged();
+
+            new GetCategory3Courses().execute("http://rtvonline.com/json-feed/crime.json");
+        }
+    }
+
+    public class GetCategory3Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView3();
+
+            adapter3=new RecyclerViewAdapterCategory3(detailList,mContext);
+            //
+            recyclerView3.setAdapter(adapter3);
+            adapter3.notifyDataSetChanged();
+
+            new GetCategory4Courses().execute("http://rtvonline.com/json-feed/economics.json");
+        }
+    }
+
+    public class GetCategory4Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView4();
+
+            adapter4=new RecyclerViewAdapterCategory4(detailList,mContext);
+            //
+            recyclerView4.setAdapter(adapter4);
+            adapter4.notifyDataSetChanged();
+
+            new GetCategory5Courses().execute("http://rtvonline.com/json-feed/entertainment.json");
+        }
+    }
+
+    public class GetCategory5Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView5();
+
+            adapter5=new RecyclerViewAdapterCategory5(detailList,mContext);
+            //
+            recyclerView5.setAdapter(adapter5);
+            adapter5.notifyDataSetChanged();
+
+            new GetCategory6Courses().execute("http://rtvonline.com/json-feed/international.json");
+        }
+    }
+
+    public class GetCategory6Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView6();
+
+            adapter6=new RecyclerViewAdapterCategory6(detailList,mContext);
+            //
+            recyclerView6.setAdapter(adapter6);
+            adapter6.notifyDataSetChanged();
+
+            new GetCategory7Courses().execute("http://rtvonline.com/json-feed/lifestyle.json");
+        }
+    }
+
+    public class GetCategory7Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView7();
+
+            adapter7=new RecyclerViewAdapterCategory7(detailList,mContext);
+            //
+            recyclerView7.setAdapter(adapter7);
+            adapter7.notifyDataSetChanged();
+
+            new GetCategory8Courses().execute("http://rtvonline.com/json-feed/politics.json");
+        }
+    }
+
+    public class GetCategory8Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView8();
+
+            adapter8=new RecyclerViewAdapterCategory8(detailList,mContext);
+            //
+            recyclerView8.setAdapter(adapter8);
+            adapter8.notifyDataSetChanged();
+
+            new GetCategory9Courses().execute("http://rtvonline.com/json-feed/sports.json");
+        }
+    }
+
+    public class GetCategory9Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView9();
+
+            adapter9=new RecyclerViewAdapterCategory9(detailList,mContext);
+            //
+            recyclerView9.setAdapter(adapter9);
+            adapter9.notifyDataSetChanged();
+
+            new GetCategory10Courses().execute("http://rtvonline.com/json-feed/country.json");
+        }
+    }
+
+    public class GetCategory10Courses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = arg0[0];
+            String jsonStr = sh.makeServiceCall(url);
+
+            //Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+                detailList=new ArrayList<DetailDataModel>();
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
+
+                        JSONObject object = (JSONObject) jsonObj.get("" + i);
+                        //Iterator<String> temp = object.keys();
+                        //while (temp.hasNext()) {
+                        DetailDataModel model = new DetailDataModel();
+                        //String dynamicKey = (String) temp.next();
+
+                        String hl1 = object.getString("hl1");
+                        String hl2 = object.getString("hl2");
+                        String img_url = object.getString("img_url");
+                        String detail = object.getString("dtl");
+                        String parentCatID=object.getString("parent_cat_id");
+                        String update_time=object.getString("update_time");
+                        String entry_time = object.getString("entry_time");
+                        String rpt=object.getString("rpt");
+                        String detaillLink=object.getString("dtl_url");
+                        String image_caption_name = object.getString("img_caption");
+                        model.setImg_caption(image_caption_name);
+                        model.setDtl_url_link(detaillLink);
+                        model.setEntry_time(entry_time);
+                        model.setUpdate_time(update_time);
+                        model.setRpt(rpt);
+                        model.setParent_cat_id(parentCatID);
+                        model.setHl1(hl1);
+                        model.setHl2(hl2);
+                        model.setImg_url(img_url);
+                        model.setDtl_url(detail);
+
+                        detailList.add(model);
+                        publishProgress();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (final JSONException e) {
+                //Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.e("tag", "Couldn't get json from server.");
+
+            }
+            else {
+                Log.e("tag", "Couldn't get json from server.");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            setRecyclerView10();
+
+            adapter10=new RecyclerViewAdapterCategory10(detailList,mContext);
+            //
+            recyclerView10.setAdapter(adapter10);
+            adapter10.notifyDataSetChanged();
+        }
     }
 }
