@@ -97,6 +97,69 @@
 
             </LinearLayout>
 
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="18dp"
+                >
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/open_book"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="আকাশ আমার পাঠশালা"
+                    android:textColor="@color/AppTextColor"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:layout_width="310dp"
+                    android:padding="3dp"
+                    android:layout_height="wrap_content"
+                    android:text="এই মুহূর্তে আপনার প্রোফাইলে কোন সম্পন্ন কোর্স নেই। আপনি চাইলে নতুন কিছু শিখতে সকল কোর্স পেইজে যেতে পারেন।"
+                    android:textColor="@color/colorVoldemort"
+                    android:textSize="11sp"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <Button
+                    android:id="@+id/splashActvtySearchSomething"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="নতুন কিছু শিখতে খুঁজুন"
+                    android:textSize="16sp"
+                    android:focusable="true"
+                    android:textColor="#fff"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/gradient_background"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:focusableInTouchMode="true"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
 
@@ -116,11 +179,12 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_gravity="center"
-            android:background="@color/AppBackgroundColor"
+            android:background="@color/FooterBtnsColor"
+            android:padding="3dp"
             >
 
             <LinearLayout
-                android:id="@+id/myPageId"
+                android:id="@+id/allCourseBtnId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -129,36 +193,16 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/open_book"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:textSize="13sp"
-                    android:text="আমার পাতা"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/khujunBtnId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                >
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
                     android:src="@drawable/khujun2"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorVoldemort"
+                    android:textColor="#000"
+                    android:layout_marginTop="2dp"
                     android:textSize="13sp"
-                    android:layout_gravity="center"
-                    android:text="খুঁজুন"/>
-
+                    android:text="সকল কোর্স"/>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/recomendedBtnId"
                 android:layout_width="wrap_content"
@@ -175,6 +219,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
+                    android:layout_marginTop="2dp"
                     android:text="রিকমেন্ডেড"
                     android:layout_below="@+id/recomendedLogoId"
                     android:textSize="13sp"
@@ -182,6 +227,28 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:id="@+id/myPageBtnId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/open_book"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorVoldemort"
+                    android:textSize="13sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_gravity="center"
+                    android:text="আমার পাতা"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/downloadsBtnId"
@@ -199,6 +266,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:textSize="13sp"
+                    android:layout_marginTop="2dp"
                     android:text="ডাউনলোড"/>
             </LinearLayout>
 
@@ -219,6 +287,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:textSize="13sp"
+                    android:layout_marginTop="2dp"
                     android:text="প্রোফাইল"/>
             </LinearLayout>
 

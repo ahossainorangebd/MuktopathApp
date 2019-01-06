@@ -8,42 +8,50 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class AllCourseActivity extends AppCompatActivity {
+public class MyPageActivity extends AppCompatActivity {
 
     private Button mSplashActvtySearchSomething;
     private Context mContext;
 
     // Button Layout of footer
 
+    private LinearLayout allCourseBtn;
+    private LinearLayout recomendedBtn;
     private LinearLayout myPageBtn;
-    private LinearLayout myKhujunBtn;
-    private LinearLayout myRecommendedBtn;
-    private LinearLayout myDownloadsBtn;
-    private LinearLayout myProfileBtn;
+    private LinearLayout downloadsBtn;
+    private LinearLayout profileBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_course);
+        setContentView(R.layout.activity_my_page);
+
 
         mContext=this;
 
-        myPageBtn = findViewById(R.id.myPageId);
-        myKhujunBtn = findViewById(R.id.khujunBtnId);
-        myRecommendedBtn = findViewById(R.id.recomendedBtnId);
-        myDownloadsBtn = findViewById(R.id.downloadsBtnId);
-        myProfileBtn = findViewById(R.id.profilePageBtnId);
+        allCourseBtn = findViewById(R.id.allCourseBtnId);
+        recomendedBtn = findViewById(R.id.recomendedBtnId);
+        myPageBtn = findViewById(R.id.myPageBtnId);
+        downloadsBtn = findViewById(R.id.downloadsBtnId);
+        profileBtn = findViewById(R.id.profilePageBtnId);
 
-
-        myKhujunBtn.setOnClickListener(new View.OnClickListener() {
+        allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(mContext,SearchActivity.class);
+                Intent i = new Intent(mContext, MainActivity.class);
                 v.getContext().startActivity(i);
             }
         });
 
-        myDownloadsBtn.setOnClickListener(new View.OnClickListener() {
+        recomendedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, RecomendedActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        downloadsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(mContext,DownloadActivity.class);
@@ -51,18 +59,10 @@ public class AllCourseActivity extends AppCompatActivity {
             }
         });
 
-        myProfileBtn.setOnClickListener(new View.OnClickListener() {
+        profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(mContext,ProfileActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        myRecommendedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(mContext,MainActivity.class);
                 v.getContext().startActivity(i);
             }
         });
@@ -78,7 +78,5 @@ public class AllCourseActivity extends AppCompatActivity {
                 v.getContext().startActivity(i);
             }
         });
-
-
     }
 }

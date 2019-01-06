@@ -35,7 +35,9 @@
         <activity android:name=".CourseDetailActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".DownloadActivity"></activity>
+        <activity android:name=".DownloadActivity" />
+        <activity android:name=".MyPageActivity" />
+        <activity android:name=".WelcomeActivity"></activity>
     </application>
 
 </manifest>

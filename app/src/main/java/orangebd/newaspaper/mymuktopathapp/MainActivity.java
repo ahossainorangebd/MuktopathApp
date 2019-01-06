@@ -9,8 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -49,13 +52,22 @@ public class MainActivity extends AppCompatActivity {
 
     // Button Layout of footer
 
+    private LinearLayout allCourseBtn;
+    private LinearLayout recomendedBtn;
     private LinearLayout myPageBtn;
-    private LinearLayout myKhujunBtn;
-    private LinearLayout myRecommendedBtn;
-    private LinearLayout myDownloadsBtn;
-    private LinearLayout myProfileBtn;
+    private LinearLayout downloadsBtn;
+    private LinearLayout profileBtn;
 
-
+    private ProgressBar mProgressSpinner;
+    private ProgressBar mProgressSpinner2;
+    private ProgressBar mProgressSpinner3;
+    private ProgressBar mProgressSpinner4;
+    private ProgressBar mProgressSpinner5;
+    private ProgressBar mProgressSpinner6;
+    private ProgressBar mProgressSpinner7;
+    private ProgressBar mProgressSpinner8;
+    private ProgressBar mProgressSpinner9;
+    private ProgressBar mProgressSpinner10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,33 +78,44 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        myPageBtn = findViewById(R.id.myPageId);
-        myKhujunBtn = findViewById(R.id.khujunBtnId);
-        myRecommendedBtn = findViewById(R.id.recomendedBtnId);
-        myDownloadsBtn = findViewById(R.id.downloadsBtnId);
-        myProfileBtn = findViewById(R.id.profilePageBtnId);
+        allCourseBtn = findViewById(R.id.allCourseBtnId);
+        recomendedBtn = findViewById(R.id.recomendedBtnId);
+        myPageBtn = findViewById(R.id.myPageBtnId);
+        downloadsBtn = findViewById(R.id.downloadsBtnId);
+        profileBtn = findViewById(R.id.profilePageBtnId);
 
         mSearchBtnIcon=findViewById(R.id.searchBtnIcon);
 
+        mProgressSpinner=findViewById(R.id.loadingSpinnerId);
+        mProgressSpinner2=findViewById(R.id.loadingSpinnerId2);
+        mProgressSpinner3=findViewById(R.id.loadingSpinnerId3);
+        mProgressSpinner4=findViewById(R.id.loadingSpinnerId4);
+        mProgressSpinner5=findViewById(R.id.loadingSpinnerId5);
+        mProgressSpinner6=findViewById(R.id.loadingSpinnerId6);
+        mProgressSpinner7=findViewById(R.id.loadingSpinnerId7);
+        mProgressSpinner8=findViewById(R.id.loadingSpinnerId8);
+        mProgressSpinner9=findViewById(R.id.loadingSpinnerId9);
+        mProgressSpinner10=findViewById(R.id.loadingSpinnerId10);
+
+        recomendedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, RecomendedActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
         myPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(mContext,AllCourseActivity.class);
+                Intent i=new Intent(mContext,MyPageActivity.class);
                 v.getContext().startActivity(i);
             }
         });
 
-        myKhujunBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(mContext,SearchActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        myDownloadsBtn.setOnClickListener(new View.OnClickListener() {
+        downloadsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(mContext,DownloadActivity.class);
@@ -100,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myProfileBtn.setOnClickListener(new View.OnClickListener() {
+        profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(mContext,ProfileActivity.class);
@@ -108,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //
 
         searchBar=findViewById(R.id.searchBarId);
         searchBar.setOnClickListener(new View.OnClickListener() {
@@ -309,6 +333,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner.setIndeterminate(true);
+            mProgressSpinner.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -383,6 +410,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
+            mProgressSpinner.setVisibility(View.GONE);
+
             new GetCategory2Courses().execute("http://rtvonline.com/json-feed/bangladesh.json");
         }
     }
@@ -391,6 +420,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner2.setIndeterminate(true);
+            mProgressSpinner2.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -467,6 +499,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView2.setAdapter(adapter2);
             adapter2.notifyDataSetChanged();
 
+            mProgressSpinner2.setVisibility(View.GONE);
+
             new GetCategory3Courses().execute("http://rtvonline.com/json-feed/crime.json");
         }
     }
@@ -475,6 +509,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner3.setIndeterminate(true);
+            mProgressSpinner3.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -551,6 +588,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView3.setAdapter(adapter3);
             adapter3.notifyDataSetChanged();
 
+            mProgressSpinner3.setVisibility(View.GONE);
+
             new GetCategory4Courses().execute("http://rtvonline.com/json-feed/economics.json");
         }
     }
@@ -559,6 +598,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner4.setIndeterminate(true);
+            mProgressSpinner4.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -635,6 +677,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView4.setAdapter(adapter4);
             adapter4.notifyDataSetChanged();
 
+            mProgressSpinner4.setVisibility(View.GONE);
+
             new GetCategory5Courses().execute("http://rtvonline.com/json-feed/entertainment.json");
         }
     }
@@ -643,6 +687,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner5.setIndeterminate(true);
+            mProgressSpinner5.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -719,6 +766,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView5.setAdapter(adapter5);
             adapter5.notifyDataSetChanged();
 
+            mProgressSpinner5.setVisibility(View.GONE);
+
             new GetCategory6Courses().execute("http://rtvonline.com/json-feed/international.json");
         }
     }
@@ -727,6 +776,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner6.setIndeterminate(true);
+            mProgressSpinner6.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -803,6 +855,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView6.setAdapter(adapter6);
             adapter6.notifyDataSetChanged();
 
+            mProgressSpinner6.setVisibility(View.GONE);
+
             new GetCategory7Courses().execute("http://rtvonline.com/json-feed/lifestyle.json");
         }
     }
@@ -811,6 +865,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner7.setIndeterminate(true);
+            mProgressSpinner7.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -887,6 +944,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView7.setAdapter(adapter7);
             adapter7.notifyDataSetChanged();
 
+            mProgressSpinner7.setVisibility(View.GONE);
+
             new GetCategory8Courses().execute("http://rtvonline.com/json-feed/politics.json");
         }
     }
@@ -895,6 +954,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner8.setIndeterminate(true);
+            mProgressSpinner8.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -971,6 +1033,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView8.setAdapter(adapter8);
             adapter8.notifyDataSetChanged();
 
+            mProgressSpinner8.setVisibility(View.GONE);
+
             new GetCategory9Courses().execute("http://rtvonline.com/json-feed/sports.json");
         }
     }
@@ -979,6 +1043,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner9.setIndeterminate(true);
+            mProgressSpinner9.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -1055,6 +1122,8 @@ public class MainActivity extends AppCompatActivity {
             recyclerView9.setAdapter(adapter9);
             adapter9.notifyDataSetChanged();
 
+            mProgressSpinner9.setVisibility(View.GONE);
+
             new GetCategory10Courses().execute("http://rtvonline.com/json-feed/country.json");
         }
     }
@@ -1063,6 +1132,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            mProgressSpinner10.setIndeterminate(true);
+            mProgressSpinner10.setVisibility(View.VISIBLE);
             //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
@@ -1138,6 +1210,9 @@ public class MainActivity extends AppCompatActivity {
             //
             recyclerView10.setAdapter(adapter10);
             adapter10.notifyDataSetChanged();
+
+
+            mProgressSpinner10.setVisibility(View.GONE);
         }
     }
 }

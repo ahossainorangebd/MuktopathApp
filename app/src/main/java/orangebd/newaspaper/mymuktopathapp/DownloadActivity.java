@@ -13,11 +13,11 @@ public class DownloadActivity extends AppCompatActivity {
 
     // Button Layout of footer
 
+    private LinearLayout allCourseBtn;
+    private LinearLayout recomendedBtn;
     private LinearLayout myPageBtn;
-    private LinearLayout myKhujunBtn;
-    private LinearLayout myRecommendedBtn;
-    private LinearLayout myDownloadsBtn;
-    private LinearLayout myProfileBtn;
+    private LinearLayout downloadsBtn;
+    private LinearLayout profileBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,41 +26,40 @@ public class DownloadActivity extends AppCompatActivity {
 
         mContext=this;
 
-        myPageBtn = findViewById(R.id.myPageId);
-        myKhujunBtn = findViewById(R.id.khujunBtnId);
-        myRecommendedBtn = findViewById(R.id.recomendedBtnId);
-        myDownloadsBtn = findViewById(R.id.downloadsBtnId);
-        myProfileBtn = findViewById(R.id.profilePageBtnId);
+        allCourseBtn = findViewById(R.id.allCourseBtnId);
+        recomendedBtn = findViewById(R.id.recomendedBtnId);
+        myPageBtn = findViewById(R.id.myPageBtnId);
+        downloadsBtn = findViewById(R.id.downloadsBtnId);
+        profileBtn = findViewById(R.id.profilePageBtnId);
 
+        allCourseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, MainActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        recomendedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, RecomendedActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
         myPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(mContext,AllCourseActivity.class);
+                Intent i=new Intent(mContext,MyPageActivity.class);
                 v.getContext().startActivity(i);
             }
         });
 
-        myKhujunBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(mContext,SearchActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        myProfileBtn.setOnClickListener(new View.OnClickListener() {
+        profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(mContext,ProfileActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        myRecommendedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(mContext,MainActivity.class);
                 v.getContext().startActivity(i);
             }
         });

@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mRegiPageSignUpBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(mContext,AllCourseActivity.class);
+                Intent i=new Intent(mContext,WelcomeActivity.class);
                 v.getContext().startActivity(i);
             }
         });
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onClick(View view) {
                 //attemptLogin();
                 finish();
-                Intent i=new Intent(mContext,AllCourseActivity.class);
+                Intent i=new Intent(mContext,WelcomeActivity.class);
                 view.getContext().startActivity(i);
             }
         });

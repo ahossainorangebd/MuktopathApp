@@ -15,7 +15,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
+        android:padding="10dp"
         >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#9d23db"
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
 
         <Button
             android:id="@+id/searchBtnIcon"
@@ -34,13 +43,17 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="ক্যাটালগ খুঁজুন"
+            android:textColor="@color/Colorpeace"
             android:singleLine="true"
+            android:background="#9d23db"
             android:autofillHints="Search"
             >
 
             <requestFocus/>
 
         </EditText>
+
+    </LinearLayout>
 
     </LinearLayout>
 
@@ -52,6 +65,7 @@
         android:padding="5dp"
         android:background="@color/AppBackgroundColor"
         android:layout_below="@+id/searchBarId"
+        android:layout_marginBottom="52dp"
         >
 
 
@@ -99,19 +113,35 @@
                             android:layout_width="150dp"
                             android:layout_height="200dp"
                             android:orientation="vertical"
-                            android:background="@color/Colorpeace"
+                            android:background="@drawable/course3_gradient_background"
                             android:gravity="center"
                             >
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="কোর্সসমূহ"
-                                android:textColor="@color/AppTextColor"
+                                android:textColor="@color/Colorpeace"
                                 android:textStyle="bold"
                                 android:textSize="18sp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ProgressBar
+                                android:id="@+id/loadingSpinnerId"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="12dp"
+                                android:indeterminate="true" />
                         </LinearLayout>
 
                         <android.support.v7.widget.RecyclerView
@@ -359,7 +389,7 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
+                        android:background="@drawable/course1_gradient_background"
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
@@ -367,13 +397,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ 2"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -620,7 +666,7 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
+                        android:background="@drawable/course2_gradient_background"
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
@@ -628,13 +674,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ 3"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -679,7 +741,7 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
+                        android:background="@drawable/course4_gradient_background"
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
@@ -687,13 +749,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ 4"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -733,7 +811,7 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
+                        android:background="@drawable/course5_gradient_background"
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
@@ -741,13 +819,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ5"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -793,7 +887,7 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
+                        android:background="@drawable/course6_gradient_background"
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
@@ -801,13 +895,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ 6"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -850,7 +960,7 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
+                        android:background="@drawable/course7_gradient_background"
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
@@ -858,13 +968,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ 7"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -904,7 +1030,7 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
+                        android:background="@drawable/course8_gradient_background"
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
@@ -912,13 +1038,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ 8"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -963,21 +1105,37 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:background="@drawable/course9_gradient_background"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ 9"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -1022,7 +1180,7 @@
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        android:background="@color/Colorpeace"
+                        android:background="@drawable/course10_gradient_background"
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
@@ -1030,13 +1188,28 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="কোর্সসমূহ 10"
-                            android:textColor="@color/AppTextColor"
+                            android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/loadingSpinnerId10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:indeterminate="true" />
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -1076,14 +1249,13 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_gravity="center"
-            android:background="@color/AppBackgroundColor"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:padding="3dp"
+            android:background="@color/FooterBtnsColor"
             >
 
 
             <LinearLayout
-                android:id="@+id/myPageId"
+                android:id="@+id/allCourseBtnId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -1092,35 +1264,16 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/open_book"/>
+                    android:src="@drawable/khujun_purple"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:textSize="13sp"
-                    android:text="আমার পাতা"/>
+                    android:layout_marginTop="2dp"
+                    android:text="সকল কোর্স"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/khujunBtnId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
-                >
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/khujun2"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:textSize="13sp"
-                    android:layout_gravity="center"
-                    android:text="খুঁজুন"/>
-
-            </LinearLayout>
             <LinearLayout
                 android:id="@+id/recomendedBtnId"
                 android:layout_width="wrap_content"
@@ -1132,18 +1285,40 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ricomended_purple"/>
+                    android:src="@drawable/recommended_icon"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:text="রিকমেন্ডেড"
+                    android:layout_marginTop="2dp"
                     android:layout_below="@+id/recomendedLogoId"
                     android:textSize="13sp"
                     />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/myPageBtnId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/open_book"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="13sp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:text="আমার পাতা"/>
 
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/downloadsBtnId"
@@ -1161,6 +1336,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:textSize="13sp"
+                    android:layout_marginTop="2dp"
                     android:text="ডাউনলোড"/>
             </LinearLayout>
 
@@ -1180,6 +1356,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
+                    android:layout_marginTop="2dp"
                     android:textSize="13sp"
                     android:text="প্রোফাইল"/>
             </LinearLayout>
