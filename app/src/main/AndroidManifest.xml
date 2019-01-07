@@ -37,7 +37,10 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".DownloadActivity" />
         <activity android:name=".MyPageActivity" />
-        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".SelectCategoryActivity" />
+        <activity android:name=".SelectACategoryActivity" />
+        <activity android:name=".TempoActivity"></activity>
     </application>
 
 </manifest>

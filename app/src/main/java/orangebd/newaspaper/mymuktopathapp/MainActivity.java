@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         //nestedScrollView.fullScroll(View.FOCUS_UP);
         recyclerView.setNestedScrollingEnabled(false);
 
-        new GetCategory1Courses().execute("http://rtvonline.com/json-feed/latest.json");
+        new GetCategory1Courses().execute("https://rtvonline.com/json-feed/latest.json");
     }
 
     private void setRecyclerView2() {
@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner.setVisibility(View.GONE);
 
-            new GetCategory2Courses().execute("http://rtvonline.com/json-feed/bangladesh.json");
+            new GetCategory2Courses().execute("https://rtvonline.com/json-feed/bangladesh.json");
         }
     }
 
@@ -501,7 +501,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner2.setVisibility(View.GONE);
 
-            new GetCategory3Courses().execute("http://rtvonline.com/json-feed/crime.json");
+            new GetCategory3Courses().execute("https://rtvonline.com/json-feed/crime.json");
         }
     }
 
@@ -590,7 +590,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner3.setVisibility(View.GONE);
 
-            new GetCategory4Courses().execute("http://rtvonline.com/json-feed/economics.json");
+            new GetCategory4Courses().execute("https://rtvonline.com/json-feed/economics.json");
         }
     }
 
@@ -679,7 +679,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner4.setVisibility(View.GONE);
 
-            new GetCategory5Courses().execute("http://rtvonline.com/json-feed/entertainment.json");
+            new GetCategory5Courses().execute("https://rtvonline.com/json-feed/entertainment.json");
         }
     }
 
@@ -768,7 +768,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner5.setVisibility(View.GONE);
 
-            new GetCategory6Courses().execute("http://rtvonline.com/json-feed/international.json");
+            new GetCategory6Courses().execute("https://rtvonline.com/json-feed/international.json");
         }
     }
 
@@ -857,7 +857,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner6.setVisibility(View.GONE);
 
-            new GetCategory7Courses().execute("http://rtvonline.com/json-feed/lifestyle.json");
+            new GetCategory7Courses().execute("https://rtvonline.com/json-feed/lifestyle.json");
         }
     }
 
@@ -946,7 +946,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner7.setVisibility(View.GONE);
 
-            new GetCategory8Courses().execute("http://rtvonline.com/json-feed/politics.json");
+            new GetCategory8Courses().execute("https://rtvonline.com/json-feed/politics.json");
         }
     }
 
@@ -1035,7 +1035,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner8.setVisibility(View.GONE);
 
-            new GetCategory9Courses().execute("http://rtvonline.com/json-feed/sports.json");
+            new GetCategory9Courses().execute("https://rtvonline.com/json-feed/sports.json");
         }
     }
 
@@ -1124,7 +1124,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner9.setVisibility(View.GONE);
 
-            new GetCategory10Courses().execute("http://rtvonline.com/json-feed/country.json");
+            new GetCategory10Courses().execute("https://rtvonline.com/json-feed/country.json");
         }
     }
 

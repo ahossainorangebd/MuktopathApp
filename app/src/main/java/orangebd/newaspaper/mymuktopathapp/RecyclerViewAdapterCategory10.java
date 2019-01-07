@@ -157,7 +157,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
             public void onClick(View v)
             {
 
-                Intent i = new Intent(mContext, CourseDetailActivity.class);
+                /*Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("URL", htmlText);
                 i.putExtra("SURL", detailUrl);
                 try {
@@ -166,7 +166,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
                 catch (Exception ex){
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
-                }
+                }*/
             }
         });
 

@@ -19,10 +19,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
         mContext=this;
 
+        getSupportActionBar().hide();
+
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(mContext, MyPageActivity.class);
+                Intent i = new Intent(mContext, SelectACategoryActivity.class);
                 startActivity(i);
             }
         }, 2000);

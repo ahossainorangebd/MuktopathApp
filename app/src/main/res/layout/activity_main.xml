@@ -45,6 +45,7 @@
             android:hint="ক্যাটালগ খুঁজুন"
             android:textColor="@color/Colorpeace"
             android:singleLine="true"
+            android:textColorHint="#fff"
             android:background="#9d23db"
             android:autofillHints="Search"
             >
