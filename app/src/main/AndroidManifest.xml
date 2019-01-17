@@ -40,7 +40,8 @@
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".SelectCategoryActivity" />
         <activity android:name=".SelectACategoryActivity" />
-        <activity android:name=".TempoActivity"></activity>
+        <activity android:name=".TempoActivity" />
+        <activity android:name=".MyPageCourseDetail"></activity>
     </application>
 
 </manifest>

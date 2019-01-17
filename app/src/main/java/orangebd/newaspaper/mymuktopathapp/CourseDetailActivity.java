@@ -32,7 +32,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     String ShareURL;
     String title;
 
-    private ImageView mLogoIcon;
+    //private ImageView mLogoIcon;
 
     ArrayList<DetailDataModel> detailListHeadLine=new ArrayList<>();
 
@@ -43,31 +43,32 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         context=this;
 
-        mWebView=findViewById(R.id.myWebView);
+        //TODO
+        /*mWebView=findViewById(R.id.myWebView);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new MyWebViewClient());
+        mWebView.setWebViewClient(new MyWebViewClient());*/
 
-        View view = LayoutInflater.from(context)
-                .inflate(R.layout.custom_logodetails, null, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.custom_logodetails, null, false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(view);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0097D7")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        try
+        /*try
         {
             url = getIntent().getExtras().getString("URL");
             ShareURL=getIntent().getExtras().getString("SURL");
             title = getIntent().getExtras().getString("ttl");
 
-            /*childM = findViewById(R.id.ChildM2);
-            childM.setText(title);*/
+            *//*childM = findViewById(R.id.ChildM2);
+            childM.setText(title);*//*
 
-            mLogoIcon=view.findViewById(R.id.rtvheadlogo);
+           // mLogoIcon=findViewById(R.id.rtvheadlogo);
 
             if (null != url) {
 
+                //TODO
                 mWebView.getSettings().setJavaScriptEnabled(true);
                 mWebView.getSettings().setDomStorageEnabled(true);
                 String summary = getIntent().getExtras().getString("URL");
@@ -78,7 +79,7 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         catch (Exception ex){
             Log.d("",ex.getMessage());
-        }
+        }*/
 
         /*mShareImage=view.findViewById(R.id.shareBtnId);
 
@@ -90,7 +91,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         });*/
 
 
-        mLogoIcon.setOnClickListener(new View.OnClickListener() {
+        /*mLogoIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 deleteCache(context);
@@ -98,11 +99,8 @@ public class CourseDetailActivity extends AppCompatActivity {
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 view.getContext().startActivity(i);
             }
-        });
-
+        });*/
     }
-
-
 
     public static void deleteCache(Context context) {
         try {
@@ -110,6 +108,7 @@ public class CourseDetailActivity extends AppCompatActivity {
             deleteDir(dir);
         } catch (Exception e) {}
     }
+
     public static boolean deleteDir(File dir) {
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();
@@ -128,14 +127,14 @@ public class CourseDetailActivity extends AppCompatActivity {
         }
     }
 
-    private void shareIt() {
+    /*private void shareIt() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Rtv");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, url);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, ShareURL);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -173,8 +172,8 @@ public class CourseDetailActivity extends AppCompatActivity {
             finish();
             return true;
         }
-        else if (id==R.id.searchBtnId)
-            shareIt();
+        /*else if (id==R.id.searchBtnId)
+            shareIt();*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -182,7 +181,8 @@ public class CourseDetailActivity extends AppCompatActivity {
     public void onPause(){
         super.onPause();
 
-        mWebView.onPause();
+       //TODO
+        //mWebView.onPause();
     }
 }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#a1a1a1"
+    android:background="#e0e0e0"
     >
 
     <LinearLayout
@@ -22,8 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="5dp"
             >
 
             <LinearLayout
@@ -39,12 +37,123 @@
                     android:textSize="20sp"
                     android:textColor="@color/colorVoldemort"
                     />
-                <LinearLayout
+
+                <RelativeLayout
+                    android:id="@+id/MasterMenuHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+                    <HorizontalScrollView
+                        android:id="@+id/buttonLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"
+                        android:padding="2dp"
+                        android:background="@color/AppBackgroundColor"
+                        >
+
+                        <LinearLayout
+
+                            android:nestedScrollingEnabled="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:background="@color/AppBackgroundColor"
+                            android:layout_gravity="center"
+                            >
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/button_style_tags"
+                                android:orientation="horizontal"
+                                >
+
+                                <!--<ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="28dp"
+                                    android:src="@drawable/photo"
+                                    android:layout_marginLeft="5dp"
+                                    />-->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="ফটোগ্রাফি"
+                                    android:gravity="center"
+                                    android:textColor="#fff"
+                                    android:textSize="15sp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="4dp"
+                                    />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="5dp"
+                                android:background="@drawable/button_style_tags"
+                                android:orientation="horizontal"
+                                >
+
+                                <!--<ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="28dp"
+                                    android:src="@drawable/market"
+                                    android:layout_marginLeft="5dp"
+                                    />-->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="মার্কেটিং"
+                                    android:gravity="center"
+                                    android:textColor="#fff"
+                                    android:textSize="15sp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="4dp"
+                                    />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/button_style_tags"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="5dp"
+                                >
+
+                                <!--<ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="28dp"
+                                    android:src="@drawable/shongit"
+                                    android:layout_marginLeft="5dp"
+                                    />-->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="সংগীত"
+                                    android:gravity="center"
+                                    android:textColor="#fff"
+                                    android:textSize="15sp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="4dp"
+                                    />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </RelativeLayout>
+
+
+                <!--<LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
                     >
 
                     <LinearLayout
@@ -140,8 +249,7 @@
 
 
 
-                </LinearLayout>
-
+                </LinearLayout>-->
 
 
             </LinearLayout>
@@ -187,17 +295,50 @@
                     android:layout_marginRight="4dp"
                     >
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ডিজিটাল মার্কেটিং"
-                        android:textColor="@color/AppTextColor"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        />
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="@color/colorVoldemort"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয়"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="2dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="৩০০০০ টাকা"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="1dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="★★★☆☆"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="1dp"
+                            />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -227,17 +368,50 @@
                     android:layout_marginRight="4dp"
                     >
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="পছন্দের ক্যাটেগরি"
-                        android:textColor="@color/AppTextColor"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        />
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="@color/colorVoldemort"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয়"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="2dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="৩০০০০ টাকা"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="1dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="★★★☆☆"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="1dp"
+                            />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -269,17 +443,50 @@
                     android:layout_marginRight="4dp"
                     >
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="পছন্দের ক্যাটেগরি"
-                        android:textColor="@color/AppTextColor"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        />
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="@color/colorVoldemort"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয়"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="2dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="৩০০০০ টাকা"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="1dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="★★★☆☆"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="1dp"
+                            />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -311,30 +518,358 @@
                     android:layout_marginRight="4dp"
                     >
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="পছন্দের ক্যাটেগরি"
-                        android:textColor="@color/AppTextColor"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        />
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ডিজিটাল মার্কেটিং"
+                            android:textColor="@color/colorVoldemort"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয়"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="2dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="৩০০০০ টাকা"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="1dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="★★★☆☆"
+                            android:textColor="@color/colorVoldemort"
+                            android:textSize="14sp"
+                            android:layout_marginTop="1dp"
+                            />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
 
             </LinearLayout>
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="95dp"
+                        android:background="@drawable/book"
+                        android:orientation="vertical"
+                        >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="95dp"
+                        android:background="@color/Colorpeace"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="4dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ডিজিটাল মার্কেটিং"
+                                android:textColor="@color/colorVoldemort"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয়"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="2dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="৩০০০০ টাকা"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="★★★☆☆"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="95dp"
+                        android:background="@drawable/tec"
+                        android:orientation="vertical"
+                        >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="95dp"
+                        android:background="@color/Colorpeace"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="4dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ডিজিটাল মার্কেটিং"
+                                android:textColor="@color/colorVoldemort"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয়"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="2dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="৩০০০০ টাকা"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="★★★☆☆"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="95dp"
+                        android:background="@drawable/tec2"
+                        android:orientation="vertical"
+                        >
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="95dp"
+                        android:background="@color/Colorpeace"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="4dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ডিজিটাল মার্কেটিং"
+                                android:textColor="@color/colorVoldemort"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয়"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="2dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="৩০০০০ টাকা"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="★★★☆☆"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="95dp"
+                        android:background="@drawable/dmc"
+                        android:orientation="vertical"
+                        >
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="95dp"
+                        android:background="@color/Colorpeace"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="4dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ডিজিটাল মার্কেটিং"
+                                android:textColor="@color/colorVoldemort"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="বৈদেশিক কর্মসংস্থান মন্ত্রণালয়"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="2dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="৩০০০০ টাকা"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="★★★☆☆"
+                                android:textColor="@color/colorVoldemort"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>
-
-
-
-
 
     </LinearLayout>
 

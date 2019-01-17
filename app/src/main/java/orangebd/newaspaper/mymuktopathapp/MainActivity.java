@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -80,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+        View view2 = findViewById(android.R.id.content);
+        Animation mLoadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
+        mLoadAnimation.setDuration(1000);
+        view2.startAnimation(mLoadAnimation);
+
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
         myPageBtn = findViewById(R.id.myPageBtnId);
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         recomendedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(mContext, RecomendedActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -110,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         myPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i=new Intent(mContext,MyPageActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -118,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         downloadsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i=new Intent(mContext,DownloadActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -126,11 +136,11 @@ public class MainActivity extends AppCompatActivity {
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i=new Intent(mContext,ProfileActivity.class);
                 v.getContext().startActivity(i);
             }
         });
-
         //
 
         searchBar=findViewById(R.id.searchBarId);
@@ -150,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         setRecyclerView();
     }
 
@@ -159,13 +168,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView.setLayoutManager(layoutManager);
-
-
-
 
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
@@ -183,9 +188,6 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView2.setLayoutManager(layoutManager);
 
-
-
-
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
         recyclerView2.setNestedScrollingEnabled(false);
@@ -199,9 +201,6 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView3.setLayoutManager(layoutManager);
-
-
-
 
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
@@ -217,9 +216,6 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView4.setLayoutManager(layoutManager);
 
-
-
-
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
         recyclerView4.setNestedScrollingEnabled(false);
@@ -233,9 +229,6 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView5.setLayoutManager(layoutManager);
-
-
-
 
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
@@ -251,9 +244,6 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView6.setLayoutManager(layoutManager);
 
-
-
-
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
         recyclerView6.setNestedScrollingEnabled(false);
@@ -268,9 +258,6 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView7.setLayoutManager(layoutManager);
 
-
-
-
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
         recyclerView7.setNestedScrollingEnabled(false);
@@ -284,9 +271,6 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView8.setLayoutManager(layoutManager);
-
-
-
 
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
@@ -303,8 +287,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView9.setLayoutManager(layoutManager);
 
 
-
-
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
         recyclerView9.setNestedScrollingEnabled(false);
@@ -318,9 +300,6 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView10.setLayoutManager(layoutManager);
-
-
-
 
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
@@ -436,6 +415,7 @@ public class MainActivity extends AppCompatActivity {
             //Log.e(TAG, "Response from url: " + jsonStr);
             if (jsonStr != null) try {
                 JSONObject jsonObj = new JSONObject(jsonStr);
+
                 detailList=new ArrayList<DetailDataModel>();
                 try {
                     for (int i=0;i<jsonObj.length()-1;i++)

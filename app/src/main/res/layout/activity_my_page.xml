@@ -5,26 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/AppBackgroundColor"
+    android:background="@drawable/muktopath_splash"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     >
 
-    <LinearLayout
+    <!-- this section will always common for all users. After Enrolling projects this section will be gon programetically-->
+    <!--<LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:orientation="vertical"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="18dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="22dp"
         >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="আমার পাতা"
+            android:textColor="@color/AppTextColor"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:gravity="center"
+            android:layout_marginTop="30dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:background="@drawable/muktopath_logo"
@@ -48,16 +63,18 @@
             android:textColor="@color/AppTextColor"
             android:textStyle="bold"
             android:textSize="22sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             />
 
         <TextView
             android:layout_width="310dp"
             android:padding="3dp"
             android:layout_height="wrap_content"
-            android:text="আপনার কম্পিউটার, মোবাইল ডিভাইস এবং টিভিতে থাকা অ্যাপ্লিকেশন গুলির সাথে যেকোন যায়গায় শিখতে এবং উন্নত ন্যাভিগেশন এবং দ্রুত স্ট্রিমিং সমন্বিত।"
+            android:text="আপনার কম্পিউটার বা মোবাইল ডিভাইস যে কোন সময় যেকোন যায়গায় শিখতে চাইলে এপসটি ডাউনলোড করুক।"
             android:textColor="@color/colorVoldemort"
             android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_marginTop="14dp"
             />
 
@@ -70,15 +87,332 @@
             android:textSize="16sp"
             android:focusable="true"
             android:textColor="#fff"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/gradient_background"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
             android:focusableInTouchMode="true"
             android:textStyle="bold" />
 
+    </LinearLayout>-->
+    <!-- This section will appear after enrolling projects.-->
+
+    <LinearLayout
+        android:id="@+id/afterEnrollLayOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/lin_layout_style_white_with_shadow_border"
+        android:orientation="vertical"
+        android:padding="22dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/lin_layout_style_white_with_shadow_border"
+            android:layout_marginTop="40dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="২২ টি"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="অনুশীলনী"
+                android:layout_gravity="center"
+                android:layout_marginLeft="55dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="৩৯ ঘণ্টা"
+                android:layout_gravity="center"
+                android:layout_marginLeft="55dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/lin_layout_style_white_with_shadow_border"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="২২ টি"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="অনুশীলনী"
+                android:layout_gravity="center"
+                android:layout_marginLeft="55dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="৩৯ ঘণ্টা"
+                android:layout_gravity="center"
+                android:layout_marginLeft="55dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/lin_layout_style_white_with_shadow_border"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="২২ টি"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="অনুশীলনী"
+                android:layout_gravity="center"
+                android:layout_marginLeft="55dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="৩৯ ঘণ্টা"
+                android:layout_gravity="center"
+                android:layout_marginLeft="55dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginTop="18dp"
+            android:text="শুরু করুন"
+            android:textColor="@color/Colorpeace"
+            android:background="@color/colorLighterPain"
+            android:elevation="20dp"
+            />
+
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/pagingNumbersLayOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/afterEnrollLayOut"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:background="@drawable/lin_layout_style_white_with_shadow_border"
+            android:layout_gravity="center"
+            >
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/lin_layout_style_white_with_shadow_border"
+                >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:textAlignment="center"
+                    android:src="@drawable/left_arrow"
+                    android:textColor="@color/colorLighterPain"
+                    android:layout_gravity="right"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/lin_layout_style_white_with_shadow_border"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorLighterPain"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/lin_layout_style_white_with_shadow_border"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="2"
+                    android:background="@drawable/lin_layout_style_blue_with_shadow_border"
+                    android:textAlignment="center"
+                    android:textColor="@color/Colorpeace"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/lin_layout_style_white_with_shadow_border"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="3"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorLighterPain"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/lin_layout_style_white_with_shadow_border"
+                >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/right_arrow"
+                    android:textColor="@color/colorLighterPain"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="আমার পাতা"
+        android:textColor="@color/AppTextColor"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="left"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/coverdetailpage"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="সাইবার সিকিউরিটি কোর্স"
+            android:textColor="@color/Colorpeace"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Colorpeace"
+            android:text="মুক্তপাঠ"
+            android:layout_marginLeft="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="80dp"
+            >
+
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:layout_width="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/lin_layout_style_white"
+            android:layout_height="10dp"
+
+            />
+        </LinearLayout>
+    </LinearLayout>
 
 
     <LinearLayout

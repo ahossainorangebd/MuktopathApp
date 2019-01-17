@@ -4,14 +4,13 @@
     android:shape="rectangle" android:padding="10dp">
 
     <!-- you can use any color you want I used here gray color-->
+    <solid android:color="@color/colorPain"/>
+    <corners android:radius="20dp"/>
 
-    <gradient
-        android:angle="135"
-        android:endColor="#a725ed"
-        android:startColor="#3d005e"
-        android:type="linear"
-        />
+    <stroke
+        android:color="@color/colorPain"
+        android:width="8dp"
+        >
 
-    <corners android:radius="6dp"/>
-
+    </stroke>
 </shape>

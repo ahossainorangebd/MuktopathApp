@@ -6,16 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     tools:context=".WelcomeActivity"
-    android:background="@drawable/book"
+    android:background="@drawable/muktopath_splash"
     >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome"
-        android:textSize="50dp"
-        android:textColor="@color/Colorpeace"
-        android:layout_marginBottom="120dp"
-        />
 
 </LinearLayout>

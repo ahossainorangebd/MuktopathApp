@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="60dp"
             >
 
             <TextView
@@ -30,12 +30,12 @@
                 android:textColor="#000"
                 />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -46,15 +46,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Arts and Humanities"
-            android:layout_gravity="center"
             android:layout_marginLeft="15dp"
-            android:gravity="center"
             android:textSize="20sp"
             android:textColor="#000"
             android:textStyle="bold"
             />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/expandIconId1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/arrow_up_exp_white"
+            android:layout_marginRight="10dp"
+            />
+
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category1Expand"
                 android:layout_width="match_parent"
@@ -145,12 +152,12 @@
             </LinearLayout>
             
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -168,7 +175,15 @@
             android:textStyle="bold"
             />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/expandIconId2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
+
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category2Expand"
                 android:layout_width="match_parent"
@@ -333,12 +348,12 @@
                 </LinearLayout>
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -356,8 +371,15 @@
             android:textColor="#000"
             android:textStyle="bold"
             />
+        <ImageView
+            android:id="@+id/expandIconId3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
 
-    </LinearLayout>
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category3Expand"
                 android:layout_width="match_parent"
@@ -497,12 +519,12 @@
 
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory4"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -520,8 +542,15 @@
             android:textColor="#000"
             android:textStyle="bold"
             />
+        <ImageView
+            android:id="@+id/expandIconId4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
 
-    </LinearLayout>
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category4Expand"
                 android:layout_width="match_parent"
@@ -611,12 +640,12 @@
 
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -634,8 +663,15 @@
             android:textColor="#000"
             android:textStyle="bold"
             />
+        <ImageView
+            android:id="@+id/expandIconId5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
 
-    </LinearLayout>
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category5Expand"
                 android:layout_width="match_parent"
@@ -775,12 +811,12 @@
 
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory6"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -799,7 +835,15 @@
             android:textStyle="bold"
             />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/expandIconId6"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
+
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category6Expand"
                 android:layout_width="match_parent"
@@ -964,12 +1008,12 @@
 
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory7"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -988,7 +1032,15 @@
             android:textStyle="bold"
             />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/expandIconId7"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
+
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category7Expand"
                 android:layout_width="match_parent"
@@ -1013,12 +1065,12 @@
 
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory8"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -1037,7 +1089,15 @@
             android:textStyle="bold"
             />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/expandIconId8"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
+
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category8Expand"
                 android:layout_width="match_parent"
@@ -1062,12 +1122,12 @@
 
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory9"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -1086,7 +1146,15 @@
             android:textStyle="bold"
             />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/expandIconId9"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
+
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category9Expand"
                 android:layout_width="match_parent"
@@ -1250,12 +1318,12 @@
 
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory10"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -1274,7 +1342,15 @@
             android:textStyle="bold"
             />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/expandIconId10"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
+
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category10Expand"
                 android:layout_width="match_parent"
@@ -1415,12 +1491,12 @@
 
             </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory11"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="left"
+        android:gravity="center"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -1439,7 +1515,15 @@
             android:textStyle="bold"
             />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/expandIconId11"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow_up_exp_white" />
+
+    </RelativeLayout>
             <LinearLayout
                 android:id="@+id/category11Expand"
                 android:layout_width="match_parent"
@@ -1509,7 +1593,25 @@
 
     </ScrollView>
 
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/nextBtnId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:background="@drawable/gradient_background"
+            />
+    </LinearLayout>
 
 
 
-</LinearLayout>
+
+</RelativeLayout>
