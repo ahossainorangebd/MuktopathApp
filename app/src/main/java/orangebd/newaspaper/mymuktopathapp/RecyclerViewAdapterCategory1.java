@@ -171,7 +171,6 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
                 }*/
             }
         });
-
     }
     private String convertEnglishDateToBengali(String englishDate) throws ParseException {
         // Initial date time in String forma†

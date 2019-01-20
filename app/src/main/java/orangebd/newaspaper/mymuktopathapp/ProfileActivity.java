@@ -112,8 +112,7 @@ public class ProfileActivity extends AppCompatActivity {
         if(menu != null){
             if(menu.getClass().getSimpleName().equals("MenuBuilder")){
                 try{
-                    Method m = menu.getClass().getDeclaredMethod(
-                            "setOptionalIconsVisible", Boolean.TYPE);
+                    Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
                     m.setAccessible(true);
                     m.invoke(menu, true);
                 }

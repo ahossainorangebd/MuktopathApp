@@ -15,6 +15,8 @@ public class MyPageActivity extends AppCompatActivity {
     private Button mSplashActvtySearchSomething;
     private Context mContext;
 
+    private Button startMyPageBtn;
+
     // Button Layout of footer
 
     private LinearLayout allCourseBtn;
@@ -28,7 +30,6 @@ public class MyPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
 
-
         mContext=this;
 
         View view2 = findViewById(android.R.id.content);
@@ -36,11 +37,21 @@ public class MyPageActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
+        startMyPageBtn=findViewById(R.id.startMyPageBtnId);
+
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
         myPageBtn = findViewById(R.id.myPageBtnId);
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
+
+        startMyPageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, MyPageCourseDetail.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override

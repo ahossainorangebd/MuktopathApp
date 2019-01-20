@@ -70,7 +70,7 @@ public class RecyclerViewAdapterCategory2 extends RecyclerView.Adapter<RecyclerV
         try {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
         }
-        catch (Exception ex){
+        catch (Exception ex) {
             Log.d("", ex.getMessage());
         }
 

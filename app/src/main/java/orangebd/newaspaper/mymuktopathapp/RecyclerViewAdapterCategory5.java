@@ -102,6 +102,7 @@ public class RecyclerViewAdapterCategory5 extends RecyclerView.Adapter<RecyclerV
                     .load(imgUrl)
                     .into(imageView);
         }
+
         catch (Exception ex){}
 
         try {

@@ -105,7 +105,6 @@ public class DownloadActivity extends AppCompatActivity {
                 v.getContext().startActivity(i);
             }
         });
-
     }
 
 
@@ -113,9 +112,9 @@ public class DownloadActivity extends AppCompatActivity {
     protected boolean onPrepareOptionsPanel(View view, Menu menu) {
         if(menu != null){
             if(menu.getClass().getSimpleName().equals("MenuBuilder")){
+
                 try{
-                    Method m = menu.getClass().getDeclaredMethod(
-                            "setOptionalIconsVisible", Boolean.TYPE);
+                    Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
                     m.setAccessible(true);
                     m.invoke(menu, true);
                 }

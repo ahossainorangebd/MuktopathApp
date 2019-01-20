@@ -109,7 +109,7 @@
                                     android:textColor="#fff"
                                     android:textSize="15sp"
                                     android:layout_marginRight="5dp"
-                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginLeft="5dp"
                                     />
 
                             </LinearLayout>
@@ -136,7 +136,7 @@
                                     android:textColor="#fff"
                                     android:textSize="15sp"
                                     android:layout_marginRight="5dp"
-                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginLeft="5dp"
                                     />
 
                             </LinearLayout>
@@ -145,7 +145,6 @@
                     </HorizontalScrollView>
 
                 </RelativeLayout>
-
 
                 <!--<LinearLayout
                     android:layout_width="wrap_content"
@@ -245,12 +244,7 @@
 
                     </LinearLayout>
 
-
-
-
-
                 </LinearLayout>-->
-
 
             </LinearLayout>
 
@@ -258,17 +252,15 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-
-
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -296,7 +288,7 @@
                     >
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="5dp"
@@ -344,6 +336,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -369,7 +362,7 @@
                     >
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="5dp"
@@ -444,7 +437,7 @@
                     >
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="5dp"
@@ -519,7 +512,7 @@
                     >
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="5dp"
@@ -555,7 +548,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="★★★☆☆"
+                            android:text="★★★★☆"
                             android:textColor="@color/colorVoldemort"
                             android:textSize="14sp"
                             android:layout_marginTop="1dp"
@@ -595,7 +588,7 @@
                         >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="5dp"
@@ -668,7 +661,7 @@
                         >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="5dp"
@@ -743,7 +736,7 @@
                         >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="5dp"
@@ -818,7 +811,7 @@
                         >
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="5dp"

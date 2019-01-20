@@ -541,11 +541,13 @@ public class MainActivity extends AppCompatActivity {
                         publishProgress();
                     }
 
-                } catch (JSONException e) {
+                }
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-            } catch (final JSONException e) {
+            }
+            catch (final JSONException e) {
                 //Log.e(TAG, "Json parsing error: " + e.getMessage());
                 Log.e("tag", "Couldn't get json from server.");
 

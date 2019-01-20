@@ -8,6 +8,10 @@
     android:background="#a1a1a1"
     >
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/featureCoursesLayoutId"
         android:layout_width="match_parent"
@@ -17,153 +21,132 @@
         >
 
         <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".ProfileActivity">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:orientation="vertical"
                 android:background="@drawable/profile_page_cover_photo"
-                >
+                android:orientation="vertical">
 
-
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:src="@drawable/profile_icon"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/profilepicture_style"
-                />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="15dp"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                >
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/profilepicture_style"
+                    android:src="@drawable/profile_icon" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="1dp"
-                    >
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="25dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Name:"
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        />
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Name:"
+                            android:textColor="#fff"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mr. Name"
+                            android:textColor="#fff"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="20dp"
-                    android:padding="1dp"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mr. Name"
-                        android:textColor="#fff"
-                        android:textSize="20sp"
-                        />
-
-                </LinearLayout>
-
-
-
             </LinearLayout>
-
-            </LinearLayout>
-
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="18dp"
-                >
+                android:orientation="vertical"
+                android:paddingTop="20dp">
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="70dp"
-                    android:gravity="center"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:background="@drawable/open_book"
-                    />
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="আকাশ আমার পাঠশালা"
-                    android:textColor="@color/AppTextColor"
-                    android:textStyle="bold"
-                    android:textSize="10sp"
-                    android:textAlignment="center"
                     android:layout_gravity="center"
-                    />
+                    android:text="আকাশ আমার পাঠশালা"
+                    android:textAlignment="center"
+                    android:textColor="@color/AppTextColor"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="310dp"
-                    android:padding="3dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="3dp"
                     android:text="এই মুহূর্তে আপনার প্রোফাইলে কোন সম্পন্ন কোর্স নেই। আপনি চাইলে নতুন কিছু শিখতে সকল কোর্স পেইজে যেতে পারেন।"
                     android:textColor="@color/colorVoldemort"
-                    android:textSize="11sp"
-                    android:layout_marginTop="15dp"
-                    />
+                    android:textSize="11sp" />
 
                 <Button
                     android:id="@+id/splashActvtySearchSomething"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="নতুন কিছু শিখতে খুঁজুন"
-                    android:textSize="16sp"
-                    android:focusable="true"
-                    android:textColor="#fff"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/gradient_background"
                     android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="12dp"
+                    android:background="@drawable/gradient_background"
+                    android:focusable="true"
                     android:focusableInTouchMode="true"
+                    android:text="নতুন কিছু শিখতে খুঁজুন"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-
     </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -256,11 +239,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_height="23dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/downloadicon"/>
+                    android:src="@drawable/downloadicon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

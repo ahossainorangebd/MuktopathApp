@@ -172,26 +172,22 @@ public class RecyclerViewAdapterCategory6 extends RecyclerView.Adapter<RecyclerV
 
     }
     private String convertEnglishDateToBengali(String englishDate) throws ParseException {
-        // Initial date time in String forma†
-        //String timeOrg = "Mon Apr 18 22:56:10 GMT+05:30 2016";
+
         String timeOrg = englishDate;
-        // Corresponding date format
-        //2018-05-13 14:47:38
-        String dateTimeFormatOrg ="yyyy-MM-dd HH:mm:ss"; //"EEE MMM dd hh:mm:ss z yyyy";
-        // SimpleDateFormat using US locale to be able to parse "Mon Apr"
+        String dateTimeFormatOrg ="yyyy-MM-dd HH:mm:ss";
+
         SimpleDateFormat sdfgmtOrg = new SimpleDateFormat(dateTimeFormatOrg, Locale.US);
-        // Parse the date
+
         Date time = sdfgmtOrg.parse(timeOrg);
 
-        // Target date format
         String dateTimeFormat = "dd MMM yyyy hh:mm";
-        // SimpleDateFormat using the target locale
+
         SimpleDateFormat sdfgmt = new SimpleDateFormat(dateTimeFormat, new Locale("bn","BD"));
-        // Set the Time Zone to UTC
+
         sdfgmt.setTimeZone(TimeZone.getDefault());
-        // Print the formatted date
+
         String returnDate=sdfgmt.format(time);
-        //System.out.println(sdfgmt.format(time));
+
         return returnDate;
     }
 
