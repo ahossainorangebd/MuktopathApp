@@ -21,4 +21,8 @@ public class GlobalVar {
     public static boolean isLeadBtnClick;
 
     public static boolean isExpandForMenu;
+
+
+    //
+    public static String gTokenUrl;
 }
