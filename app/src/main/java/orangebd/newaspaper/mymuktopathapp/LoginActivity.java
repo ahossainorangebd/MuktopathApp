@@ -33,6 +33,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -77,6 +84,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private ArrayList<DetailDataModelAll> detailList=new ArrayList<>();
 
+    private String token="";
+    String url="http://api.muktopaath.orangebd.com/api/login";
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
@@ -120,18 +129,49 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                String token = GlobalVar.getTokenArray.get(0).getmAccessToken();
+                token = GlobalVar.getTokenArray.get(0).getmAccessToken();
                 String firstWord = GlobalVar.getTokenArray.get(0).getmTokenType();
 
                 token = firstWord + " " + token;
 
+                /*
                 map.put("Authorization",token);
-
-
+                new GetLogin().execute("http://api.muktopaath.orangebd.com/api/login");
+                */
                 map.put("email",mStrEmail);
                 map.put("password",mStrPwd);
+                JSONObject object=new JSONObject();
+                try {
+                    object.put("email", mStrEmail);
+                    object.put("password", mStrPwd);
+                }
+                catch (Exception ex){}
 
-                new GetLogin().execute("http://api.muktopaath.orangebd.com/api/login");
+                RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
+
+
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d("TAG", response.toString());
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("TAG", error.getMessage(), error);
+                    }
+                }) { //no semicolon or coma
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("Content-Type", "application/json");
+                        params.put("Authorization", token);
+                        return params;
+                    }
+                };
+                mQueue.add(jsonObjectRequest);
+
             }
         });
     }
