@@ -12,6 +12,7 @@ public class GlobalVar {
 
     public static ArrayList<ParentMenu> gParentMenue;
 
+
     public static ArrayList<String> gMenuArrayList;
 
     public static String gParentMenuURL;
@@ -25,4 +26,6 @@ public class GlobalVar {
 
     //
     public static String gTokenUrl;
+
+    public static ArrayList<DetailDataModelAll> getTokenArray;
 }

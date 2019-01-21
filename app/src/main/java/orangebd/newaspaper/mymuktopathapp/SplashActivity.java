@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private HashMap<String,String> map;
 
-    private ArrayList<DetailDataModel> detailList;
+    private ArrayList<DetailDataModelAll> detailList;
 
     private String mStrEmail;
     private String mStrpwd;
@@ -91,82 +91,35 @@ public class SplashActivity extends AppCompatActivity {
 
             String data= performPostCall(params[0],map);
 
-
-
-            /*if (data != null) try
-            {
+            /*if (data != null) try {
 
                 JSONObject jsonObj = new JSONObject(data);
-                detailList=new ArrayList<DetailDataModel>();
+                detailList=new ArrayList<DetailDataModelAll>();
 
-                DetailDataModel model = new DetailDataModel();
+                DetailDataModelAll model = new DetailDataModelAll();
 
-                String login_success = jsonObj.getString("success");
-                model.setmSuccessId(login_success);
+                try {
+                    for (int i=0;i<jsonObj.length()-1;i++)
+                    {
 
-                if(login_success.equalsIgnoreCase("1")) {
-
-                    try {
-                        for (int i=0;i<jsonObj.length()-1;i++)
-                        {
-                            JSONArray object = (JSONArray) jsonObj.get("data");
-                            JSONObject object2 = (JSONObject) object.get(0);
-
-                            int length=object.length();
-
-                            //Iterator<String> temp = object.keys();
-                            //while (temp.hasNext()) {
-
-                            //String dynamicKey = (String) temp.next();
-
-
-                            //for success login
-
-
-                            //for User data
-                            String Eid = object2.getString("id");
-                            String Ename = object2.getString("user_name");
-                            String Eemail = object2.getString("user_email");
-                            String Emobile = object2.getString("user_mobile");
-                            String Epassword = object2.getString("user_password");
-                            String Edomain = object2.getString("user_domain");
-                            String Etype = object2.getString("user_type");
-                            String Estatus = object2.getString("status");
-
-                            model.setmUserId(Eid);
-                            model.setmUserName(Ename);
-                            model.setmUserEmail(Eemail);
-                            model.setmUserMobile(Emobile);
-                            model.setmUserPasword(Epassword);
-                            model.setmUserDomain(Edomain);
-                            model.setmUserType(Etype);
-                            model.setmStatus(Estatus);
-
-                            detailList.add(model);
-                            publishProgress();
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-
-
             }
             catch (final JSONException e) {
                 Log.e("tag", "Couldn't get json from server.");
             }
             else {
                 Log.e("tag", "Couldn't get json from server.");
-            }*/
+            }
 
-
-            // String returnData=data.toString();
-            /*if (data.equalsIgnoreCase("ok"))
+            if (data.equalsIgnoreCase("ok"))
                 return "success";
             else
                 return "";*/
+
             return data;
 
         }
@@ -178,6 +131,38 @@ public class SplashActivity extends AppCompatActivity {
 
             String tokenName = result;
             String mT = tokenName;
+
+            try {
+                JSONObject jsonObj = new JSONObject(tokenName);
+
+                detailList = new ArrayList<DetailDataModelAll>();
+
+                DetailDataModelAll model = new DetailDataModelAll();
+
+               // JSONObject object = (JSONObject) jsonObj.get(""+0);
+
+                //for User data
+                String aToken = jsonObj.getString("access_token");
+                String expireIn = jsonObj.getString("expires_in");
+                String tType = jsonObj.getString("token_type");
+
+                //GlobalVar.gName=Ename;
+
+                model.setmAccessToken(aToken);
+                model.setmExpiresIn(expireIn);
+                model.setmTokenType(tType);
+
+                //for Login success & data
+
+                detailList.add(model);
+
+
+                GlobalVar.getTokenArray = detailList;
+            }
+
+            catch (Exception ex){
+            Log.d("", "onPostExecute: ");
+        }
         }
 
         @Override
