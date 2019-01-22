@@ -11,11 +11,15 @@
         android:id="@+id/rtvheadlogo"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:src="@drawable/muktopath_logo"
-        android:padding="5dp"
-        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        />
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:padding="5dp"
+        android:src="@drawable/muktopath_logo" />
 
     <EditText
         android:id="@+id/searchViewId"

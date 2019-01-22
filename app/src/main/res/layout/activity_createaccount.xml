@@ -287,16 +287,13 @@
                 android:focusableInTouchMode="true"
                 android:textStyle="bold" />
 
-
-<!--            <LinearLayout
+<!--           <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 >
-
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -331,7 +328,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -381,8 +377,6 @@
                         android:layout_gravity="center"
                         android:text="By creating an account, you accept Muktopath's"/>
 
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -399,15 +393,9 @@
                         android:layout_gravity="center"
                         android:text="Terms of Service and Privacy Policy"/>
 
-
-
                 </LinearLayout>
 
             </LinearLayout>
-
-
-
-
 
         </LinearLayout>
     </ScrollView>

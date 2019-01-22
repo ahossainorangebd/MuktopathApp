@@ -29,4 +29,10 @@ public class DetailDataModelAll
     public void setmTokenType(String mTokenType) {
         this.mTokenType = mTokenType;
     }
+
+
+
+
+
+
 }

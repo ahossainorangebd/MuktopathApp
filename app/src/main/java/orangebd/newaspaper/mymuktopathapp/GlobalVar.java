@@ -27,5 +27,14 @@ public class GlobalVar {
     //
     public static String gTokenUrl;
 
+
     public static ArrayList<DetailDataModelAll> getTokenArray;
+
+
+    //user info
+
+    public static String gName;
+    public static String gMobile;
+    public static String gEmail;
+    public static String gUserType;
 }
