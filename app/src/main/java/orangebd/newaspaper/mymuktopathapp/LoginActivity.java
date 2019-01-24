@@ -87,12 +87,9 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelUserData> detailList3=new ArrayList<>();
     private ArrayList<DetailDataModelUserData> detailList4=new ArrayList<>();
 
-
-
     private ArrayList<DetailDataModelUserData> detailListAnoPart1=new ArrayList<>();
     private ArrayList<DetailDataModelUserData> detailListAnoPart2=new ArrayList<>();
     private ArrayList<DetailDataModelUserData> detailListAnoPart3=new ArrayList<>();
-
 
     private String token="";
     String url="http://api.muktopaath.orangebd.com/api/login";
@@ -106,25 +103,25 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         mEmailView =  findViewById(R.id.email);
-        mEdtTxtPwd=findViewById(R.id.password);
+        mEdtTxtPwd = findViewById(R.id.password);
 
         mContext=this;
 
-        mRegiPageSignUpBtn=findViewById(R.id.regiPageSignUpId);
+        /*mRegiPageSignUpBtn=findViewById(R.id.regiPageSignUpId);
 
         mRegiPageSignUpBtn.setOnClickListener(new OnClickListener()
         {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(mContext,WelcomeActivity.class);
-                v.getContext().startActivity(i);
+
             }
-        });
+        });*/
 
         Button mEmailSignInButton = findViewById(R.id.regiPageSignUpId);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 //attemptLogin();
                 
                 /*finish();
@@ -155,8 +152,8 @@ public class LoginActivity extends AppCompatActivity {
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
                         new Response.Listener<JSONObject>() {
                             @Override
-                            public void onResponse(JSONObject response) {
-
+                            public void onResponse(JSONObject response)
+                            {
                                 detailList=new ArrayList<DetailDataModelUserData>();
 
                                 DetailDataModelUserData model = new DetailDataModelUserData();
@@ -195,6 +192,7 @@ public class LoginActivity extends AppCompatActivity {
                                             GlobalVar.gName = name;
                                             GlobalVar.gMobile=phone;
                                             GlobalVar.gEmail=email;
+                                            GlobalVar.gReplacingToken=token;
 
                                             model.setmId(id);
                                             model.setmUserName(username);
@@ -615,6 +613,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 };
                 mQueue.add(jsonObjectRequest);
+
+                Intent i=new Intent(mContext,WelcomeActivity.class);
+                startActivity(i);
             }
         });
     }

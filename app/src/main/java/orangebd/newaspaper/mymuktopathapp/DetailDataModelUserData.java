@@ -40,14 +40,10 @@ public class DetailDataModelUserData
     private String mInstGoogleLocation;
     private String mInstHeading;
     private String mInitial;
-
     private String mInstName;
     private String mInstType;
-
     private String mInstLegalDocFile;
     private String mInstMetaData;
-
-
     private String instphone;
     private String instsocial;
     private String inststatus;

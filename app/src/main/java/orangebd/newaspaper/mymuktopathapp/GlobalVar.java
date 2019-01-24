@@ -36,5 +36,6 @@ public class GlobalVar {
     public static String gName;
     public static String gMobile;
     public static String gEmail;
+    public static String gReplacingToken;
     public static String gUserType;
 }
