@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +32,8 @@ public class RecyclerViewAdapterCategory8 extends RecyclerView.Adapter<RecyclerV
 
     private Typeface tf;
 
+    private String CoverPhoto;
+
     private ArrayList<DetailDataModel> mFilteredList;
 
     //private String copyRightText;
@@ -38,6 +42,7 @@ public class RecyclerViewAdapterCategory8 extends RecyclerView.Adapter<RecyclerV
 
         TextView textViewName;
         TextView textViewVersion;
+        TextView textViewVersion2;
         ImageView imageViewIcon;
         Typeface typeface;
 
@@ -45,6 +50,7 @@ public class RecyclerViewAdapterCategory8 extends RecyclerView.Adapter<RecyclerV
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.textViewName);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
+            this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
             //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
             //textViewVersion.setTypeface(typeface);
@@ -53,6 +59,7 @@ public class RecyclerViewAdapterCategory8 extends RecyclerView.Adapter<RecyclerV
 
     public RecyclerViewAdapterCategory8(ArrayList<DetailDataModelCourses> data, Context context) {
         this.dataSet = data;
+
         this.mContext=context;
         stringPath = "file:///android_res/drawable/company_credit_logo.png";
         addOn = String.format("<img src=\"%s\" />", stringPath);
@@ -80,13 +87,29 @@ public class RecyclerViewAdapterCategory8 extends RecyclerView.Adapter<RecyclerV
         TextView textViewName = holder.textViewName;
 
         TextView textViewVersion = holder.textViewVersion;
+        TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
         String titleText=dataSet.get(listPosition).getmCourseAliasName();
         textViewName.setText(titleText);
 
         final String parentCatID=dataSet.get(listPosition).getCat_id();
         //String reporterString=dataSet.get(listPosition).getRpt();
-        //String imgUrl=dataSet.get(listPosition).getCover_thumb_img();
+
+        ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
+
+
+        try {
+            DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
+
+
+            String imgUrl = imgUrlModel.getCover_code_image();
+
+            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+        }
+        catch (Exception ex){
+            Log.d("", "onBindViewHolder: ");
+        }
+
         //String detailString=dataSet.get(listPosition).getDtl_url();
         //String imgCaption=dataSet.get(listPosition).getImg_caption();
 
@@ -94,31 +117,22 @@ public class RecyclerViewAdapterCategory8 extends RecyclerView.Adapter<RecyclerV
             reporterString="Rtv Desk";
         }*/
 
-        /*try {
+        try {
             Picasso.with(mContext)
-                    .load(imgUrl)
+                    .load(CoverPhoto)
                     .into(imageView);
         }
-        catch (Exception ex){}*/
+        catch (Exception ex){}
 
-        try {
-            entryDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmCreatedAt());
+            entryDate=dataSet.get(listPosition).getmCreatedAt();
             //final String returnDate=sdf.toString();
-            entryDate=convertEngToBn(entryDate);
-        }
-        catch (ParseException e) {
-            e.printStackTrace();
-        }
 
         textViewVersion.setText(entryDate);
 
-        try {
-            updateDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmUpdatedAt());
+            updateDate=dataSet.get(listPosition).getmUpdatedAt();
+        textViewVersion2.setText(entryDate);
+
             //final String returnDate=sdf.toString();
-        }
-        catch (ParseException e) {
-            e.printStackTrace();
-        }
 
         final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
                 "        img{ max-width:100%; height:auto !important}" +

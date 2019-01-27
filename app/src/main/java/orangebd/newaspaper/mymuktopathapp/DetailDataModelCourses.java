@@ -1,5 +1,7 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import java.util.ArrayList;
+
 public class DetailDataModelCourses
 {
     private String mAdmissionStatus;
@@ -94,12 +96,9 @@ public class DetailDataModelCourses
     private String owner_id;
     private String created_at_content;
 
-
-
     // For parsing multiple Q array
 
     private String pulse;
-
 
     // for model of Lessons
 
@@ -121,7 +120,6 @@ public class DetailDataModelCourses
     private String promovideoCourse;
     private String titleCourse;
 
-
     //for model of updated by direct strings
 
     private String education_statusUpdatedBy;
@@ -131,7 +129,6 @@ public class DetailDataModelCourses
     private String phoneUpdatedBy;
     private String UserInfoUpdatedBy;
     private String usernameUpdatedBy;
-
 
     //for model of updated by direct strings
 
@@ -143,15 +140,12 @@ public class DetailDataModelCourses
     private String UserInfoCreatedBy;
     private String usernameCreatedBy;
 
-
     //for model of owner by direct string
-
 
     private String updated_at_owner;
     private String institution_name_owner;
     private String id_owner;
     private String created_at_owner;
-
 
     //for parsing 2nd parent of grandfather
 
@@ -160,25 +154,11 @@ public class DetailDataModelCourses
     private String nextSecondParent;
     private String prevSecondParent;
 
-
-    //for parsing 3rd parent of grandfather
-
-    private String current_page_metaThirdParent;
-    private String from_metaThirdParent;
-    private String last_page_metaThirdParent;
-    private String path_metaThirdParent;
-    private String per_page_metaThirdParent;
-    private String to_metaThirdParent;
-    private String total_metaThirdParent;
-
+    private ArrayList<DetailDataModelCourses3rdGrandFather> m3rdGrandFather;
 
     //for parsing thumbnailImage;
 
-    private String thumnailImage;
-
-
-
-
+    private ArrayList<DetailDataModelCoursesThumbnails> mArrayListThumbnails;
 
     public String getmAdmissionStatus() {
         return mAdmissionStatus;
@@ -1012,62 +992,6 @@ public class DetailDataModelCourses
         this.created_at_owner = created_at_owner;
     }
 
-    public String getCurrent_page_metaThirdParent() {
-        return current_page_metaThirdParent;
-    }
-
-    public void setCurrent_page_metaThirdParent(String current_page_metaThirdParent) {
-        this.current_page_metaThirdParent = current_page_metaThirdParent;
-    }
-
-    public String getFrom_metaThirdParent() {
-        return from_metaThirdParent;
-    }
-
-    public void setFrom_metaThirdParent(String from_metaThirdParent) {
-        this.from_metaThirdParent = from_metaThirdParent;
-    }
-
-    public String getLast_page_metaThirdParent() {
-        return last_page_metaThirdParent;
-    }
-
-    public void setLast_page_metaThirdParent(String last_page_metaThirdParent) {
-        this.last_page_metaThirdParent = last_page_metaThirdParent;
-    }
-
-    public String getPath_metaThirdParent() {
-        return path_metaThirdParent;
-    }
-
-    public void setPath_metaThirdParent(String path_metaThirdParent) {
-        this.path_metaThirdParent = path_metaThirdParent;
-    }
-
-    public String getPer_page_metaThirdParent() {
-        return per_page_metaThirdParent;
-    }
-
-    public void setPer_page_metaThirdParent(String per_page_metaThirdParent) {
-        this.per_page_metaThirdParent = per_page_metaThirdParent;
-    }
-
-    public String getTo_metaThirdParent() {
-        return to_metaThirdParent;
-    }
-
-    public void setTo_metaThirdParent(String to_metaThirdParent) {
-        this.to_metaThirdParent = to_metaThirdParent;
-    }
-
-    public String getTotal_metaThirdParent() {
-        return total_metaThirdParent;
-    }
-
-    public void setTotal_metaThirdParent(String total_metaThirdParent) {
-        this.total_metaThirdParent = total_metaThirdParent;
-    }
-
     public String getFirstSecondParent() {
         return firstSecondParent;
     }
@@ -1100,11 +1024,11 @@ public class DetailDataModelCourses
         this.prevSecondParent = prevSecondParent;
     }
 
-    public String getThumnailImage() {
-        return thumnailImage;
+    public ArrayList<DetailDataModelCoursesThumbnails> getmArrayListThumbnails() {
+        return mArrayListThumbnails;
     }
 
-    public void setThumnailImage(String thumnailImage) {
-        this.thumnailImage = thumnailImage;
+    public void setmArrayListThumbnails(ArrayList<DetailDataModelCoursesThumbnails> mArrayListThumbnails) {
+        this.mArrayListThumbnails = mArrayListThumbnails;
     }
 }

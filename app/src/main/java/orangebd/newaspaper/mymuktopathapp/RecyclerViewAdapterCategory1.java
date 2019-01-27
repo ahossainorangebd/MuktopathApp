@@ -32,6 +32,8 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
 
     private Typeface tf;
 
+    private String CoverPhoto;
+
     private ArrayList<DetailDataModel> mFilteredList;
 
     //private String copyRightText;
@@ -55,8 +57,9 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         }
     }
 
-    public RecyclerViewAdapterCategory1(ArrayList<DetailDataModelCourses> data, Context context) {
+    public RecyclerViewAdapterCategory1(ArrayList<DetailDataModelCourses> data,  Context context) {
         this.dataSet = data;
+
         this.mContext=context;
         stringPath = "file:///android_res/drawable/company_credit_logo.png";
         addOn = String.format("<img src=\"%s\" />", stringPath);
@@ -91,9 +94,21 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
 
         final String parentCatID=dataSet.get(listPosition).getCat_id();
         //String reporterString=dataSet.get(listPosition).getRpt();
-        String imgUrl=dataSet.get(listPosition).getThumnailImage();
 
-        String mCoverPhoto= GlobalVar.gBaseUrl + "/cache-images/"+ "330x220" + "/uploads/images/"+imgUrl;
+        ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
+
+
+        try {
+            DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
+
+
+            String imgUrl = imgUrlModel.getCover_code_image();
+
+            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+        }
+        catch (Exception ex){
+            Log.d("", "onBindViewHolder: ");
+        }
 
         //String detailString=dataSet.get(listPosition).getDtl_url();
         //String imgCaption=dataSet.get(listPosition).getImg_caption();
@@ -104,7 +119,7 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
 
         try {
             Picasso.with(mContext)
-                    .load(mCoverPhoto)
+                    .load(CoverPhoto)
                     .into(imageView);
         }
         catch (Exception ex){}
@@ -118,8 +133,6 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         textViewVersion2.setText(entryDate);
 
             //final String returnDate=sdf.toString();
-
-
 
         final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
                 "        img{ max-width:100%; height:auto !important}" +

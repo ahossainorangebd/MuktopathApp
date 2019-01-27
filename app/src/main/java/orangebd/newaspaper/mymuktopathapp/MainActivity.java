@@ -78,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailList9;
     private ArrayList<DetailDataModelCourses> detailList10;
     private ArrayList<DetailDataModelCourses> detailList11;
-    private ArrayList<DetailDataModelCourses> detailListCourseThumbnail;
+    private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
 
     private ArrayList<DetailDataModelCourses> detailList2parent;
-    private ArrayList<DetailDataModelCourses> detailList3parent;
+    private ArrayList<DetailDataModelCourses3rdGrandFather> detailList3parent;
 
     // Button Layout of footer
 
@@ -233,11 +233,15 @@ public class MainActivity extends AppCompatActivity {
 
                         detailListCourse=new ArrayList<DetailDataModelCourses>();
 
+                        detailListCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
+
                         try {
 
-                            for (int i=0;i<response.length()-1;i++)
+                            JSONArray object = (JSONArray) response.get("data");
+
+                            for (int i=0;i<object.length();i++)
                             {
-                                JSONArray object = (JSONArray) response.get("data");
+
                                 JSONObject object2 = (JSONObject) object.get(i);
 
                                 DetailDataModelCourses model = new DetailDataModelCourses();
@@ -354,18 +358,16 @@ public class MainActivity extends AppCompatActivity {
 
                                     //for parsing thumbnails of courses
 
-                                    detailListCourseThumbnail=new ArrayList<DetailDataModelCourses>();
-                                    DetailDataModelCourses modelCourseThumbnail = new DetailDataModelCourses();
 
-                                    String thumnail = jObjectCourse.getString("thumnail");
+                                    DetailDataModelCoursesThumbnails modelCourseThumbnail = new DetailDataModelCoursesThumbnails();
 
-                                    modelCourseThumbnail.setThumnailImage(thumnail);
+                                    JSONObject thumnail = jObjectCourse.getJSONObject("thumnail");
+                                    String coverPhoto = thumnail.getString("file_encode_path");
+
+                                    modelCourseThumbnail.setCover_code_image(coverPhoto);
                                     detailListCourseThumbnail.add(modelCourseThumbnail);
 
-
-
-                                    modelCourseThumbnail.setCourse_codeCourse(course_codeCourse);
-
+                                    model.setmArrayListThumbnails(detailListCourseThumbnail);
 
                                     //for parsing Updated by strings
                                     JSONObject jObjectUpdatedBy = object2.getJSONObject("UpdatedBy");
@@ -639,8 +641,8 @@ public class MainActivity extends AppCompatActivity {
 
                                 //parsing all direct strings of 3rd parent
 
-                                detailList3parent=new ArrayList<DetailDataModelCourses>();
-                                DetailDataModelCourses model3parent = new DetailDataModelCourses();
+                                detailList3parent=new ArrayList<DetailDataModelCourses3rdGrandFather>();
+                                DetailDataModelCourses3rdGrandFather model3parent = new DetailDataModelCourses3rdGrandFather();
 
                                 JSONObject ObjThirdParentStrings = (JSONObject) response.get("meta");
 
@@ -717,7 +719,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView2 = findViewById(R.id.my_recycler_view2);
         recyclerView2.setHasFixedSize(true);
 
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView2.setLayoutManager(layoutManager);
@@ -745,7 +746,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView4 = findViewById(R.id.my_recycler_view4);
         recyclerView4.setHasFixedSize(true);
 
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView4.setLayoutManager(layoutManager);
@@ -758,7 +758,6 @@ public class MainActivity extends AppCompatActivity {
     private void setRecyclerView5() {
         recyclerView5 = findViewById(R.id.my_recycler_view5);
         recyclerView5.setHasFixedSize(true);
-
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
@@ -854,63 +853,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }

@@ -69,10 +69,10 @@ public class RecomendedActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailList9;
     private ArrayList<DetailDataModelCourses> detailList10;
     private ArrayList<DetailDataModelCourses> detailList11;
-    private ArrayList<DetailDataModelCourses> detailListCourseThumbnail;
+    private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
 
     private ArrayList<DetailDataModelCourses> detailList2parent;
-    private ArrayList<DetailDataModelCourses> detailList3parent;
+    private ArrayList<DetailDataModelCourses3rdGrandFather> detailList3parent;
 
     String url="http://api.muktopaath.orangebd.com/api/courses";
 
@@ -292,16 +292,12 @@ public class RecomendedActivity extends AppCompatActivity {
 
                                     //for parsing thumbnails of courses
 
-                                    detailListCourseThumbnail=new ArrayList<DetailDataModelCourses>();
-                                    DetailDataModelCourses modelCourseThumbnail = new DetailDataModelCourses();
+                                    detailListCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
+                                    DetailDataModelCoursesThumbnails modelCourseThumbnail = new DetailDataModelCoursesThumbnails();
 
                                     String thumnail = jObjectCourse.getString("thumnail");
 
-                                    modelCourseThumbnail.setThumnailImage(thumnail);
-
-
-
-                                    modelCourseThumbnail.setCourse_codeCourse(course_codeCourse);
+                                    modelCourseThumbnail.setCover_code_image(thumnail);
 
 
                                     //for parsing Updated by strings
@@ -576,8 +572,8 @@ public class RecomendedActivity extends AppCompatActivity {
 
                                 //parsing all direct strings of 3rd parent
 
-                                detailList3parent=new ArrayList<DetailDataModelCourses>();
-                                DetailDataModelCourses model3parent = new DetailDataModelCourses();
+                                detailList3parent=new ArrayList<DetailDataModelCourses3rdGrandFather>();
+                                DetailDataModelCourses3rdGrandFather model3parent = new DetailDataModelCourses3rdGrandFather();
 
                                 JSONObject ObjThirdParentStrings = (JSONObject) response.get("meta");
 
