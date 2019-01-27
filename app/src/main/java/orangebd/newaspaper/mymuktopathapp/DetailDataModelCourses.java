@@ -172,6 +172,11 @@ public class DetailDataModelCourses
     private String total_metaThirdParent;
 
 
+    //for parsing thumbnailImage;
+
+    private String thumnailImage;
+
+
 
 
 
@@ -1093,5 +1098,13 @@ public class DetailDataModelCourses
 
     public void setPrevSecondParent(String prevSecondParent) {
         this.prevSecondParent = prevSecondParent;
+    }
+
+    public String getThumnailImage() {
+        return thumnailImage;
+    }
+
+    public void setThumnailImage(String thumnailImage) {
+        this.thumnailImage = thumnailImage;
     }
 }

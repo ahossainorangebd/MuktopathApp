@@ -2,7 +2,6 @@ package orangebd.newaspaper.mymuktopathapp;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +20,7 @@ import java.util.TimeZone;
 
 public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerViewAdapterCategory3.MyViewHolder> {
 
-    private ArrayList<DetailDataModel> dataSet;
+    private ArrayList<DetailDataModelCourses> dataSet;
     private Context mContext;
     private String stringPath;
     private String addOn;
@@ -41,6 +38,7 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
 
         TextView textViewName;
         TextView textViewVersion;
+        TextView textViewVersion2;
         ImageView imageViewIcon;
         Typeface typeface;
 
@@ -48,13 +46,14 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.textViewName);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
+            this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
             //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
             //textViewVersion.setTypeface(typeface);
         }
     }
 
-    public RecyclerViewAdapterCategory3(ArrayList<DetailDataModel> data, Context context) {
+    public RecyclerViewAdapterCategory3(ArrayList<DetailDataModelCourses> data, Context context) {
         this.dataSet = data;
         this.mContext=context;
         stringPath = "file:///android_res/drawable/company_credit_logo.png";
@@ -83,31 +82,33 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
         TextView textViewName = holder.textViewName;
 
         TextView textViewVersion = holder.textViewVersion;
+        TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
-        String titleText=dataSet.get(listPosition).getHl2();
+        String titleText=dataSet.get(listPosition).getmCourseAliasName();
         textViewName.setText(titleText);
 
-        final String parentCatID=dataSet.get(listPosition).getParent_cat_id();
-        String reporterString=dataSet.get(listPosition).getRpt();
-        String imgUrl=dataSet.get(listPosition).getImg_url();
-        String detailString=dataSet.get(listPosition).getDtl_url();
-        String imgCaption=dataSet.get(listPosition).getImg_caption();
+        final String parentCatID=dataSet.get(listPosition).getCat_id();
+        //String reporterString=dataSet.get(listPosition).getRpt();
+        //String imgUrl=dataSet.get(listPosition).getCover_thumb_img();
+        //String detailString=dataSet.get(listPosition).getDtl_url();
+        //String imgCaption=dataSet.get(listPosition).getImg_caption();
 
-        if(reporterString.equalsIgnoreCase("")){
+        /*if(reporterString.equalsIgnoreCase("")){
             reporterString="Rtv Desk";
-        }
+        }*/
 
-        try {
+        /*try {
             Picasso.with(mContext)
                     .load(imgUrl)
                     .into(imageView);
         }
-        catch (Exception ex){}
+        catch (Exception ex){}*/
 
         try {
-            entryDate=convertEnglishDateToBengali(dataSet.get(listPosition).getEntry_time());
+            entryDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmCreatedAt());
             //final String returnDate=sdf.toString();
             entryDate=convertEngToBn(entryDate);
+            textViewVersion.setText((entryDate));
         }
         catch (ParseException e) {
             e.printStackTrace();
@@ -116,21 +117,22 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
         textViewVersion.setText(entryDate);
 
         try {
-            updateDate=convertEnglishDateToBengali(dataSet.get(listPosition).getUpdate_time());
+            updateDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmUpdatedAt());
             //final String returnDate=sdf.toString();
+            textViewVersion2.setText((updateDate));
         }
         catch (ParseException e) {
             e.printStackTrace();
         }
 
-        final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
+        /*final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
                 "        img{ max-width:100%; height:auto !important}" +
                 "        a, span{ max-width:100%; display:inline-block; overflow:hidden}" +
                 "        iframe{ max-width:100%; display:inline-block; overflow:hidden}" +
                 "        </style>"+"</head>"+"<body style='height:100%; overflow:hidden;font-family:solaimanlipi'>" +
-                "        <h2 style='font-family:solaimanlipi'>" + titleText + "</h2>" +reporterString+"<br/>"+"<strong>প্রকাশ :</strong>"+ entryDate + " <br/>"+"<br/>"+
-                "        <img style='width:100%' src='" + imgUrl + "'  <div style='overflow-x:hidden;'>"+"<br/>"+ "<br/>"+ "<center> " + "</center> "
-                + detailString +"<br/>"+
+                "        <h2 style='font-family:solaimanlipi'>" + titleText + "</h2>" +"<br/>"+"<strong>প্রকাশ :</strong>"+ entryDate + " <br/>"+"<br/>"+
+                "        <img style='width:100%' src='" +  "'  <div style='overflow-x:hidden;'>"+"<br/>"+ "<br/>"+ "<center> " + "</center> "
+                 +"<br/>"+
                 "               </div><style>" +
                 ".icon{width:35px; height:30px; border-radius:50%; background:#6A5ACD;}" +
                 ".icon1{width:35px; height:30px; border-radius:50%; background:#262626;}" +
@@ -148,9 +150,10 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
                 "</div>" +
                 "</div>" +
                 "</body>" +
-                "</html>";
+                "</html>";*/
 
-        final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
+        //TODO
+        //final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

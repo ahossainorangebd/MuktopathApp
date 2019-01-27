@@ -89,7 +89,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
 
         final String parentCatID=dataSet.get(listPosition).getCat_id();
         //String reporterString=dataSet.get(listPosition).getRpt();
-        String imgUrl=dataSet.get(listPosition).getCover_thumb_img();
+        //String imgUrl=dataSet.get(listPosition).getCover_thumb_img();
         //String detailString=dataSet.get(listPosition).getDtl_url();
         //String imgCaption=dataSet.get(listPosition).getImg_caption();
 
@@ -97,15 +97,15 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
             reporterString="Rtv Desk";
         }*/
 
-        try {
+        /*try {
             Picasso.with(mContext)
                     .load(imgUrl)
                     .into(imageView);
         }
-        catch (Exception ex){}
+        catch (Exception ex){}*/
 
         try {
-            entryDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmStartDate());
+            entryDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmCreatedAt());
             //final String returnDate=sdf.toString();
             entryDate=convertEngToBn(entryDate);
         }
@@ -116,7 +116,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
         textViewVersion.setText(entryDate);
 
         try {
-            updateDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmEndDate());
+            updateDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmUpdatedAt());
             //final String returnDate=sdf.toString();
         }
         catch (ParseException e) {
@@ -129,7 +129,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
                 "        iframe{ max-width:100%; display:inline-block; overflow:hidden}" +
                 "        </style>"+"</head>"+"<body style='height:100%; overflow:hidden;font-family:solaimanlipi'>" +
                 "        <h2 style='font-family:solaimanlipi'>" + titleText + "</h2>" +"<br/>"+"<strong>প্রকাশ :</strong>"+ entryDate + " <br/>"+"<br/>"+
-                "        <img style='width:100%' src='" + imgUrl + "'  <div style='overflow-x:hidden;'>"+"<br/>"+ "<br/>"+ "<center> " + "</center> "
+                "        <img style='width:100%' src='" +  "'  <div style='overflow-x:hidden;'>"+"<br/>"+ "<br/>"+ "<center> " + "</center> "
                  +"<br/>"+
                 "               </div><style>" +
                 ".icon{width:35px; height:30px; border-radius:50%; background:#6A5ACD;}" +

@@ -32,6 +32,8 @@ public class MyPageActivity extends AppCompatActivity {
 
         mContext=this;
 
+        GlobalVar.gBaseUrl="http://muktopaath.orangebd.com";
+
         View view2 = findViewById(android.R.id.content);
         Animation mLoadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
         mLoadAnimation.setDuration(1000);

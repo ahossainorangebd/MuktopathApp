@@ -69,6 +69,7 @@ public class RecomendedActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailList9;
     private ArrayList<DetailDataModelCourses> detailList10;
     private ArrayList<DetailDataModelCourses> detailList11;
+    private ArrayList<DetailDataModelCourses> detailListCourseThumbnail;
 
     private ArrayList<DetailDataModelCourses> detailList2parent;
     private ArrayList<DetailDataModelCourses> detailList3parent;
@@ -176,7 +177,7 @@ public class RecomendedActivity extends AppCompatActivity {
                             for (int i=0;i<response.length()-1;i++)
                             {
                                 JSONArray object = (JSONArray) response.get("data");
-                                JSONObject object2 = (JSONObject) object.get(0);
+                                JSONObject object2 = (JSONObject) object.get(i);
 
 
                                 String featured = object2.getString("featured");
@@ -288,6 +289,19 @@ public class RecomendedActivity extends AppCompatActivity {
                                     model8.setPromovideoCourse(promovideoCourse);
                                     model8.setTitleCourse(titleCourse);
 
+
+                                    //for parsing thumbnails of courses
+
+                                    detailListCourseThumbnail=new ArrayList<DetailDataModelCourses>();
+                                    DetailDataModelCourses modelCourseThumbnail = new DetailDataModelCourses();
+
+                                    String thumnail = jObjectCourse.getString("thumnail");
+
+                                    modelCourseThumbnail.setThumnailImage(thumnail);
+
+
+
+                                    modelCourseThumbnail.setCourse_codeCourse(course_codeCourse);
 
 
                                     //for parsing Updated by strings
