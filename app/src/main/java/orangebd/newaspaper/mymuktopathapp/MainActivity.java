@@ -16,9 +16,19 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout searchBar;
 
     private ArrayList<DetailDataModel> detailList=new ArrayList<>();
+
+
+    private ArrayList<DetailDataModelCourses> detailListCourse=new ArrayList<>();
 
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
@@ -71,8 +84,13 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressSpinner9;
     private ProgressBar mProgressSpinner10;
 
+    String url="http://api.muktopaath.orangebd.com/api/courses";
+
+    private HashMap<String,String> map;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -159,6 +177,154 @@ public class MainActivity extends AppCompatActivity {
                 v.getContext().startActivity(i);
             }
         });
+
+
+
+
+        map = new HashMap<String, String>();
+
+        JSONObject object=new JSONObject();
+
+        try {
+            object.put("username", "");
+            object.put("featured", "");
+            object.put("upcomming", "" );
+            object.put("favorite", "" );
+            object.put("admin_featured", "" );
+            object.put("order", "" );
+            object.put("payment_status", "" );
+            object.put("price_search", "" );
+            object.put("price_start", "" );
+            object.put("price_end", "" );
+            object.put("duration_search", "" );
+            object.put("duration_start", "" );
+            object.put("limit", "30" );
+            object.put("duration_search", "" );
+        }
+        catch (Exception ex){ }
+
+        RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response)
+                    {
+                        //  for parsing grand-parent "data"
+
+                        detailListCourse=new ArrayList<DetailDataModelCourses>();
+
+                        DetailDataModelCourses model = new DetailDataModelCourses();
+
+                        try {
+                            JSONArray object = (JSONArray) response.get("data");
+
+                            for (int i=0;i<object.length()-1;i++)
+                            {
+
+                                JSONObject object2 = (JSONObject) object.get(i);
+
+
+                                String featured = object2.getString("featured");
+                                String limit = object2.getString("limit");
+                                String migration_allowe = object2.getString("migration_allowe");
+                                String migration_fee = object2.getString("migration_fee");
+                                String mig_payment_amount = object2.getString("mig_payment_amount");
+                                String mig_pa_status = object2.getString("mig_pa_status");
+                                String objective = object2.getString("objective");
+                                String payment_point_amount = object2.getString("payment_point_amount");
+                                String payment_point_status = object2.getString("payment_point_status");
+                                String payment_status = object2.getString("payment_status");
+                                String reg_end_date = object2.getString("reg_end_date");
+                                String reg_start_date = object2.getString("reg_start_date");
+                                String requirement = object2.getString("requirement");
+                                String start_date = object2.getString("start_date");
+                                String status = object2.getString("status");
+                                String totalEnroll = object2.getString("totalEnroll");
+                                String updated_at = object2.getString("updated_at");
+                                String Eid = object2.getString("id");
+                                String Etitle = object2.getString("title");
+                                String Edetails = object2.getString("details");
+                                String Eadmission_status = object2.getString("admission_status");
+                                String averageRating = object2.getString("averageRating");
+                                String certificate_alias_name = object2.getString("certificate_alias_name");
+                                String clone_status = object2.getString("clone_status");
+                                String code = object2.getString("code");
+                                String courses_for_status = object2.getString("courses_for_status");
+                                String course_alias_name = object2.getString("course_alias_name");
+                                String course_motto = object2.getString("course_motto");
+                                String created_at = object2.getString("created_at");
+                                String duration = object2.getString("duration");
+                                String end_date = object2.getString("end_date");
+                                String enrolment_approval_status = object2.getString("enrolment_approval_status");
+
+                                model.setmCertificateAliasName(certificate_alias_name);
+                                model.setmAdmissionStatus(Eadmission_status);
+                                model.setmAverageRating(averageRating);
+                                model.setmCloneStatus(clone_status);
+                                model.setmCode(code);
+                                model.setmCreatedAt(created_at);
+                                model.setmDuration(duration);
+                                model.setmEndDate(end_date);
+                                model.setmId(Eid);
+                                model.setmTitle(Etitle);
+                                model.setmDetails(Edetails);
+                                model.setmLimit(limit);
+                                model.setmFeatured(featured);
+                                model.setmMigrationFee(migration_fee);
+                                model.setmMigrationAllowe(migration_allowe);
+                                model.setmMigPaymentAmount(mig_payment_amount);
+                                model.setmPaymentPointAmount(payment_point_amount);
+                                model.setmEnrolmentApprovalStatus(enrolment_approval_status);
+                                model.setmPaymentPointStatus(payment_point_status);
+                                model.setmCursesForStatus(courses_for_status);
+                                model.setmCourseAliasName(course_alias_name);
+                                model.setmRegStartDate(reg_start_date);
+                                model.setmPaymentStatus(payment_status);
+                                model.setmMigPaStatus(mig_pa_status);
+                                model.setmRegEndDate(reg_end_date);
+                                model.setmCourseMotto(course_motto);
+                                model.setmRequirement(requirement);
+                                model.setmStartDate(start_date);
+                                model.setmTotalEnroll(totalEnroll);
+                                model.setmUpdatedAt(updated_at);
+                                model.setmObjective(objective);
+                                model.setmStatus(status);
+
+                                detailListCourse.add(model);
+                            }
+
+
+                            setRecyclerView10();
+                            adapter10=new RecyclerViewAdapterCategory10(detailListCourse,mContext);
+                            recyclerView10.setAdapter(adapter10);
+                            adapter10.notifyDataSetChanged();
+                            mProgressSpinner10.setVisibility(View.GONE);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", error.getMessage(), error);
+            }
+        }) { //no semicolon or coma
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json");
+                params.put("Authorization", GlobalVar.gReplacingToken);
+                return params;
+            }
+        };
+        mQueue.add(jsonObjectRequest);
+
 
         setRecyclerView();
     }
@@ -364,7 +530,8 @@ public class MainActivity extends AppCompatActivity {
                         publishProgress();
                     }
 
-                } catch (JSONException e) {
+                }
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
 
@@ -1186,13 +1353,13 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            setRecyclerView10();
+            /*setRecyclerView10();
 
-            adapter10=new RecyclerViewAdapterCategory10(detailList,mContext);
+            adapter10=new RecyclerViewAdapterCategory10(detailListCourse,mContext);
             //
             recyclerView10.setAdapter(adapter10);
             adapter10.notifyDataSetChanged();
-
+            */
 
             mProgressSpinner10.setVisibility(View.GONE);
         }

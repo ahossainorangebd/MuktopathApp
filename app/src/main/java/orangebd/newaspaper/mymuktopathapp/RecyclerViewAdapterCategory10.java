@@ -23,7 +23,7 @@ import java.util.TimeZone;
 
 public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<RecyclerViewAdapterCategory10.MyViewHolder> {
 
-    private ArrayList<DetailDataModel> dataSet;
+    private ArrayList<DetailDataModelCourses> dataSet;
     private Context mContext;
     private String stringPath;
     private String addOn;
@@ -54,7 +54,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
         }
     }
 
-    public RecyclerViewAdapterCategory10(ArrayList<DetailDataModel> data, Context context) {
+    public RecyclerViewAdapterCategory10(ArrayList<DetailDataModelCourses> data, Context context) {
         this.dataSet = data;
         this.mContext=context;
         stringPath = "file:///android_res/drawable/company_credit_logo.png";
@@ -84,18 +84,18 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
 
         TextView textViewVersion = holder.textViewVersion;
         ImageView imageView = holder.imageViewIcon;
-        String titleText=dataSet.get(listPosition).getHl2();
+        String titleText=dataSet.get(listPosition).getmCourseAliasName();
         textViewName.setText(titleText);
 
-        final String parentCatID=dataSet.get(listPosition).getParent_cat_id();
-        String reporterString=dataSet.get(listPosition).getRpt();
-        String imgUrl=dataSet.get(listPosition).getImg_url();
-        String detailString=dataSet.get(listPosition).getDtl_url();
-        String imgCaption=dataSet.get(listPosition).getImg_caption();
+        final String parentCatID=dataSet.get(listPosition).getCat_id();
+        //String reporterString=dataSet.get(listPosition).getRpt();
+        String imgUrl=dataSet.get(listPosition).getCover_thumb_img();
+        //String detailString=dataSet.get(listPosition).getDtl_url();
+        //String imgCaption=dataSet.get(listPosition).getImg_caption();
 
-        if(reporterString.equalsIgnoreCase("")){
+        /*if(reporterString.equalsIgnoreCase("")){
             reporterString="Rtv Desk";
-        }
+        }*/
 
         try {
             Picasso.with(mContext)
@@ -105,7 +105,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
         catch (Exception ex){}
 
         try {
-            entryDate=convertEnglishDateToBengali(dataSet.get(listPosition).getEntry_time());
+            entryDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmStartDate());
             //final String returnDate=sdf.toString();
             entryDate=convertEngToBn(entryDate);
         }
@@ -116,7 +116,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
         textViewVersion.setText(entryDate);
 
         try {
-            updateDate=convertEnglishDateToBengali(dataSet.get(listPosition).getUpdate_time());
+            updateDate=convertEnglishDateToBengali(dataSet.get(listPosition).getmEndDate());
             //final String returnDate=sdf.toString();
         }
         catch (ParseException e) {
@@ -128,9 +128,9 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
                 "        a, span{ max-width:100%; display:inline-block; overflow:hidden}" +
                 "        iframe{ max-width:100%; display:inline-block; overflow:hidden}" +
                 "        </style>"+"</head>"+"<body style='height:100%; overflow:hidden;font-family:solaimanlipi'>" +
-                "        <h2 style='font-family:solaimanlipi'>" + titleText + "</h2>" +reporterString+"<br/>"+"<strong>প্রকাশ :</strong>"+ entryDate + " <br/>"+"<br/>"+
+                "        <h2 style='font-family:solaimanlipi'>" + titleText + "</h2>" +"<br/>"+"<strong>প্রকাশ :</strong>"+ entryDate + " <br/>"+"<br/>"+
                 "        <img style='width:100%' src='" + imgUrl + "'  <div style='overflow-x:hidden;'>"+"<br/>"+ "<br/>"+ "<center> " + "</center> "
-                + detailString +"<br/>"+
+                 +"<br/>"+
                 "               </div><style>" +
                 ".icon{width:35px; height:30px; border-radius:50%; background:#6A5ACD;}" +
                 ".icon1{width:35px; height:30px; border-radius:50%; background:#262626;}" +
@@ -150,7 +150,8 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
                 "</body>" +
                 "</html>";
 
-        final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
+        //TODO
+        //final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
