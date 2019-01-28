@@ -17,6 +17,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Method;
 
@@ -33,6 +36,8 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearLayout profileBtn;
 
     private Button mSplashActvtySearchSomething;
+
+    private TextView mUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,9 @@ public class ProfileActivity extends AppCompatActivity {
         myPageBtn = findViewById(R.id.myPageBtnId);
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
+
+        mUserName=findViewById(R.id.userNameId);
+        mUserName.setText(GlobalVar.gName);
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override

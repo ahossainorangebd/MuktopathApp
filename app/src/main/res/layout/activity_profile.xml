@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#a1a1a1"
+    android:background="@color/AppBackgroundColor"
     >
 
     <ScrollView
@@ -75,6 +75,7 @@
                         android:padding="1dp">
 
                         <TextView
+                            android:id="@+id/userNameId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mr. Name"

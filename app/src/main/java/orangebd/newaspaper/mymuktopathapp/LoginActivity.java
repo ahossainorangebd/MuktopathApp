@@ -211,7 +211,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                             detailList.add(model);
 
-
                                             // For parsing 1st Array of info JSON
 
                                             detailList2=new ArrayList<DetailDataModelUserData>();

@@ -38,8 +38,6 @@ public class DetailDataModelCourses
     private String mTotalEnroll;
     private String mUpdatedAt;
 
-
-
     //TODO
     // For parsing the "data" of last object inside
 
@@ -60,15 +58,12 @@ public class DetailDataModelCourses
     private String mTimeUnit;
     private String mTitleAnother;
 
-
     // For file type (pdf/doc/....)
 
     private String mDoc;
     private String mPdf;
     private String mXcel;
     private String mCsv;
-
-
 
     //Dor parsing the "content" of last object inside
 
@@ -106,7 +101,6 @@ public class DetailDataModelCourses
     private String idLesson;
     private String nameLesson;
     private String orderLessom;
-
 
     //for model of Syllebus direct strings
 

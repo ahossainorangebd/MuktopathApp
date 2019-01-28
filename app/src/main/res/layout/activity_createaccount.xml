@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".CreateAccountActivity"
-    android:background="#fff"
+    android:background="@drawable/muktopath_splash"
     >
 
     <!-- Login progress -->
@@ -25,13 +25,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         >
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/muktopath_logo"
@@ -43,34 +45,31 @@
             android:text="আকাশ আমার পাঠশালা"
             android:textColor="@color/AppTextColor"
             android:textStyle="bold"
-            android:textSize="8sp"
+            android:layout_marginTop="5dp"
+            android:textSize="5sp"
             android:textAlignment="center"
             android:layout_gravity="center"
             />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#fff"
-            >
-
-        </LinearLayout>
 
     </LinearLayout>
 
     <ScrollView
         android:id="@+id/login_form"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
 
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/lin_layout_style_white"
+
+            >
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -103,300 +102,329 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:background="@drawable/button_style_edit_text"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="সম্পূর্ণ নাম"
-                        android:background="#d6d6d6"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </LinearLayout>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:background="@drawable/button_style_edit_text"
-                android:layout_marginTop="6dp"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="লিঙ্গ"
-                        android:background="#d6d6d6"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </LinearLayout>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/button_style_edit_text"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="পেশা"
-                        android:background="#d6d6d6"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </LinearLayout>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/button_style_edit_text"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="মুঠোফোন"
-                        android:background="#d6d6d6"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </LinearLayout>
-
-            </android.support.design.widget.TextInputLayout>
-
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/button_style_edit_text"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <EditText
-                        android:id="@+id/email"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="ই-মেইল"
-                        android:background="#d6d6d6"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </LinearLayout>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/button_style_edit_text"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <EditText
-                        android:id="@+id/password"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="পাসওয়ার্ড"
-                        android:background="#d6d6d6"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </LinearLayout>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <Button
-                android:id="@+id/regiPageSignUpId"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="নতুন প্রোফাইল তৈরি করুন"
-                android:focusable="true"
-                android:textColor="#fff"
-                android:background="@drawable/gradient_background"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:focusableInTouchMode="true"
-                android:textStyle="bold" />
+                android:visibility="gone"
+                >
 
-<!--           <LinearLayout
-                android:layout_width="wrap_content"
+                <AutoCompleteTextView
+                    android:id="@+id/nameBoxId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Name"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:visibility="gone"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
+                android:padding="20dp"
                 >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="6dp"
                     android:orientation="horizontal"
-                    android:layout_gravity="center"
+                    android:background="@drawable/button_style_edit_text"
                     >
+
                     <LinearLayout
-                        android:layout_width="120dp"
-                        android:layout_height="1dp"
-                        android:orientation="vertical"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorPrimaryDark"
-                        >
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="or,"/>
-
-                    <LinearLayout
-                        android:layout_width="120dp"
-                        android:layout_height="1dp"
-                        android:orientation="vertical"
-
-                        android:layout_marginTop="10dp"
-                        android:background="@color/colorPrimaryDark"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
                         >
+
+                        <EditText
+                            android:id="@+id/fullname"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="সম্পূর্ণ নাম"
+                            android:background="#fff"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                <!--<android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="6dp"
                     android:orientation="horizontal"
+                    android:background="@drawable/button_style_edit_text"
                     >
 
                     <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginTop="3dp"
-                        android:background="@drawable/fb_logo"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/password_star_icon"
+                        android:background="#ededed"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
                         />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPain"
-                        android:layout_marginLeft="5dp"
-                        android:textStyle="bold"
-                        android:text="Continue with Facebook"/>
+                        >
 
-                </LinearLayout>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:background="#fff"
+                            android:hint="পাসওয়ার্ড"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
 
-            </LinearLayout>-->
+                    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="center"
-                >
+                </android.support.design.widget.TextInputLayout>-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
+                    android:background="@drawable/button_style_edit_text"
                     >
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorVoldemort"
+                        android:orientation="horizontal"
                         android:layout_gravity="center"
-                        android:text="By creating an account, you accept Muktopath's"/>
+                        >
 
-                </LinearLayout>
+                        <EditText
+                            android:id="@+id/gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="জেন্ডার"
+                            android:background="#fff"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    </LinearLayout>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="6dp"
                     android:orientation="horizontal"
+                    android:background="@drawable/button_style_edit_text"
                     >
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorVoldemort"
+                        android:orientation="horizontal"
                         android:layout_gravity="center"
-                        android:text="Terms of Service and Privacy Policy"/>
+                        >
 
-                </LinearLayout>
+                        <EditText
+                            android:id="@+id/profession"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="পেশা"
+                            android:background="#fff"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+
+                    </LinearLayout>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!--<android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_style_edit_text"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        >
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="মুঠোফোন"
+                            android:background="#fff"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+
+                    </LinearLayout>
+
+                </android.support.design.widget.TextInputLayout>-->
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_style_edit_text"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        >
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="ই-মেইল"
+                            android:background="#fff"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+
+                    </LinearLayout>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_style_edit_text"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        >
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="পাসওয়ার্ড"
+                            android:background="#fff"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+
+                    </LinearLayout>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_style_edit_text"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        >
+
+                        <EditText
+                            android:id="@+id/confirm_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="পাসওয়ার্ড কনফার্ম করুন"
+                            android:background="#fff"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+
+                    </LinearLayout>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="পাসওয়ার্ড ভুলে গেছেন?"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorPain"
+                    />
 
             </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
+
+    <Button
+        android:id="@+id/regiPageSignUpId"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="নতুন প্রোফাইল তৈরি করুন"
+        android:focusable="true"
+        android:textColor="#fff"
+        android:background="@drawable/button_style_purple"
+        android:focusableInTouchMode="true"
+        android:textStyle="bold" />
+
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By creating an account you accept Muktopath's terms of Service and privacy policiy"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textColor="@color/colorVoldemort"
+        />
+
 </LinearLayout>

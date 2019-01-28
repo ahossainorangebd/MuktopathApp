@@ -1,5 +1,6 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +11,8 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +21,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -25,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +45,18 @@ import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RecomendedActivity extends AppCompatActivity {
+
+    private static RecyclerView recyclerView;
+    private ProgressBar mProgressSpinner;
+    private RecyclerView.Adapter adapter;
 
     private Context mContext;
 
@@ -58,7 +70,7 @@ public class RecomendedActivity extends AppCompatActivity {
 
     private HashMap<String,String> map;
 
-    private ArrayList<DetailDataModelCourses> detailList;
+    private ArrayList<DetailDataModelCourses> detailListCourse;
     private ArrayList<DetailDataModelCourses> detailList2;
     private ArrayList<DetailDataModelCourses> detailList3;
     private ArrayList<DetailDataModelCourses> detailList4;
@@ -101,6 +113,7 @@ public class RecomendedActivity extends AppCompatActivity {
         myPageBtn = findViewById(R.id.myPageBtnId);
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
+        mProgressSpinner=findViewById(R.id.loadingSpinnerId);
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,16 +182,22 @@ public class RecomendedActivity extends AppCompatActivity {
                     {
                         //  for parsing grand-parent "data"
 
-                        detailList=new ArrayList<DetailDataModelCourses>();
+                        //  for parsing grand-parent "data"
 
-                        DetailDataModelCourses model = new DetailDataModelCourses();
+                        detailListCourse=new ArrayList<DetailDataModelCourses>();
+
+                        detailListCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
 
                         try {
-                            for (int i=0;i<response.length()-1;i++)
+
+                            JSONArray object = (JSONArray) response.get("data");
+
+                            for (int i=0;i<object.length();i++)
                             {
-                                JSONArray object = (JSONArray) response.get("data");
+
                                 JSONObject object2 = (JSONObject) object.get(i);
 
+                                DetailDataModelCourses model = new DetailDataModelCourses();
 
                                 String featured = object2.getString("featured");
                                 String limit = object2.getString("limit");
@@ -246,9 +265,9 @@ public class RecomendedActivity extends AppCompatActivity {
                                 model.setmObjective(objective);
                                 model.setmStatus(status);
 
-                                detailList.add(model);
+                                detailListCourse.add(model);
 
-                               //  for parsing "syllebus" > "0" > "data"
+                                //  for parsing "syllebus" > "0" > "data"
 
                                 detailList2=new ArrayList<DetailDataModelCourses>();
                                 DetailDataModelCourses model2 = new DetailDataModelCourses();
@@ -292,13 +311,16 @@ public class RecomendedActivity extends AppCompatActivity {
 
                                     //for parsing thumbnails of courses
 
-                                    detailListCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
+
                                     DetailDataModelCoursesThumbnails modelCourseThumbnail = new DetailDataModelCoursesThumbnails();
 
-                                    String thumnail = jObjectCourse.getString("thumnail");
+                                    JSONObject thumnail = jObjectCourse.getJSONObject("thumnail");
+                                    String coverPhoto = thumnail.getString("file_encode_path");
 
-                                    modelCourseThumbnail.setCover_code_image(thumnail);
+                                    modelCourseThumbnail.setCover_code_image(coverPhoto);
+                                    detailListCourseThumbnail.add(modelCourseThumbnail);
 
+                                    model.setmArrayListThumbnails(detailListCourseThumbnail);
 
                                     //for parsing Updated by strings
                                     JSONObject jObjectUpdatedBy = object2.getJSONObject("UpdatedBy");
@@ -407,8 +429,6 @@ public class RecomendedActivity extends AppCompatActivity {
                                         // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
 
                                         JSONObject jSObject3 = jSObject2.getJSONObject("0");
-
-
                                         JSONObject jObjAgain = jSObject3.getJSONObject("data");
 
                                         String allow_preview = jObjAgain.getString("allow_preview");
@@ -597,6 +617,14 @@ public class RecomendedActivity extends AppCompatActivity {
 
                             }
 
+                            setRecyclerView();
+
+                            /*setRecyclerView10();
+                            adapter10=new RecyclerViewAdapterCategory10(detailListCourse,mContext);
+                            recyclerView10.setAdapter(adapter10);
+                            adapter10.notifyDataSetChanged();
+                            mProgressSpinner10.setVisibility(View.GONE);*/
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -619,6 +647,53 @@ public class RecomendedActivity extends AppCompatActivity {
             }
         };
         mQueue.add(jsonObjectRequest);
+
+
+    }
+
+
+    private void setRecyclerView() {
+
+        recyclerView = findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setNestedScrollingEnabled(false);
+
+        new GetRecommendedCourses().execute();
+    }
+
+
+    public class GetRecommendedCourses extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            mProgressSpinner.setIndeterminate(true);
+            mProgressSpinner.setVisibility(View.VISIBLE);
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            adapter=new RecyclerViewAdapterRecommended(detailListCourse,mContext);
+
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+            mProgressSpinner.setVisibility(View.GONE);
+        }
     }
 
     @Override
