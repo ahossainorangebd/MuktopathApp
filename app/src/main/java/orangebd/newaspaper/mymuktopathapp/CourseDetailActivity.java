@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
+import android.os.AsyncTask;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +23,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -28,6 +33,10 @@ import java.util.ArrayList;
 
 public class CourseDetailActivity extends AppCompatActivity {
 
+    private static RecyclerView recyclerView;
+    private ProgressBar mProgressSpinner;
+    private RecyclerView.Adapter adapter;
+
     private WebView mWebView;
     private Context context;
     String ImgUrl;
@@ -36,7 +45,7 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     private TextView titleTextView;
     private TextView detailDescTextView;
-    private LinearLayout CoverPhoto;
+    private ImageView CoverPhoto;
 
     //private ImageView mLogoIcon;
 
@@ -63,7 +72,7 @@ public class CourseDetailActivity extends AppCompatActivity {
 
          titleTextView=findViewById(R.id.courseTitle);
          detailDescTextView=findViewById(R.id.detailDesc);
-         CoverPhoto=findViewById(R.id.detailPageCoverPhoto);
+         CoverPhoto=findViewById(R.id.CourseDetailCoverImage);
 
         ImgUrl = getIntent().getExtras().getString("img");
         DetailDescription=getIntent().getExtras().getString("detail");
@@ -72,12 +81,12 @@ public class CourseDetailActivity extends AppCompatActivity {
         titleTextView.setText(title);
         detailDescTextView.setText(DetailDescription);
 
-        /*try {
+        try {
             Picasso.with(context)
                     .load(ImgUrl)
                     .into(CoverPhoto);
         }
-        catch (Exception ex){}*/
+        catch (Exception ex){}
 
         /*try
         {
@@ -124,6 +133,8 @@ public class CourseDetailActivity extends AppCompatActivity {
                 view.getContext().startActivity(i);
             }
         });*/
+
+        setRecyclerView();
     }
 
     public static void deleteCache(Context context) {
@@ -198,4 +209,22 @@ public class CourseDetailActivity extends AppCompatActivity {
        //TODO
         //mWebView.onPause();
     }
+
+    private void setRecyclerView() {
+
+        recyclerView = findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setNestedScrollingEnabled(false);
+
+        adapter=new RecyclerViewAdapterCourseDetailContent(GlobalVar.courseContentDetailList,context);
+
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
 }

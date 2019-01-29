@@ -23,6 +23,9 @@ public class GlobalVar {
 
     public static boolean isExpandForMenu;
 
+    //arrayList of Course Content
+    public static ArrayList<DetailDataModelCourses> courseContentDetailList;
+
 
     //
     public static String gTokenUrl;

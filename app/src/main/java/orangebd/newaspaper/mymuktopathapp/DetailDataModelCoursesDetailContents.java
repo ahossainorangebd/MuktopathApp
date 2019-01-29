@@ -1,7 +1,8 @@
 package orangebd.newaspaper.mymuktopathapp;
 
-public class DetailDataModelCourseDetailContent
+public class DetailDataModelCoursesDetailContents
 {
+
     //Dor parsing the "content" of last object inside
 
     private String paid;
@@ -27,7 +28,6 @@ public class DetailDataModelCourseDetailContent
     private String license;
     private String owner_id;
     private String created_at_content;
-
 
     public String getPaid() {
         return paid;
@@ -212,10 +212,4 @@ public class DetailDataModelCourseDetailContent
     public void setCreated_at_content(String created_at_content) {
         this.created_at_content = created_at_content;
     }
-
-
-
-
-
-
 }

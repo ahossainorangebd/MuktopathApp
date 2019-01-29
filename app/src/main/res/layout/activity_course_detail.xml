@@ -20,6 +20,7 @@
         >
 
         <ImageView
+            android:id="@+id/CourseDetailCoverImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/coverdetailpage"
@@ -115,7 +116,9 @@
                 android:layout_marginTop="10dp"
                 />
 
-            <LinearLayout
+
+
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -350,19 +353,16 @@
                     android:gravity="right"
                     />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        >
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/my_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical"
+                />
 
     </LinearLayout>
 

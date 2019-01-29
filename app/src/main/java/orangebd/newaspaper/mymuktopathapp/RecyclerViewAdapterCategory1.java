@@ -94,7 +94,7 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         final String DetailDescription=dataSet.get(listPosition).getmDetails();
         textViewName.setText(titleText);
 
-        final String parentCatID=dataSet.get(listPosition).getCat_id();
+        //final String parentCatID=dataSet.get(listPosition).getCat_id();
         //String reporterString=dataSet.get(listPosition).getRpt();
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();

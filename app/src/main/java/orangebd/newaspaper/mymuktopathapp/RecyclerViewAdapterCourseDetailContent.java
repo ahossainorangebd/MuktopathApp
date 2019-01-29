@@ -2,6 +2,7 @@ package orangebd.newaspaper.mymuktopathapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,7 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class RecyclerViewAdapterCategory5 extends RecyclerView.Adapter<RecyclerViewAdapterCategory5.MyViewHolder> {
+public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter<RecyclerViewAdapterCourseDetailContent.MyViewHolder> {
 
     private ArrayList<DetailDataModelCourses> dataSet;
     private Context mContext;
@@ -48,22 +49,17 @@ public class RecyclerViewAdapterCategory5 extends RecyclerView.Adapter<RecyclerV
 
         public MyViewHolder(View itemView) {
             super(itemView);
+
             this.textViewName = itemView.findViewById(R.id.textViewName);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
-            this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
-            //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
-            //textViewVersion.setTypeface(typeface);
         }
     }
 
-    public RecyclerViewAdapterCategory5(ArrayList<DetailDataModelCourses> data, Context context) {
+    public RecyclerViewAdapterCourseDetailContent(ArrayList<DetailDataModelCourses> data, Context context) {
+
         this.dataSet = data;
-
         this.mContext=context;
-        stringPath = "file:///android_res/drawable/company_credit_logo.png";
-        addOn = String.format("<img src=\"%s\" />", stringPath);
-
     }
 
     @Override
@@ -72,7 +68,7 @@ public class RecyclerViewAdapterCategory5 extends RecyclerView.Adapter<RecyclerV
         View view= new View(mContext);
 
         try {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_detail_course_contents, parent, false);
         }
         catch (Exception ex){
             Log.d("", ex.getMessage());
@@ -87,50 +83,18 @@ public class RecyclerViewAdapterCategory5 extends RecyclerView.Adapter<RecyclerV
         TextView textViewName = holder.textViewName;
 
         TextView textViewVersion = holder.textViewVersion;
-        TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
-        String titleText=dataSet.get(listPosition).getmCourseAliasName();
-        textViewName.setText(titleText);
 
-        //final String parentCatID=dataSet.get(listPosition).getCat_id();
+        //final String DetailDescription=dataSet.get(listPosition).getmDetails();
+
         //String reporterString=dataSet.get(listPosition).getRpt();
 
-        ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
+        ArrayList<DetailDataModelCoursesDetailContents> contentArray=dataSet.get(listPosition).getmArrayListContentDetails();
 
-
-        try {
-            DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
-
-
-            String imgUrl = imgUrlModel.getCover_code_image();
-
-            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
-        }
-        catch (Exception ex){
-            Log.d("", "onBindViewHolder: ");
-        }
-
-        //String detailString=dataSet.get(listPosition).getDtl_url();
-        //String imgCaption=dataSet.get(listPosition).getImg_caption();
-
-        /*if(reporterString.equalsIgnoreCase("")){
-            reporterString="Rtv Desk";
-        }*/
-
-        try {
-            Picasso.with(mContext)
-                    .load(CoverPhoto)
-                    .into(imageView);
-        }
-        catch (Exception ex){}
-
-            entryDate=dataSet.get(listPosition).getmCreatedAt();
-            //final String returnDate=sdf.toString();
+        final String titleText=contentArray.get(listPosition).getTitle_content();
+        textViewName.setText(titleText);
 
         textViewVersion.setText(entryDate);
-
-            updateDate=dataSet.get(listPosition).getmUpdatedAt();
-        textViewVersion2.setText(entryDate);
 
             //final String returnDate=sdf.toString();
 
@@ -169,16 +133,17 @@ public class RecyclerViewAdapterCategory5 extends RecyclerView.Adapter<RecyclerV
             public void onClick(View v)
             {
 
-                /*Intent i = new Intent(mContext, CourseDetailActivity.class);
-                i.putExtra("URL", htmlText);
-                i.putExtra("SURL", detailUrl);
+                Intent i = new Intent(mContext, CourseDetailActivity.class);
+                i.putExtra("ttl", titleText);
+                i.putExtra("img", CoverPhoto);
+                //i.putExtra("detail", DetailDescription);
                 try {
                     v.getContext().startActivity(i);
                 }
                 catch (Exception ex){
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
-                }*/
+                }
             }
         });
 

@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailList10;
     private ArrayList<DetailDataModelCourses> detailList11;
     private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
+    private ArrayList<DetailDataModelCoursesDetailContents> detailListCourseDetailContents;
 
     private ArrayList<DetailDataModelCourses> detailList2parent;
     private ArrayList<DetailDataModelCourses3rdGrandFather> detailList3parent;
@@ -234,6 +235,9 @@ public class MainActivity extends AppCompatActivity {
                         detailListCourse=new ArrayList<DetailDataModelCourses>();
 
                         detailListCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
+
+
+                        detailListCourseDetailContents=new ArrayList<DetailDataModelCoursesDetailContents>();
 
                         try {
 
@@ -535,9 +539,7 @@ public class MainActivity extends AppCompatActivity {
 
                                         // For parsing object "Content" > {0} > {0} > "syllebus" > "0" > "data"
 
-                                        detailList4=new ArrayList<DetailDataModelCourses>();
-
-                                        DetailDataModelCourses model4 = new DetailDataModelCourses();
+                                        DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                         JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
 
@@ -565,29 +567,33 @@ public class MainActivity extends AppCompatActivity {
                                         String updated_at_content = jObjAgainContent.getString("updated_at");
                                         String updated_by_content = jObjAgainContent.getString("updated_by");
 
-                                        model4.setPaid(paid);
-                                        model4.setPrice(price);
-                                        model4.setShareable(shareable);
-                                        model4.setStatus_content(status_content);
-                                        model4.setSize(size);
-                                        model4.setTags(tags);
-                                        model4.setTitle_content(title_content);
-                                        model4.setType_content(type_content);
-                                        model4.setUpdated_at_content(updated_at_content);
-                                        model4.setUpdated_by_content(updated_by_content);
-                                        model4.setCat_id(cat_id);
-                                        model4.setContent_id(content_id);
-                                        model4.setCopy_protect(copy_protect);
-                                        model4.setCover_thumb_img(cover_thumb_img);
-                                        model4.setCreated_by_content(created_by_content);
-                                        model4.setDeleted_at_content(deleted_at_content);
-                                        model4.setDescription_content(description_content);
-                                        model4.setFile_encode_path(file_encode_path);
-                                        model4.setFile_name(file_name);
-                                        model4.setId_content(id_content);
-                                        model4.setLicense(license);
-                                        model4.setOwner_id(owner_id);
-                                        model4.setCreated_at_content(created_at_content);
+                                        modelCourseContents.setPaid(paid);
+                                        modelCourseContents.setPrice(price);
+                                        modelCourseContents.setShareable(shareable);
+                                        modelCourseContents.setStatus_content(status_content);
+                                        modelCourseContents.setSize(size);
+                                        modelCourseContents.setTags(tags);
+                                        modelCourseContents.setTitle_content(title_content);
+                                        modelCourseContents.setType_content(type_content);
+                                        modelCourseContents.setUpdated_at_content(updated_at_content);
+                                        modelCourseContents.setUpdated_by_content(updated_by_content);
+                                        modelCourseContents.setCat_id(cat_id);
+                                        modelCourseContents.setContent_id(content_id);
+                                        modelCourseContents.setCopy_protect(copy_protect);
+                                        modelCourseContents.setCover_thumb_img(cover_thumb_img);
+                                        modelCourseContents.setCreated_by_content(created_by_content);
+                                        modelCourseContents.setDeleted_at_content(deleted_at_content);
+                                        modelCourseContents.setDescription_content(description_content);
+                                        modelCourseContents.setFile_encode_path(file_encode_path);
+                                        modelCourseContents.setFile_name(file_name);
+                                        modelCourseContents.setId_content(id_content);
+                                        modelCourseContents.setLicense(license);
+                                        modelCourseContents.setOwner_id(owner_id);
+                                        modelCourseContents.setCreated_at_content(created_at_content);
+
+                                        detailListCourseDetailContents.add(modelCourseContents);
+
+                                        model.setmArrayListContentDetails(detailListCourseDetailContents);
 
 
                                         //For parsing array "multi_ques_list" > {0} > {0} > "syllebus" > "0" > "data"
