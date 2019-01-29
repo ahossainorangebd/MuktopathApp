@@ -88,52 +88,6 @@ public class CourseDetailActivity extends AppCompatActivity {
         }
         catch (Exception ex){}
 
-        /*try
-        {
-            url = getIntent().getExtras().getString("URL");
-            ShareURL=getIntent().getExtras().getString("SURL");
-            title = getIntent().getExtras().getString("ttl");
-
-            *//*childM = findViewById(R.id.ChildM2);
-            childM.setText(title);*//*
-
-           // mLogoIcon=findViewById(R.id.rtvheadlogo);
-
-            if (null != url) {
-
-                //TODO
-                mWebView.getSettings().setJavaScriptEnabled(true);
-                mWebView.getSettings().setDomStorageEnabled(true);
-                String summary = getIntent().getExtras().getString("URL");
-                //mWebView.loadData(summary, "text/html", null);
-                mWebView.loadDataWithBaseURL("", getIntent().getExtras().getString("URL"), "text/html", "utf-8", "");
-            }
-        }
-
-        catch (Exception ex){
-            Log.d("",ex.getMessage());
-        }*/
-
-        /*mShareImage=view.findViewById(R.id.shareBtnId);
-
-        mShareImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareIt();
-            }
-        });*/
-
-
-        /*mLogoIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                deleteCache(context);
-                Intent i=new Intent(context,MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                view.getContext().startActivity(i);
-            }
-        });*/
-
         setRecyclerView();
     }
 

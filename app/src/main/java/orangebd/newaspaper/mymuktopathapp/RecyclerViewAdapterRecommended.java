@@ -33,8 +33,6 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
     private Typeface tf;
 
-    private String CoverPhoto;
-
     private ArrayList<DetailDataModel> mFilteredList;
 
     //private String copyRightText;
@@ -94,17 +92,14 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
 
-        try {
+
             DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
 
             String imgUrl = imgUrlModel.getCover_code_image();
 
-            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
-        }
-        catch (Exception ex){
-            Log.d("", "onBindViewHolder: ");
-        }
+        final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+
 
         try {
             Picasso.with(mContext)
@@ -112,6 +107,8 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
                     .into(imageView);
         }
         catch (Exception ex){}
+
+
 
             entryDate=dataSet.get(listPosition).getmCreatedAt();
             //final String returnDate=sdf.toString();

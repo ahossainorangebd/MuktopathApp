@@ -269,8 +269,6 @@ public class RecomendedActivity extends AppCompatActivity {
                                 model.setmObjective(objective);
                                 model.setmStatus(status);
 
-                                detailListCourse.add(model);
-
                                 //  for parsing "syllebus" > "0" > "data"
 
                                 detailList2=new ArrayList<DetailDataModelCourses>();
@@ -432,142 +430,145 @@ public class RecomendedActivity extends AppCompatActivity {
 
                                         // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
 
-                                        JSONObject jSObject3 = jSObject2.getJSONObject("0");
 
 
-                                        JSONObject jObjAgain = jSObject3.getJSONObject("data");
-
-                                        String allow_preview = jObjAgain.getString("allow_preview");
-                                        String ans_rand = jObjAgain.getString("ans_rand");
-                                        String attempt = jObjAgain.getString("attempt");
-                                        String choose_video_type = jObjAgain.getString("choose_video_type");
-                                        String content_type = jObjAgain.getString("content_type");
-                                        String desc = jObjAgain.getString("desc");
-                                        String downloadable = jObjAgain.getString("downloadable");
-                                        String mDuration = jObjAgain.getString("duration");
-                                        String forward = jObjAgain.getString("forward");
-                                        String peer_limit = jObjAgain.getString("peer_limit");
-                                        String peer_review = jObjAgain.getString("peer_review");
-                                        String pulse = jObjAgain.getString("pulse");
-                                        String ques_rand = jObjAgain.getString("ques_rand");
-                                        String quiz = jObjAgain.getString("quiz");
-                                        String time_unit = jObjAgain.getString("time_unit");
-                                        String mTitle = jObjAgain.getString("title");
-
-                                        model2.setmAllowPreview(allow_preview);
-                                        model2.setmAnsRand(ans_rand);
-                                        model2.setmAttempt(attempt);
-                                        model2.setmChooseVideoType(choose_video_type);
-                                        model2.setmContentType(content_type);
-                                        model2.setmDesc(desc);
-                                        model2.setmDownloadable(downloadable);
-                                        model2.setmDurationAnother(mDuration);
-                                        model2.setmForward(forward);
-                                        model2.setmPeerLimit(peer_limit);
-                                        model2.setmPeerReview(peer_review);
-                                        model2.setmPulse(pulse);
-                                        model2.setmQuesRand(ques_rand);
-                                        model2.setmQuiz(quiz);
-                                        model2.setmTimeUnit(time_unit);
-                                        model2.setmTitleAnother(mTitle);
+                                        for (int lmn=0; lmn<jSObject2.length(); lmn++) {
 
 
-                                        // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
+                                            JSONObject jSObject3 = jSObject2.getJSONObject("" + lmn);
+                                            JSONObject jObjAgain = jSObject3.getJSONObject("data");
 
-                                        JSONObject jObjAgain2 = jObjAgain.getJSONObject("file_type");
+                                            String allow_preview = jObjAgain.getString("allow_preview");
+                                            String ans_rand = jObjAgain.getString("ans_rand");
+                                            String attempt = jObjAgain.getString("attempt");
+                                            String choose_video_type = jObjAgain.getString("choose_video_type");
+                                            String content_type = jObjAgain.getString("content_type");
+                                            String desc = jObjAgain.getString("desc");
+                                            String downloadable = jObjAgain.getString("downloadable");
+                                            String mDuration = jObjAgain.getString("duration");
+                                            String forward = jObjAgain.getString("forward");
+                                            String peer_limit = jObjAgain.getString("peer_limit");
+                                            String peer_review = jObjAgain.getString("peer_review");
+                                            String pulse = jObjAgain.getString("pulse");
+                                            String ques_rand = jObjAgain.getString("ques_rand");
+                                            String quiz = jObjAgain.getString("quiz");
+                                            String time_unit = jObjAgain.getString("time_unit");
+                                            String mTitle = jObjAgain.getString("title");
 
-
-                                        detailList3=new ArrayList<DetailDataModelCourses>();
-                                        DetailDataModelCourses model3 = new DetailDataModelCourses();
-
-                                        String pdf = jObjAgain2.getString("pdf");
-                                        String excel = jObjAgain2.getString("excel");
-                                        String doc = jObjAgain2.getString("doc");
-                                        String csv = jObjAgain2.getString("csv");
-
-                                        model3.setmPdf(pdf);
-                                        model3.setmXcel(excel);
-                                        model3.setmDoc(doc);
-                                        model3.setmCsv(csv);
-
-                                        // For parsing object "Content" > {0} > {0} > "syllebus" > "0" > "data"
-
-                                        DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
-
-                                        JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
-
-                                        String cat_id = jObjAgainContent.getString("cat_id");
-                                        String content_id = jObjAgainContent.getString("content_id");
-                                        String copy_protect = jObjAgainContent.getString("copy_protect");
-                                        String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
-                                        String created_at_content = jObjAgainContent.getString("created_at");
-                                        String created_by_content = jObjAgainContent.getString("created_by");
-                                        String deleted_at_content = jObjAgainContent.getString("deleted_at");
-                                        String description_content = jObjAgainContent.getString("description");
-                                        String file_encode_path = jObjAgainContent.getString("file_encode_path");
-                                        String file_name = jObjAgainContent.getString("file_name");
-                                        String id_content = jObjAgainContent.getString("id");
-                                        String license = jObjAgainContent.getString("license");
-                                        String owner_id = jObjAgainContent.getString("owner_id");
-                                        String paid = jObjAgainContent.getString("paid");
-                                        String price = jObjAgainContent.getString("price");
-                                        String shareable = jObjAgainContent.getString("shareable");
-                                        String size = jObjAgainContent.getString("size");
-                                        String status_content = jObjAgainContent.getString("status");
-                                        String tags = jObjAgainContent.getString("tags");
-                                        String title_content = jObjAgainContent.getString("title");
-                                        String type_content = jObjAgainContent.getString("type");
-                                        String updated_at_content = jObjAgainContent.getString("updated_at");
-                                        String updated_by_content = jObjAgainContent.getString("updated_by");
-
-                                        modelCourseContents.setPaid(paid);
-                                        modelCourseContents.setPrice(price);
-                                        modelCourseContents.setShareable(shareable);
-                                        modelCourseContents.setStatus_content(status_content);
-                                        modelCourseContents.setSize(size);
-                                        modelCourseContents.setTags(tags);
-                                        modelCourseContents.setTitle_content(title_content);
-                                        modelCourseContents.setType_content(type_content);
-                                        modelCourseContents.setUpdated_at_content(updated_at_content);
-                                        modelCourseContents.setUpdated_by_content(updated_by_content);
-                                        modelCourseContents.setCat_id(cat_id);
-                                        modelCourseContents.setContent_id(content_id);
-                                        modelCourseContents.setCopy_protect(copy_protect);
-                                        modelCourseContents.setCover_thumb_img(cover_thumb_img);
-                                        modelCourseContents.setCreated_by_content(created_by_content);
-                                        modelCourseContents.setDeleted_at_content(deleted_at_content);
-                                        modelCourseContents.setDescription_content(description_content);
-                                        modelCourseContents.setFile_encode_path(file_encode_path);
-                                        modelCourseContents.setFile_name(file_name);
-                                        modelCourseContents.setId_content(id_content);
-                                        modelCourseContents.setLicense(license);
-                                        modelCourseContents.setOwner_id(owner_id);
-                                        modelCourseContents.setCreated_at_content(created_at_content);
-
-                                        detailListCourseDetailContents.add(modelCourseContents);
-
-                                        model.setmArrayListContentDetails(detailListCourseDetailContents);
-
-                                        //For parsing array "multi_ques_list" > {0} > {0} > "syllebus" > "0" > "data"
-
-                                        detailList5=new ArrayList<DetailDataModelCourses>();
-
-                                        DetailDataModelCourses model5 = new DetailDataModelCourses();
-
-                                        try {
-                                            for (int l = 0; l < jSObject3.length() - 1; l++) {
-                                                JSONArray jSonObjMultiQ = (JSONArray) jSObject3.get("multi_ques_list");
-                                                JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(l);
-
-                                                String mPulse = objectAgainAnother2.getString("pulse");
-
-                                                model5.setPulse(mPulse);
+                                            model2.setmAllowPreview(allow_preview);
+                                            model2.setmAnsRand(ans_rand);
+                                            model2.setmAttempt(attempt);
+                                            model2.setmChooseVideoType(choose_video_type);
+                                            model2.setmContentType(content_type);
+                                            model2.setmDesc(desc);
+                                            model2.setmDownloadable(downloadable);
+                                            model2.setmDurationAnother(mDuration);
+                                            model2.setmForward(forward);
+                                            model2.setmPeerLimit(peer_limit);
+                                            model2.setmPeerReview(peer_review);
+                                            model2.setmPulse(pulse);
+                                            model2.setmQuesRand(ques_rand);
+                                            model2.setmQuiz(quiz);
+                                            model2.setmTimeUnit(time_unit);
+                                            model2.setmTitleAnother(mTitle);
 
 
+                                            // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                            JSONObject jObjAgain2 = jObjAgain.getJSONObject("file_type");
+
+
+                                            detailList3 = new ArrayList<DetailDataModelCourses>();
+                                            DetailDataModelCourses model3 = new DetailDataModelCourses();
+
+                                            String pdf = jObjAgain2.getString("pdf");
+                                            String excel = jObjAgain2.getString("excel");
+                                            String doc = jObjAgain2.getString("doc");
+                                            String csv = jObjAgain2.getString("csv");
+
+                                            model3.setmPdf(pdf);
+                                            model3.setmXcel(excel);
+                                            model3.setmDoc(doc);
+                                            model3.setmCsv(csv);
+
+                                            // For parsing object "Content" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                            DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
+
+                                            JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
+
+                                            String cat_id = jObjAgainContent.getString("cat_id");
+                                            String content_id = jObjAgainContent.getString("content_id");
+                                            String copy_protect = jObjAgainContent.getString("copy_protect");
+                                            String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
+                                            String created_at_content = jObjAgainContent.getString("created_at");
+                                            String created_by_content = jObjAgainContent.getString("created_by");
+                                            String deleted_at_content = jObjAgainContent.getString("deleted_at");
+                                            String description_content = jObjAgainContent.getString("description");
+                                            String file_encode_path = jObjAgainContent.getString("file_encode_path");
+                                            String file_name = jObjAgainContent.getString("file_name");
+                                            String id_content = jObjAgainContent.getString("id");
+                                            String license = jObjAgainContent.getString("license");
+                                            String owner_id = jObjAgainContent.getString("owner_id");
+                                            String paid = jObjAgainContent.getString("paid");
+                                            String price = jObjAgainContent.getString("price");
+                                            String shareable = jObjAgainContent.getString("shareable");
+                                            String size = jObjAgainContent.getString("size");
+                                            String status_content = jObjAgainContent.getString("status");
+                                            String tags = jObjAgainContent.getString("tags");
+                                            String title_content = jObjAgainContent.getString("title");
+                                            String type_content = jObjAgainContent.getString("type");
+                                            String updated_at_content = jObjAgainContent.getString("updated_at");
+                                            String updated_by_content = jObjAgainContent.getString("updated_by");
+
+                                            modelCourseContents.setPaid(paid);
+                                            modelCourseContents.setPrice(price);
+                                            modelCourseContents.setShareable(shareable);
+                                            modelCourseContents.setStatus_content(status_content);
+                                            modelCourseContents.setSize(size);
+                                            modelCourseContents.setTags(tags);
+                                            modelCourseContents.setTitle_content(title_content);
+                                            modelCourseContents.setType_content(type_content);
+                                            modelCourseContents.setUpdated_at_content(updated_at_content);
+                                            modelCourseContents.setUpdated_by_content(updated_by_content);
+                                            modelCourseContents.setCat_id(cat_id);
+                                            modelCourseContents.setContent_id(content_id);
+                                            modelCourseContents.setCopy_protect(copy_protect);
+                                            modelCourseContents.setCover_thumb_img(cover_thumb_img);
+                                            modelCourseContents.setCreated_by_content(created_by_content);
+                                            modelCourseContents.setDeleted_at_content(deleted_at_content);
+                                            modelCourseContents.setDescription_content(description_content);
+                                            modelCourseContents.setFile_encode_path(file_encode_path);
+                                            modelCourseContents.setFile_name(file_name);
+                                            modelCourseContents.setId_content(id_content);
+                                            modelCourseContents.setLicense(license);
+                                            modelCourseContents.setOwner_id(owner_id);
+                                            modelCourseContents.setCreated_at_content(created_at_content);
+
+                                            detailListCourseDetailContents.add(modelCourseContents);
+
+                                            model.setmArrayListContentDetails(detailListCourseDetailContents);
+
+                                            //For parsing array "multi_ques_list" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                            detailList5 = new ArrayList<DetailDataModelCourses>();
+
+                                            DetailDataModelCourses model5 = new DetailDataModelCourses();
+
+                                            try {
+                                                for (int l = 0; l < jSObject3.length() - 1; l++) {
+                                                    JSONArray jSonObjMultiQ = (JSONArray) jSObject3.get("multi_ques_list");
+                                                    JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(l);
+
+                                                    String mPulse = objectAgainAnother2.getString("pulse");
+
+                                                    model5.setPulse(mPulse);
+
+
+                                                }
+                                            } catch (Exception ex) {
+                                                Log.d("", "onResponse: ");
                                             }
-                                        }
-                                        catch (Exception ex){
-                                            Log.d("", "onResponse: ");
                                         }
 
 
@@ -620,6 +621,8 @@ public class RecomendedActivity extends AppCompatActivity {
                                 model3parent.setTotal_metaThirdParent(to_meta);
                                 model3parent.setTotal_metaThirdParent(total_meta);
 
+
+                                detailListCourse.add(model);
 
 
                             }

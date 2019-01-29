@@ -89,7 +89,7 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
 
         //String reporterString=dataSet.get(listPosition).getRpt();
 
-        ArrayList<DetailDataModelCoursesDetailContents> contentArray=dataSet.get(listPosition).getmArrayListContentDetails();
+        final ArrayList<DetailDataModelCoursesDetailContents> contentArray=dataSet.get(listPosition).getmArrayListContentDetails();
 
         final String titleText=contentArray.get(listPosition).getTitle_content();
         textViewName.setText(titleText);
@@ -133,9 +133,13 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
             public void onClick(View v)
             {
 
+
+
+
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("ttl", titleText);
                 i.putExtra("img", CoverPhoto);
+                i.putExtra("cal", contentArray);
                 //i.putExtra("detail", DetailDescription);
                 try {
                     v.getContext().startActivity(i);
