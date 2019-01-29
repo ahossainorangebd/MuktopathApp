@@ -2,6 +2,7 @@ package orangebd.newaspaper.mymuktopathapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -83,7 +84,8 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
         TextView textViewVersion = holder.textViewVersion;
         ImageView imageView = holder.imageViewIcon;
-        String titleText=dataSet.get(listPosition).getmCourseAliasName();
+        final String titleText=dataSet.get(listPosition).getmCourseAliasName();
+        final String DetailDescription=dataSet.get(listPosition).getmDetails();
         textViewName.setText(titleText);
 
         final String parentCatID=dataSet.get(listPosition).getCat_id();
@@ -153,16 +155,17 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
             public void onClick(View v)
             {
 
-                /*Intent i = new Intent(mContext, CourseDetailActivity.class);
-                i.putExtra("URL", htmlText);
-                i.putExtra("SURL", detailUrl);
+                Intent i = new Intent(mContext, CourseDetailActivity.class);
+                i.putExtra("ttl", titleText);
+                i.putExtra("img", CoverPhoto);
+                i.putExtra("detail", DetailDescription);
                 try {
                     v.getContext().startActivity(i);
                 }
                 catch (Exception ex){
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
-                }*/
+                }
             }
         });
 

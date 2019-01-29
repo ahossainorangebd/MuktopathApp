@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="orangebd.newaspaper.mymuktopathapp">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -15,6 +14,7 @@
         android:roundIcon="@drawable/muktopath_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AccountVerificationActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".CreateAccountActivity"
@@ -38,7 +38,7 @@
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".SelectCategoryActivity" />
         <activity android:name=".SelectACategoryActivity" />
-        <activity android:name=".MyPageCourseDetail"></activity>
+        <activity android:name=".MyPageCourseDetail" />
     </application>
 
 </manifest>

@@ -476,6 +476,8 @@ public class MainActivity extends AppCompatActivity {
                                         // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
 
                                         JSONObject jSObject3 = jSObject2.getJSONObject("0");
+
+
                                         JSONObject jObjAgain = jSObject3.getJSONObject("data");
 
                                         String allow_preview = jObjAgain.getString("allow_preview");

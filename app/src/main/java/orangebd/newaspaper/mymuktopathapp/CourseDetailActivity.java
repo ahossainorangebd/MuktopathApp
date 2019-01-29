@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -28,9 +30,13 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     private WebView mWebView;
     private Context context;
-    String url;
-    String ShareURL;
+    String ImgUrl;
+    String DetailDescription;
     String title;
+
+    private TextView titleTextView;
+    private TextView detailDescTextView;
+    private LinearLayout CoverPhoto;
 
     //private ImageView mLogoIcon;
 
@@ -52,8 +58,26 @@ public class CourseDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(view);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0097D7")));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+         titleTextView=findViewById(R.id.courseTitle);
+         detailDescTextView=findViewById(R.id.detailDesc);
+         CoverPhoto=findViewById(R.id.detailPageCoverPhoto);
+
+        ImgUrl = getIntent().getExtras().getString("img");
+        DetailDescription=getIntent().getExtras().getString("detail");
+        title = getIntent().getExtras().getString("ttl");
+
+        titleTextView.setText(title);
+        detailDescTextView.setText(DetailDescription);
+
+        /*try {
+            Picasso.with(context)
+                    .load(ImgUrl)
+                    .into(CoverPhoto);
+        }
+        catch (Exception ex){}*/
 
         /*try
         {
@@ -143,16 +167,6 @@ public class CourseDetailActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_web_search, menu);
-        //getMenuInflater().inflate(R.menu.main2, menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -183,14 +197,5 @@ public class CourseDetailActivity extends AppCompatActivity {
 
        //TODO
         //mWebView.onPause();
-    }
-}
-
-
-class MyWebViewClient extends WebViewClient {
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        view.loadUrl(url);
-        return true;
     }
 }
