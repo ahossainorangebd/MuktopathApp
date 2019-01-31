@@ -33,6 +33,8 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
     private Typeface tf;
 
+    private String CoverPhoto;
+
     private ArrayList<DetailDataModel> mFilteredList;
 
     //private String copyRightText;
@@ -47,17 +49,22 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
             this.textViewName = itemView.findViewById(R.id.textViewName);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
+            this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
+            //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
+            //textViewVersion.setTypeface(typeface);
         }
     }
 
     public RecyclerViewAdapterRecommended(ArrayList<DetailDataModelCourses> data, Context context) {
-
         this.dataSet = data;
+
         this.mContext=context;
+        stringPath = "file:///android_res/drawable/company_credit_logo.png";
+        addOn = String.format("<img src=\"%s\" />", stringPath);
+
     }
 
     @Override
@@ -81,25 +88,37 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
         TextView textViewName = holder.textViewName;
 
         TextView textViewVersion = holder.textViewVersion;
+        TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
         final String titleText=dataSet.get(listPosition).getmCourseAliasName();
         final String DetailDescription=dataSet.get(listPosition).getmDetails();
         textViewName.setText(titleText);
 
-//        final String parentCatID=dataSet.get(listPosition).getCat_id();
+        //final String parentCatID=dataSet.get(listPosition).getCat_id();
         //String reporterString=dataSet.get(listPosition).getRpt();
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
 
 
+        try {
             DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
 
             String imgUrl = imgUrlModel.getCover_code_image();
 
-        final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+        }
+        catch (Exception ex){
+            Log.d("", "onBindViewHolder: ");
+        }
 
+        //String detailString=dataSet.get(listPosition).getDtl_url();
+        //String imgCaption=dataSet.get(listPosition).getImg_caption();
+
+        /*if(reporterString.equalsIgnoreCase("")){
+            reporterString="Rtv Desk";
+        }*/
 
         try {
             Picasso.with(mContext)
@@ -108,16 +127,17 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
         }
         catch (Exception ex){}
 
-
-
             entryDate=dataSet.get(listPosition).getmCreatedAt();
             //final String returnDate=sdf.toString();
 
         textViewVersion.setText(entryDate);
 
+            /*updateDate=dataSet.get(listPosition).getmUpdatedAt();
+        textViewVersion2.setText(entryDate);*/
+
             //final String returnDate=sdf.toString();
 
-        final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
+        /*final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
                 "        img{ max-width:100%; height:auto !important}" +
                 "        a, span{ max-width:100%; display:inline-block; overflow:hidden}" +
                 "        iframe{ max-width:100%; display:inline-block; overflow:hidden}" +
@@ -142,10 +162,7 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
                 "</div>" +
                 "</div>" +
                 "</body>" +
-                "</html>";
-
-        //TODO
-        //final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
+                "</html>";*/
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,6 +2,7 @@ package orangebd.newaspaper.mymuktopathapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -89,13 +90,15 @@ public class RecyclerViewAdapterCategory9 extends RecyclerView.Adapter<RecyclerV
         TextView textViewVersion = holder.textViewVersion;
         TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
-        String titleText=dataSet.get(listPosition).getmCourseAliasName();
+        final String titleText=dataSet.get(listPosition).getmCourseAliasName();
+        final String DetailDescription=dataSet.get(listPosition).getmDetails();
         textViewName.setText(titleText);
 
         //final String parentCatID=dataSet.get(listPosition).getCat_id();
         //String reporterString=dataSet.get(listPosition).getRpt();
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
+
 
 
         try {
@@ -134,7 +137,7 @@ public class RecyclerViewAdapterCategory9 extends RecyclerView.Adapter<RecyclerV
 
             //final String returnDate=sdf.toString();
 
-        final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
+        /*final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
                 "        img{ max-width:100%; height:auto !important}" +
                 "        a, span{ max-width:100%; display:inline-block; overflow:hidden}" +
                 "        iframe{ max-width:100%; display:inline-block; overflow:hidden}" +
@@ -159,26 +162,24 @@ public class RecyclerViewAdapterCategory9 extends RecyclerView.Adapter<RecyclerV
                 "</div>" +
                 "</div>" +
                 "</body>" +
-                "</html>";
-
-        //TODO
-        //final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
+                "</html>";*/
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
 
-                /*Intent i = new Intent(mContext, CourseDetailActivity.class);
-                i.putExtra("URL", htmlText);
-                i.putExtra("SURL", detailUrl);
+                Intent i = new Intent(mContext, CourseDetailActivity.class);
+                i.putExtra("ttl", titleText);
+                i.putExtra("img", CoverPhoto);
+                i.putExtra("detail", DetailDescription);
                 try {
                     v.getContext().startActivity(i);
                 }
                 catch (Exception ex){
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
-                }*/
+                }
             }
         });
 

@@ -132,8 +132,10 @@ public class DetailDataModelCourses
 
     //for parsing thumbnailImage;
 
-    private ArrayList<DetailDataModelCoursesDetailContents> mArrayListContentDetails;
+    /*private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;*/
 
+
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;
 
     public String getmAdmissionStatus() {
         return mAdmissionStatus;
@@ -823,11 +825,19 @@ public class DetailDataModelCourses
         this.mArrayListThumbnails = mArrayListThumbnails;
     }
 
-    public ArrayList<DetailDataModelCoursesDetailContents> getmArrayListContentDetails() {
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListContentDetails() {
+        return mArrayListContentDetails;
+    }
+
+    public void setmArrayListContentDetails(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails) {
+        this.mArrayListContentDetails = mArrayListContentDetails;
+    }
+
+    /*public ArrayList<DetailDataModelCoursesDetailContents> getmArrayListContentDetails() {
         return mArrayListContentDetails;
     }
 
     public void setmArrayListContentDetails(ArrayList<DetailDataModelCoursesDetailContents> mArrayListContentDetails) {
         this.mArrayListContentDetails = mArrayListContentDetails;
-    }
+    }*/
 }

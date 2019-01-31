@@ -37,6 +37,8 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
 
     private ArrayList<DetailDataModel> mFilteredList;
 
+    private String titleText;
+
     //private String copyRightText;
     // private ImageView mainImage;
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -79,7 +81,8 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
+    public void onBindViewHolder(final MyViewHolder holder, final int listPosition)
+    {
         TextView textViewName = holder.textViewName;
 
         TextView textViewVersion = holder.textViewVersion;
@@ -89,16 +92,25 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
 
         //String reporterString=dataSet.get(listPosition).getRpt();
 
-        final ArrayList<DetailDataModelCoursesDetailContents> contentArray=dataSet.get(listPosition).getmArrayListContentDetails();
+        /*final ArrayList<DetailDataModelCoursesDetailContents> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();*/
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
 
-        final String titleText=contentArray.get(listPosition).getTitle_content();
-        textViewName.setText(titleText);
+        final Object mArrayList = contentArray.get(listPosition);
 
-        textViewVersion.setText(entryDate);
+        try {
 
-            //final String returnDate=sdf.toString();
+            /*titleText = contentArray.get(listPosition).getTitle_content();
+            textViewName.setText(titleText);*/
 
-        final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
+            //textViewVersion.setText(entryDate);
+        }
+        catch (Exception ex){
+            Log.d("", "onBindViewHolder: ");
+        }
+
+        //final String returnDate=sdf.toString();
+
+        /*final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
                 "        img{ max-width:100%; height:auto !important}" +
                 "        a, span{ max-width:100%; display:inline-block; overflow:hidden}" +
                 "        iframe{ max-width:100%; display:inline-block; overflow:hidden}" +
@@ -123,7 +135,7 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
                 "</div>" +
                 "</div>" +
                 "</body>" +
-                "</html>";
+                "</html>";*/
 
         //TODO
         //final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
@@ -133,13 +145,12 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
             public void onClick(View v)
             {
 
-
-
+                GlobalVar.gChildArrayOfContent = mArrayList;
 
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("ttl", titleText);
                 i.putExtra("img", CoverPhoto);
-                i.putExtra("cal", contentArray);
+              //  i.putExtra("cal", mArrayList);
                 //i.putExtra("detail", DetailDescription);
                 try {
                     v.getContext().startActivity(i);

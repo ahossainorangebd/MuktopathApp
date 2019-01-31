@@ -71,7 +71,7 @@
 
     <ScrollView
         android:id="@+id/verticalScrollViewId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/searchBarId"
         >
@@ -85,9 +85,33 @@
         android:layout_below="@+id/searchBarId"
         >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/course3_gradient_background"
+            android:gravity="left"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ 1"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+        </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                >
 
 
                 <HorizontalScrollView
@@ -102,7 +126,7 @@
                         android:orientation="horizontal"
                         >
 
-                        <LinearLayout
+                        <!--<LinearLayout
                             android:layout_width="150dp"
                             android:layout_height="200dp"
                             android:orientation="vertical"
@@ -120,7 +144,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 />
-                        </LinearLayout>
+                        </LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -140,7 +164,7 @@
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/my_recycler_view"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="200dp"
                             android:layout_marginLeft="1dp"
                             android:layout_marginRight="5dp"
                             android:orientation="horizontal"
@@ -356,6 +380,29 @@
             </LinearLayout>
 
         <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/course1_gradient_background"
+                        android:gravity="left"
+            android:layout_marginTop="5dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="কোর্সসমূহ 2"
+                            android:textColor="@color/Colorpeace"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            />
+                    </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
@@ -378,7 +425,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -397,7 +444,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -418,7 +465,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view2"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"
@@ -634,6 +681,29 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/course2_gradient_background"
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ 3"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp">
@@ -655,7 +725,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -674,7 +744,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -695,7 +765,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view3"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"
@@ -706,6 +776,29 @@
             </HorizontalScrollView>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/course4_gradient_background"
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ 4"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -730,7 +823,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -749,7 +842,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -770,7 +863,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view4"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"
@@ -782,6 +875,30 @@
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/course5_gradient_background"
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ5"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -800,7 +917,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -819,7 +936,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -840,7 +957,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view5"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"
@@ -851,6 +968,29 @@
             </HorizontalScrollView>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/course6_gradient_background"
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ 6"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -876,7 +1016,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -895,7 +1035,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -916,7 +1056,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view6"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"
@@ -927,6 +1067,29 @@
             </HorizontalScrollView>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/course7_gradient_background"
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ 7"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -949,7 +1112,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -968,7 +1131,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -989,7 +1152,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view7"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"
@@ -1000,6 +1163,29 @@
             </HorizontalScrollView>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/course8_gradient_background"
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ 8"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -1019,7 +1205,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -1038,7 +1224,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -1059,7 +1245,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view8"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"
@@ -1070,6 +1256,30 @@
             </HorizontalScrollView>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:background="@drawable/course9_gradient_background"
+            android:layout_marginTop="5dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ 9"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -1094,7 +1304,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -1113,7 +1323,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -1134,7 +1344,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view9"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"
@@ -1145,6 +1355,29 @@
             </HorizontalScrollView>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/course10_gradient_background"
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="কোর্সসমূহ 10"
+                android:textColor="@color/Colorpeace"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -1169,7 +1402,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
@@ -1188,7 +1421,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -1208,7 +1441,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/my_recycler_view10"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal"

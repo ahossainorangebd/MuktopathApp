@@ -83,6 +83,7 @@ public class RecomendedActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailList11;
     private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
     private ArrayList<DetailDataModelCoursesDetailContents> detailListCourseDetailContents;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
 
     private ArrayList<DetailDataModelCourses> detailList2parent;
     private ArrayList<DetailDataModelCourses3rdGrandFather> detailList3parent;
@@ -187,8 +188,10 @@ public class RecomendedActivity extends AppCompatActivity {
 
                         detailListCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
 
+                        detailListCourseDetailContentss = new ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>();
 
-                        detailListCourseDetailContents=new ArrayList<DetailDataModelCoursesDetailContents>();
+
+                        /*detailListCourseDetailContents=new ArrayList<DetailDataModelCoursesDetailContents>();*/
 
                         GlobalVar.courseContentDetailList=new ArrayList<>();
 
@@ -198,7 +201,6 @@ public class RecomendedActivity extends AppCompatActivity {
 
                             for (int i=0;i<object.length();i++)
                             {
-
                                 JSONObject object2 = (JSONObject) object.get(i);
 
                                 DetailDataModelCourses model = new DetailDataModelCourses();
@@ -391,6 +393,8 @@ public class RecomendedActivity extends AppCompatActivity {
 
                                         // parsing from syllebus
 
+
+
                                         for (int ii = 0; ii < jObject.length(); ii++) {
                                             JSONObject jSObject2 = jObject.getJSONObject("" + ii);
 
@@ -427,7 +431,12 @@ public class RecomendedActivity extends AppCompatActivity {
                                             // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
 
 
-                                            for (int lmn = 0; lmn < jSObject2.length(); lmn++) {
+                                            detailListCourseDetailContents=new ArrayList<DetailDataModelCoursesDetailContents>();
+
+
+                                            for (int lmn = 0; lmn < jSObject2.length(); lmn++)
+                                            {
+
 
 
                                                 JSONObject jSObject3 = jSObject2.getJSONObject("" + lmn);
@@ -467,11 +476,9 @@ public class RecomendedActivity extends AppCompatActivity {
                                                 model2.setmTimeUnit(time_unit);
                                                 model2.setmTitleAnother(mTitle);
 
-
                                                 // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
 
                                                 JSONObject jObjAgain2 = jObjAgain.getJSONObject("file_type");
-
 
                                                 detailList3 = new ArrayList<DetailDataModelCourses>();
                                                 DetailDataModelCourses model3 = new DetailDataModelCourses();
@@ -490,65 +497,70 @@ public class RecomendedActivity extends AppCompatActivity {
 
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
-                                                JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
+                                                try {
+                                                    JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
 
-                                                String cat_id = jObjAgainContent.getString("cat_id");
-                                                String content_id = jObjAgainContent.getString("content_id");
-                                                String copy_protect = jObjAgainContent.getString("copy_protect");
-                                                String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
-                                                String created_at_content = jObjAgainContent.getString("created_at");
-                                                String created_by_content = jObjAgainContent.getString("created_by");
-                                                String deleted_at_content = jObjAgainContent.getString("deleted_at");
-                                                String description_content = jObjAgainContent.getString("description");
-                                                String file_encode_path = jObjAgainContent.getString("file_encode_path");
-                                                String file_name = jObjAgainContent.getString("file_name");
-                                                String id_content = jObjAgainContent.getString("id");
-                                                String license = jObjAgainContent.getString("license");
-                                                String owner_id = jObjAgainContent.getString("owner_id");
-                                                String paid = jObjAgainContent.getString("paid");
-                                                String price = jObjAgainContent.getString("price");
-                                                String shareable = jObjAgainContent.getString("shareable");
-                                                String size = jObjAgainContent.getString("size");
-                                                String status_content = jObjAgainContent.getString("status");
-                                                String tags = jObjAgainContent.getString("tags");
-                                                String title_content = jObjAgainContent.getString("title");
-                                                String type_content = jObjAgainContent.getString("type");
-                                                String updated_at_content = jObjAgainContent.getString("updated_at");
-                                                String updated_by_content = jObjAgainContent.getString("updated_by");
+                                                    String cat_id = jObjAgainContent.getString("cat_id");
+                                                    String content_id = jObjAgainContent.getString("content_id");
+                                                    String copy_protect = jObjAgainContent.getString("copy_protect");
+                                                    String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
+                                                    String created_at_content = jObjAgainContent.getString("created_at");
+                                                    String created_by_content = jObjAgainContent.getString("created_by");
+                                                    String deleted_at_content = jObjAgainContent.getString("deleted_at");
+                                                    String description_content = jObjAgainContent.getString("description");
+                                                    String file_encode_path = jObjAgainContent.getString("file_encode_path");
+                                                    String file_name = jObjAgainContent.getString("file_name");
+                                                    String id_content = jObjAgainContent.getString("id");
+                                                    String license = jObjAgainContent.getString("license");
+                                                    String owner_id = jObjAgainContent.getString("owner_id");
+                                                    String paid = jObjAgainContent.getString("paid");
+                                                    String price = jObjAgainContent.getString("price");
+                                                    String shareable = jObjAgainContent.getString("shareable");
+                                                    String size = jObjAgainContent.getString("size");
+                                                    String status_content = jObjAgainContent.getString("status");
+                                                    String tags = jObjAgainContent.getString("tags");
+                                                    String title_content = jObjAgainContent.getString("title");
+                                                    String type_content = jObjAgainContent.getString("type");
+                                                    String updated_at_content = jObjAgainContent.getString("updated_at");
+                                                    String updated_by_content = jObjAgainContent.getString("updated_by");
 
-                                                modelCourseContents.setPaid(paid);
-                                                modelCourseContents.setPrice(price);
-                                                modelCourseContents.setShareable(shareable);
-                                                modelCourseContents.setStatus_content(status_content);
-                                                modelCourseContents.setSize(size);
-                                                modelCourseContents.setTags(tags);
-                                                modelCourseContents.setTitle_content(title_content);
-                                                modelCourseContents.setType_content(type_content);
-                                                modelCourseContents.setUpdated_at_content(updated_at_content);
-                                                modelCourseContents.setUpdated_by_content(updated_by_content);
-                                                modelCourseContents.setCat_id(cat_id);
-                                                modelCourseContents.setContent_id(content_id);
-                                                modelCourseContents.setCopy_protect(copy_protect);
-                                                modelCourseContents.setCover_thumb_img(cover_thumb_img);
-                                                modelCourseContents.setCreated_by_content(created_by_content);
-                                                modelCourseContents.setDeleted_at_content(deleted_at_content);
-                                                modelCourseContents.setDescription_content(description_content);
-                                                modelCourseContents.setFile_encode_path(file_encode_path);
-                                                modelCourseContents.setFile_name(file_name);
-                                                modelCourseContents.setId_content(id_content);
-                                                modelCourseContents.setLicense(license);
-                                                modelCourseContents.setOwner_id(owner_id);
-                                                modelCourseContents.setCreated_at_content(created_at_content);
-
+                                                    modelCourseContents.setPaid(paid);
+                                                    modelCourseContents.setPrice(price);
+                                                    modelCourseContents.setShareable(shareable);
+                                                    modelCourseContents.setStatus_content(status_content);
+                                                    modelCourseContents.setSize(size);
+                                                    modelCourseContents.setTags(tags);
+                                                    modelCourseContents.setTitle_content(title_content);
+                                                    modelCourseContents.setType_content(type_content);
+                                                    modelCourseContents.setUpdated_at_content(updated_at_content);
+                                                    modelCourseContents.setUpdated_by_content(updated_by_content);
+                                                    modelCourseContents.setCat_id(cat_id);
+                                                    modelCourseContents.setContent_id(content_id);
+                                                    modelCourseContents.setCopy_protect(copy_protect);
+                                                    modelCourseContents.setCover_thumb_img(cover_thumb_img);
+                                                    modelCourseContents.setCreated_by_content(created_by_content);
+                                                    modelCourseContents.setDeleted_at_content(deleted_at_content);
+                                                    modelCourseContents.setDescription_content(description_content);
+                                                    modelCourseContents.setFile_encode_path(file_encode_path);
+                                                    modelCourseContents.setFile_name(file_name);
+                                                    modelCourseContents.setId_content(id_content);
+                                                    modelCourseContents.setLicense(license);
+                                                    modelCourseContents.setOwner_id(owner_id);
+                                                    modelCourseContents.setCreated_at_content(created_at_content);
+                                                }
+                                                catch (Exception ex){
+                                                    Log.d("", "onResponse: ");
+                                                }
                                                 detailListCourseDetailContents.add(modelCourseContents);
 
-                                                model.setmArrayListContentDetails(detailListCourseDetailContents);
 
                                                 //For parsing array "multi_ques_list" > {0} > {0} > "syllebus" > "0" > "data"
 
                                                 detailList5 = new ArrayList<DetailDataModelCourses>();
 
-                                                DetailDataModelCourses model5 = new DetailDataModelCourses();
+                                                //TODO
+                                                //For now multi Q. is comment off for preventing course content
+                                                /*DetailDataModelCourses model5 = new DetailDataModelCourses();
 
                                                 try {
                                                     for (int l = 0; l < jSObject3.length() - 1; l++) {
@@ -558,24 +570,24 @@ public class RecomendedActivity extends AppCompatActivity {
                                                         String mPulse = objectAgainAnother2.getString("pulse");
 
                                                         model5.setPulse(mPulse);
-
-
                                                     }
                                                 } catch (Exception ex) {
                                                     Log.d("", "onResponse: ");
-                                                }
+                                                }*/
                                             }
-
-
                                         }
                                     }
-
 
                                 }
                                 catch (Exception ex){
                                     Log.d("", "onResponse: ");
                                 }
 
+
+
+                                model.setmArrayListContentDetails(detailListCourseDetailContentss);
+
+                                detailListCourseDetailContentss.add(detailListCourseDetailContents);
                                 //parsing all direct strings of 2nd parent
 
                                 detailList2parent=new ArrayList<DetailDataModelCourses>();
@@ -592,7 +604,6 @@ public class RecomendedActivity extends AppCompatActivity {
                                 model2parent.setLastSecondParent(lastSecondParent);
                                 model2parent.setNextSecondParent(nextSecondParent);
                                 model2parent.setPrevSecondParent(prevSecondParent);
-
 
                                 //parsing all direct strings of 3rd parent
 
@@ -620,11 +631,9 @@ public class RecomendedActivity extends AppCompatActivity {
 
                                 detailListCourse.add(model);
 
-
                             }
 
                             setRecyclerView();
-
 
                             GlobalVar.courseContentDetailList=detailListCourse;
 
@@ -637,11 +646,6 @@ public class RecomendedActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
-
-
-
 
                     }
                 }, new Response.ErrorListener() {

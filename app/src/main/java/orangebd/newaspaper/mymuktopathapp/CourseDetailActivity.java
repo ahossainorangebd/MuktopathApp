@@ -175,7 +175,7 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         recyclerView.setNestedScrollingEnabled(false);
 
-        adapter=new RecyclerViewAdapterCourseDetailContent(GlobalVar.courseContentDetailList,context);
+        adapter=new RecyclerViewAdapterCourseDetailContents(GlobalVar.courseContentDetailList,context, GlobalVar.gChildArrayOfContent);
 
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

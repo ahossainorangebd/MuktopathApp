@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerViewAdapterCategory3.MyViewHolder> {
+public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapter<RecyclerViewAdapterCourseDetailContents.MyViewHolder> {
 
     private ArrayList<DetailDataModelCourses> dataSet;
     private Context mContext;
@@ -36,6 +34,9 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
     private String CoverPhoto;
 
     private ArrayList<DetailDataModel> mFilteredList;
+    private ArrayList<Object> array;
+
+    private String titleText;
 
     //private String copyRightText;
     // private ImageView mainImage;
@@ -49,22 +50,18 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
 
         public MyViewHolder(View itemView) {
             super(itemView);
+
             this.textViewName = itemView.findViewById(R.id.textViewName);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
-            this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
-            //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
-            //textViewVersion.setTypeface(typeface);
         }
     }
 
-    public RecyclerViewAdapterCategory3(ArrayList<DetailDataModelCourses> data, Context context) {
+    public RecyclerViewAdapterCourseDetailContents(ArrayList<DetailDataModelCourses> data, Context context, ArrayList<Object> childObj) {
+
         this.dataSet = data;
-
         this.mContext=context;
-        stringPath = "file:///android_res/drawable/company_credit_logo.png";
-        addOn = String.format("<img src=\"%s\" />", stringPath);
-
+        this.array=childObj;
     }
 
     @Override
@@ -73,7 +70,7 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
         View view= new View(mContext);
 
         try {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_detail_course_contents, parent, false);
         }
         catch (Exception ex){
             Log.d("", ex.getMessage());
@@ -84,58 +81,34 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
+    public void onBindViewHolder(final MyViewHolder holder, final int listPosition)
+    {
         TextView textViewName = holder.textViewName;
 
         TextView textViewVersion = holder.textViewVersion;
-        TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
-        final String titleText=dataSet.get(listPosition).getmCourseAliasName();
-        final String DetailDescription=dataSet.get(listPosition).getmDetails();
-        textViewName.setText(titleText);
 
-        //final String parentCatID=dataSet.get(listPosition).getCat_id();
+        //final String DetailDescription=dataSet.get(listPosition).getmDetails();
+
         //String reporterString=dataSet.get(listPosition).getRpt();
 
-        ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
+        /*final ArrayList<DetailDataModelCoursesDetailContents> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();*/
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
 
-
+        final Object mArrayList = contentArray.get(listPosition);
 
         try {
-            DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
+            /*titleText = contentArray.get(listPosition).getTitle_content();
+            textViewName.setText(titleText);*/
 
-            String imgUrl = imgUrlModel.getCover_code_image();
-
-            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+            //textViewVersion.setText(entryDate);
         }
         catch (Exception ex){
             Log.d("", "onBindViewHolder: ");
         }
 
-        //String detailString=dataSet.get(listPosition).getDtl_url();
-        //String imgCaption=dataSet.get(listPosition).getImg_caption();
-
-        /*if(reporterString.equalsIgnoreCase("")){
-            reporterString="Rtv Desk";
-        }*/
-
-        try {
-            Picasso.with(mContext)
-                    .load(CoverPhoto)
-                    .into(imageView);
-        }
-        catch (Exception ex){}
-
-            entryDate=dataSet.get(listPosition).getmCreatedAt();
-            //final String returnDate=sdf.toString();
-
-        textViewVersion.setText(entryDate);
-
-            updateDate=dataSet.get(listPosition).getmUpdatedAt();
-        textViewVersion2.setText(entryDate);
-
-            //final String returnDate=sdf.toString();
+        //final String returnDate=sdf.toString();
 
         /*final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
                 "        img{ max-width:100%; height:auto !important}" +
@@ -164,15 +137,21 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
                 "</body>" +
                 "</html>";*/
 
+        //TODO
+        //final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
 
+                GlobalVar.gChildArrayOfContent = mArrayList;
+
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("ttl", titleText);
                 i.putExtra("img", CoverPhoto);
-                i.putExtra("detail", DetailDescription);
+              //  i.putExtra("cal", mArrayList);
+                //i.putExtra("detail", DetailDescription);
                 try {
                     v.getContext().startActivity(i);
                 }
