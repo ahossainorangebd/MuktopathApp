@@ -23,7 +23,7 @@ import java.util.TimeZone;
 
 public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter<RecyclerViewAdapterCourseDetailContent.MyViewHolder> {
 
-    private ArrayList<DetailDataModelCourses> dataSet;
+    private Object[] dataSet;
     private Context mContext;
     private String stringPath;
     private String addOn;
@@ -58,7 +58,7 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
         }
     }
 
-    public RecyclerViewAdapterCourseDetailContent(ArrayList<DetailDataModelCourses> data, Context context) {
+    public RecyclerViewAdapterCourseDetailContent(Object[] data, Context context) {
 
         this.dataSet = data;
         this.mContext=context;
@@ -93,9 +93,7 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
         //String reporterString=dataSet.get(listPosition).getRpt();
 
         /*final ArrayList<DetailDataModelCoursesDetailContents> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();*/
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
 
-        final Object mArrayList = contentArray.get(listPosition);
 
         try {
 
@@ -145,8 +143,6 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
             public void onClick(View v)
             {
 
-                GlobalVar.gChildArrayOfContent = mArrayList;
-
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("ttl", titleText);
                 i.putExtra("img", CoverPhoto);
@@ -189,7 +185,7 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
 
     @Override
     public int getItemCount() {
-        return dataSet.size();
+        return dataSet.length;
     }
 
     public String convertEngToBn(String num){

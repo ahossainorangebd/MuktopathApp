@@ -21,7 +21,7 @@ import java.util.TimeZone;
 
 public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapter<RecyclerViewAdapterCourseDetailContents.MyViewHolder> {
 
-    private ArrayList<DetailDataModelCourses> dataSet;
+    private Object[] dataSet;
     private Context mContext;
     private String stringPath;
     private String addOn;
@@ -34,8 +34,6 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
     private String CoverPhoto;
 
     private ArrayList<DetailDataModel> mFilteredList;
-    private ArrayList<Object> array;
-
     private String titleText;
 
     //private String copyRightText;
@@ -57,11 +55,10 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
         }
     }
 
-    public RecyclerViewAdapterCourseDetailContents(ArrayList<DetailDataModelCourses> data, Context context, ArrayList<Object> childObj) {
+    public RecyclerViewAdapterCourseDetailContents(Object[] data, Context context) {
 
         this.dataSet = data;
         this.mContext=context;
-        this.array=childObj;
     }
 
     @Override
@@ -88,14 +85,10 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
         TextView textViewVersion = holder.textViewVersion;
         ImageView imageView = holder.imageViewIcon;
 
-        //final String DetailDescription=dataSet.get(listPosition).getmDetails();
+        DetailDataModelCoursesDetailContents mContentModel = (DetailDataModelCoursesDetailContents) dataSet[listPosition];
+        final String mTitle=mContentModel.getTitle_content();
 
-        //String reporterString=dataSet.get(listPosition).getRpt();
-
-        /*final ArrayList<DetailDataModelCoursesDetailContents> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();*/
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
-
-        final Object mArrayList = contentArray.get(listPosition);
+       // String reporterString=dataSet.get(listPosition).getRpt();
 
         try {
 
@@ -145,11 +138,9 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
             public void onClick(View v)
             {
 
-                GlobalVar.gChildArrayOfContent = mArrayList;
-
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
-                i.putExtra("ttl", titleText);
-                i.putExtra("img", CoverPhoto);
+                i.putExtra("ttl", mTitle);
+                //i.putExtra("img", CoverPhoto);
               //  i.putExtra("cal", mArrayList);
                 //i.putExtra("detail", DetailDescription);
                 try {
@@ -189,7 +180,7 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
 
     @Override
     public int getItemCount() {
-        return dataSet.size();
+        return dataSet.length;
     }
 
     public String convertEngToBn(String num){

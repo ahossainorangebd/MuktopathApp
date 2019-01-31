@@ -24,7 +24,7 @@ public class GlobalVar {
     public static boolean isExpandForMenu;
 
 
-    public static Object gChildArrayOfContent;
+    public static Object[] gChildArrayOfContent;
 
     //arrayList of Course Content
     public static ArrayList<DetailDataModelCourses> courseContentDetailList;

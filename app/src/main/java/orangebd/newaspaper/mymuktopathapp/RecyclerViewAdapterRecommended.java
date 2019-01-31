@@ -99,6 +99,9 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+
+        final Object[] mArrayList = contentArray.get(listPosition).toArray();
 
 
         try {
@@ -168,6 +171,8 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
             @Override
             public void onClick(View v)
             {
+
+                GlobalVar.gChildArrayOfContent = mArrayList;
 
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("ttl", titleText);
