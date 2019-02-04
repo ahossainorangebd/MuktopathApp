@@ -107,6 +107,8 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
             String imgUrl = imgUrlModel.getCover_code_image();
 
+        //String imgUrl = imgUrlModel.getCover_code_image();
+
             final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
 
         //String detailString=dataSet.get(listPosition).getDtl_url();
