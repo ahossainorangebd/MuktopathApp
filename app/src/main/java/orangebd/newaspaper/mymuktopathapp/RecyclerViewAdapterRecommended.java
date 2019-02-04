@@ -33,13 +33,12 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
     private Typeface tf;
 
-    private String CoverPhoto;
-
     private ArrayList<DetailDataModel> mFilteredList;
 
     //private String copyRightText;
     // private ImageView mainImage;
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder
+    {
 
         TextView textViewName;
         TextView textViewVersion;
@@ -47,7 +46,8 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
         ImageView imageViewIcon;
         Typeface typeface;
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(View itemView)
+        {
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.textViewName);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
@@ -103,18 +103,11 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
         final Object[] mArrayList = contentArray.get(listPosition).toArray();
 
-
-        try {
             DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
-
 
             String imgUrl = imgUrlModel.getCover_code_image();
 
-            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
-        }
-        catch (Exception ex){
-            Log.d("", "onBindViewHolder: ");
-        }
+            final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
 
         //String detailString=dataSet.get(listPosition).getDtl_url();
         //String imgCaption=dataSet.get(listPosition).getImg_caption();

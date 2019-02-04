@@ -383,19 +383,60 @@ public class LoginActivity extends AppCompatActivity {
                                             DetailDataModelUserData modelPart2 = new DetailDataModelUserData();
                                             DetailDataModelUserData modelPart3 = new DetailDataModelUserData();
 
-                                            try {
-                                                for (int iv=0;iv<jObject.length()-1;iv++)
-                                                {
-                                                    JSONArray objectAgainAnother = (JSONArray) jObject.get("RoleInstitution");
-                                                    JSONObject objectAgainAnother2 = (JSONObject) objectAgainAnother.get(iv);
-                                                    JSONObject objectAgainAnotherPart1 = (JSONObject) objectAgainAnother2.get("Institution");
+                                            JSONArray objectAgainAnother = (JSONArray) jObject.get("RoleInstitution");
+                                            JSONArray objectEnrollCourse = (JSONArray) jObject.getJSONArray("EnrollCourse");
+
+                                            JSONObject objectEnrollCourseInside = (JSONObject) objectEnrollCourse.get(0);
+
+                                            JSONObject objectCourse2 = objectEnrollCourseInside.getJSONObject("Course");
+
+                                            DetailDataModelUserData modelForLoginCourse = new DetailDataModelUserData();
+
+                                            String featured = objectCourse2.getString("featured");
+                                            String Eid = objectCourse2.getString("id");
+                                            String Edetails = objectCourse2.getString("details");
+                                            String Eadmission_status = objectCourse2.getString("admission_status");
+                                            String averageRating = objectCourse2.getString("averageRating");
+                                            String certificate_alias_name = objectCourse2.getString("certificate_alias_name");
+                                            String clone_status = objectCourse2.getString("clone_status");
+                                            String code = objectCourse2.getString("code");
+                                            String courses_for_status = objectCourse2.getString("courses_for_status");
+                                            String course_alias_name = objectCourse2.getString("course_alias_name");
+                                            String course_motto = objectCourse2.getString("course_motto");
+                                            String created_at = objectCourse2.getString("created_at");
+                                            String duration = objectCourse2.getString("duration");
+                                            String end_date = objectCourse2.getString("end_date");
+                                            String enrolment_approval_status = objectCourse2.getString("enrolment_approval_status");
+
+                                            modelForLoginCourse.setmCertificateAliasName(certificate_alias_name);
+                                            modelForLoginCourse.setmAdmissionStatus(Eadmission_status);
+                                            modelForLoginCourse.setmAverageRating(averageRating);
+                                            modelForLoginCourse.setmCloneStatus(clone_status);
+                                            modelForLoginCourse.setmCode(code);
+                                            modelForLoginCourse.setmCreatedAt(created_at);
+                                            modelForLoginCourse.setmDuration(duration);
+                                            modelForLoginCourse.setmEndDate(end_date);
+                                            modelForLoginCourse.setmId(Eid);
+                                            modelForLoginCourse.setmDetails(Edetails);
+                                            modelForLoginCourse.setmFeatured(featured);
+                                            modelForLoginCourse.setmEnrolmentApprovalStatus(enrolment_approval_status);
+                                            modelForLoginCourse.setmCursesForStatus(courses_for_status);
+                                            modelForLoginCourse.setmCourseAliasName(course_alias_name);
+                                            modelForLoginCourse.setmCourseMotto(course_motto);
+                                            modelForLoginCourse.setmStatus(status);
+
+                                            detailListAnoPart3.add(modelForLoginCourse);
+
+                                                    //JSONObject objectAgainAnother2 = (JSONObject) objectAgainAnother.get(iv);
+
+                                                    /*JSONObject objectAgainAnotherPart1 = (JSONObject) objectAgainAnother2.get("Institution");
                                                     JSONObject objectAgainAnotherPart2 = (JSONObject) objectAgainAnother2.get("Role");
-                                                    JSONObject objectAgainAnotherPart3 = (JSONObject) objectAgainAnother2.get("UserRole");
+                                                    JSONObject objectAgainAnotherPart3 = (JSONObject) objectAgainAnother2.get("UserRole");*/
 
                                                     // For parsing 3rd Array's 1st Object of info JSON
 
 
-                                                    String instaddress = objectAgainAnotherPart1.getString("address");
+                                                    /*String instaddress = objectAgainAnotherPart1.getString("address");
                                                     String instcontacts = objectAgainAnotherPart1.getString("contacts");
                                                     String instcontact_person = objectAgainAnotherPart1.getString("contact_person");
                                                     String instcontact_person_email = objectAgainAnotherPart1.getString("contact_person_email");
@@ -584,12 +625,10 @@ public class LoginActivity extends AppCompatActivity {
                                                     modelPart3.setInstuser_id(instuser_id3);
                                                     modelPart3.setInstwebsite(instwebsite3);
 
-                                                    detailListAnoPart3.add(modelPart3);
-                                                }
+                                                    detailListAnoPart3.add(modelPart3);*/
 
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
+                                                    //for parsing EnrollCourse
+
 
                                         }
 

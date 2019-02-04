@@ -56,6 +56,26 @@ public class DetailDataModelUserData
     private String instwebsite;
 
 
+
+    //Login API course name
+
+    private String mAdmissionStatus;
+    private String mAverageRating;
+    private String mCertificateAliasName;
+    private String mCloneStatus;
+    private String mCode;
+    private String mCursesForStatus;
+    private String mCourseAliasName;
+    private String mCourseMotto;
+    private String mCreatedAt;
+    private String mDetails;
+    private String mDuration;
+    private String mEndDate;
+    private String mEnrolmentApprovalStatus;
+    private String mFeatured;
+    private String mCourseId;
+
+
     public String getmSuccess() {
         return mSuccess;
     }
@@ -414,5 +434,125 @@ public class DetailDataModelUserData
 
     public void setInstwebsite(String instwebsite) {
         this.instwebsite = instwebsite;
+    }
+
+    public String getmAdmissionStatus() {
+        return mAdmissionStatus;
+    }
+
+    public void setmAdmissionStatus(String mAdmissionStatus) {
+        this.mAdmissionStatus = mAdmissionStatus;
+    }
+
+    public String getmAverageRating() {
+        return mAverageRating;
+    }
+
+    public void setmAverageRating(String mAverageRating) {
+        this.mAverageRating = mAverageRating;
+    }
+
+    public String getmCertificateAliasName() {
+        return mCertificateAliasName;
+    }
+
+    public void setmCertificateAliasName(String mCertificateAliasName) {
+        this.mCertificateAliasName = mCertificateAliasName;
+    }
+
+    public String getmCloneStatus() {
+        return mCloneStatus;
+    }
+
+    public void setmCloneStatus(String mCloneStatus) {
+        this.mCloneStatus = mCloneStatus;
+    }
+
+    public String getmCode() {
+        return mCode;
+    }
+
+    public void setmCode(String mCode) {
+        this.mCode = mCode;
+    }
+
+    public String getmCursesForStatus() {
+        return mCursesForStatus;
+    }
+
+    public void setmCursesForStatus(String mCursesForStatus) {
+        this.mCursesForStatus = mCursesForStatus;
+    }
+
+    public String getmCourseAliasName() {
+        return mCourseAliasName;
+    }
+
+    public void setmCourseAliasName(String mCourseAliasName) {
+        this.mCourseAliasName = mCourseAliasName;
+    }
+
+    public String getmCourseMotto() {
+        return mCourseMotto;
+    }
+
+    public void setmCourseMotto(String mCourseMotto) {
+        this.mCourseMotto = mCourseMotto;
+    }
+
+    public String getmCreatedAt() {
+        return mCreatedAt;
+    }
+
+    public void setmCreatedAt(String mCreatedAt) {
+        this.mCreatedAt = mCreatedAt;
+    }
+
+    public String getmDetails() {
+        return mDetails;
+    }
+
+    public void setmDetails(String mDetails) {
+        this.mDetails = mDetails;
+    }
+
+    public String getmDuration() {
+        return mDuration;
+    }
+
+    public void setmDuration(String mDuration) {
+        this.mDuration = mDuration;
+    }
+
+    public String getmEndDate() {
+        return mEndDate;
+    }
+
+    public void setmEndDate(String mEndDate) {
+        this.mEndDate = mEndDate;
+    }
+
+    public String getmEnrolmentApprovalStatus() {
+        return mEnrolmentApprovalStatus;
+    }
+
+    public void setmEnrolmentApprovalStatus(String mEnrolmentApprovalStatus) {
+        this.mEnrolmentApprovalStatus = mEnrolmentApprovalStatus;
+    }
+
+    public String getmFeatured() {
+        return mFeatured;
+    }
+
+    public void setmFeatured(String mFeatured) {
+        this.mFeatured = mFeatured;
+    }
+
+    public String getmCourseId() {
+        return mCourseId;
+    }
+
+    public void setmCourseId(String mCourseId) {
+        this.mCourseId = mCourseId;
     }
 }

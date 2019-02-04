@@ -58,7 +58,7 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         }
     }
 
-    public RecyclerViewAdapterCategory1(ArrayList<DetailDataModelCourses> data,  Context context) {
+    public RecyclerViewAdapterCategory1(ArrayList<DetailDataModelCourses> data, Context context) {
         this.dataSet = data;
 
         this.mContext=context;

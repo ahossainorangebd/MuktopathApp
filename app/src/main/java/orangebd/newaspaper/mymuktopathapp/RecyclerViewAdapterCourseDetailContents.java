@@ -88,6 +88,7 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
         DetailDataModelCoursesDetailContents mContentModel = (DetailDataModelCoursesDetailContents) dataSet[listPosition];
         final String mTitle=mContentModel.getTitle_content();
 
+        textViewName.setText(mTitle);
        // String reporterString=dataSet.get(listPosition).getRpt();
 
         try {
@@ -138,7 +139,7 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
             public void onClick(View v)
             {
 
-                Intent i = new Intent(mContext, CourseDetailActivity.class);
+                /*Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("ttl", mTitle);
                 //i.putExtra("img", CoverPhoto);
               //  i.putExtra("cal", mArrayList);
@@ -149,7 +150,7 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
                 catch (Exception ex){
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
-                }
+                }*/
             }
         });
 

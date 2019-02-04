@@ -242,6 +242,15 @@
 
         </LinearLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical"
+            />
+
         <Button
             android:id="@+id/startMyPageBtnId"
             android:layout_width="wrap_content"
@@ -367,6 +376,16 @@
         android:gravity="center"
         />
 
+    <ImageView
+        android:id="@+id/CourseDetailCoverImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/coverdetailpage"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -375,10 +394,10 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:background="@drawable/coverdetailpage"
         >
 
         <TextView
+            android:id="@+id/courseTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="সাইবার সিকিউরিটি কোর্স"
