@@ -6,7 +6,7 @@
     <!-- you can use any color you want I used here gray color-->
     <solid android:color="#ffffff"/>
     <stroke
-        android:color="#000000"
+        android:color="#c1c1c1"
         android:width="1dp"
         >
 

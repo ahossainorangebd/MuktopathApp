@@ -879,7 +879,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner.setVisibility(View.GONE);
 
-            new GetCategory2Courses().execute("https://rtvonline.com/json-feed/bangladesh.json");
+            new GetCategory2Courses().execute();
         }
     }
 
@@ -969,7 +969,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner2.setVisibility(View.GONE);
 
-            new GetCategory3Courses().execute("https://rtvonline.com/json-feed/crime.json");
+            new GetCategory3Courses().execute();
         }
     }
 
@@ -1060,7 +1060,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner3.setVisibility(View.GONE);
 
-            new GetCategory4Courses().execute("https://rtvonline.com/json-feed/economics.json");
+            new GetCategory4Courses().execute();
         }
     }
 
@@ -1149,7 +1149,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner4.setVisibility(View.GONE);
 
-            new GetCategory5Courses().execute("https://rtvonline.com/json-feed/entertainment.json");
+            new GetCategory5Courses().execute();
         }
     }
 
@@ -1238,7 +1238,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner5.setVisibility(View.GONE);
 
-            new GetCategory6Courses().execute("https://rtvonline.com/json-feed/international.json");
+            new GetCategory6Courses().execute();
         }
     }
 
@@ -1327,7 +1327,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner6.setVisibility(View.GONE);
 
-            new GetCategory7Courses().execute("https://rtvonline.com/json-feed/lifestyle.json");
+            new GetCategory7Courses().execute();
         }
     }
 
@@ -1416,7 +1416,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner7.setVisibility(View.GONE);
 
-            new GetCategory8Courses().execute("https://rtvonline.com/json-feed/politics.json");
+            new GetCategory8Courses().execute();
         }
     }
 
@@ -1595,7 +1595,7 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner9.setVisibility(View.GONE);
 
-            new GetCategory10Courses().execute("https://rtvonline.com/json-feed/country.json");
+            new GetCategory10Courses().execute();
         }
     }
 

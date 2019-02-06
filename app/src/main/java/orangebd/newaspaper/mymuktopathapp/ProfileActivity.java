@@ -46,13 +46,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         mContext=this;
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.custom_logodetails, null, false);
+        /*View view = LayoutInflater.from(mContext).inflate(R.layout.custom_logodetails, null, false);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(view);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        getSupportActionBar().hide();
 
         View view2 = findViewById(android.R.id.content);
         Animation mLoadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);

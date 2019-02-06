@@ -131,8 +131,6 @@ public class CourseDetailActivity extends AppCompatActivity {
         return;
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

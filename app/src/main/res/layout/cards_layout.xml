@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
+                    <!--<TextView
                         android:id="@+id/textViewVersion"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="3dp"
                         android:text="Android Version"
-                        android:textSize="10sp" />
+                        android:textSize="10sp" />-->
 
 
                 </LinearLayout>

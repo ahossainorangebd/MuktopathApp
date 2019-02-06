@@ -182,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
                                             String lastLoginIpAddress = jObject.getString("last_login_ip_address");
                                             String last_login_time = jObject.getString("last_login_time");
                                             String login_status = jObject.getString("login_status");
-                                            String password = jObject.getString("password");
+                                            //String password = jObject.getString("password");
                                             String phone = jObject.getString("phone");
                                             String status = jObject.getString("status");
                                             String token = jObject.getString("token");
@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
                                             model.setmUserName(username);
                                             model.setmName(name);
                                             model.setmUserEmail(email);
-                                            model.setmUserPassword(password);
+                                            //model.setmUserPassword(password);
                                             model.setmCompletenesss(Completeness);
                                             model.setmCourseCompleted(coursecompleted);
                                             model.setmTotalEnrollment(totalEnrollment);
@@ -652,7 +652,7 @@ public class LoginActivity extends AppCompatActivity {
                 };
                 mQueue.add(jsonObjectRequest);
 
-                Intent i=new Intent(mContext,WelcomeActivity.class);
+                Intent i=new Intent(mContext,SelectACategoryActivity.class);
                 startActivity(i);
             }
         });

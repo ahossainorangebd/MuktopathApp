@@ -51,7 +51,7 @@ public class RecyclerViewAdapterCategory5 extends RecyclerView.Adapter<RecyclerV
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.textViewName);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
-            this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
+          //  this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
             //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
             //textViewVersion.setTypeface(typeface);

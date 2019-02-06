@@ -261,7 +261,6 @@
             android:background="@color/colorLighterPain"
             android:elevation="20dp"
             />
-
     </LinearLayout>
 
     <LinearLayout

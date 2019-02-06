@@ -10,7 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".CreateAccountActivity"
-    android:background="@drawable/muktopath_splash"
     >
 
     <!-- Login progress -->
@@ -129,11 +128,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="সম্পূর্ণ নাম"
+                            android:layout_marginTop="5dp"
                             android:background="#fff"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="8dp"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
+                            android:layout_gravity="center"
                             android:singleLine="true" />
 
                     </LinearLayout>
@@ -200,6 +201,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="জেন্ডার"
+                            android:layout_marginTop="5dp"
                             android:background="#fff"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="8dp"
@@ -231,6 +233,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="পেশা"
+                            android:layout_marginTop="5dp"
                             android:background="#fff"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="8dp"
@@ -293,6 +296,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="ই-মেইল"
+                            android:layout_marginTop="5dp"
                             android:background="#fff"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="8dp"
@@ -325,6 +329,7 @@
                             android:layout_height="match_parent"
                             android:hint="পাসওয়ার্ড"
                             android:background="#fff"
+                            android:layout_marginTop="5dp"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="8dp"
                             android:inputType="textEmailAddress"
@@ -356,6 +361,7 @@
                             android:layout_height="match_parent"
                             android:hint="পাসওয়ার্ড কনফার্ম করুন"
                             android:background="#fff"
+                            android:layout_marginTop="5dp"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="8dp"
                             android:inputType="textEmailAddress"
