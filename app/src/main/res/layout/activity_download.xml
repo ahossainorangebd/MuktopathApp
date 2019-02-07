@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:padding="3dp"
+            android:padding="8dp"
             android:layout_gravity="center"
             android:background="@color/FooterBtnsColor"
             >
@@ -83,7 +83,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:text="সকল কোর্স"/>
@@ -104,7 +104,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:layout_marginTop="2dp"
                     android:text="রিকমেন্ডেড"
                     android:layout_below="@+id/recomendedLogoId"
@@ -130,15 +130,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorVoldemort"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:layout_gravity="center"
                     android:text="আমার পাতা"/>
 
             </LinearLayout>
-
-
 
             <LinearLayout
                 android:id="@+id/downloadsBtnId"
@@ -150,11 +148,11 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/download_purple"/>
+                    android:src="@drawable/download_icon_blue"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#000000"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:text="ডাউনলোড"/>
@@ -175,7 +173,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:text="প্রোফাইল"/>

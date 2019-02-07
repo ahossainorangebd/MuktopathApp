@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="55dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="20dp">
@@ -164,7 +164,7 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:background="@color/FooterBtnsColor"
-            android:padding="3dp"
+            android:padding="8dp"
             >
 
             <LinearLayout
@@ -181,7 +181,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:layout_marginTop="2dp"
                     android:textSize="13sp"
                     android:text="সকল কোর্স"/>
@@ -202,7 +202,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:layout_marginTop="2dp"
                     android:text="রিকমেন্ডেড"
                     android:layout_below="@+id/recomendedLogoId"
@@ -226,7 +226,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorVoldemort"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:layout_gravity="center"
@@ -249,7 +249,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:text="ডাউনলোড"/>
@@ -266,11 +266,11 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/profile_purple"/>
+                    android:src="@drawable/profile_icon_blue"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#000000"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:text="প্রোফাইল"/>

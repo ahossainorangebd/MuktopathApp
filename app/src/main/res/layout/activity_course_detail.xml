@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CourseDetailActivity"
-    android:background="#7f8a93"
+    android:background="@color/AppBackgroundColor"
     >
 
 
@@ -72,7 +72,7 @@
 
     <ScrollView
         android:id="@+id/detailPageScrollView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/detailPageCoverPhoto"
         >

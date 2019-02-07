@@ -75,6 +75,8 @@ public class MyPageActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailList2parent;
     private ArrayList<DetailDataModelCourses3rdGrandFather> detailList3parent;
 
+    private Object[] mArrayList;
+
     String url="http://api.muktopaath.orangebd.com/api/courses";
 
     @Override
@@ -314,9 +316,7 @@ public class MyPageActivity extends AppCompatActivity {
                                         model8.setPromovideoCourse(promovideoCourse);
                                         model8.setTitleCourse(titleCourse);
 
-
                                         //for parsing thumbnails of courses
-
 
                                         DetailDataModelCoursesThumbnails modelCourseThumbnail = new DetailDataModelCoursesThumbnails();
 
@@ -350,7 +350,6 @@ public class MyPageActivity extends AppCompatActivity {
                                         model9.setUserInfoUpdatedBy(UserInfoUpdatedBy);
                                         model9.setUsernameUpdatedBy(usernameUpdatedBy);
 
-
                                         //for parsing owner strings
                                         JSONObject jObjectOwner = object2.getJSONObject("owner");
 
@@ -366,7 +365,6 @@ public class MyPageActivity extends AppCompatActivity {
                                         model10.setInstitution_name_owner(institution_name_owner);
                                         model10.setId_owner(id_owner);
                                         model10.setCreated_at_owner(created_at_owner);
-
 
                                         //for parsing created by strings
                                         JSONObject jObjectCreatedBy = object2.getJSONObject("CreatedBy");
@@ -430,14 +428,10 @@ public class MyPageActivity extends AppCompatActivity {
 
                                             // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
 
-
                                             detailListCourseDetailContents=new ArrayList<DetailDataModelCoursesDetailContents>();
-
 
                                             for (int lmn = 0; lmn < jSObject2.length(); lmn++)
                                             {
-
-
 
                                                 JSONObject jSObject3 = jSObject2.getJSONObject("" + lmn);
                                                 JSONObject jObjAgain = jSObject3.getJSONObject("data");
@@ -579,11 +573,9 @@ public class MyPageActivity extends AppCompatActivity {
                                     }
 
                                 }
-                                catch (Exception ex){
+                                catch (Exception ex) {
                                     Log.d("", "onResponse: ");
                                 }
-
-
 
                                 model.setmArrayListContentDetails(detailListCourseDetailContentss);
 
@@ -628,12 +620,14 @@ public class MyPageActivity extends AppCompatActivity {
                                 model3parent.setTotal_metaThirdParent(to_meta);
                                 model3parent.setTotal_metaThirdParent(total_meta);
 
-
                                 detailListCourse.add(model);
-
                             }
 
-                            setRecyclerView();
+                                ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(3).getmArrayListContentDetails();
+
+                                mArrayList = contentArray.get(3).toArray();
+
+                                GlobalVar.gChildArrayOfContent=mArrayList;
 
                             GlobalVar.courseContentDetailList=detailListCourse;
 
@@ -663,55 +657,6 @@ public class MyPageActivity extends AppCompatActivity {
             }
         };
         mQueue.add(jsonObjectRequest);
-
-
-
-    }
-
-
-
-    private void setRecyclerView() {
-
-        recyclerView = findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
-        recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.setNestedScrollingEnabled(false);
-
-        new GetRecommendedCourses().execute();
-    }
-
-
-    public class GetRecommendedCourses extends AsyncTask<String, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            //mProgressSpinner.setIndeterminate(true);
-            //mProgressSpinner.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        protected Void doInBackground(String... arg0) {
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            adapter=new RecyclerViewAdapterRecommended(detailListCourse,mContext);
-
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-            //mProgressSpinner.setVisibility(View.GONE);
-        }
     }
 
 }

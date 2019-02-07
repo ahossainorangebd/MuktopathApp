@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e0e0e0"
+    android:background="#f3f3f3"
     tools:context=".MainActivity"
     >
 
@@ -96,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ 1"
+                android:text="শিক্ষা"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -109,8 +109,8 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="7dp"
                 >
 
 
@@ -385,12 +385,12 @@
                         android:orientation="horizontal"
                         android:background="@drawable/course1_gradient_background"
                         android:gravity="left"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="কোর্সসমূহ 2"
+                            android:text="কৃষি"
                             android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
@@ -404,8 +404,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="7dp"
             >
 
 
@@ -433,6 +433,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         >
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -596,7 +597,6 @@
                             android:orientation="vertical"
                             >
 
-
                             <TextView
                                 android:layout_width="120dp"
                                 android:layout_height="wrap_content"
@@ -686,12 +686,12 @@
             android:orientation="horizontal"
             android:background="@drawable/course2_gradient_background"
             android:gravity="left"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ 3"
+                android:text="আইটি"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -705,8 +705,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
+            android:layout_height="170dp"
+            android:layout_marginTop="7dp">
 
 
 
@@ -784,12 +784,12 @@
             android:orientation="horizontal"
             android:background="@drawable/course4_gradient_background"
             android:gravity="left"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ 4"
+                android:text="ব্যবসায়"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -803,8 +803,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
+            android:layout_height="170dp"
+            android:layout_marginTop="7dp">
 
 
 
@@ -882,12 +882,12 @@
             android:orientation="horizontal"
             android:background="@drawable/course5_gradient_background"
             android:gravity="left"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ5"
+                android:text="স্বাস্থ্য"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -899,11 +899,10 @@
                 />
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="7dp"
             >
 
             <HorizontalScrollView
@@ -976,7 +975,7 @@
             android:orientation="horizontal"
             android:background="@drawable/course6_gradient_background"
             android:gravity="left"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -995,8 +994,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="7dp"
             >
 
 
@@ -1075,7 +1074,7 @@
             android:orientation="horizontal"
             android:background="@drawable/course7_gradient_background"
             android:gravity="left"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -1094,8 +1093,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="7dp"
             >
 
             <HorizontalScrollView
@@ -1171,7 +1170,7 @@
             android:orientation="horizontal"
             android:background="@drawable/course8_gradient_background"
             android:gravity="left"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -1190,8 +1189,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
+            android:layout_height="170dp"
+            android:layout_marginTop="7dp">
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -1264,7 +1263,7 @@
             android:orientation="horizontal"
             android:gravity="left"
             android:background="@drawable/course9_gradient_background"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             >
 
             <TextView
@@ -1284,8 +1283,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
+            android:layout_height="170dp"
+            android:layout_marginTop="7dp">
 
 
 
@@ -1363,7 +1362,7 @@
             android:orientation="horizontal"
             android:background="@drawable/course10_gradient_background"
             android:gravity="left"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -1382,8 +1381,9 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
+            android:layout_height="170dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="7dp">
 
 
 
@@ -1466,19 +1466,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/AppBackgroundColor"
+        android:background="@color/FooterBtnsColor"
         android:layout_alignParentBottom="true"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_gravity="center"
-            android:padding="3dp"
-            android:background="@color/FooterBtnsColor"
+            android:padding="8dp"
+            android:background="@color/AppBackgroundColor"
             >
-
 
             <LinearLayout
                 android:id="@+id/allCourseBtnId"
@@ -1490,7 +1490,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/khujun_purple"/>
+                    android:src="@drawable/khujun_icon_blue"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1515,7 +1515,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:text="রিকমেন্ডেড"
                     android:layout_marginTop="2dp"
                     android:layout_below="@+id/recomendedLogoId"
@@ -1538,7 +1538,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp"
@@ -1560,7 +1560,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:text="ডাউনলোড"/>
@@ -1573,15 +1573,17 @@
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical"
                 >
+
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:src="@drawable/profileicon"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:layout_marginTop="2dp"
                     android:textSize="13sp"
                     android:text="প্রোফাইল"/>

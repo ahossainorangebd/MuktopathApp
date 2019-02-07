@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#e0e0e0"
+    android:background="#fff"
     >
 
     <LinearLayout
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/AppBackgroundColor"
+        android:background="#fff"
         android:padding="5dp"
         android:layout_marginBottom="54dp"
         >
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="@color/AppBackgroundColor"
+                android:background="#fff"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -885,7 +885,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/AppBackgroundColor"
+        android:background="#fff"
         android:layout_alignParentBottom="true"
         >
         <LinearLayout
@@ -893,7 +893,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:padding="3dp"
+            android:padding="8dp"
             android:layout_gravity="center"
             android:background="@color/FooterBtnsColor"
             >
@@ -912,7 +912,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:text="সকল কোর্স"/>
@@ -930,11 +930,11 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ricomended_purple"/>
+                    android:src="@drawable/recommended_icon_blue"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#2a73cc"
                     android:text="রিকমেন্ডেড"
                     android:layout_below="@+id/recomendedLogoId"
                     android:textSize="13sp"
@@ -957,7 +957,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorVoldemort"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:layout_gravity="center"
@@ -980,7 +980,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:text="ডাউনলোড"/>
@@ -1001,7 +1001,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="#bdbdbd"
                     android:layout_marginTop="2dp"
                     android:textSize="13sp"
                     android:text="প্রোফাইল"/>

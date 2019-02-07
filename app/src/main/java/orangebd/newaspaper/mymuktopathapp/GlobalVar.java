@@ -14,6 +14,7 @@ public class GlobalVar {
 
 
     public static ArrayList<String> gMenuArrayList;
+    public static ArrayList<DetailDataModelCourses> gRecommendedDetailList10;
 
     public static String gParentMenuURL;
 
@@ -25,6 +26,7 @@ public class GlobalVar {
 
 
     public static Object[] gChildArrayOfContent;
+    public static Object[] gChildArrayOfContentMyPage;
 
     //arrayList of Course Content
     public static ArrayList<DetailDataModelCourses> courseContentDetailList;

@@ -93,6 +93,8 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
         final String DetailDescription=dataSet.get(listPosition).getmDetails();
         textViewName.setText(titleText);
 
+        final String academyName = GlobalVar.gRecommendedDetailList10.get(listPosition).getInstitution_name_owner();
+
         //final String parentCatID=dataSet.get(listPosition).getCat_id();
         //String reporterString=dataSet.get(listPosition).getRpt();
 
@@ -102,13 +104,13 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
         final Object[] mArrayList = contentArray.get(listPosition).toArray();
 
-            DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
+        DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
-            String imgUrl = imgUrlModel.getCover_code_image();
+        String imgUrl = imgUrlModel.getCover_code_image();
 
         //String imgUrl = imgUrlModel.getCover_code_image();
 
-            final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+        final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
 
         //String detailString=dataSet.get(listPosition).getDtl_url();
         //String imgCaption=dataSet.get(listPosition).getImg_caption();
@@ -127,7 +129,7 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
             entryDate=dataSet.get(listPosition).getmCreatedAt();
             //final String returnDate=sdf.toString();
 
-        textViewVersion.setText(entryDate);
+        textViewVersion.setText(academyName);
 
             /*updateDate=dataSet.get(listPosition).getmUpdatedAt();
         textViewVersion2.setText(entryDate);*/

@@ -82,14 +82,32 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEdtTxtPwd;
     private String mStrPwd;
 
-    private ArrayList<DetailDataModelUserData> detailList=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailList2=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailList3=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailList4=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailList=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailList2=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailList3=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailList4=new ArrayList<>();
 
-    private ArrayList<DetailDataModelUserData> detailListAnoPart1=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailListAnoPart2=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailListAnoPart3=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailListAnoPart1=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailListAnoPart2=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailListAnoPart3=new ArrayList<>();
+
+    private ArrayList<DetailDataModelCourses> detailListCourse;
+
+    private Object[] mArrayList;
+
+
+    //All the detail Lists
+    private ArrayList<DetailDataModelCourses> detailList5;
+    private ArrayList<DetailDataModelCourses> detailList6;
+    private ArrayList<DetailDataModelCourses> detailList7;
+    private ArrayList<DetailDataModelCourses> detailList8;
+    private ArrayList<DetailDataModelCourses> detailList9;
+    private ArrayList<DetailDataModelCourses> detailList10;
+    private ArrayList<DetailDataModelCourses> detailList11;
+    private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
+    private ArrayList<DetailDataModelCoursesDetailContents> detailListCourseDetailContents;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
+    private ArrayList<DetailDataModelCourses> detailListFileType;
 
     private String token="";
     String url="http://api.muktopaath.orangebd.com/api/login";
@@ -154,9 +172,13 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response)
                             {
-                                detailList=new ArrayList<DetailDataModelUserData>();
 
-                                DetailDataModelUserData model = new DetailDataModelUserData();
+                                detailListCourse=new ArrayList<DetailDataModelCourses>();
+
+                                detailList=new ArrayList<DetailDataModelCourses>();
+
+                                DetailDataModelCourses model = new DetailDataModelCourses();
+                                DetailDataModelCourses modelAlter = new DetailDataModelCourses();
 
                                 JSONObject jObject = new JSONObject();
 
@@ -169,10 +191,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                 // For parsing simple JSON
 
-                                    try {
-                                        for (int i=0;i<jObject.length()-1;i++)
-                                        {
+                                            //TODO
 
+                                try{
                                             String id = jObject.getString("id");
                                             String username = jObject.getString("username");
                                             String email = jObject.getString("email");
@@ -213,9 +234,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                             // For parsing 1st Array of info JSON
 
-                                            detailList2=new ArrayList<DetailDataModelUserData>();
+                                            detailList2=new ArrayList<DetailDataModelCourses>();
 
-                                            DetailDataModelUserData model2 = new DetailDataModelUserData();
+                                            DetailDataModelCourses model2 = new DetailDataModelCourses();
 
                                             try {
                                                 for (int ii=0;ii<jObject.length()-1;ii++)
@@ -292,9 +313,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                             // For parsing 2nd Array of info JSON
 
-                                            detailList3=new ArrayList<DetailDataModelUserData>();
+                                            detailList3=new ArrayList<DetailDataModelCourses>();
 
-                                            DetailDataModelUserData model3 = new DetailDataModelUserData();
+                                            DetailDataModelCourses model3 = new DetailDataModelCourses();
 
                                             try {
                                                 for (int iii=0;iii<jObject.length()-1;iii++)
@@ -372,60 +393,368 @@ public class LoginActivity extends AppCompatActivity {
                                             // For parsing 3rd Array of info JSON
 
 
-                                            detailList4=new ArrayList<DetailDataModelUserData>();
+                                            detailList4=new ArrayList<DetailDataModelCourses>();
 
 
-                                            detailListAnoPart1=new ArrayList<DetailDataModelUserData>();
-                                            detailListAnoPart2=new ArrayList<DetailDataModelUserData>();
-                                            detailListAnoPart3=new ArrayList<DetailDataModelUserData>();
+                                            detailListAnoPart1=new ArrayList<DetailDataModelCourses>();
+                                            detailListAnoPart2=new ArrayList<DetailDataModelCourses>();
+                                            detailListAnoPart3=new ArrayList<DetailDataModelCourses>();
 
-                                            DetailDataModelUserData modelPart1 = new DetailDataModelUserData();
-                                            DetailDataModelUserData modelPart2 = new DetailDataModelUserData();
-                                            DetailDataModelUserData modelPart3 = new DetailDataModelUserData();
+                                            DetailDataModelCourses modelPart1 = new DetailDataModelCourses();
+                                            DetailDataModelCourses modelPart2 = new DetailDataModelCourses();
+                                            DetailDataModelCourses modelPart3 = new DetailDataModelCourses();
 
-                                            JSONArray objectAgainAnother = (JSONArray) jObject.get("RoleInstitution");
-                                            JSONArray objectEnrollCourse = (JSONArray) jObject.getJSONArray("EnrollCourse");
+                                            
+                                            
+                                            try {
 
-                                            JSONObject objectEnrollCourseInside = (JSONObject) objectEnrollCourse.get(0);
 
-                                            JSONObject objectCourse2 = objectEnrollCourseInside.getJSONObject("Course");
+                                                JSONArray objectAgainAnother = (JSONArray) jObject.getJSONArray("RoleInstitution");
+                                                JSONArray objectEnrollCourse = (JSONArray) jObject.getJSONArray("EnrollCourse");
 
-                                            DetailDataModelUserData modelForLoginCourse = new DetailDataModelUserData();
+                                                JSONObject objectEnrollCourseInside = (JSONObject) objectEnrollCourse.get(0);
 
-                                            String featured = objectCourse2.getString("featured");
-                                            String Eid = objectCourse2.getString("id");
-                                            String Edetails = objectCourse2.getString("details");
-                                            String Eadmission_status = objectCourse2.getString("admission_status");
-                                            String averageRating = objectCourse2.getString("averageRating");
-                                            String certificate_alias_name = objectCourse2.getString("certificate_alias_name");
-                                            String clone_status = objectCourse2.getString("clone_status");
-                                            String code = objectCourse2.getString("code");
-                                            String courses_for_status = objectCourse2.getString("courses_for_status");
-                                            String course_alias_name = objectCourse2.getString("course_alias_name");
-                                            String course_motto = objectCourse2.getString("course_motto");
-                                            String created_at = objectCourse2.getString("created_at");
-                                            String duration = objectCourse2.getString("duration");
-                                            String end_date = objectCourse2.getString("end_date");
-                                            String enrolment_approval_status = objectCourse2.getString("enrolment_approval_status");
+                                                JSONObject objectCourse2 = objectEnrollCourseInside.getJSONObject("Course");
 
-                                            modelForLoginCourse.setmCertificateAliasName(certificate_alias_name);
-                                            modelForLoginCourse.setmAdmissionStatus(Eadmission_status);
-                                            modelForLoginCourse.setmAverageRating(averageRating);
-                                            modelForLoginCourse.setmCloneStatus(clone_status);
-                                            modelForLoginCourse.setmCode(code);
-                                            modelForLoginCourse.setmCreatedAt(created_at);
-                                            modelForLoginCourse.setmDuration(duration);
-                                            modelForLoginCourse.setmEndDate(end_date);
-                                            modelForLoginCourse.setmId(Eid);
-                                            modelForLoginCourse.setmDetails(Edetails);
-                                            modelForLoginCourse.setmFeatured(featured);
-                                            modelForLoginCourse.setmEnrolmentApprovalStatus(enrolment_approval_status);
-                                            modelForLoginCourse.setmCursesForStatus(courses_for_status);
-                                            modelForLoginCourse.setmCourseAliasName(course_alias_name);
-                                            modelForLoginCourse.setmCourseMotto(course_motto);
-                                            modelForLoginCourse.setmStatus(status);
+                                                DetailDataModelCourses modelForLoginCourse = new DetailDataModelCourses();
 
-                                            detailListAnoPart3.add(modelForLoginCourse);
+                                                String featured = objectCourse2.getString("featured");
+                                                String Eid = objectCourse2.getString("id");
+                                                String Edetails = objectCourse2.getString("details");
+                                                String Eadmission_status = objectCourse2.getString("admission_status");
+                                                String averageRating = objectCourse2.getString("averageRating");
+                                                String certificate_alias_name = objectCourse2.getString("certificate_alias_name");
+                                                String clone_status = objectCourse2.getString("clone_status");
+                                                String code = objectCourse2.getString("code");
+                                                String courses_for_status = objectCourse2.getString("courses_for_status");
+                                                String course_alias_name = objectCourse2.getString("course_alias_name");
+                                                String course_motto = objectCourse2.getString("course_motto");
+                                                String created_at = objectCourse2.getString("created_at");
+                                                String duration = objectCourse2.getString("duration");
+                                                String end_date = objectCourse2.getString("end_date");
+                                                String enrolment_approval_status = objectCourse2.getString("enrolment_approval_status");
+
+                                                modelForLoginCourse.setmCertificateAliasName(certificate_alias_name);
+                                                modelForLoginCourse.setmAdmissionStatus(Eadmission_status);
+                                                modelForLoginCourse.setmAverageRating(averageRating);
+                                                modelForLoginCourse.setmCloneStatus(clone_status);
+                                                modelForLoginCourse.setmCode(code);
+                                                modelForLoginCourse.setmCreatedAt(created_at);
+                                                modelForLoginCourse.setmDuration(duration);
+                                                modelForLoginCourse.setmEndDate(end_date);
+                                                modelForLoginCourse.setmId(Eid);
+                                                modelForLoginCourse.setmDetails(Edetails);
+                                                modelForLoginCourse.setmFeatured(featured);
+                                                modelForLoginCourse.setmEnrolmentApprovalStatus(enrolment_approval_status);
+                                                modelForLoginCourse.setmCursesForStatus(courses_for_status);
+                                                modelForLoginCourse.setmCourseAliasName(course_alias_name);
+                                                modelForLoginCourse.setmCourseMotto(course_motto);
+                                                modelForLoginCourse.setmStatus(status);
+
+                                                detailListAnoPart3.add(modelForLoginCourse);
+
+
+                                                try {
+                                                    jObject = objectCourse2.getJSONObject("syllabus");
+
+
+                                                    for(int loop=0; loop<jObject.length(); loop++) {
+
+
+                                                        //for parsing syllebus strings
+
+                                                        detailList7 = new ArrayList<DetailDataModelCourses>();
+                                                        DetailDataModelCourses model7 = new DetailDataModelCourses();
+
+                                                        String study_mode_Syllebus = jObject.getString("study_mode");
+
+                                                        model7.setStudyModeSyllebus(study_mode_Syllebus);
+
+
+                                                        JSONObject jObjectCourse = objectCourse2.getJSONObject("course");
+
+                                                        //for parsing course strings
+
+                                                        detailList8 = new ArrayList<DetailDataModelCourses>();
+                                                        DetailDataModelCourses model8 = new DetailDataModelCourses();
+
+                                                        String course_codeCourse = jObjectCourse.getString("course_code");
+                                                        String course_levelCourse = jObjectCourse.getString("course_level");
+                                                        String idCourse = jObjectCourse.getString("id");
+                                                        String promovideoCourse = jObjectCourse.getString("promovideo");
+                                                        String titleCourse = jObjectCourse.getString("title");
+
+                                                        model8.setCourse_codeCourse(course_codeCourse);
+                                                        model8.setCourse_levelCourse(course_levelCourse);
+                                                        model8.setIdCourse(idCourse);
+                                                        model8.setPromovideoCourse(promovideoCourse);
+                                                        model8.setTitleCourse(titleCourse);
+
+                                                        //for parsing thumbnails of courses
+
+                                                        DetailDataModelCoursesThumbnails modelCourseThumbnail = new DetailDataModelCoursesThumbnails();
+
+                                                        JSONObject thumnail = jObjectCourse.getJSONObject("thumnail");
+                                                        String coverPhoto = thumnail.getString("file_encode_path");
+
+                                                        modelCourseThumbnail.setCover_code_image(coverPhoto);
+                                                        //detailListCourseThumbnail.add(modelCourseThumbnail);
+
+                                                        //model.setmArrayListThumbnails(detailListCourseThumbnail);
+
+                                                        //for parsing Updated by strings
+                                                        JSONObject jObjectUpdatedBy = objectCourse2.getJSONObject("UpdatedBy");
+
+                                                        detailList9 = new ArrayList<DetailDataModelCourses>();
+                                                        DetailDataModelCourses model9 = new DetailDataModelCourses();
+
+                                                        String education_statusUpdatedBy = jObjectUpdatedBy.getString("education_status");
+                                                        String emailUpdatedBy = jObjectUpdatedBy.getString("email");
+                                                        String idUpdatedBy = jObjectUpdatedBy.getString("id");
+                                                        String nameUpdatedBy = jObjectUpdatedBy.getString("name");
+                                                        String phoneUpdatedBy = jObjectUpdatedBy.getString("phone");
+                                                        String UserInfoUpdatedBy = jObjectUpdatedBy.getString("UserInfo");
+                                                        String usernameUpdatedBy = jObjectUpdatedBy.getString("username");
+
+                                                        model9.setEducation_statusUpdatedBy(education_statusUpdatedBy);
+                                                        model9.setEmailUpdatedBy(emailUpdatedBy);
+                                                        model9.setIdUpdatedBy(idUpdatedBy);
+                                                        model9.setNameUpdatedBy(nameUpdatedBy);
+                                                        model9.setPhoneUpdatedBy(phoneUpdatedBy);
+                                                        model9.setUserInfoUpdatedBy(UserInfoUpdatedBy);
+                                                        model9.setUsernameUpdatedBy(usernameUpdatedBy);
+
+                                                        //for parsing owner strings
+                                                        JSONObject jObjectOwner = objectCourse2.getJSONObject("owner");
+
+                                                        detailList10 = new ArrayList<DetailDataModelCourses>();
+                                                        DetailDataModelCourses model10 = new DetailDataModelCourses();
+
+                                                        String updated_at_owner = jObjectOwner.getString("updated_at");
+                                                        String institution_name_owner = jObjectOwner.getString("institution_name");
+                                                        String id_owner = jObjectOwner.getString("id");
+                                                        String created_at_owner = jObjectOwner.getString("created_at");
+
+                                                        model10.setUpdated_at_owner(updated_at_owner);
+                                                        model10.setInstitution_name_owner(institution_name_owner);
+                                                        model10.setId_owner(id_owner);
+                                                        model10.setCreated_at_owner(created_at_owner);
+
+
+                                                        //for parsing created by strings
+                                                        JSONObject jObjectCreatedBy = objectCourse2.getJSONObject("CreatedBy");
+
+                                                        detailList11 = new ArrayList<DetailDataModelCourses>();
+                                                        DetailDataModelCourses model11 = new DetailDataModelCourses();
+
+                                                        String education_statusCreatedBy = jObjectCreatedBy.getString("education_status");
+                                                        String emailCreatedBy = jObjectCreatedBy.getString("email");
+                                                        String idCreatedBy = jObjectCreatedBy.getString("id");
+                                                        String nameCreatedBy = jObjectCreatedBy.getString("name");
+                                                        String phoneCreatedBy = jObjectCreatedBy.getString("phone");
+                                                        String UserInfoCreatedBy = jObjectCreatedBy.getString("UserInfo");
+                                                        String usernameCreatedBy = jObjectCreatedBy.getString("username");
+
+                                                        model11.setEducation_statusUpdatedBy(education_statusCreatedBy);
+                                                        model11.setEmailUpdatedBy(emailCreatedBy);
+                                                        model11.setIdCreatedBy(idCreatedBy);
+                                                        model11.setNameCreatedBy(nameCreatedBy);
+                                                        model11.setPhoneCreatedBy(phoneCreatedBy);
+                                                        model11.setUserInfoCreatedBy(UserInfoCreatedBy);
+                                                        model11.setUsernameCreatedBy(usernameCreatedBy);
+
+
+                                                        // parsing from syllebus
+
+                                                        for (int ii = 0; ii < jObject.length(); ii++) {
+                                                            JSONObject jSObject2 = jObject.getJSONObject("" + ii);
+
+                                                            //for parsing lessons > {0} > "syllebus" > "0" > "data"
+                                                            detailList6 = new ArrayList<DetailDataModelCourses>();
+
+                                                            DetailDataModelCourses model6 = new DetailDataModelCourses();
+
+                                                            try {
+                                                                for (int m = 0; m < jSObject2.length() - 1; m++) {
+                                                                    JSONArray jSonLessons = (JSONArray) jSObject2.get("lessons");
+                                                                    JSONObject objectAgainAnotherLesson = (JSONObject) jSonLessons.get(m);
+
+                                                                    String idLesson = objectAgainAnotherLesson.getString("id");
+                                                                    String nameLesson = objectAgainAnotherLesson.getString("name");
+                                                                    String orderLesson = objectAgainAnotherLesson.getString("order");
+                                                                    String fixedLesson = objectAgainAnotherLesson.getString("fixed");
+
+                                                                    model6.setIdLesson(idLesson);
+                                                                    model6.setNameLesson(nameLesson);
+                                                                    model6.setOrderLessom(orderLesson);
+                                                                    model6.setFixedLesson(fixedLesson);
+                                                                }
+                                                            } catch (Exception ex) {
+                                                                Log.d("", "onResponse: ");
+                                                            }
+
+                                                            // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
+
+
+                                                            for (int lmn = 0; lmn < jSObject2.length(); lmn++) {
+
+
+                                                                JSONObject jSObject3 = jSObject2.getJSONObject("" + lmn);
+                                                                JSONObject jObjAgain = jSObject3.getJSONObject("data");
+
+                                                            /*String allow_preview = jObjAgain.getString("allow_preview");
+                                                            String ans_rand = jObjAgain.getString("ans_rand");
+                                                            String attempt = jObjAgain.getString("attempt");
+                                                            String choose_video_type = jObjAgain.getString("choose_video_type");
+                                                            String content_type = jObjAgain.getString("content_type");
+                                                            String desc = jObjAgain.getString("desc");
+                                                            String downloadable = jObjAgain.getString("downloadable");
+                                                            String mDuration = jObjAgain.getString("duration");
+                                                            String forward = jObjAgain.getString("forward");
+                                                            String peer_limit = jObjAgain.getString("peer_limit");
+                                                            String peer_review = jObjAgain.getString("peer_review");
+                                                            String pulse = jObjAgain.getString("pulse");
+                                                            String ques_rand = jObjAgain.getString("ques_rand");
+                                                            String quiz = jObjAgain.getString("quiz");
+                                                            String time_unit = jObjAgain.getString("time_unit");
+                                                            String mTitle = jObjAgain.getString("title");
+
+                                                            model2.setmAllowPreview(allow_preview);
+                                                            model2.setmAnsRand(ans_rand);
+                                                            model2.setmAttempt(attempt);
+                                                            model2.setmChooseVideoType(choose_video_type);
+                                                            model2.setmContentType(content_type);
+                                                            model2.setmDesc(desc);
+                                                            model2.setmDownloadable(downloadable);
+                                                            model2.setmDurationAnother(mDuration);
+                                                            model2.setmForward(forward);
+                                                            model2.setmPeerLimit(peer_limit);
+                                                            model2.setmPeerReview(peer_review);
+                                                            model2.setmPulse(pulse);
+                                                            model2.setmQuesRand(ques_rand);
+                                                            model2.setmQuiz(quiz);
+                                                            model2.setmTimeUnit(time_unit);
+                                                            model2.setmTitleAnother(mTitle);*/
+
+
+                                                                // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                                                JSONObject jObjAgain2 = jObjAgain.getJSONObject("file_type");
+
+
+                                                                detailListFileType = new ArrayList<DetailDataModelCourses>();
+                                                                DetailDataModelCourses modelFileType = new DetailDataModelCourses();
+
+                                                                String pdf = jObjAgain2.getString("pdf");
+                                                                String excel = jObjAgain2.getString("excel");
+                                                                String doc = jObjAgain2.getString("doc");
+                                                                String csv = jObjAgain2.getString("csv");
+
+                                                                modelFileType.setmPdf(pdf);
+                                                                modelFileType.setmXcel(excel);
+                                                                modelFileType.setmDoc(doc);
+                                                                modelFileType.setmCsv(csv);
+
+                                                                // For parsing object "Content" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                                                DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
+
+                                                                JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
+
+                                                                String cat_id = jObjAgainContent.getString("cat_id");
+                                                                String content_id = jObjAgainContent.getString("content_id");
+                                                                String copy_protect = jObjAgainContent.getString("copy_protect");
+                                                                String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
+                                                                String created_at_content = jObjAgainContent.getString("created_at");
+                                                                String created_by_content = jObjAgainContent.getString("created_by");
+                                                                String deleted_at_content = jObjAgainContent.getString("deleted_at");
+                                                                String description_content = jObjAgainContent.getString("description");
+                                                                String file_encode_path = jObjAgainContent.getString("file_encode_path");
+                                                                String file_name = jObjAgainContent.getString("file_name");
+                                                                String id_content = jObjAgainContent.getString("id");
+                                                                String license = jObjAgainContent.getString("license");
+                                                                String owner_id = jObjAgainContent.getString("owner_id");
+                                                                String paid = jObjAgainContent.getString("paid");
+                                                                String price = jObjAgainContent.getString("price");
+                                                                String shareable = jObjAgainContent.getString("shareable");
+                                                                String size = jObjAgainContent.getString("size");
+                                                                String status_content = jObjAgainContent.getString("status");
+                                                                String tags = jObjAgainContent.getString("tags");
+                                                                String title_content = jObjAgainContent.getString("title");
+                                                                String type_content = jObjAgainContent.getString("type");
+                                                                String updated_at_content = jObjAgainContent.getString("updated_at");
+                                                                String updated_by_content = jObjAgainContent.getString("updated_by");
+
+                                                                modelCourseContents.setPaid(paid);
+                                                                modelCourseContents.setPrice(price);
+                                                                modelCourseContents.setShareable(shareable);
+                                                                modelCourseContents.setStatus_content(status_content);
+                                                                modelCourseContents.setSize(size);
+                                                                modelCourseContents.setTags(tags);
+                                                                modelCourseContents.setTitle_content(title_content);
+                                                                modelCourseContents.setType_content(type_content);
+                                                                modelCourseContents.setUpdated_at_content(updated_at_content);
+                                                                modelCourseContents.setUpdated_by_content(updated_by_content);
+                                                                modelCourseContents.setCat_id(cat_id);
+                                                                modelCourseContents.setContent_id(content_id);
+                                                                modelCourseContents.setCopy_protect(copy_protect);
+                                                                modelCourseContents.setCover_thumb_img(cover_thumb_img);
+                                                                modelCourseContents.setCreated_by_content(created_by_content);
+                                                                modelCourseContents.setDeleted_at_content(deleted_at_content);
+                                                                modelCourseContents.setDescription_content(description_content);
+                                                                modelCourseContents.setFile_encode_path(file_encode_path);
+                                                                modelCourseContents.setFile_name(file_name);
+                                                                modelCourseContents.setId_content(id_content);
+                                                                modelCourseContents.setLicense(license);
+                                                                modelCourseContents.setOwner_id(owner_id);
+                                                                modelCourseContents.setCreated_at_content(created_at_content);
+
+                                                                // detailListCourseDetailContents.add(modelCourseContents);
+
+                                                                /*model.setmArrayListContentDetails(detailListCourseDetailContents);*/
+                                                                //model.setmArrayListContentDetails(detailListCourseDetailContentss);
+
+                                                                //For parsing array "multi_ques_list" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                                                detailList5 = new ArrayList<DetailDataModelCourses>();
+
+                                                                DetailDataModelCourses model5 = new DetailDataModelCourses();
+
+                                                                try {
+                                                                    for (int l = 0; l < jSObject3.length() - 1; l++) {
+                                                                        JSONArray jSonObjMultiQ = (JSONArray) jSObject3.get("multi_ques_list");
+                                                                        JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(l);
+
+                                                                        String mPulse = objectAgainAnother2.getString("pulse");
+
+                                                                        model5.setPulse(mPulse);
+
+
+                                                                    }
+                                                                } catch (Exception ex) {
+                                                                    Log.d("", "onResponse: ");
+                                                                }
+                                                            }
+
+
+                                                        }
+                                                    }
+
+
+                                                }
+                                                catch (Exception ex){
+                                                    Log.d("", "onResponse: ");
+                                                }
+                                            
+
+                                            }
+                                            catch (Exception ex){
+                                                Log.d("", "onResponse: ");
+                                            }
+
+                                            modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
+
+                                            //detailListCourseDetailContentss.add(detailListCourseDetailContents);
 
                                                     //JSONObject objectAgainAnother2 = (JSONObject) objectAgainAnother.get(iv);
 
@@ -629,12 +958,21 @@ public class LoginActivity extends AppCompatActivity {
 
                                                     //for parsing EnrollCourse
 
+                                            detailListCourse.add(modelAlter);
 
-                                        }
 
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
+                                        ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
+
+                                        mArrayList = contentArray.get(0).toArray();
+
+                                        GlobalVar.gChildArrayOfContentMyPage=mArrayList;
+
+                                        GlobalVar.courseContentDetailList=detailListCourse;
+
+                                }
+                                catch (Exception ex){
+                                    Log.d("", "onResponse: ");
+                                }
                             }
                         }, new Response.ErrorListener() {
                     @Override

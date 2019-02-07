@@ -85,14 +85,14 @@ public class CreateAccountActivity extends AppCompatActivity{
     private EditText mEdtTxtFullName;
     private String mStrFullName;
 
-    private ArrayList<DetailDataModelUserData> detailList=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailList2=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailList3=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailList4=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailList=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailList2=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailList3=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailList4=new ArrayList<>();
 
-    private ArrayList<DetailDataModelUserData> detailListAnoPart1=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailListAnoPart2=new ArrayList<>();
-    private ArrayList<DetailDataModelUserData> detailListAnoPart3=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailListAnoPart1=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailListAnoPart2=new ArrayList<>();
+    private ArrayList<DetailDataModelCourses> detailListAnoPart3=new ArrayList<>();
 
     String url="http://api.muktopaath.orangebd.com/api/registration?type=registration";
     private String token="";
@@ -154,9 +154,6 @@ public class CreateAccountActivity extends AppCompatActivity{
                                 JSONObject jObject = new JSONObject();
 
                                 String abcd="aranya";
-                                String okok="aranya";
-                                String aaaokok="aranya";
-
 
                             }
                         }, new Response.ErrorListener() {

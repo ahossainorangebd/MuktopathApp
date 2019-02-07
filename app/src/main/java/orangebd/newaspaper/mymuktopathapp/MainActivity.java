@@ -362,9 +362,7 @@ public class MainActivity extends AppCompatActivity {
                                         model8.setPromovideoCourse(promovideoCourse);
                                         model8.setTitleCourse(titleCourse);
 
-
                                         //for parsing thumbnails of courses
-
 
                                         DetailDataModelCoursesThumbnails modelCourseThumbnail = new DetailDataModelCoursesThumbnails();
 
@@ -397,7 +395,6 @@ public class MainActivity extends AppCompatActivity {
                                         model9.setPhoneUpdatedBy(phoneUpdatedBy);
                                         model9.setUserInfoUpdatedBy(UserInfoUpdatedBy);
                                         model9.setUsernameUpdatedBy(usernameUpdatedBy);
-
 
                                         //for parsing owner strings
                                         JSONObject jObjectOwner = object2.getJSONObject("owner");

@@ -190,6 +190,8 @@ public class RecomendedActivity extends AppCompatActivity {
 
                         detailListCourseDetailContentss = new ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>();
 
+                        detailList10 = new ArrayList<DetailDataModelCourses>();
+
 
                         /*detailListCourseDetailContents=new ArrayList<DetailDataModelCoursesDetailContents>();*/
 
@@ -354,7 +356,6 @@ public class RecomendedActivity extends AppCompatActivity {
                                         //for parsing owner strings
                                         JSONObject jObjectOwner = object2.getJSONObject("owner");
 
-                                        detailList10 = new ArrayList<DetailDataModelCourses>();
                                         DetailDataModelCourses model10 = new DetailDataModelCourses();
 
                                         String updated_at_owner = jObjectOwner.getString("updated_at");
@@ -367,6 +368,7 @@ public class RecomendedActivity extends AppCompatActivity {
                                         model10.setId_owner(id_owner);
                                         model10.setCreated_at_owner(created_at_owner);
 
+                                        detailList10.add((model10));
 
                                         //for parsing created by strings
                                         JSONObject jObjectCreatedBy = object2.getJSONObject("CreatedBy");
@@ -636,6 +638,10 @@ public class RecomendedActivity extends AppCompatActivity {
                             setRecyclerView();
 
                             GlobalVar.courseContentDetailList=detailListCourse;
+
+                            GlobalVar.gRecommendedDetailList10=detailList10;
+
+                            String sk="";
 
                             /*setRecyclerView10();
                             adapter10=new RecyclerViewAdapterCategory10(detailListCourse,mContext);

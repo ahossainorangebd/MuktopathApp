@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter<RecyclerViewAdapterCourseDetailContent.MyViewHolder> {
+public class RecyclerViewAdapterMyPage extends RecyclerView.Adapter<RecyclerViewAdapterMyPage.MyViewHolder> {
 
     private Object[] dataSet;
     private Context mContext;
@@ -31,17 +31,8 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
     private String entryDate;
     private String updateDate;
 
-    private Typeface tf;
-
-    private String CoverPhoto;
-
-    private ArrayList<DetailDataModel> mFilteredList;
-
-    private String titleText;
-
-    //private String copyRightText;
-    // private ImageView mainImage;
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder
+    {
 
         TextView textViewName;
         TextView textViewVersion;
@@ -49,19 +40,21 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
         ImageView imageViewIcon;
         Typeface typeface;
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(View itemView)
+        {
             super(itemView);
-
             this.textViewName = itemView.findViewById(R.id.textViewName);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
         }
     }
 
-    public RecyclerViewAdapterCourseDetailContent(Object[] data, Context context) {
-
+    public RecyclerViewAdapterMyPage(Object[] data, Context context) {
         this.dataSet = data;
+
         this.mContext=context;
+        stringPath = "file:///android_res/drawable/company_credit_logo.png";
+        addOn = String.format("<img src=\"%s\" />", stringPath);
     }
 
     @Override
@@ -81,62 +74,29 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int listPosition)
-    {
+    public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
         TextView textViewName = holder.textViewName;
 
         TextView textViewVersion = holder.textViewVersion;
+        TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
+        //textViewName.setText(titleText);
 
-        //final String DetailDescription=dataSet.get(listPosition).getmDetails();
+        DetailDataModelCoursesDetailContents mContentModel = (DetailDataModelCoursesDetailContents) dataSet[listPosition];
+        final String mTitle=mContentModel.getTitle_content();
 
-        //String reporterString=dataSet.get(listPosition).getRpt();
+           // final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
 
-        /*final ArrayList<DetailDataModelCoursesDetailContents> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();*/
-
-
-        try {
-
-            /*titleText = contentArray.get(listPosition).getTitle_content();
-            textViewName.setText(titleText);*/
-
-            //textViewVersion.setText(entryDate);
+        /*try {
+            Picasso.with(mContext)
+                    .load(CoverPhoto)
+                    .into(imageView);
         }
-        catch (Exception ex){
-            Log.d("", "onBindViewHolder: ");
-        }
+        catch (Exception ex){}*/
 
-        //final String returnDate=sdf.toString();
+            //final String returnDate=sdf.toString();
 
-        /*final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
-                "        img{ max-width:100%; height:auto !important}" +
-                "        a, span{ max-width:100%; display:inline-block; overflow:hidden}" +
-                "        iframe{ max-width:100%; display:inline-block; overflow:hidden}" +
-                "        </style>"+"</head>"+"<body style='height:100%; overflow:hidden;font-family:solaimanlipi'>" +
-                "        <h2 style='font-family:solaimanlipi'>" + titleText + "</h2>" +"<br/>"+"<strong>প্রকাশ :</strong>"+ entryDate + " <br/>"+"<br/>"+
-                "        <img style='width:100%' src='" +  "'  <div style='overflow-x:hidden;'>"+"<br/>"+ "<br/>"+ "<center> " + "</center> "
-                 +"<br/>"+
-                "               </div><style>" +
-                ".icon{width:35px; height:30px; border-radius:50%; background:#6A5ACD;}" +
-                ".icon1{width:35px; height:30px; border-radius:50%; background:#262626;}" +
-                ".icon2{width:35px; height:30px; border-radius:50%; background:#262626;}" +
-                ".icon3{width:35px; height:30px; border-radius:50%; background:#F23000;}" +
-                ".social_icon{display:block}" +
-                ".fotter{padding-bottom:15px;text-align:center;}" +
-                "</style>" +
-                "<div class='container'>" +
-                "<div class='row'>" +
-                "<div class='col-md-12'style='background:#fff;'>" +
-                "<div class='eskaton'style='text-align:center; color:#000;'>" +
-                "</div>" +
-                "</div>" +
-                "</div>" +
-                "</div>" +
-                "</body>" +
-                "</html>";*/
-
-        //TODO
-        //final String detailUrl=dataSet.get(listPosition).getDtl_url_link();
+        textViewName.setText(mTitle);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,10 +104,8 @@ public class RecyclerViewAdapterCourseDetailContent extends RecyclerView.Adapter
             {
 
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
-                i.putExtra("ttl", titleText);
-                i.putExtra("img", CoverPhoto);
-              //  i.putExtra("cal", mArrayList);
-                //i.putExtra("detail", DetailDescription);
+                i.putExtra("ttl", mTitle);
+              //  i.putExtra("img", CoverPhoto);
                 try {
                     v.getContext().startActivity(i);
                 }
