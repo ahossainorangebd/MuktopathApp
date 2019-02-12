@@ -1476,8 +1476,9 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_gravity="center"
-            android:padding="8dp"
-            android:background="@color/AppBackgroundColor"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/FooterBtnsColor"
             >
 
             <LinearLayout

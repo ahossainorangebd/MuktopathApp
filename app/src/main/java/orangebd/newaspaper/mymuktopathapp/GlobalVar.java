@@ -15,6 +15,9 @@ public class GlobalVar {
 
     public static ArrayList<String> gMenuArrayList;
     public static ArrayList<DetailDataModelCourses> gRecommendedDetailList10;
+    public static ArrayList<DetailDataModelCourses> gEnrolledInstitution;
+
+    public static ArrayList<DetailDataModelCoursesThumbnails> gEnrollCoursePhotoList;
 
     public static String gParentMenuURL;
 
@@ -30,6 +33,7 @@ public class GlobalVar {
 
     //arrayList of Course Content
     public static ArrayList<DetailDataModelCourses> courseContentDetailList;
+    public static ArrayList<DetailDataModelCourses> gEnrollCourseList;
 
 
     //

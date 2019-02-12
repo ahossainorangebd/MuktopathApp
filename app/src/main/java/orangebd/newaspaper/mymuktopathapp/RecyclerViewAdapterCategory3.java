@@ -87,8 +87,8 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
         TextView textViewName = holder.textViewName;
 
-        TextView textViewVersion = holder.textViewVersion;
-        TextView textViewVersion2 = holder.textViewVersion2;
+        //TextView textViewVersion = holder.textViewVersion;
+        //TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
         final String titleText=dataSet.get(listPosition).getmCourseAliasName();
         final String DetailDescription=dataSet.get(listPosition).getmDetails();
@@ -101,17 +101,12 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
 
 
 
-        try {
-            DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
+        DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
-            String imgUrl = imgUrlModel.getCover_code_image();
+        String imgUrl = imgUrlModel.getCover_code_image();
 
-            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
-        }
-        catch (Exception ex){
-            Log.d("", "onBindViewHolder: ");
-        }
+        final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
 
         //String detailString=dataSet.get(listPosition).getDtl_url();
         //String imgCaption=dataSet.get(listPosition).getImg_caption();
@@ -127,12 +122,12 @@ public class RecyclerViewAdapterCategory3 extends RecyclerView.Adapter<RecyclerV
         }
         catch (Exception ex){}
 
-            entryDate=dataSet.get(listPosition).getmCreatedAt();
-            //final String returnDate=sdf.toString();
+        entryDate=dataSet.get(listPosition).getmCreatedAt();
+        //final String returnDate=sdf.toString();
 
-       // textViewVersion.setText(entryDate);
+        // textViewVersion.setText(entryDate);
 
-            updateDate=dataSet.get(listPosition).getmUpdatedAt();
+        updateDate=dataSet.get(listPosition).getmUpdatedAt();
        // textViewVersion2.setText(entryDate);
 
             //final String returnDate=sdf.toString();

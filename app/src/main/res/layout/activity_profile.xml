@@ -94,17 +94,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="20dp">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="70dp"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
-                    android:background="@drawable/open_book"
+                    android:background="@drawable/open_book_profile_page"
                     android:gravity="center" />
 
                 <TextView
@@ -115,6 +115,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/AppTextColor"
                     android:textSize="10sp"
+                    android:layout_marginTop="7dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -153,7 +154,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#d6d7d7"
+        android:background="#eeeeee"
         android:layout_alignParentBottom="true"
         >
 
@@ -164,7 +165,8 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:background="@color/FooterBtnsColor"
-            android:padding="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             >
 
             <LinearLayout

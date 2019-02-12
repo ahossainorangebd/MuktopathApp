@@ -44,7 +44,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     String title;
 
     private TextView titleTextView;
-    private TextView detailDescTextView;
+    private WebView detailDescTextView;
     private ImageView CoverPhoto;
 
     //private ImageView mLogoIcon;
@@ -79,7 +79,14 @@ public class CourseDetailActivity extends AppCompatActivity {
         title = getIntent().getExtras().getString("ttl");
 
         titleTextView.setText(title);
-        detailDescTextView.setText(DetailDescription);
+
+        detailDescTextView.getSettings().setJavaScriptEnabled(true);
+        detailDescTextView.getSettings().setDomStorageEnabled(true);
+
+        detailDescTextView.loadDataWithBaseURL("",DetailDescription, "text/html", "utf-8", "");
+
+
+        //detailDescTextView.setText(DetailDescription);
 
         try {
             Picasso.with(context)

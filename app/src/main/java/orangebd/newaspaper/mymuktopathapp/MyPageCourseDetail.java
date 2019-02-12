@@ -21,13 +21,15 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         mContext=this;
 
-        setRecyclerView();
+        //TODO
+        //setRecyclerView();
 
     }
 
     private void setRecyclerView() {
 
-        recyclerView = findViewById(R.id.my_recycler_view);
+        //TODO
+        /*recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -41,7 +43,7 @@ public class MyPageCourseDetail extends AppCompatActivity {
         adapter=new RecyclerViewAdapterMyPage(GlobalVar.gChildArrayOfContent,mContext);
 
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
     }
 
 }

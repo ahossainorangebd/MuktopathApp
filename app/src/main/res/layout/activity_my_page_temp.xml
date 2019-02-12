@@ -10,7 +10,91 @@
     android:layout_gravity="center"
     android:orientation="vertical">
 
+    <!-- this section will always common for all users. After Enrolling projects this section will be gon programetically-->
+    <!--<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="22dp"
+        >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="আমার পাতা"
+            android:textColor="@color/AppTextColor"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@drawable/muktopath_logo"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="আকাশ আমার পাঠশালা"
+            android:textColor="@color/AppTextColor"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="সবার জন্য অনলাইন শিক্ষা"
+            android:textColor="@color/AppTextColor"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_marginTop="30dp"
+            />
+
+        <TextView
+            android:layout_width="310dp"
+            android:padding="3dp"
+            android:layout_height="wrap_content"
+            android:text="আপনার কম্পিউটার বা মোবাইল ডিভাইস যে কোন সময় যেকোন যায়গায় শিখতে চাইলে এপসটি ডাউনলোড করুক।"
+            android:textColor="@color/colorVoldemort"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="14dp"
+            />
+
+        <Button
+            android:id="@+id/splashActvtySearchSomething"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="নতুন কিছু শিখতে খুঁজুন"
+            android:textSize="16sp"
+            android:focusable="true"
+            android:textColor="#fff"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/gradient_background"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:focusableInTouchMode="true"
+            android:textStyle="bold" />
+
+    </LinearLayout>-->
+    <!-- This section will appear after enrolling projects.-->
 
     <LinearLayout
         android:id="@+id/afterEnrollLayOut"
@@ -170,6 +254,17 @@
         </LinearLayout>
 
 
+
+        <!--<android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical"
+            />-->
+
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -232,7 +327,6 @@
             />
 
         <TextView
-            android:id="@+id/ownerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/Colorpeace"
@@ -248,15 +342,15 @@
             >
 
 
-            <android.support.v4.widget.ContentLoadingProgressBar
-                android:layout_width="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_gravity="bottom"
-                android:background="@drawable/lin_layout_style_white"
-                android:layout_height="10dp"
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:layout_width="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/lin_layout_style_white"
+            android:layout_height="10dp"
 
-                />
+            />
 
         </LinearLayout>
 
@@ -267,7 +361,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/FooterBtnsColor"
+        android:background="#c1c1c1"
         android:layout_alignParentBottom="true"
         >
 

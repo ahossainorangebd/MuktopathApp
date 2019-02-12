@@ -33,8 +33,6 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
 
     private Typeface tf;
 
-    private String CoverPhoto;
-
     private ArrayList<DetailDataModel> mFilteredList;
 
     //private String copyRightText;
@@ -101,17 +99,12 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
 
 
 
-        try {
-            DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
+            DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
             String imgUrl = imgUrlModel.getCover_code_image();
 
-            CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
-        }
-        catch (Exception ex){
-            Log.d("", "onBindViewHolder: ");
-        }
+        final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
 
         //String detailString=dataSet.get(listPosition).getDtl_url();
         //String imgCaption=dataSet.get(listPosition).getImg_caption();

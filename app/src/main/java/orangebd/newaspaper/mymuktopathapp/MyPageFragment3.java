@@ -1,24 +1,19 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-
-
-public class MyPageFragment1 extends Fragment {
+public class MyPageFragment3 extends Fragment {
 
     private Context context;
 
@@ -35,14 +30,11 @@ public class MyPageFragment1 extends Fragment {
 
     private Button startMyPageBtn;
 
-    private ImageView mCourseDetailCoverImage;
-
-    //GlobalVar.gEnrollCourseList
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_my_page_fragment1, container, false);
+        view = inflater.inflate(R.layout.fragment_my_page_fragment3, container, false);
 
         context=getContext();
 
@@ -51,7 +43,6 @@ public class MyPageFragment1 extends Fragment {
         myPageBtn = view.findViewById(R.id.myPageBtnId);
         downloadsBtn = view.findViewById(R.id.downloadsBtnId);
         profileBtn = view.findViewById(R.id.profilePageBtnId);
-        mCourseDetailCoverImage = view.findViewById(R.id.CourseDetailCoverImage);
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,30 +89,16 @@ public class MyPageFragment1 extends Fragment {
             }
         });
 
-        ArrayList<DetailDataModelCoursesThumbnails> imgArray=GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails();
-
-        DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(0);
-
-        String imgUrl = imgUrlModel.getCover_code_image();
-
-        String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
-
-        try {
-            Picasso.with(context)
-                    .load(CoverPhoto)
-                    .into(mCourseDetailCoverImage);
-        }
-        catch (Exception ex){}
-
         mCourseTitle = view.findViewById(R.id.courseTitle);
         mCourseOwner = view.findViewById(R.id.ownerName);
 
-        String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(0).getmCourseAliasName();
-        String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(0).getInstitution_name_owner();
+        String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(2).getmCourseAliasName();
+        String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(2).getInstitution_name_owner();
 
         mCourseTitle.setText(enrolledCourseTitle);
         mCourseOwner.setText(enrolledCourseOwner);
 
         return view;
     }
+
 }

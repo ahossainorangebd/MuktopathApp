@@ -394,16 +394,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:text="নতুন প্রোফাইল তৈরি করুন"
-        android:focusable="true"
         android:textColor="#fff"
         android:background="@drawable/button_style_purple"
-        android:focusableInTouchMode="true"
         android:textStyle="bold" />
-
-
-
-
-
+    <requestFocus/>
 
     <TextView
         android:layout_width="wrap_content"
