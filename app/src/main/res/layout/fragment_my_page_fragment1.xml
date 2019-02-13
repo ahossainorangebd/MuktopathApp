@@ -53,6 +53,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/assignmentNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -64,6 +65,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/examNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -218,6 +220,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
+        android:elevation="10dp"
         >
 
 
@@ -228,6 +231,7 @@
             android:text="সাইবার সিকিউরিটি কোর্স"
             android:textColor="@color/Colorpeace"
             android:layout_marginLeft="10dp"
+            android:textSize="24sp"
             android:layout_marginTop="10dp"
             />
 
@@ -235,10 +239,10 @@
             android:id="@+id/ownerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/Colorpeace"
-            android:text="মুক্তপাঠ"
             android:layout_marginLeft="15dp"
-            />
+            android:text="মুক্তপাঠ"
+            android:textColor="@color/Colorpeace"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class DetailDataModelCourses
 {
+    private int mExamNumbers;
+    private int mAssignmentNumbers;
+
     private String mAdmissionStatus;
     private String mAverageRating;
     private String mCertificateAliasName;
@@ -1276,4 +1279,19 @@ public class DetailDataModelCourses
         this.mCourseId = mCourseId;
     }
 
+    public int getmExamNumbers() {
+        return mExamNumbers;
+    }
+
+    public void setmExamNumbers(int mExamNumbers) {
+        this.mExamNumbers = mExamNumbers;
+    }
+
+    public int getmAssignmentNumbers() {
+        return mAssignmentNumbers;
+    }
+
+    public void setmAssignmentNumbers(int mAssignmentNumbers) {
+        this.mAssignmentNumbers = mAssignmentNumbers;
+    }
 }

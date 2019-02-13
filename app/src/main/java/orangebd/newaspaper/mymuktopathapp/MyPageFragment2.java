@@ -9,8 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 
 public class MyPageFragment2 extends Fragment {
@@ -30,6 +35,8 @@ public class MyPageFragment2 extends Fragment {
 
     private Button startMyPageBtn;
 
+    private ImageView mCourseDetailCoverImage;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class MyPageFragment2 extends Fragment {
         myPageBtn = view.findViewById(R.id.myPageBtnId);
         downloadsBtn = view.findViewById(R.id.downloadsBtnId);
         profileBtn = view.findViewById(R.id.profilePageBtnId);
+        mCourseDetailCoverImage = view.findViewById(R.id.CourseDetailCoverImage);
 
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +97,22 @@ public class MyPageFragment2 extends Fragment {
                 v.getContext().startActivity(i);
             }
         });
+
+
+        ArrayList<DetailDataModelCoursesThumbnails> imgArray=GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails();
+
+        DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(1);
+
+        String imgUrl = imgUrlModel.getCover_code_image();
+
+        String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+
+        try {
+            Picasso.with(context)
+                    .load(CoverPhoto)
+                    .into(mCourseDetailCoverImage);
+        }
+        catch (Exception ex){}
 
         mCourseTitle = view.findViewById(R.id.courseTitle);
         mCourseOwner = view.findViewById(R.id.ownerName);

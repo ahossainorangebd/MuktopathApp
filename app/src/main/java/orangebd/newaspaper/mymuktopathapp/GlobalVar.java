@@ -51,5 +51,5 @@ public class GlobalVar {
     public static String gReplacingToken;
     public static String gUserType;
 
-    public static String gBaseUrl;
+    public static String gBaseUrl="http://muktopaath.orangebd.com";
 }

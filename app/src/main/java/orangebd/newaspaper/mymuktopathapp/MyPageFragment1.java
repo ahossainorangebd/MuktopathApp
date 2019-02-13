@@ -33,6 +33,9 @@ public class MyPageFragment1 extends Fragment {
     private TextView mCourseTitle;
     private TextView mCourseOwner;
 
+    private TextView mExmNumberTtl;
+    private TextView mAssignmentNumberTtl;
+
     private Button startMyPageBtn;
 
     private ImageView mCourseDetailCoverImage;
@@ -115,12 +118,18 @@ public class MyPageFragment1 extends Fragment {
 
         mCourseTitle = view.findViewById(R.id.courseTitle);
         mCourseOwner = view.findViewById(R.id.ownerName);
+        mExmNumberTtl = view.findViewById(R.id.examNumber);
+        mAssignmentNumberTtl = view.findViewById(R.id.assignmentNumber);
 
         String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(0).getmCourseAliasName();
         String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(0).getInstitution_name_owner();
+        int mAssignmentNumbers=GlobalVar.gEnrolledInstitution.get(0).getmAssignmentNumbers();
+        int mExamNumbers=GlobalVar.gEnrolledInstitution.get(0).getmExamNumbers();
 
         mCourseTitle.setText(enrolledCourseTitle);
         mCourseOwner.setText(enrolledCourseOwner);
+        mExmNumberTtl.setText(Integer.toString(mAssignmentNumbers));
+        mAssignmentNumberTtl.setText(Integer.toString(mExamNumbers));
 
         return view;
     }

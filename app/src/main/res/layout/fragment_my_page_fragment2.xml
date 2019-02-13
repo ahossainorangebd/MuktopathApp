@@ -218,6 +218,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
+        android:elevation="10dp"
         >
 
 
@@ -229,6 +230,7 @@
             android:textColor="@color/Colorpeace"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:textSize="24sp"
             />
 
         <TextView
@@ -238,6 +240,7 @@
             android:textColor="@color/Colorpeace"
             android:text="মুক্তপাঠ"
             android:layout_marginLeft="15dp"
+            android:textSize="16sp"
             />
 
         <LinearLayout
