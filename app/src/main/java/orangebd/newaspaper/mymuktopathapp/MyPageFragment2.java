@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,10 @@ public class MyPageFragment2 extends Fragment {
     private Button startMyPageBtn;
 
     private ImageView mCourseDetailCoverImage;
+
+    private TextView mExmNumberTtl;
+    private TextView mAssignmentNumberTtl;
+    private TextView mContentNumberTtl;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,7 +110,7 @@ public class MyPageFragment2 extends Fragment {
 
         String imgUrl = imgUrlModel.getCover_code_image();
 
-        String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
+        final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
 
         try {
             Picasso.with(context)
@@ -116,12 +121,46 @@ public class MyPageFragment2 extends Fragment {
 
         mCourseTitle = view.findViewById(R.id.courseTitle);
         mCourseOwner = view.findViewById(R.id.ownerName);
+        mExmNumberTtl = view.findViewById(R.id.examNumber);
+        mAssignmentNumberTtl = view.findViewById(R.id.assignmentNumber);
+        mContentNumberTtl = view.findViewById(R.id.contentNumber);
 
-        String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(1).getmCourseAliasName();
+        final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(1).getmCourseAliasName();
         String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(1).getInstitution_name_owner();
+
+        ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
+        final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(1);
+
+        int mAssignmentNumbers=GlobalVar.gEnrolledInstitution.get(1).getmAssignmentNumbers();
+        int mExamNumbers=GlobalVar.gEnrolledInstitution.get(1).getmExamNumbers();
+        int mContentNumbers = contents.size();
 
         mCourseTitle.setText(enrolledCourseTitle);
         mCourseOwner.setText(enrolledCourseOwner);
+        mExmNumberTtl.setText(Integer.toString(mAssignmentNumbers));
+        mAssignmentNumberTtl.setText(Integer.toString(mExamNumbers));
+        mContentNumberTtl.setText(Integer.toString(mContentNumbers));
+
+        startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);
+        startMyPageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(context, MyPageCourseDetail.class);
+
+                i.putExtra("ttl", enrolledCourseTitle);
+                i.putExtra("img", CoverPhoto);
+                GlobalVar.thisFragmentContents=contents;
+
+                try {
+                    v.getContext().startActivity(i);
+                }
+                catch (Exception ex){
+                    String msg=ex.getMessage();
+                    Log.d("msg",msg);
+                }
+            }
+        });
 
         return view;
     }

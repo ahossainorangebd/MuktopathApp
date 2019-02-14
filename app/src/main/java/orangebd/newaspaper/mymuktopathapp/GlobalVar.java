@@ -16,6 +16,7 @@ public class GlobalVar {
     public static ArrayList<String> gMenuArrayList;
     public static ArrayList<DetailDataModelCourses> gRecommendedDetailList10;
     public static ArrayList<DetailDataModelCourses> gEnrolledInstitution;
+    public static ArrayList<DetailDataModelCoursesDetailContents> thisFragmentContents;
 
     public static ArrayList<DetailDataModelCoursesThumbnails> gEnrollCoursePhotoList;
 

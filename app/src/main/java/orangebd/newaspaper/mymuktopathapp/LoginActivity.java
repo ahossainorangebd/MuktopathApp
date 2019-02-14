@@ -114,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private ArrayList<DetailDataModelCourses> detailListFileType;
 
+    ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNew;
+
     private String token="";
     String url="http://api.muktopaath.orangebd.com/api/login";
     @Override
@@ -189,13 +191,9 @@ public class LoginActivity extends AppCompatActivity {
                                 detailList7 = new ArrayList<DetailDataModelCourses>();
                                 detailList8 = new ArrayList<DetailDataModelCourses>();
 
-                                ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNew = new ArrayList<>();
-
                                 detailListCourseDetailContentss = new ArrayList<>();
 
                                 DetailDataModelCourses model = new DetailDataModelCourses();
-
-
 
                                 JSONObject jObject = new JSONObject();
 
@@ -213,584 +211,594 @@ public class LoginActivity extends AppCompatActivity {
                                 try{
                                     DetailDataModelCourses modelAlter = new DetailDataModelCourses();
 
-                                            String id = jObject.getString("id");
-                                            String username = jObject.getString("username");
-                                            String email = jObject.getString("email");
-                                            String Completeness = jObject.getString("completeness");
-                                            String name = jObject.getString("name");
 
-                                            String lastLoginIpAddress = jObject.getString("last_login_ip_address");
-                                            String last_login_time = jObject.getString("last_login_time");
-                                            String login_status = jObject.getString("login_status");
-                                            //String password = jObject.getString("password");
-                                            String phone = jObject.getString("phone");
-                                            String status = jObject.getString("status");
-                                            String token = jObject.getString("token");
-                                            String coursecompleted = jObject.getString("CourseCompleted");
-                                            String totalEnrollment = jObject.getString("TotalEnrollment");
+                                    String id = jObject.getString("id");
+                                    String username = jObject.getString("username");
+                                    String email = jObject.getString("email");
+                                    String Completeness = jObject.getString("completeness");
+                                    String name = jObject.getString("name");
 
-                                            GlobalVar.gName = name;
-                                            GlobalVar.gMobile=phone;
-                                            GlobalVar.gEmail=email;
-                                            GlobalVar.gReplacingToken=token;
+                                    String lastLoginIpAddress = jObject.getString("last_login_ip_address");
+                                    String last_login_time = jObject.getString("last_login_time");
+                                    String login_status = jObject.getString("login_status");
+                                    //String password = jObject.getString("password");
+                                    String phone = jObject.getString("phone");
+                                    String status = jObject.getString("status");
+                                    String token = jObject.getString("token");
+                                    String coursecompleted = jObject.getString("CourseCompleted");
+                                    String totalEnrollment = jObject.getString("TotalEnrollment");
 
-                                            model.setmId(id);
-                                            model.setmUserName(username);
-                                            model.setmName(name);
-                                            model.setmUserEmail(email);
-                                            //model.setmUserPassword(password);
-                                            model.setmCompletenesss(Completeness);
-                                            model.setmCourseCompleted(coursecompleted);
-                                            model.setmTotalEnrollment(totalEnrollment);
-                                            model.setmLastLoginIpAddress(lastLoginIpAddress);
-                                            model.setmLastLoginTime(last_login_time);
-                                            model.setmToken(token);
-                                            model.setmStatus(status);
-                                            model.setmLoginStatus(login_status);
-                                            model.setmUserPhone(phone);
+                                    GlobalVar.gName = name;
+                                    GlobalVar.gMobile=phone;
+                                    GlobalVar.gEmail=email;
+                                    GlobalVar.gReplacingToken=token;
 
-                                            detailList.add(model);
+                                    model.setmId(id);
+                                    model.setmUserName(username);
+                                    model.setmName(name);
+                                    model.setmUserEmail(email);
+                                    //model.setmUserPassword(password);
+                                    model.setmCompletenesss(Completeness);
+                                    model.setmCourseCompleted(coursecompleted);
+                                    model.setmTotalEnrollment(totalEnrollment);
+                                    model.setmLastLoginIpAddress(lastLoginIpAddress);
+                                    model.setmLastLoginTime(last_login_time);
+                                    model.setmToken(token);
+                                    model.setmStatus(status);
+                                    model.setmLoginStatus(login_status);
+                                    model.setmUserPhone(phone);
 
-                                            // For parsing 1st Array of info JSON
+                                    detailList.add(model);
 
-                                            detailList2=new ArrayList<DetailDataModelCourses>();
+                                    // For parsing 1st Array of info JSON
 
-                                            DetailDataModelCourses model2 = new DetailDataModelCourses();
+                                    detailList2=new ArrayList<DetailDataModelCourses>();
 
-                                            try {
-                                                for (int ii=0;ii<jObject.length()-1;ii++)
-                                                {
+                                    DetailDataModelCourses model2 = new DetailDataModelCourses();
+
+                                    try {
+                                        for (int ii=0;ii<jObject.length()-1;ii++)
+                                        {
+                                            JSONArray object = (JSONArray) jObject.get("owninstitution");
+                                            JSONObject object2 = (JSONObject) object.get(ii);
+
+                                            String instaddress = object2.getString("address");
+                                            String instcontacts = object2.getString("contacts");
+                                            String instcontact_person = object2.getString("contact_person");
+                                            String instcontact_person_email = object2.getString("contact_person_email");
+                                            String instcontact_person_mobile = object2.getString("contact_person_mobile");
+
+                                            String instcreated_at = object2.getString("created_at");
+                                            String instcreated_by = object2.getString("created_by");
+                                            String instcredit = object2.getString("credit");
+                                            String instdeleted_at = object2.getString("deleted_at");
+                                            String instemail = object2.getString("email");
+                                            String instgoogle_location = object2.getString("google_location");
+                                            String instheading = object2.getString("heading");
+                                            String instid = object2.getString("id");
+                                            String initial = object2.getString("initial");
+                                            String institution_name = object2.getString("institution_name");
+                                            String institution_type = object2.getString("institution_type");
+                                            String instlegal_document_file = object2.getString("legal_document_file");
+                                            String instmetadata = object2.getString("metadata");
+                                            String instphone = object2.getString("phone");
+                                            String instsocial = object2.getString("social");
+                                            String inststatus = object2.getString("status");
+                                            String instsubscription = object2.getString("subscription");
+                                            String insttype = object2.getString("type");
+                                            String instupdated_at = object2.getString("updated_at");
+                                            String instupdated_by = object2.getString("updated_by");
+                                            String instusername = object2.getString("username");
+                                            String instuser_id = object2.getString("user_id");
+                                            String instwebsite = object2.getString("website");
+
+                                            model2.setmInstAddress(instaddress);
+                                            model2.setmInstContacts(instcontacts);
+                                            model2.setmInstContactPerson(instcontact_person);
+                                            model2.setmInstcontactPersonEmail(instcontact_person_email);
+                                            model2.setmInstContactPersonMobile(instcontact_person_mobile);
+                                            model2.setmInstCreatedAt(instcreated_at);
+                                            model2.setmInstCreatedBy(instcreated_by);
+                                            model2.setmInstCcredit(instcredit);
+                                            model2.setmInstDeletedAt(instdeleted_at);
+                                            model2.setmInstEmail(instemail);
+                                            model2.setmInstGoogleLocation(instgoogle_location);
+                                            model2.setmInstHeading(instheading);
+                                            model2.setmInstId(instid);
+                                            model2.setmInitial(initial);
+                                            model2.setmInstName(institution_name);
+                                            model2.setmInstType(institution_type);
+                                            model2.setmInstLegalDocFile(instlegal_document_file);
+                                            model2.setmInstMetaData(instmetadata);
+                                            model2.setInstphone(instphone);
+                                            model2.setInstsocial(instsocial);
+                                            model2.setInststatus(inststatus);
+                                            model2.setInstsubscription(instsubscription);
+                                            model2.setInsttype(insttype);
+                                            model2.setInstupdated_at(instupdated_at);
+                                            model2.setInstupdated_by(instupdated_by);
+                                            model2.setInstusername(instusername);
+                                            model2.setInstuser_id(instuser_id);
+                                            model2.setInstwebsite(instwebsite);
+
+                                            detailList2.add(model2);
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
 
 
-                                                    JSONArray object = (JSONArray) jObject.get("owninstitution");
-                                                    JSONObject object2 = (JSONObject) object.get(ii);
+                                    // For parsing 2nd Array of info JSON
 
-                                                    String instaddress = object2.getString("address");
-                                                    String instcontacts = object2.getString("contacts");
-                                                    String instcontact_person = object2.getString("contact_person");
-                                                    String instcontact_person_email = object2.getString("contact_person_email");
-                                                    String instcontact_person_mobile = object2.getString("contact_person_mobile");
+                                    detailList3=new ArrayList<DetailDataModelCourses>();
 
-                                                    String instcreated_at = object2.getString("created_at");
-                                                    String instcreated_by = object2.getString("created_by");
-                                                    String instcredit = object2.getString("credit");
-                                                    String instdeleted_at = object2.getString("deleted_at");
-                                                    String instemail = object2.getString("email");
-                                                    String instgoogle_location = object2.getString("google_location");
-                                                    String instheading = object2.getString("heading");
-                                                    String instid = object2.getString("id");
-                                                    String initial = object2.getString("initial");
-                                                    String institution_name = object2.getString("institution_name");
-                                                    String institution_type = object2.getString("institution_type");
-                                                    String instlegal_document_file = object2.getString("legal_document_file");
-                                                    String instmetadata = object2.getString("metadata");
-                                                    String instphone = object2.getString("phone");
-                                                    String instsocial = object2.getString("social");
-                                                    String inststatus = object2.getString("status");
-                                                    String instsubscription = object2.getString("subscription");
-                                                    String insttype = object2.getString("type");
-                                                    String instupdated_at = object2.getString("updated_at");
-                                                    String instupdated_by = object2.getString("updated_by");
-                                                    String instusername = object2.getString("username");
-                                                    String instuser_id = object2.getString("user_id");
-                                                    String instwebsite = object2.getString("website");
+                                    DetailDataModelCourses model3 = new DetailDataModelCourses();
 
-                                                    model2.setmInstAddress(instaddress);
-                                                    model2.setmInstContacts(instcontacts);
-                                                    model2.setmInstContactPerson(instcontact_person);
-                                                    model2.setmInstcontactPersonEmail(instcontact_person_email);
-                                                    model2.setmInstContactPersonMobile(instcontact_person_mobile);
-                                                    model2.setmInstCreatedAt(instcreated_at);
-                                                    model2.setmInstCreatedBy(instcreated_by);
-                                                    model2.setmInstCcredit(instcredit);
-                                                    model2.setmInstDeletedAt(instdeleted_at);
-                                                    model2.setmInstEmail(instemail);
-                                                    model2.setmInstGoogleLocation(instgoogle_location);
-                                                    model2.setmInstHeading(instheading);
-                                                    model2.setmInstId(instid);
-                                                    model2.setmInitial(initial);
-                                                    model2.setmInstName(institution_name);
-                                                    model2.setmInstType(institution_type);
-                                                    model2.setmInstLegalDocFile(instlegal_document_file);
-                                                    model2.setmInstMetaData(instmetadata);
-                                                    model2.setInstphone(instphone);
-                                                    model2.setInstsocial(instsocial);
-                                                    model2.setInststatus(inststatus);
-                                                    model2.setInstsubscription(instsubscription);
-                                                    model2.setInsttype(insttype);
-                                                    model2.setInstupdated_at(instupdated_at);
-                                                    model2.setInstupdated_by(instupdated_by);
-                                                    model2.setInstusername(instusername);
-                                                    model2.setInstuser_id(instuser_id);
-                                                    model2.setInstwebsite(instwebsite);
+                                    try {
+                                        for (int iii=0;iii<jObject.length()-1;iii++)
+                                        {
+                                            JSONArray objectAnother = (JSONArray) jObject.getJSONArray("institution");
+                                            JSONObject objectAnother2 = (JSONObject) objectAnother.get(iii);
 
-                                                    detailList2.add(model2);
-                                                }
+                                            String instaddress = objectAnother2.getString("address");
+                                            String instcontacts = objectAnother2.getString("contacts");
+                                            String instcontact_person = objectAnother2.getString("contact_person");
+                                            String instcontact_person_email = objectAnother2.getString("contact_person_email");
+                                            String instcontact_person_mobile = objectAnother2.getString("contact_person_mobile");
 
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
+                                            String instcreated_at = objectAnother2.getString("created_at");
+                                            String instcreated_by = objectAnother2.getString("created_by");
+                                            String instcredit = objectAnother2.getString("credit");
+                                            String instdeleted_at = objectAnother2.getString("deleted_at");
+                                            String instemail = objectAnother2.getString("email");
+                                            String instgoogle_location = objectAnother2.getString("google_location");
+                                            String instheading = objectAnother2.getString("heading");
+                                            String instid = objectAnother2.getString("id");
+                                            String initial = objectAnother2.getString("initial");
+                                            String institution_name = objectAnother2.getString("institution_name");
+                                            String institution_type = objectAnother2.getString("institution_type");
+                                            String instlegal_document_file = objectAnother2.getString("legal_document_file");
+                                            String instmetadata = objectAnother2.getString("metadata");
+                                            String instphone = objectAnother2.getString("phone");
+                                            String instsocial = objectAnother2.getString("social");
+                                            String inststatus = objectAnother2.getString("status");
+                                            String instsubscription = objectAnother2.getString("subscription");
+                                            String insttype = objectAnother2.getString("type");
+                                            String instupdated_at = objectAnother2.getString("updated_at");
+                                            String instupdated_by = objectAnother2.getString("updated_by");
+                                            String instusername = objectAnother2.getString("username");
+                                            String instuser_id = objectAnother2.getString("user_id");
+                                            String instwebsite = objectAnother2.getString("website");
+
+                                            model3.setmInstAddress(instaddress);
+                                            model3.setmInstContacts(instcontacts);
+                                            model3.setmInstContactPerson(instcontact_person);
+                                            model3.setmInstcontactPersonEmail(instcontact_person_email);
+                                            model3.setmInstContactPersonMobile(instcontact_person_mobile);
+                                            model3.setmInstCreatedAt(instcreated_at);
+                                            model3.setmInstCreatedBy(instcreated_by);
+                                            model3.setmInstCcredit(instcredit);
+                                            model3.setmInstDeletedAt(instdeleted_at);
+                                            model3.setmInstEmail(instemail);
+                                            model3.setmInstGoogleLocation(instgoogle_location);
+                                            model3.setmInstHeading(instheading);
+                                            model3.setmInstId(instid);
+                                            model3.setmInitial(initial);
+                                            model3.setmInstName(institution_name);
+                                            model3.setmInstType(institution_type);
+                                            model3.setmInstLegalDocFile(instlegal_document_file);
+                                            model3.setmInstMetaData(instmetadata);
+                                            model3.setInstphone(instphone);
+                                            model3.setInstsocial(instsocial);
+                                            model3.setInststatus(inststatus);
+                                            model3.setInstsubscription(instsubscription);
+                                            model3.setInsttype(insttype);
+                                            model3.setInstupdated_at(instupdated_at);
+                                            model3.setInstupdated_by(instupdated_by);
+                                            model3.setInstusername(instusername);
+                                            model3.setInstuser_id(instuser_id);
+                                            model3.setInstwebsite(instwebsite);
+
+                                            detailList3.add(model3);
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    // For parsing 3rd Array of info JSON
+
+                                    detailList4=new ArrayList<DetailDataModelCourses>();
+
+                                    detailListAnoPart1=new ArrayList<DetailDataModelCourses>();
+                                    detailListAnoPart2=new ArrayList<DetailDataModelCourses>();
+                                    detailListAnoPart3=new ArrayList<DetailDataModelCourses>();
+
+                                    DetailDataModelCourses modelPart1 = new DetailDataModelCourses();
+                                    DetailDataModelCourses modelPart2 = new DetailDataModelCourses();
+                                    DetailDataModelCourses modelPart3 = new DetailDataModelCourses();
 
 
-                                            // For parsing 2nd Array of info JSON
+                                    try {
+                                        DetailDataModelCourses modelEnrollCourse = new DetailDataModelCourses();
 
-                                            detailList3=new ArrayList<DetailDataModelCourses>();
+                                        JSONArray objectAgainAnother = (JSONArray) jObject.getJSONArray("RoleInstitution");
+                                        JSONArray objectEnrollCourse = (JSONArray) jObject.getJSONArray("EnrollCourse");
 
-                                            DetailDataModelCourses model3 = new DetailDataModelCourses();
+                                        try {
+                                            for (int ec = 0; ec < objectEnrollCourse.length(); ec++)
+                                            {
 
-                                            try {
-                                                for (int iii=0;iii<jObject.length()-1;iii++)
-                                                {
-                                                    JSONArray objectAnother = (JSONArray) jObject.getJSONArray("institution");
-                                                    JSONObject objectAnother2 = (JSONObject) objectAnother.get(iii);
+                                                JSONObject jObjEnrolledCourses = objectEnrollCourse.getJSONObject(ec);
 
-                                                    String instaddress = objectAnother2.getString("address");
-                                                    String instcontacts = objectAnother2.getString("contacts");
-                                                    String instcontact_person = objectAnother2.getString("contact_person");
-                                                    String instcontact_person_email = objectAnother2.getString("contact_person_email");
-                                                    String instcontact_person_mobile = objectAnother2.getString("contact_person_mobile");
+                                                JSONObject objectCourse2 = jObjEnrolledCourses.getJSONObject("Course");
 
-                                                    String instcreated_at = objectAnother2.getString("created_at");
-                                                    String instcreated_by = objectAnother2.getString("created_by");
-                                                    String instcredit = objectAnother2.getString("credit");
-                                                    String instdeleted_at = objectAnother2.getString("deleted_at");
-                                                    String instemail = objectAnother2.getString("email");
-                                                    String instgoogle_location = objectAnother2.getString("google_location");
-                                                    String instheading = objectAnother2.getString("heading");
-                                                    String instid = objectAnother2.getString("id");
-                                                    String initial = objectAnother2.getString("initial");
-                                                    String institution_name = objectAnother2.getString("institution_name");
-                                                    String institution_type = objectAnother2.getString("institution_type");
-                                                    String instlegal_document_file = objectAnother2.getString("legal_document_file");
-                                                    String instmetadata = objectAnother2.getString("metadata");
-                                                    String instphone = objectAnother2.getString("phone");
-                                                    String instsocial = objectAnother2.getString("social");
-                                                    String inststatus = objectAnother2.getString("status");
-                                                    String instsubscription = objectAnother2.getString("subscription");
-                                                    String insttype = objectAnother2.getString("type");
-                                                    String instupdated_at = objectAnother2.getString("updated_at");
-                                                    String instupdated_by = objectAnother2.getString("updated_by");
-                                                    String instusername = objectAnother2.getString("username");
-                                                    String instuser_id = objectAnother2.getString("user_id");
-                                                    String instwebsite = objectAnother2.getString("website");
+                                                JSONArray exams = jObjEnrolledCourses.getJSONArray("exam");
+                                                JSONArray assignments = jObjEnrolledCourses.getJSONArray("assignment");
 
-                                                    model3.setmInstAddress(instaddress);
-                                                    model3.setmInstContacts(instcontacts);
-                                                    model3.setmInstContactPerson(instcontact_person);
-                                                    model3.setmInstcontactPersonEmail(instcontact_person_email);
-                                                    model3.setmInstContactPersonMobile(instcontact_person_mobile);
-                                                    model3.setmInstCreatedAt(instcreated_at);
-                                                    model3.setmInstCreatedBy(instcreated_by);
-                                                    model3.setmInstCcredit(instcredit);
-                                                    model3.setmInstDeletedAt(instdeleted_at);
-                                                    model3.setmInstEmail(instemail);
-                                                    model3.setmInstGoogleLocation(instgoogle_location);
-                                                    model3.setmInstHeading(instheading);
-                                                    model3.setmInstId(instid);
-                                                    model3.setmInitial(initial);
-                                                    model3.setmInstName(institution_name);
-                                                    model3.setmInstType(institution_type);
-                                                    model3.setmInstLegalDocFile(instlegal_document_file);
-                                                    model3.setmInstMetaData(instmetadata);
-                                                    model3.setInstphone(instphone);
-                                                    model3.setInstsocial(instsocial);
-                                                    model3.setInststatus(inststatus);
-                                                    model3.setInstsubscription(instsubscription);
-                                                    model3.setInsttype(insttype);
-                                                    model3.setInstupdated_at(instupdated_at);
-                                                    model3.setInstupdated_by(instupdated_by);
-                                                    model3.setInstusername(instusername);
-                                                    model3.setInstuser_id(instuser_id);
-                                                    model3.setInstwebsite(instwebsite);
+                                                int examNumbers = exams.length();
+                                                int assignmentsNumbers = assignments.length();
 
-                                                    detailList3.add(model3);
-                                                }
+                                                DetailDataModelCourses modelForLoginCourse = new DetailDataModelCourses();
 
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
+                                                String featured = objectCourse2.getString("featured");
+                                                String Eid = objectCourse2.getString("id");
+                                                String Edetails = objectCourse2.getString("details");
+                                                String Eadmission_status = objectCourse2.getString("admission_status");
+                                                String averageRating = objectCourse2.getString("averageRating");
+                                                String certificate_alias_name = objectCourse2.getString("certificate_alias_name");
+                                                String clone_status = objectCourse2.getString("clone_status");
+                                                String code = objectCourse2.getString("code");
+                                                String courses_for_status = objectCourse2.getString("courses_for_status");
+                                                String course_alias_name = objectCourse2.getString("course_alias_name");
+                                                String course_motto = objectCourse2.getString("course_motto");
+                                                String created_at = objectCourse2.getString("created_at");
+                                                String duration = objectCourse2.getString("duration");
+                                                String end_date = objectCourse2.getString("end_date");
+                                                String enrolment_approval_status = objectCourse2.getString("enrolment_approval_status");
 
-                                            // For parsing 3rd Array of info JSON
+                                                modelForLoginCourse.setmCertificateAliasName(certificate_alias_name);
+                                                modelForLoginCourse.setmAdmissionStatus(Eadmission_status);
+                                                modelForLoginCourse.setmAverageRating(averageRating);
+                                                modelForLoginCourse.setmCloneStatus(clone_status);
+                                                modelForLoginCourse.setmCode(code);
+                                                modelForLoginCourse.setmCreatedAt(created_at);
+                                                modelForLoginCourse.setmDuration(duration);
+                                                modelForLoginCourse.setmEndDate(end_date);
+                                                modelForLoginCourse.setmId(Eid);
+                                                modelForLoginCourse.setmDetails(Edetails);
+                                                modelForLoginCourse.setmFeatured(featured);
+                                                modelForLoginCourse.setmEnrolmentApprovalStatus(enrolment_approval_status);
+                                                modelForLoginCourse.setmCursesForStatus(courses_for_status);
+                                                modelForLoginCourse.setmCourseAliasName(course_alias_name);
+                                                modelForLoginCourse.setmCourseMotto(course_motto);
+                                                modelForLoginCourse.setmStatus(status);
+                                                modelForLoginCourse.setmExamNumbers(examNumbers);
+                                                modelForLoginCourse.setmAssignmentNumbers(assignmentsNumbers);
 
-                                            detailList4=new ArrayList<DetailDataModelCourses>();
+                                                detailListAnoPart3.add(modelForLoginCourse);
 
-                                            detailListAnoPart1=new ArrayList<DetailDataModelCourses>();
-                                            detailListAnoPart2=new ArrayList<DetailDataModelCourses>();
-                                            detailListAnoPart3=new ArrayList<DetailDataModelCourses>();
+                                                GlobalVar.gEnrollCourseList=detailListAnoPart3;
 
-                                            DetailDataModelCourses modelPart1 = new DetailDataModelCourses();
-                                            DetailDataModelCourses modelPart2 = new DetailDataModelCourses();
-                                            DetailDataModelCourses modelPart3 = new DetailDataModelCourses();
 
-                                            try {
-                                                DetailDataModelCourses modelEnrollCourse = new DetailDataModelCourses();
-
-                                                JSONArray objectAgainAnother = (JSONArray) jObject.getJSONArray("RoleInstitution");
-                                                JSONArray objectEnrollCourse = (JSONArray) jObject.getJSONArray("EnrollCourse");
 
                                                 try {
-                                                    for (int ec = 0; ec < objectEnrollCourse.length(); ec++) {
+                                                    jObject = objectCourse2.getJSONObject("syllabus");
 
-                                                        JSONObject jObjEnrolledCourses = objectEnrollCourse.getJSONObject(ec);
 
-                                                        JSONObject objectCourse2 = jObjEnrolledCourses.getJSONObject("Course");
+                                                    for(int loop=0; loop<jObject.length(); loop++)
+                                                    {
 
-                                                        JSONArray exams = jObjEnrolledCourses.getJSONArray("exam");
-                                                        JSONArray assignments = jObjEnrolledCourses.getJSONArray("assignment");
 
-                                                        int examNumbers = exams.length();
-                                                        int assignmentsNumbers = assignments.length();
+                                                        //for parsing syllebus strings
 
-                                                        DetailDataModelCourses modelForLoginCourse = new DetailDataModelCourses();
 
-                                                        String featured = objectCourse2.getString("featured");
-                                                        String Eid = objectCourse2.getString("id");
-                                                        String Edetails = objectCourse2.getString("details");
-                                                        String Eadmission_status = objectCourse2.getString("admission_status");
-                                                        String averageRating = objectCourse2.getString("averageRating");
-                                                        String certificate_alias_name = objectCourse2.getString("certificate_alias_name");
-                                                        String clone_status = objectCourse2.getString("clone_status");
-                                                        String code = objectCourse2.getString("code");
-                                                        String courses_for_status = objectCourse2.getString("courses_for_status");
-                                                        String course_alias_name = objectCourse2.getString("course_alias_name");
-                                                        String course_motto = objectCourse2.getString("course_motto");
-                                                        String created_at = objectCourse2.getString("created_at");
-                                                        String duration = objectCourse2.getString("duration");
-                                                        String end_date = objectCourse2.getString("end_date");
-                                                        String enrolment_approval_status = objectCourse2.getString("enrolment_approval_status");
+                                                        DetailDataModelCourses model7 = new DetailDataModelCourses();
 
-                                                        modelForLoginCourse.setmCertificateAliasName(certificate_alias_name);
-                                                        modelForLoginCourse.setmAdmissionStatus(Eadmission_status);
-                                                        modelForLoginCourse.setmAverageRating(averageRating);
-                                                        modelForLoginCourse.setmCloneStatus(clone_status);
-                                                        modelForLoginCourse.setmCode(code);
-                                                        modelForLoginCourse.setmCreatedAt(created_at);
-                                                        modelForLoginCourse.setmDuration(duration);
-                                                        modelForLoginCourse.setmEndDate(end_date);
-                                                        modelForLoginCourse.setmId(Eid);
-                                                        modelForLoginCourse.setmDetails(Edetails);
-                                                        modelForLoginCourse.setmFeatured(featured);
-                                                        modelForLoginCourse.setmEnrolmentApprovalStatus(enrolment_approval_status);
-                                                        modelForLoginCourse.setmCursesForStatus(courses_for_status);
-                                                        modelForLoginCourse.setmCourseAliasName(course_alias_name);
-                                                        modelForLoginCourse.setmCourseMotto(course_motto);
-                                                        modelForLoginCourse.setmStatus(status);
-                                                        modelForLoginCourse.setmExamNumbers(examNumbers);
-                                                        modelForLoginCourse.setmAssignmentNumbers(assignmentsNumbers);
+                                                        String study_mode_Syllebus = jObject.getString("study_mode");
 
-                                                        detailListAnoPart3.add(modelForLoginCourse);
+                                                        model7.setStudyModeSyllebus(study_mode_Syllebus);
 
-                                                        GlobalVar.gEnrollCourseList=detailListAnoPart3;
+                                                        JSONObject jObjectCourse = objectCourse2.getJSONObject("course");
 
-                                                        try {
-                                                            jObject = objectCourse2.getJSONObject("syllabus");
+                                                        //for parsing course strings
 
 
-                                                            for(int loop=0; loop<jObject.length(); loop++) {
+                                                        DetailDataModelCourses model8 = new DetailDataModelCourses();
 
+                                                        String course_codeCourse = jObjectCourse.getString("course_code");
+                                                        String course_levelCourse = jObjectCourse.getString("course_level");
+                                                        String idCourse = jObjectCourse.getString("id");
+                                                        String promovideoCourse = jObjectCourse.getString("promovideo");
+                                                        String titleCourse = jObjectCourse.getString("title");
 
-                                                                //for parsing syllebus strings
+                                                        model8.setCourse_codeCourse(course_codeCourse);
+                                                        model8.setCourse_levelCourse(course_levelCourse);
+                                                        model8.setIdCourse(idCourse);
+                                                        model8.setPromovideoCourse(promovideoCourse);
+                                                        model8.setTitleCourse(titleCourse);
 
+                                                        //for parsing thumbnails of courses
 
-                                                                DetailDataModelCourses model7 = new DetailDataModelCourses();
+                                                        DetailDataModelCoursesThumbnails modelCourseThumbnail = new DetailDataModelCoursesThumbnails();
 
-                                                                String study_mode_Syllebus = jObject.getString("study_mode");
+                                                        JSONObject thumnail = jObjectCourse.getJSONObject("thumnail");
+                                                        String coverPhoto = thumnail.getString("file_encode_path");
 
-                                                                model7.setStudyModeSyllebus(study_mode_Syllebus);
+                                                        modelCourseThumbnail.setCover_code_image(coverPhoto);
 
-                                                                JSONObject jObjectCourse = objectCourse2.getJSONObject("course");
+                                                        detailListCourseThumbnail.add(modelCourseThumbnail);
 
-                                                                //for parsing course strings
+                                                        //model.setmArrayListThumbnails(detailListCourseThumbnail);
 
+                                                        //for parsing Updated by strings
+                                                        JSONObject jObjectUpdatedBy = objectCourse2.getJSONObject("UpdatedBy");
 
-                                                                DetailDataModelCourses model8 = new DetailDataModelCourses();
+                                                        detailList9 = new ArrayList<DetailDataModelCourses>();
+                                                        DetailDataModelCourses model9 = new DetailDataModelCourses();
 
-                                                                String course_codeCourse = jObjectCourse.getString("course_code");
-                                                                String course_levelCourse = jObjectCourse.getString("course_level");
-                                                                String idCourse = jObjectCourse.getString("id");
-                                                                String promovideoCourse = jObjectCourse.getString("promovideo");
-                                                                String titleCourse = jObjectCourse.getString("title");
+                                                        String education_statusUpdatedBy = jObjectUpdatedBy.getString("education_status");
+                                                        String emailUpdatedBy = jObjectUpdatedBy.getString("email");
+                                                        String idUpdatedBy = jObjectUpdatedBy.getString("id");
+                                                        String nameUpdatedBy = jObjectUpdatedBy.getString("name");
+                                                        String phoneUpdatedBy = jObjectUpdatedBy.getString("phone");
+                                                        String UserInfoUpdatedBy = jObjectUpdatedBy.getString("UserInfo");
+                                                        String usernameUpdatedBy = jObjectUpdatedBy.getString("username");
 
-                                                                model8.setCourse_codeCourse(course_codeCourse);
-                                                                model8.setCourse_levelCourse(course_levelCourse);
-                                                                model8.setIdCourse(idCourse);
-                                                                model8.setPromovideoCourse(promovideoCourse);
-                                                                model8.setTitleCourse(titleCourse);
+                                                        model9.setEducation_statusUpdatedBy(education_statusUpdatedBy);
+                                                        model9.setEmailUpdatedBy(emailUpdatedBy);
+                                                        model9.setIdUpdatedBy(idUpdatedBy);
+                                                        model9.setNameUpdatedBy(nameUpdatedBy);
+                                                        model9.setPhoneUpdatedBy(phoneUpdatedBy);
+                                                        model9.setUserInfoUpdatedBy(UserInfoUpdatedBy);
+                                                        model9.setUsernameUpdatedBy(usernameUpdatedBy);
 
-                                                                //for parsing thumbnails of courses
+                                                        //for parsing owner strings
+                                                        JSONObject jObjectOwner = objectCourse2.getJSONObject("owner");
 
-                                                                DetailDataModelCoursesThumbnails modelCourseThumbnail = new DetailDataModelCoursesThumbnails();
+                                                        DetailDataModelCourses model10 = new DetailDataModelCourses();
 
-                                                                JSONObject thumnail = jObjectCourse.getJSONObject("thumnail");
-                                                                String coverPhoto = thumnail.getString("file_encode_path");
+                                                        String updated_at_owner = jObjectOwner.getString("updated_at");
+                                                        String institution_name_owner = jObjectOwner.getString("institution_name");
+                                                        String id_owner = jObjectOwner.getString("id");
+                                                        String created_at_owner = jObjectOwner.getString("created_at");
 
-                                                                modelCourseThumbnail.setCover_code_image(coverPhoto);
+                                                        model10.setUpdated_at_owner(updated_at_owner);
+                                                        model10.setInstitution_name_owner(institution_name_owner);
+                                                        model10.setId_owner(id_owner);
+                                                        model10.setCreated_at_owner(created_at_owner);
 
-                                                                detailListCourseThumbnail.add(modelCourseThumbnail);
+                                                        detailList10.add((model10));
 
-                                                                //model.setmArrayListThumbnails(detailListCourseThumbnail);
 
-                                                                //for parsing Updated by strings
-                                                                JSONObject jObjectUpdatedBy = objectCourse2.getJSONObject("UpdatedBy");
 
-                                                                detailList9 = new ArrayList<DetailDataModelCourses>();
-                                                                DetailDataModelCourses model9 = new DetailDataModelCourses();
+                                                        //for parsing created by strings
+                                                        JSONObject jObjectCreatedBy = objectCourse2.getJSONObject("CreatedBy");
 
-                                                                String education_statusUpdatedBy = jObjectUpdatedBy.getString("education_status");
-                                                                String emailUpdatedBy = jObjectUpdatedBy.getString("email");
-                                                                String idUpdatedBy = jObjectUpdatedBy.getString("id");
-                                                                String nameUpdatedBy = jObjectUpdatedBy.getString("name");
-                                                                String phoneUpdatedBy = jObjectUpdatedBy.getString("phone");
-                                                                String UserInfoUpdatedBy = jObjectUpdatedBy.getString("UserInfo");
-                                                                String usernameUpdatedBy = jObjectUpdatedBy.getString("username");
-
-                                                                model9.setEducation_statusUpdatedBy(education_statusUpdatedBy);
-                                                                model9.setEmailUpdatedBy(emailUpdatedBy);
-                                                                model9.setIdUpdatedBy(idUpdatedBy);
-                                                                model9.setNameUpdatedBy(nameUpdatedBy);
-                                                                model9.setPhoneUpdatedBy(phoneUpdatedBy);
-                                                                model9.setUserInfoUpdatedBy(UserInfoUpdatedBy);
-                                                                model9.setUsernameUpdatedBy(usernameUpdatedBy);
-
-                                                                //for parsing owner strings
-                                                                JSONObject jObjectOwner = objectCourse2.getJSONObject("owner");
-
-                                                                DetailDataModelCourses model10 = new DetailDataModelCourses();
-
-                                                                String updated_at_owner = jObjectOwner.getString("updated_at");
-                                                                String institution_name_owner = jObjectOwner.getString("institution_name");
-                                                                String id_owner = jObjectOwner.getString("id");
-                                                                String created_at_owner = jObjectOwner.getString("created_at");
-
-                                                                model10.setUpdated_at_owner(updated_at_owner);
-                                                                model10.setInstitution_name_owner(institution_name_owner);
-                                                                model10.setId_owner(id_owner);
-                                                                model10.setCreated_at_owner(created_at_owner);
-
-                                                                detailList10.add((model10));
-
-
-
-                                                                //for parsing created by strings
-                                                                JSONObject jObjectCreatedBy = objectCourse2.getJSONObject("CreatedBy");
-
-                                                                detailList11 = new ArrayList<DetailDataModelCourses>();
-                                                                DetailDataModelCourses model11 = new DetailDataModelCourses();
-
-                                                                String education_statusCreatedBy = jObjectCreatedBy.getString("education_status");
-                                                                String emailCreatedBy = jObjectCreatedBy.getString("email");
-                                                                String idCreatedBy = jObjectCreatedBy.getString("id");
-                                                                String nameCreatedBy = jObjectCreatedBy.getString("name");
-                                                                String phoneCreatedBy = jObjectCreatedBy.getString("phone");
-                                                                String UserInfoCreatedBy = jObjectCreatedBy.getString("UserInfo");
-                                                                String usernameCreatedBy = jObjectCreatedBy.getString("username");
-
-                                                                model11.setEducation_statusUpdatedBy(education_statusCreatedBy);
-                                                                model11.setEmailUpdatedBy(emailCreatedBy);
-                                                                model11.setIdCreatedBy(idCreatedBy);
-                                                                model11.setNameCreatedBy(nameCreatedBy);
-                                                                model11.setPhoneCreatedBy(phoneCreatedBy);
-                                                                model11.setUserInfoCreatedBy(UserInfoCreatedBy);
-                                                                model11.setUsernameCreatedBy(usernameCreatedBy);
-
-                                                                // parsing from syllebus
-
-                                                                for (int ii = 0; ii < jObject.length(); ii++) {
-                                                                    JSONObject jSObject2 = jObject.getJSONObject("" + ii);
-
-                                                                    //for parsing lessons > {0} > "syllebus" > "0" > "data"
-                                                                    detailList6 = new ArrayList<DetailDataModelCourses>();
-
-                                                                    DetailDataModelCourses model6 = new DetailDataModelCourses();
-
-                                                                    try {
-                                                                        for (int m = 0; m < jSObject2.length() - 1; m++) {
-                                                                            JSONArray jSonLessons = (JSONArray) jSObject2.get("lessons");
-                                                                            JSONObject objectAgainAnotherLesson = (JSONObject) jSonLessons.get(m);
-
-                                                                            String idLesson = objectAgainAnotherLesson.getString("id");
-                                                                            String nameLesson = objectAgainAnotherLesson.getString("name");
-                                                                            String orderLesson = objectAgainAnotherLesson.getString("order");
-                                                                            String fixedLesson = objectAgainAnotherLesson.getString("fixed");
-
-                                                                            model6.setIdLesson(idLesson);
-                                                                            model6.setNameLesson(nameLesson);
-                                                                            model6.setOrderLessom(orderLesson);
-                                                                            model6.setFixedLesson(fixedLesson);
-                                                                        }
-                                                                    } catch (Exception ex) {
-                                                                        Log.d("", "onResponse: ");
-                                                                    }
-
-                                                                    // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
-
-
-                                                                    for (int lmn = 0; lmn < jSObject2.length(); lmn++) {
-
-
-                                                                        JSONObject jSObject3 = jSObject2.getJSONObject("" + lmn);
-                                                                        JSONObject jObjAgain = jSObject3.getJSONObject("data");
-
-                                                                       //*String allow_preview = jObjAgain.getString("allow_preview");
-                                                                        String ans_rand = jObjAgain.getString("ans_rand");
-                                                                        String attempt = jObjAgain.getString("attempt");
-                                                                        String choose_video_type = jObjAgain.getString("choose_video_type");
-                                                                        String content_type = jObjAgain.getString("content_type");
-                                                                        String desc = jObjAgain.getString("desc");
-                                                                        String downloadable = jObjAgain.getString("downloadable");
-                                                                        String mDuration = jObjAgain.getString("duration");
-                                                                        String forward = jObjAgain.getString("forward");
-                                                                        String peer_limit = jObjAgain.getString("peer_limit");
-                                                                        String peer_review = jObjAgain.getString("peer_review");
-                                                                        String pulse = jObjAgain.getString("pulse");
-                                                                        String ques_rand = jObjAgain.getString("ques_rand");
-                                                                        String quiz = jObjAgain.getString("quiz");
-                                                                        String time_unit = jObjAgain.getString("time_unit");
-                                                                        String mTitle = jObjAgain.getString("title");
-
-                                                                       // model2.setmAllowPreview(allow_preview);
-                                                                        model2.setmAnsRand(ans_rand);
-                                                                        model2.setmAttempt(attempt);
-                                                                        model2.setmChooseVideoType(choose_video_type);
-                                                                        model2.setmContentType(content_type);
-                                                                        model2.setmDesc(desc);
-                                                                        model2.setmDownloadable(downloadable);
-                                                                        model2.setmDurationAnother(mDuration);
-                                                                        model2.setmForward(forward);
-                                                                        model2.setmPeerLimit(peer_limit);
-                                                                        model2.setmPeerReview(peer_review);
-                                                                        model2.setmPulse(pulse);
-                                                                        model2.setmQuesRand(ques_rand);
-                                                                        model2.setmQuiz(quiz);
-                                                                        model2.setmTimeUnit(time_unit);
-                                                                        //model2.setmTitleAnother(mTitle);//*
-
-                                                                        // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
-
-                                                                        JSONObject jObjAgain2 = jObjAgain.getJSONObject("file_type");
-
-                                                                        detailListFileType = new ArrayList<DetailDataModelCourses>();
-                                                                        DetailDataModelCourses modelFileType = new DetailDataModelCourses();
-
-                                                                        String pdf = jObjAgain2.getString("pdf");
-                                                                        String excel = jObjAgain2.getString("excel");
-                                                                        String doc = jObjAgain2.getString("doc");
-                                                                        String csv = jObjAgain2.getString("csv");
-
-                                                                        modelFileType.setmPdf(pdf);
-                                                                        modelFileType.setmXcel(excel);
-                                                                        modelFileType.setmDoc(doc);
-                                                                        modelFileType.setmCsv(csv);
-
-                                                                        // For parsing object "Content" > {0} > {0} > "syllebus" > "0" > "data"
-
-                                                                        DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
-
-                                                                        JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
-
-                                                                            String cat_id = jObjAgainContent.getString("cat_id");
-                                                                            String content_id = jObjAgainContent.getString("content_id");
-                                                                            String copy_protect = jObjAgainContent.getString("copy_protect");
-                                                                            String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
-                                                                            String created_at_content = jObjAgainContent.getString("created_at");
-                                                                            String created_by_content = jObjAgainContent.getString("created_by");
-                                                                            String deleted_at_content = jObjAgainContent.getString("deleted_at");
-                                                                            String description_content = jObjAgainContent.getString("description");
-                                                                            String file_encode_path = jObjAgainContent.getString("file_encode_path");
-                                                                            String file_name = jObjAgainContent.getString("file_name");
-                                                                            String id_content = jObjAgainContent.getString("id");
-                                                                            String license = jObjAgainContent.getString("license");
-                                                                            String owner_id = jObjAgainContent.getString("owner_id");
-                                                                            String paid = jObjAgainContent.getString("paid");
-                                                                            String price = jObjAgainContent.getString("price");
-                                                                            String shareable = jObjAgainContent.getString("shareable");
-                                                                            String size = jObjAgainContent.getString("size");
-                                                                            String status_content = jObjAgainContent.getString("status");
-                                                                            String tags = jObjAgainContent.getString("tags");
-                                                                            String title_content = jObjAgainContent.getString("title");
-                                                                            String type_content = jObjAgainContent.getString("type");
-                                                                            String updated_at_content = jObjAgainContent.getString("updated_at");
-                                                                            String updated_by_content = jObjAgainContent.getString("updated_by");
-
-                                                                            modelCourseContents.setPaid(paid);
-                                                                            modelCourseContents.setPrice(price);
-                                                                            modelCourseContents.setShareable(shareable);
-                                                                            modelCourseContents.setStatus_content(status_content);
-                                                                            modelCourseContents.setSize(size);
-                                                                            modelCourseContents.setTags(tags);
-                                                                            modelCourseContents.setTitle_content(title_content);
-                                                                            modelCourseContents.setType_content(type_content);
-                                                                            modelCourseContents.setUpdated_at_content(updated_at_content);
-                                                                            modelCourseContents.setUpdated_by_content(updated_by_content);
-                                                                            modelCourseContents.setCat_id(cat_id);
-                                                                            modelCourseContents.setContent_id(content_id);
-                                                                            modelCourseContents.setCopy_protect(copy_protect);
-                                                                            modelCourseContents.setCover_thumb_img(cover_thumb_img);
-                                                                            modelCourseContents.setCreated_by_content(created_by_content);
-                                                                            modelCourseContents.setDeleted_at_content(deleted_at_content);
-                                                                            modelCourseContents.setDescription_content(description_content);
-                                                                            modelCourseContents.setFile_encode_path(file_encode_path);
-                                                                            modelCourseContents.setFile_name(file_name);
-                                                                            modelCourseContents.setId_content(id_content);
-                                                                            modelCourseContents.setLicense(license);
-                                                                            modelCourseContents.setOwner_id(owner_id);
-                                                                            modelCourseContents.setCreated_at_content(created_at_content);
-
-                                                                        mContentArrayListNew.add(modelCourseContents);
-
-
-
-                                                                        detailList5 = new ArrayList<DetailDataModelCourses>();
-
-                                                                        DetailDataModelCourses model5 = new DetailDataModelCourses();
-
-                                                                        try {
-                                                                            for (int l = 0; l < jSObject3.length() - 1; l++) {
-                                                                                JSONArray jSonObjMultiQ = (JSONArray) jSObject3.get("multi_ques_list");
-                                                                                JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(l);
-
-                                                                                String mPulse = objectAgainAnother2.getString("pulse");
-
-                                                                                model5.setPulse(mPulse);
-                                                                            }
-                                                                        } catch (Exception ex) {
-                                                                            Log.d("", "onResponse: ");
-                                                                        }
-
-
-                                                                    }
+                                                        detailList11 = new ArrayList<DetailDataModelCourses>();
+                                                        DetailDataModelCourses model11 = new DetailDataModelCourses();
+
+                                                        String education_statusCreatedBy = jObjectCreatedBy.getString("education_status");
+                                                        String emailCreatedBy = jObjectCreatedBy.getString("email");
+                                                        String idCreatedBy = jObjectCreatedBy.getString("id");
+                                                        String nameCreatedBy = jObjectCreatedBy.getString("name");
+                                                        String phoneCreatedBy = jObjectCreatedBy.getString("phone");
+                                                        String UserInfoCreatedBy = jObjectCreatedBy.getString("UserInfo");
+                                                        String usernameCreatedBy = jObjectCreatedBy.getString("username");
+
+                                                        model11.setEducation_statusUpdatedBy(education_statusCreatedBy);
+                                                        model11.setEmailUpdatedBy(emailCreatedBy);
+                                                        model11.setIdCreatedBy(idCreatedBy);
+                                                        model11.setNameCreatedBy(nameCreatedBy);
+                                                        model11.setPhoneCreatedBy(phoneCreatedBy);
+                                                        model11.setUserInfoCreatedBy(UserInfoCreatedBy);
+                                                        model11.setUsernameCreatedBy(usernameCreatedBy);
+
+                                                        // parsing from syllebus
+
+
+                                                        for (int ii = 0; ii < jObject.length(); ii++) {
+                                                            JSONObject jSObject2 = jObject.getJSONObject("" + ii);
+
+                                                            //for parsing lessons > {0} > "syllebus" > "0" > "data"
+                                                            detailList6 = new ArrayList<DetailDataModelCourses>();
+
+                                                            DetailDataModelCourses model6 = new DetailDataModelCourses();
+
+                                                            try {
+                                                                for (int m = 0; m < jSObject2.length() - 1; m++) {
+                                                                    JSONArray jSonLessons = (JSONArray) jSObject2.get("lessons");
+                                                                    JSONObject objectAgainAnotherLesson = (JSONObject) jSonLessons.get(m);
+
+                                                                    String idLesson = objectAgainAnotherLesson.getString("id");
+                                                                    String nameLesson = objectAgainAnotherLesson.getString("name");
+                                                                    String orderLesson = objectAgainAnotherLesson.getString("order");
+                                                                    String fixedLesson = objectAgainAnotherLesson.getString("fixed");
+
+                                                                    model6.setIdLesson(idLesson);
+                                                                    model6.setNameLesson(nameLesson);
+                                                                    model6.setOrderLessom(orderLesson);
+                                                                    model6.setFixedLesson(fixedLesson);
                                                                 }
+                                                            } catch (Exception ex) {
+                                                                Log.d("", "onResponse: ");
+                                                            }
+
+                                                            // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                                            mContentArrayListNew = new ArrayList<>();
+
+                                                            for (int lmn = 0; lmn < jSObject2.length(); lmn++)
+                                                            {
+                                                                JSONObject jSObject3 = jSObject2.getJSONObject("" + lmn);
+                                                                JSONObject jObjAgain = jSObject3.getJSONObject("data");
+
+                                                                //*String allow_preview = jObjAgain.getString("allow_preview");
+                                                                String ans_rand = jObjAgain.getString("ans_rand");
+                                                                String attempt = jObjAgain.getString("attempt");
+                                                                String choose_video_type = jObjAgain.getString("choose_video_type");
+                                                                String content_type = jObjAgain.getString("content_type");
+                                                                String desc = jObjAgain.getString("desc");
+                                                                String downloadable = jObjAgain.getString("downloadable");
+                                                                String mDuration = jObjAgain.getString("duration");
+                                                                String forward = jObjAgain.getString("forward");
+                                                                String peer_limit = jObjAgain.getString("peer_limit");
+                                                                String peer_review = jObjAgain.getString("peer_review");
+                                                                String pulse = jObjAgain.getString("pulse");
+                                                                String ques_rand = jObjAgain.getString("ques_rand");
+                                                                String quiz = jObjAgain.getString("quiz");
+                                                                String time_unit = jObjAgain.getString("time_unit");
+                                                                String mTitle = jObjAgain.getString("title");
+
+                                                                // model2.setmAllowPreview(allow_preview);
+                                                                model2.setmAnsRand(ans_rand);
+                                                                model2.setmAttempt(attempt);
+                                                                model2.setmChooseVideoType(choose_video_type);
+                                                                model2.setmContentType(content_type);
+                                                                model2.setmDesc(desc);
+                                                                model2.setmDownloadable(downloadable);
+                                                                model2.setmDurationAnother(mDuration);
+                                                                model2.setmForward(forward);
+                                                                model2.setmPeerLimit(peer_limit);
+                                                                model2.setmPeerReview(peer_review);
+                                                                model2.setmPulse(pulse);
+                                                                model2.setmQuesRand(ques_rand);
+                                                                model2.setmQuiz(quiz);
+                                                                model2.setmTimeUnit(time_unit);
+                                                                //model2.setmTitleAnother(mTitle);//*
+
+                                                                // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                                                JSONObject jObjAgain2 = jObjAgain.getJSONObject("file_type");
+
+                                                                detailListFileType = new ArrayList<DetailDataModelCourses>();
+                                                                DetailDataModelCourses modelFileType = new DetailDataModelCourses();
+
+                                                                String pdf = jObjAgain2.getString("pdf");
+                                                                String excel = jObjAgain2.getString("excel");
+                                                                String doc = jObjAgain2.getString("doc");
+                                                                String csv = jObjAgain2.getString("csv");
+
+                                                                modelFileType.setmPdf(pdf);
+                                                                modelFileType.setmXcel(excel);
+                                                                modelFileType.setmDoc(doc);
+                                                                modelFileType.setmCsv(csv);
+
+                                                                // For parsing object "Content" > {0} > {0} > "syllebus" > "0" > "data"
+
+                                                                DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
+
+                                                                JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
+
+                                                                String cat_id = jObjAgainContent.getString("cat_id");
+                                                                String content_id = jObjAgainContent.getString("content_id");
+                                                                String copy_protect = jObjAgainContent.getString("copy_protect");
+                                                                String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
+                                                                String created_at_content = jObjAgainContent.getString("created_at");
+                                                                String created_by_content = jObjAgainContent.getString("created_by");
+                                                                String deleted_at_content = jObjAgainContent.getString("deleted_at");
+                                                                String description_content = jObjAgainContent.getString("description");
+                                                                String file_encode_path = jObjAgainContent.getString("file_encode_path");
+                                                                String file_name = jObjAgainContent.getString("file_name");
+                                                                String id_content = jObjAgainContent.getString("id");
+                                                                String license = jObjAgainContent.getString("license");
+                                                                String owner_id = jObjAgainContent.getString("owner_id");
+                                                                String paid = jObjAgainContent.getString("paid");
+                                                                String price = jObjAgainContent.getString("price");
+                                                                String shareable = jObjAgainContent.getString("shareable");
+                                                                String size = jObjAgainContent.getString("size");
+                                                                String status_content = jObjAgainContent.getString("status");
+                                                                String tags = jObjAgainContent.getString("tags");
+                                                                String title_content = jObjAgainContent.getString("title");
+                                                                String type_content = jObjAgainContent.getString("type");
+                                                                String updated_at_content = jObjAgainContent.getString("updated_at");
+                                                                String updated_by_content = jObjAgainContent.getString("updated_by");
+
+                                                                modelCourseContents.setPaid(paid);
+                                                                modelCourseContents.setPrice(price);
+                                                                modelCourseContents.setShareable(shareable);
+                                                                modelCourseContents.setStatus_content(status_content);
+                                                                modelCourseContents.setSize(size);
+                                                                modelCourseContents.setTags(tags);
+                                                                modelCourseContents.setTitle_content(title_content);
+                                                                modelCourseContents.setType_content(type_content);
+                                                                modelCourseContents.setUpdated_at_content(updated_at_content);
+                                                                modelCourseContents.setUpdated_by_content(updated_by_content);
+                                                                modelCourseContents.setCat_id(cat_id);
+                                                                modelCourseContents.setContent_id(content_id);
+                                                                modelCourseContents.setCopy_protect(copy_protect);
+                                                                modelCourseContents.setCover_thumb_img(cover_thumb_img);
+                                                                modelCourseContents.setCreated_by_content(created_by_content);
+                                                                modelCourseContents.setDeleted_at_content(deleted_at_content);
+                                                                modelCourseContents.setDescription_content(description_content);
+                                                                modelCourseContents.setFile_encode_path(file_encode_path);
+                                                                modelCourseContents.setFile_name(file_name);
+                                                                modelCourseContents.setId_content(id_content);
+                                                                modelCourseContents.setLicense(license);
+                                                                modelCourseContents.setOwner_id(owner_id);
+                                                                modelCourseContents.setCreated_at_content(created_at_content);
+
+
+                                                                mContentArrayListNew.add(modelCourseContents);
+
+
+
+                                                                detailList5 = new ArrayList<DetailDataModelCourses>();
+
+                                                                DetailDataModelCourses model5 = new DetailDataModelCourses();
+
+                                                                try {
+                                                                    for (int l = 0; l < jSObject3.length() - 1; l++) {
+                                                                        JSONArray jSonObjMultiQ = (JSONArray) jSObject3.get("multi_ques_list");
+                                                                        JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(l);
+
+                                                                        String mPulse = objectAgainAnother2.getString("pulse");
+
+                                                                        model5.setPulse(mPulse);
+                                                                    }
+                                                                } catch (Exception ex) {
+                                                                    Log.d("", "onResponse: ");
+                                                                }
+
+
                                                             }
 
                                                         }
-                                                        catch (Exception ex){
-                                                            Log.d("", "onResponse: ");
-                                                        }
 
-                                                        detailListCourseDetailContentss.add(mContentArrayListNew);
-
-                                                        GlobalVar.gEnrolledInstitution=detailList10;
                                                     }
-                                                } catch (Exception ex) {
+
+
+                                                }
+                                                catch (Exception ex){
                                                     Log.d("", "onResponse: ");
                                                 }
 
+
+                                                detailListCourseDetailContentss.add(mContentArrayListNew);
+
+                                                GlobalVar.gEnrolledInstitution=detailList10;
                                             }
-                                            catch (Exception ex){
-                                                Log.d("", "onResponse: ");
-                                            }
+                                        } catch (Exception ex) {
+                                            Log.d("", "onResponse: ");
+                                        }
+
+                                    }
+                                    catch (Exception ex){
+                                        Log.d("", "onResponse: ");
+                                    }
 
                                     modelAlter.setmArrayListThumbnails(detailListCourseThumbnail);
                                     modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
                                     detailListCourse.add(modelAlter);
 
-                                        /*ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
+                                    /*ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
 
-                                        mArrayList = contentArray.get(0).toArray();
+                                    mArrayList = contentArray.get(0).toArray();
 
-                                        GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
+                                    GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
 
-                                        GlobalVar.courseContentDetailList=detailListCourse;
+                                    GlobalVar.courseContentDetailList=detailListCourse;
 
                                 }
                                 catch (Exception ex){

@@ -633,6 +633,8 @@ public class RecomendedActivity extends AppCompatActivity {
 
                                 detailListCourse.add(model);
 
+                                String test="";
+
                             }
 
                             setRecyclerView();
