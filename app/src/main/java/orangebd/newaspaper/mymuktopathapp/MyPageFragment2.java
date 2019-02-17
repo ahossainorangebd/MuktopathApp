@@ -25,12 +25,6 @@ public class MyPageFragment2 extends Fragment {
 
     private View view;
 
-    private LinearLayout allCourseBtn;
-    private LinearLayout recomendedBtn;
-    private LinearLayout myPageBtn;
-    private LinearLayout downloadsBtn;
-    private LinearLayout profileBtn;
-
     private TextView mCourseTitle;
     private TextView mCourseOwner;
 
@@ -50,49 +44,9 @@ public class MyPageFragment2 extends Fragment {
 
         context=getContext();
 
-        allCourseBtn = view.findViewById(R.id.allCourseBtnId);
-        recomendedBtn = view.findViewById(R.id.recomendedBtnId);
-        myPageBtn = view.findViewById(R.id.myPageBtnId);
-        downloadsBtn = view.findViewById(R.id.downloadsBtnId);
-        profileBtn = view.findViewById(R.id.profilePageBtnId);
         mCourseDetailCoverImage = view.findViewById(R.id.CourseDetailCoverImage);
 
 
-        allCourseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(context, MainActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        recomendedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(context, RecomendedActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        downloadsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i=new Intent(context,DownloadActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        profileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i=new Intent(context,ProfileActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
 
         startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);
         startMyPageBtn.setOnClickListener(new View.OnClickListener() {

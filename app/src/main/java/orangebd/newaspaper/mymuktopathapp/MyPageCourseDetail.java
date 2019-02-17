@@ -2,6 +2,7 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,9 @@ public class MyPageCourseDetail extends AppCompatActivity {
     private String DetailDescription;
     private String title;
 
+    TabsPagerAdapterMyPageDetail myAdapter;
+    SlidingTabLayout mSlidingTabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +31,18 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         mContext=this;
 
+        final ViewPager vpPager = findViewById(R.id.viewpagerNews);
+        myAdapter = new TabsPagerAdapterMyPageDetail(getSupportFragmentManager());
+        vpPager.setAdapter(myAdapter);
+
+        //Toast.makeText(VideoActivity.this,"Onclicklistner",Toast.LENGTH_LONG).show();
+
+        mSlidingTabLayout = findViewById(R.id.sliding_tabs);
+
+        mSlidingTabLayout.setDistributeEvenly(true);
 
         ImgUrl = getIntent().getExtras().getString("img");
         title = getIntent().getExtras().getString("ttl");
-
-
 
         setRecyclerView();
 
@@ -50,7 +61,6 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         new GetCoursesContents().execute();
     }
-
 
     public class GetCoursesContents extends AsyncTask<String, Void, Void> {
         @Override

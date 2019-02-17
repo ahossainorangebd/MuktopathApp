@@ -25,12 +25,6 @@ public class MyPageFragment1 extends Fragment {
 
     private View view;
 
-    private LinearLayout allCourseBtn;
-    private LinearLayout recomendedBtn;
-    private LinearLayout myPageBtn;
-    private LinearLayout downloadsBtn;
-    private LinearLayout profileBtn;
-
     private TextView mCourseTitle;
     private TextView mCourseOwner;
 
@@ -42,6 +36,8 @@ public class MyPageFragment1 extends Fragment {
 
     private ImageView mCourseDetailCoverImage;
 
+    private LinearLayout mAssignmentSection;
+
     //GlobalVar.gEnrollCourseList
 
     @Override
@@ -51,48 +47,7 @@ public class MyPageFragment1 extends Fragment {
 
         context=getContext();
 
-        allCourseBtn = view.findViewById(R.id.allCourseBtnId);
-        recomendedBtn = view.findViewById(R.id.recomendedBtnId);
-        myPageBtn = view.findViewById(R.id.myPageBtnId);
-        downloadsBtn = view.findViewById(R.id.downloadsBtnId);
-        profileBtn = view.findViewById(R.id.profilePageBtnId);
         mCourseDetailCoverImage = view.findViewById(R.id.CourseDetailCoverImage);
-
-        allCourseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(context, MainActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        recomendedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(context, RecomendedActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        downloadsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i=new Intent(context,DownloadActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
-        profileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i=new Intent(context,ProfileActivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
 
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails();
@@ -115,6 +70,7 @@ public class MyPageFragment1 extends Fragment {
         mExmNumberTtl = view.findViewById(R.id.examNumber);
         mAssignmentNumberTtl = view.findViewById(R.id.assignmentNumber);
         mContentNumberTtl = view.findViewById(R.id.contentNumber);
+        mAssignmentSection = view.findViewById(R.id.assignmentSection);
 
         final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(0).getmCourseAliasName();
         String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(0).getInstitution_name_owner();
@@ -131,6 +87,10 @@ public class MyPageFragment1 extends Fragment {
         mExmNumberTtl.setText(Integer.toString(mAssignmentNumbers));
         mAssignmentNumberTtl.setText(Integer.toString(mExamNumbers));
         mContentNumberTtl.setText(Integer.toString(mContentNumbers));
+
+        if(mAssignmentNumbers==0){
+            mAssignmentSection.setVisibility(View.INVISIBLE);
+        }
 
 
         startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);

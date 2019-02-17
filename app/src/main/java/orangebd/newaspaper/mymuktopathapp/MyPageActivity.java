@@ -55,6 +55,12 @@ public class MyPageActivity extends AppCompatActivity {
 
     private int newsIndex;
 
+    private LinearLayout allCourseBtn;
+    private LinearLayout recomendedBtn;
+    private LinearLayout myPageBtn;
+    private LinearLayout downloadsBtn;
+    private LinearLayout profileBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +77,50 @@ public class MyPageActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(view);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        allCourseBtn = findViewById(R.id.allCourseBtnId);
+        recomendedBtn = findViewById(R.id.recomendedBtnId);
+        myPageBtn = findViewById(R.id.myPageBtnId);
+        downloadsBtn = findViewById(R.id.downloadsBtnId);
+        profileBtn = findViewById(R.id.profilePageBtnId);
+
+
+        allCourseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(context, MainActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        recomendedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(context, RecomendedActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        downloadsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(context,DownloadActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(context,ProfileActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
         imageLogo=view.findViewById(R.id.rtvheadlogo);
 
