@@ -8,14 +8,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@drawable/muktopath_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/muktopath_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".AccountVerificationActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".CourseContentDetailActivity"></activity>
+        <activity android:name=".AccountVerificationActivity" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".CreateAccountActivity"
@@ -29,14 +30,14 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"/>
-        <activity android:name=".RecomendedActivity"/>
-        <activity android:name=".CourseDetailActivity"/>
-        <activity android:name=".SearchActivity"/>
-        <activity android:name=".ProfileActivity"/>
-        <activity android:name=".DownloadActivity"/>
-        <activity android:name=".MyPageActivity"/>
-        <activity android:name=".SplashActivity"/>
+            android:label="@string/title_activity_login" />
+        <activity android:name=".RecomendedActivity" />
+        <activity android:name=".CourseDetailActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".DownloadActivity" />
+        <activity android:name=".MyPageActivity" />
+        <activity android:name=".SplashActivity" />
         <activity android:name=".SelectCategoryActivity" />
         <activity android:name=".SelectACategoryActivity" />
         <activity android:name=".MyPageCourseDetail" />

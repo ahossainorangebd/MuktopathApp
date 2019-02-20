@@ -10,6 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class MyPageDetailFragment2 extends Fragment {
@@ -21,6 +25,9 @@ public class MyPageDetailFragment2 extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
+    private TextView unitOrderText;
+    private TextView unitTitleText;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,6 +35,26 @@ public class MyPageDetailFragment2 extends Fragment {
         view = inflater.inflate(R.layout.fragment_my_page_detail_fragment2, container, false);
 
         context=getContext();
+
+        ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits();
+        final ArrayList<DetailDataModelCoursesDetailContents> units = unitArray.get(GlobalVar.gNthCourse);
+
+        ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitQuizes = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
+        final ArrayList<DetailDataModelCoursesDetailContents> quizes = unitQuizes.get(GlobalVar.gNthCourse);
+
+        if(units.size()>1) {
+            final String unitTitle = units.get(1).getUnitNames();
+            final String unitOrder = units.get(1).getUnitOrders();
+
+            unitOrderText = view.findViewById(R.id.unitOrder);
+            unitTitleText = view.findViewById(R.id.unitTitleId);
+
+            unitOrderText.setText(unitOrder);
+            unitTitleText.setText(unitTitle);
+        }
+        else {
+            Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
+        }
 
         setRecyclerView();
 
@@ -68,6 +95,7 @@ public class MyPageDetailFragment2 extends Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
+            //adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
             adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
 
             recyclerView.setAdapter(adapter);

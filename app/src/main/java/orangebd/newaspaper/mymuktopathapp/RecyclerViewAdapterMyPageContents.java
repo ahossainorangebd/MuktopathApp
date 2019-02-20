@@ -90,6 +90,7 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
         final String titleText=dataSet.get(listPosition).getTitle_content();
+        final String descriptionText=dataSet.get(listPosition).getDescription_content();
         textViewName.setText(titleText);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -97,8 +98,9 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
             public void onClick(View v)
             {
 
-                Intent i = new Intent(mContext, CourseDetailActivity.class);
+                Intent i = new Intent(mContext, CourseContentDetailActivity.class);
                 i.putExtra("ttl", titleText);
+                i.putExtra("detail", descriptionText);
                 //i.putExtra("img", CoverPhoto);
                 try {
                     v.getContext().startActivity(i);

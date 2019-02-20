@@ -53,4 +53,6 @@ public class GlobalVar {
     public static String gUserType;
 
     public static String gBaseUrl="http://muktopaath.orangebd.com";
+
+    public static int gNthCourse;
 }

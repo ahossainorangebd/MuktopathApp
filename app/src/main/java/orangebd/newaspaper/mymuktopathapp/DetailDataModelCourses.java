@@ -139,6 +139,8 @@ public class DetailDataModelCourses
 
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseUnits;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs;
 
     public String getmAdmissionStatus() {
         return mAdmissionStatus;
@@ -1293,5 +1295,22 @@ public class DetailDataModelCourses
 
     public void setmAssignmentNumbers(int mAssignmentNumbers) {
         this.mAssignmentNumbers = mAssignmentNumbers;
+    }
+
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListCourseUnits() {
+        return mArrayListCourseUnits;
+    }
+
+    public void setmArrayListCourseUnits(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseUnits) {
+        this.mArrayListCourseUnits = mArrayListCourseUnits;
+    }
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListCourseQuizs() {
+        return mArrayListCourseQuizs;
+    }
+
+    public void setmArrayListCourseQuizs(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs) {
+        this.mArrayListCourseQuizs = mArrayListCourseQuizs;
     }
 }

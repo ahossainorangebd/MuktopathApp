@@ -10,6 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class MyPageDetailFragment4 extends Fragment {
@@ -21,6 +25,9 @@ public class MyPageDetailFragment4 extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
+    private TextView unitOrderText;
+    private TextView unitTitleText;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,7 +35,24 @@ public class MyPageDetailFragment4 extends Fragment {
 
         context=getContext();
 
-        setRecyclerView();
+        ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits();
+        final ArrayList<DetailDataModelCoursesDetailContents> units = unitArray.get(GlobalVar.gNthCourse);
+
+        if(units.size()>3) {
+            final String unitTitle = units.get(3).getUnitNames();
+            final String unitOrder = units.get(3).getUnitOrders();
+
+            unitOrderText = view.findViewById(R.id.unitOrder);
+            unitTitleText = view.findViewById(R.id.unitTitleId);
+
+            unitOrderText.setText(unitOrder);
+            unitTitleText.setText(unitTitle);
+        }
+        else {
+            Toast.makeText(context,"No more data to show",Toast.LENGTH_LONG).show();
+        }
+
+        //setRecyclerView();
 
         return view;
     }

@@ -10,7 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 
 
 public class MyPageDetailFragment1 extends Fragment {
@@ -22,6 +25,9 @@ public class MyPageDetailFragment1 extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
+    private TextView unitOrderText;
+    private TextView unitTitleText;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,6 +35,18 @@ public class MyPageDetailFragment1 extends Fragment {
         view = inflater.inflate(R.layout.fragment_my_page_detail_fragment1, container, false);
 
         context=getContext();
+
+        ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits();
+        final ArrayList<DetailDataModelCoursesDetailContents> units = unitArray.get(GlobalVar.gNthCourse);
+
+        final String unitTitle = units.get(0).getUnitNames();
+        final String unitOrder = units.get(0).getUnitOrders();
+
+        unitOrderText = view.findViewById(R.id.unitOrder);
+        unitTitleText = view.findViewById(R.id.unitTitleId);
+
+        unitOrderText.setText(unitOrder);
+        unitTitleText.setText(unitTitle);
 
         setRecyclerView();
 

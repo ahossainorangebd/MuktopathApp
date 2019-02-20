@@ -3,6 +3,32 @@ package orangebd.newaspaper.mymuktopathapp;
 public class DetailDataModelCoursesDetailContents
 {
 
+    // For model of Quizes
+
+    private String mQuizTitle;
+
+
+    // for model of Units
+
+    private String unitNames;
+    private String unitOrders;
+
+    public String getUnitNames() {
+        return unitNames;
+    }
+
+    public void setUnitNames(String unitNames) {
+        this.unitNames = unitNames;
+    }
+
+    public String getUnitOrders() {
+        return unitOrders;
+    }
+
+    public void setUnitOrders(String unitOrders) {
+        this.unitOrders = unitOrders;
+    }
+
     //Dor parsing the "content" of last object inside
 
     private String paid;
@@ -211,5 +237,13 @@ public class DetailDataModelCoursesDetailContents
 
     public void setCreated_at_content(String created_at_content) {
         this.created_at_content = created_at_content;
+    }
+
+    public String getmQuizTitle() {
+        return mQuizTitle;
+    }
+
+    public void setmQuizTitle(String mQuizTitle) {
+        this.mQuizTitle = mQuizTitle;
     }
 }

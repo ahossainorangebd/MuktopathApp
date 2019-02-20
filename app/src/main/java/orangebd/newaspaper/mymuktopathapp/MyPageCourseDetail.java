@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class MyPageCourseDetail extends AppCompatActivity {
 
@@ -18,9 +22,16 @@ public class MyPageCourseDetail extends AppCompatActivity {
     private String ImgUrl;
     private String DetailDescription;
     private String title;
+    private String ownerName;
+    private int nthCourse;
 
     TabsPagerAdapterMyPageDetail myAdapter;
     SlidingTabLayout mSlidingTabLayout;
+
+    private ImageView mCourseDetailCoverImage;
+
+    private TextView mCourseTitle;
+    private TextView mCourseOwner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,10 @@ public class MyPageCourseDetail extends AppCompatActivity {
         getSupportActionBar().hide();
 
         mContext=this;
+
+        mCourseDetailCoverImage = findViewById(R.id.CourseDetailCoverImage);
+        mCourseTitle = findViewById(R.id.courseTitle);
+        mCourseOwner = findViewById(R.id.ownerName);
 
         final ViewPager vpPager = findViewById(R.id.viewpagerNews);
         myAdapter = new TabsPagerAdapterMyPageDetail(getSupportFragmentManager());
@@ -43,12 +58,28 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         ImgUrl = getIntent().getExtras().getString("img");
         title = getIntent().getExtras().getString("ttl");
+        ownerName = getIntent().getExtras().getString("oname");
 
-        setRecyclerView();
+        nthCourse = getIntent().getExtras().getInt("nthcourse");
+
+        GlobalVar.gNthCourse=nthCourse;
+
+
+        try {
+            Picasso.with(mContext)
+                    .load(ImgUrl)
+                    .into(mCourseDetailCoverImage);
+        }
+        catch (Exception ex){}
+
+        mCourseTitle.setText(title);
+        mCourseOwner.setText(ownerName);
+
+        //setRecyclerView();
 
     }
 
-    private void setRecyclerView() {
+    /*private void setRecyclerView() {
 
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -59,10 +90,10 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         recyclerView.setNestedScrollingEnabled(false);
 
-        new GetCoursesContents().execute();
-    }
+       // new GetCoursesContents().execute();
+    }*/
 
-    public class GetCoursesContents extends AsyncTask<String, Void, Void> {
+    /*public class GetCoursesContents extends AsyncTask<String, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -88,6 +119,6 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
             //mProgressSpinner.setVisibility(View.GONE);
         }
-    }
+    }*/
 
 }

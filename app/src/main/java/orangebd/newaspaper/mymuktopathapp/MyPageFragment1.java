@@ -37,6 +37,8 @@ public class MyPageFragment1 extends Fragment {
     private ImageView mCourseDetailCoverImage;
 
     private LinearLayout mAssignmentSection;
+    private LinearLayout mExamNumberSection;
+    private LinearLayout mContentNumberSection;
 
     //GlobalVar.gEnrollCourseList
 
@@ -70,14 +72,18 @@ public class MyPageFragment1 extends Fragment {
         mExmNumberTtl = view.findViewById(R.id.examNumber);
         mAssignmentNumberTtl = view.findViewById(R.id.assignmentNumber);
         mContentNumberTtl = view.findViewById(R.id.contentNumber);
+
         mAssignmentSection = view.findViewById(R.id.assignmentSection);
+        mContentNumberSection = view.findViewById(R.id.contentNumberSection);
+        mExamNumberSection = view.findViewById(R.id.mExamNumberSection);
 
         final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(0).getmCourseAliasName();
-        String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(0).getInstitution_name_owner();
+        final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(0).getInstitution_name_owner();
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
         final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(0);
 
+        final int nthCourse= 0;
         int mAssignmentNumbers=GlobalVar.gEnrolledInstitution.get(0).getmAssignmentNumbers();
         int mExamNumbers=GlobalVar.gEnrolledInstitution.get(0).getmExamNumbers();
         int mContentNumbers = contents.size();
@@ -92,6 +98,14 @@ public class MyPageFragment1 extends Fragment {
             mAssignmentSection.setVisibility(View.INVISIBLE);
         }
 
+        if(mExamNumbers==0){
+            mExamNumberSection.setVisibility(View.INVISIBLE);
+        }
+
+        if(mContentNumbers==0){
+            mContentNumberSection.setVisibility(View.INVISIBLE);
+        }
+
 
         startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);
         startMyPageBtn.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +116,9 @@ public class MyPageFragment1 extends Fragment {
 
                 i.putExtra("ttl", enrolledCourseTitle);
                 i.putExtra("img", CoverPhoto);
+                i.putExtra("oname", enrolledCourseOwner);
+                i.putExtra("nthcourse", nthCourse);
+
                 GlobalVar.thisFragmentContents=contents;
 
                 try {
@@ -118,4 +135,5 @@ public class MyPageFragment1 extends Fragment {
 
         return view;
     }
+
 }
