@@ -91,6 +91,9 @@ public class MyPageFragment3 extends Fragment {
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
         final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(2);
 
+        ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
+        final ArrayList<DetailDataModelCoursesDetailContents> quizes = quizArray.get(2);
+
         final int nthCourse= 2;
         int mAssignmentNumbers=GlobalVar.gEnrolledInstitution.get(2).getmAssignmentNumbers();
         int mExamNumbers=GlobalVar.gEnrolledInstitution.get(2).getmExamNumbers();
@@ -127,6 +130,7 @@ public class MyPageFragment3 extends Fragment {
                 i.putExtra("nthcourse", nthCourse);
 
                 GlobalVar.thisFragmentContents=contents;
+                GlobalVar.thisFragmentQuizes=quizes;
 
                 try {
                     v.getContext().startActivity(i);

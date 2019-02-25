@@ -17,6 +17,7 @@ public class GlobalVar {
     public static ArrayList<DetailDataModelCourses> gRecommendedDetailList10;
     public static ArrayList<DetailDataModelCourses> gEnrolledInstitution;
     public static ArrayList<DetailDataModelCoursesDetailContents> thisFragmentContents;
+    public static ArrayList<DetailDataModelCoursesDetailContents> thisFragmentQuizes;
 
     public static ArrayList<DetailDataModelCoursesThumbnails> gEnrollCoursePhotoList;
 
@@ -55,4 +56,6 @@ public class GlobalVar {
     public static String gBaseUrl="http://muktopaath.orangebd.com";
 
     public static int gNthCourse;
+
+    public static String gUsersNumber;
 }

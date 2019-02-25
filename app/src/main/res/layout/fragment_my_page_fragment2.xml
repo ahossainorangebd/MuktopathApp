@@ -11,6 +11,11 @@
     android:orientation="vertical">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
 
     <LinearLayout
         android:id="@+id/afterEnrollLayOut"
@@ -23,6 +28,7 @@
         android:background="@drawable/lin_layout_style_white_with_shadow_border"
         android:orientation="vertical"
         android:padding="22dp"
+        android:layout_marginBottom="60dp"
         >
 
         <LinearLayout
@@ -239,6 +245,8 @@
 
 
     </LinearLayout>
+
+    </ScrollView>
 
     <ImageView
         android:id="@+id/CourseDetailCoverImage"

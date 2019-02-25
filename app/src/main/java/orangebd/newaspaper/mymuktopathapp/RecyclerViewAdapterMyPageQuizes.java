@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<RecyclerViewAdapterMyPageContents.MyViewHolder> {
+public class RecyclerViewAdapterMyPageQuizes extends RecyclerView.Adapter<RecyclerViewAdapterMyPageQuizes.MyViewHolder> {
 
     private ArrayList<DetailDataModelCoursesDetailContents> dataSet;
     private Context mContext;
@@ -58,7 +56,7 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         }
     }
 
-    public RecyclerViewAdapterMyPageContents(ArrayList<DetailDataModelCoursesDetailContents> data, Context context) {
+    public RecyclerViewAdapterMyPageQuizes(ArrayList<DetailDataModelCoursesDetailContents> data, Context context) {
         this.dataSet = data;
 
         this.mContext=context;
@@ -89,7 +87,7 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         TextView textViewVersion = holder.textViewVersion;
         TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
-        final String titleText=dataSet.get(listPosition).getTitle_content();
+        final String titleText=dataSet.get(listPosition).getmQuizTitle();
         final String descriptionText=dataSet.get(listPosition).getDescription_content();
         final String videoCode=dataSet.get(listPosition).getFile_name();
         final String timeStatus=dataSet.get(listPosition).getStatus_content();

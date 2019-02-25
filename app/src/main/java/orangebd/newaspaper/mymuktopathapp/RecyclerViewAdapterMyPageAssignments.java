@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<RecyclerViewAdapterMyPageContents.MyViewHolder> {
+public class RecyclerViewAdapterMyPageAssignments extends RecyclerView.Adapter<RecyclerViewAdapterMyPageAssignments.MyViewHolder> {
 
     private ArrayList<DetailDataModelCoursesDetailContents> dataSet;
     private Context mContext;
@@ -58,7 +56,7 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         }
     }
 
-    public RecyclerViewAdapterMyPageContents(ArrayList<DetailDataModelCoursesDetailContents> data, Context context) {
+    public RecyclerViewAdapterMyPageAssignments(ArrayList<DetailDataModelCoursesDetailContents> data, Context context) {
         this.dataSet = data;
 
         this.mContext=context;

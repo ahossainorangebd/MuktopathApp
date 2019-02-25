@@ -96,7 +96,7 @@ public class MyPageDetailFragment2 extends Fragment {
             super.onPostExecute(result);
 
             //adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
-            adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
+            adapter=new RecyclerViewAdapterMyPageQuizes(GlobalVar.thisFragmentQuizes,context);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
