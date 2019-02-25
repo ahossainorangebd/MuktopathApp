@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import java.io.BufferedInputStream;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -26,6 +27,18 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter9;
     private RecyclerView.Adapter adapter10;
 
-
-
     //All the detail Lists
     private ArrayList<DetailDataModelCourses> detailList2;
     private ArrayList<DetailDataModelCourses> detailList3;
@@ -105,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressSpinner9;
     private ProgressBar mProgressSpinner10;
 
-    String url="http://api.muktopaath.orangebd.com/api/courses";
+    //String url="http://api.muktopaath.orangebd.com/api/courses";
 
     private HashMap<String,String> map;
 
@@ -200,14 +211,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         map = new HashMap<String, String>();
+
+        new GetCourseCategories().execute("http://api.muktopaath.orangebd.com/api/course-categories");
 
         JSONObject object=new JSONObject();
 
-        try {
+        /*try {
             object.put("username", "");
             object.put("featured", "");
             object.put("upcomming", "" );
@@ -223,9 +233,9 @@ public class MainActivity extends AppCompatActivity {
             object.put("limit", "30" );
             object.put("duration_search", "" );
         }
-        catch (Exception ex){ }
+        catch (Exception ex){ }*/
 
-        RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
+        /*RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
                 new Response.Listener<JSONObject>() {
@@ -249,7 +259,6 @@ public class MainActivity extends AppCompatActivity {
 
                             for (int i=0;i<object.length();i++)
                             {
-
                                 JSONObject object2 = (JSONObject) object.get(i);
 
                                 DetailDataModelCourses model = new DetailDataModelCourses();
@@ -443,9 +452,9 @@ public class MainActivity extends AppCompatActivity {
                                             JSONObject jSObject2 = jObject.getJSONObject("" + ii);
 
 
-                                        /*for(int j=0; j<jSObject2.length(); j++){
+                                        *//*for(int j=0; j<jSObject2.length(); j++){
                                             JSONObject jSObject3 = jSObject2.getJSONObject(""+j);
-                                        }*/
+                                        }*//*
 
 
                                             //for parsing lessons > {0} > "syllebus" > "0" > "data"
@@ -590,7 +599,7 @@ public class MainActivity extends AppCompatActivity {
 
                                                 detailListCourseDetailContents.add(modelCourseContents);
 
-                                                /*model.setmArrayListContentDetails(detailListCourseDetailContents);*/
+                                                *//*model.setmArrayListContentDetails(detailListCourseDetailContents);*//*
                                                 model.setmArrayListContentDetails(detailListCourseDetailContentss);
 
                                                 //For parsing array "multi_ques_list" > {0} > {0} > "syllebus" > "0" > "data"
@@ -677,12 +686,6 @@ public class MainActivity extends AppCompatActivity {
 
                             GlobalVar.courseContentDetailList=detailListCourse;
 
-                            /*setRecyclerView10();
-                            adapter10=new RecyclerViewAdapterCategory10(detailListCourse,mContext);
-                            recyclerView10.setAdapter(adapter10);
-                            adapter10.notifyDataSetChanged();
-                            mProgressSpinner10.setVisibility(View.GONE);*/
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -698,14 +701,96 @@ public class MainActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", "application/json");
-                params.put("Authorization", GlobalVar.gReplacingToken);
+                params.put("Authorization", GlobalVar.gReplacingTokenForAllCategories);
                 return params;
             }
         };
-        mQueue.add(jsonObjectRequest);
+        mQueue.add(jsonObjectRequest);*/
+
+
+        setRecyclerView();
+    }
+
+    public class GetCourseCategories extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            String response = null;
+
+            try {
+                HttpURLConnection c = (HttpURLConnection) new URL(arg0[0]).openConnection();
+                c.setRequestMethod("GET");
+                c.setUseCaches(false);
+                c.setRequestProperty ("Authorization", GlobalVar.gReplacingTokenForAllCategories);
+                c.connect();
+                InputStream in = new BufferedInputStream(c.getInputStream());
+                response = convertStreamToString(in);
+                c.disconnect();
+
+            }
+            catch (Exception ex){
+                Log.d("",ex.getMessage());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+                JSONObject jObject = new JSONObject(result);
+                JSONArray objectCourseCatNames = (JSONArray) jObject.getJSONArray("data");
 
 
 
+                try {
+                    for (int cc = 0; cc < objectCourseCatNames.length(); cc++)
+                    {
+                        JSONObject jObjEnrolledCourses = objectCourseCatNames.getJSONObject(cc);
+
+                        String courseNameBn = jObjEnrolledCourses.getString("bn_title");
+                        String courseNameEn = jObjEnrolledCourses.getString("title");
+
+                        String test="";
+                    }
+                } catch (Exception ex) {
+                    Log.d("", "onResponse: ");
+                }
+
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
+
+
+
+        }
+    }
+    private String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sb.toString();
     }
 
 
@@ -857,7 +942,6 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner.setIndeterminate(true);
             mProgressSpinner.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -893,63 +977,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }
@@ -978,69 +1005,10 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner3.setIndeterminate(true);
             mProgressSpinner3.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-            catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }
@@ -1069,67 +1037,10 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner4.setIndeterminate(true);
             mProgressSpinner4.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }
@@ -1158,67 +1069,10 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner5.setIndeterminate(true);
             mProgressSpinner5.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }
@@ -1247,67 +1101,10 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner6.setIndeterminate(true);
             mProgressSpinner6.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }
@@ -1336,67 +1133,10 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner7.setIndeterminate(true);
             mProgressSpinner7.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }
@@ -1425,67 +1165,10 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner8.setIndeterminate(true);
             mProgressSpinner8.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }
@@ -1514,68 +1197,10 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner9.setIndeterminate(true);
             mProgressSpinner9.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }
-            */
 
             return null;
         }
@@ -1604,67 +1229,10 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner10.setIndeterminate(true);
             mProgressSpinner10.setVisibility(View.VISIBLE);
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
-            /*HttpHandler sh = new HttpHandler();
-            // Making a request to url and getting response
-            String url = arg0[0];
-            String jsonStr = sh.makeServiceCall(url);
-
-            //Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                detailList=new ArrayList<DetailDataModel>();
-                try {
-                    for (int i=0;i<jsonObj.length()-1;i++)
-                    {
-
-                        JSONObject object = (JSONObject) jsonObj.get("" + i);
-                        //Iterator<String> temp = object.keys();
-                        //while (temp.hasNext()) {
-                        DetailDataModel model = new DetailDataModel();
-                        //String dynamicKey = (String) temp.next();
-
-                        String hl1 = object.getString("hl1");
-                        String hl2 = object.getString("hl2");
-                        String img_url = object.getString("img_url");
-                        String detail = object.getString("dtl");
-                        String parentCatID=object.getString("parent_cat_id");
-                        String update_time=object.getString("update_time");
-                        String entry_time = object.getString("entry_time");
-                        String rpt=object.getString("rpt");
-                        String detaillLink=object.getString("dtl_url");
-                        String image_caption_name = object.getString("img_caption");
-                        model.setImg_caption(image_caption_name);
-                        model.setDtl_url_link(detaillLink);
-                        model.setEntry_time(entry_time);
-                        model.setUpdate_time(update_time);
-                        model.setRpt(rpt);
-                        model.setParent_cat_id(parentCatID);
-                        model.setHl1(hl1);
-                        model.setHl2(hl2);
-                        model.setImg_url(img_url);
-                        model.setDtl_url(detail);
-
-                        detailList.add(model);
-                        publishProgress();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (final JSONException e) {
-                //Log.e(TAG, "Json parsing error: " + e.getMessage());
-                Log.e("tag", "Couldn't get json from server.");
-
-            }
-            else {
-                Log.e("tag", "Couldn't get json from server.");
-            }*/
 
             return null;
         }

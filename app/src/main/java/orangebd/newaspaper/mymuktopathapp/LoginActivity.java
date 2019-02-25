@@ -170,6 +170,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 token = firstWord + " " + token;
 
+                GlobalVar.gReplacingTokenForAllCategories=token;
+
                 final JSONObject object=new JSONObject();
 
                 try {
@@ -836,6 +838,10 @@ public class LoginActivity extends AppCompatActivity {
                                                                                     JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ2.get(qlist2);
 
                                                                                     String qTitle = objectAgainAnother2.getString("title");
+
+                                                                                    qTitle = qTitle.replace("<p>","");
+                                                                                    qTitle = qTitle.replace("</p>","");
+
                                                                                     modelUnitQuizElements2.setmQuizTitle(qTitle);
 
                                                                                     mUnitQuizList.add(modelUnitQuizElements2);
@@ -898,7 +904,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                             Log.d("", "onResponse: ");
                                                                         }
                                                                     } else {
-                                                                        Toast.makeText(mContext, "", Toast.LENGTH_LONG).show();
+                                                                      //  Toast.makeText(mContext, "", Toast.LENGTH_LONG).show();
                                                                     }
                                                                 }
                                                             }
@@ -910,8 +916,6 @@ public class LoginActivity extends AppCompatActivity {
                                                     catch (Exception ex){
                                                         Log.d("", "onResponse: ");
                                                     }
-
-
                                                 }
                                                 catch (Exception ex){
                                                     Log.d("", "onResponse: ");

@@ -179,6 +179,7 @@ public class RecomendedActivity extends AppCompatActivity {
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
                 new Response.Listener<JSONObject>() {
+
                     @Override
                     public void onResponse(JSONObject response)
                     {
