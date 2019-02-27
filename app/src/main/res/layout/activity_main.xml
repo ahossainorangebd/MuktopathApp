@@ -94,9 +94,10 @@
             >
 
             <TextView
+                android:id="@+id/courseName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="শিক্ষা"
+                android:text="Course 1"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -388,9 +389,10 @@
             android:layout_marginTop="7dp"
                         >
                         <TextView
+                            android:id="@+id/courseName2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="কৃষি"
+                            android:text="Course 2"
                             android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
@@ -689,9 +691,10 @@
             android:layout_marginTop="7dp"
             >
             <TextView
+                android:id="@+id/courseName3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="আইটি"
+                android:text="Course 3"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -787,9 +790,10 @@
             android:layout_marginTop="7dp"
             >
             <TextView
+                android:id="@+id/courseName4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ব্যবসায়"
+                android:text="Course 4"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -885,9 +889,10 @@
             android:layout_marginTop="7dp"
             >
             <TextView
+                android:id="@+id/courseName5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="স্বাস্থ্য"
+                android:text="Course 5"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -978,9 +983,10 @@
             android:layout_marginTop="7dp"
             >
             <TextView
+                android:id="@+id/courseName6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ 6"
+                android:text="Course 6"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1077,9 +1083,10 @@
             android:layout_marginTop="7dp"
             >
             <TextView
+                android:id="@+id/courseName7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ 7"
+                android:text="Course 7"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1173,9 +1180,10 @@
             android:layout_marginTop="7dp"
             >
             <TextView
+                android:id="@+id/courseName8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ 8"
+                android:text="Course 8"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1267,9 +1275,10 @@
             >
 
             <TextView
+                android:id="@+id/courseName9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ 9"
+                android:text="Course 9"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1365,9 +1374,10 @@
             android:layout_marginTop="7dp"
             >
             <TextView
+                android:id="@+id/courseName10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="কোর্সসমূহ 10"
+                android:text="Course 10"
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"

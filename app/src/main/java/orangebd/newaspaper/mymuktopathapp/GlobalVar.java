@@ -59,4 +59,13 @@ public class GlobalVar {
     public static int gNthCourse;
 
     public static String gUsersNumber;
+
+
+
+    //MainActivity
+
+    public static ArrayList<DetailDataModelCourses> gMainActivityCourseList;
+    public static ArrayList<DetailDataModelCourses> gMainActivityInstitutionList;
+    public static ArrayList<DetailDataModelCourses> allDataDetailList;
+
 }
