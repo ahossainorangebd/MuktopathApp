@@ -90,10 +90,16 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         ImageView imageView = holder.imageViewIcon;
         final String titleText=dataSet.get(listPosition).getmCourseAliasName();
         final String DetailDescription=dataSet.get(listPosition).getmDetails();
+        final String batchId=dataSet.get(listPosition).getmId();
         textViewName.setText(titleText);
 
         //final String parentCatID=dataSet.get(listPosition).getCat_id();
         //String reporterString=dataSet.get(listPosition).getRpt();
+
+
+
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final Object[] mArrayList = contentArray.get(listPosition).toArray();
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
@@ -130,10 +136,13 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
             public void onClick(View v)
             {
 
+                GlobalVar.gChildArrayOfContent = mArrayList;
+
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("ttl", titleText);
                 i.putExtra("img", CoverPhoto);
                 i.putExtra("detail", DetailDescription);
+                i.putExtra("batchid", batchId);
                 try {
                     v.getContext().startActivity(i);
                 }

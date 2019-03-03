@@ -99,6 +99,9 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final Object[] mArrayList = contentArray.get(listPosition).toArray();
+
         DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
         String imgUrl = imgUrlModel.getCover_code_image();
@@ -160,6 +163,8 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
             @Override
             public void onClick(View v)
             {
+
+                GlobalVar.gChildArrayOfContent = mArrayList;
 
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
                 i.putExtra("ttl", titleText);

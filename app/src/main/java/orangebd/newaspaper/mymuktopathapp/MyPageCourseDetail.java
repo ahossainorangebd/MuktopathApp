@@ -68,6 +68,7 @@ public class MyPageCourseDetail extends AppCompatActivity {
         try {
             Picasso.with(mContext)
                     .load(ImgUrl)
+                    .fit()
                     .into(mCourseDetailCoverImage);
         }
         catch (Exception ex){}

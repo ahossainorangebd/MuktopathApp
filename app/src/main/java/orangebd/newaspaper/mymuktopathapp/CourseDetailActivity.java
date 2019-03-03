@@ -28,8 +28,25 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CourseDetailActivity extends AppCompatActivity {
 
@@ -42,6 +59,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     String ImgUrl;
     String DetailDescription;
     String title;
+    String batchId;
 
     private TextView titleTextView;
     private WebView detailDescTextView;
@@ -50,6 +68,15 @@ public class CourseDetailActivity extends AppCompatActivity {
     //private ImageView mLogoIcon;
 
     ArrayList<DetailDataModel> detailListHeadLine=new ArrayList<>();
+
+    private HashMap<String,String> mapEnroll;
+
+    private LinearLayout enrollThisSection;
+
+    private TextView enrollText;
+
+    String urlCheckEnrolledOrNot = "http://api.muktopaath.orangebd.com/api/enrolled/check";
+    String urlEnrollThis = "http://api.muktopaath.orangebd.com/api/course-enrollment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +101,13 @@ public class CourseDetailActivity extends AppCompatActivity {
          detailDescTextView=findViewById(R.id.detailDesc);
          CoverPhoto=findViewById(R.id.CourseDetailCoverImage);
 
+        enrollThisSection=findViewById(R.id.enrollThisId);
+        enrollText=findViewById(R.id.enrollText);
+
         ImgUrl = getIntent().getExtras().getString("img");
         DetailDescription=getIntent().getExtras().getString("detail");
         title = getIntent().getExtras().getString("ttl");
+        batchId = getIntent().getExtras().getString("batchid");
 
         titleTextView.setText(title);
 
@@ -85,6 +116,21 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         detailDescTextView.loadDataWithBaseURL("",DetailDescription, "text/html", "utf-8", "");
 
+
+        enrollThisSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String jStatus="{\"start\":0,\"completeness\":0}";
+
+                mapEnroll =  new HashMap<>();
+                mapEnroll.put("batches[]", batchId);
+                mapEnroll.put("amount", "0");
+                mapEnroll.put("journey_status", jStatus);
+
+                new StartEnroll().execute(urlEnrollThis);
+            }
+        });
 
         //detailDescTextView.setText(DetailDescription);
 
@@ -184,6 +230,182 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        new CheckEnrollStatus().execute(urlCheckEnrolledOrNot+"/"+batchId);
+    }
+
+
+    public class CheckEnrollStatus extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            String response = null;
+
+            try {
+                HttpURLConnection c = (HttpURLConnection) new URL(arg0[0]).openConnection();
+                c.setRequestMethod("GET");
+                c.setUseCaches(false);
+                c.setRequestProperty ("Authorization", "Bearer "+GlobalVar.gReplacingToken);
+                c.connect();
+
+                InputStream in = new BufferedInputStream(c.getInputStream());
+                response = convertStreamToString(in);
+                c.disconnect();
+            }
+            catch (Exception ex){
+                Log.d("",ex.getMessage());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+                JSONObject jObject = new JSONObject(result);
+
+                String mCheckStatus = jObject.getString("status");
+                String mCheckEnrollmentId = jObject.getString("EnrollmentId");
+
+                if(mCheckStatus.equalsIgnoreCase("false")){
+                    enrollText.setText("ENROLL");
+                }
+                else
+                    enrollText.setText("ENROLLED");
+
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
+        }
+    }
+
+    public class StartEnroll extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String data = performPostCall(params[0], mapEnroll);
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            super.onPostExecute(result);
+
+        }
+
+        @Override
+        protected void onCancelled() {
+
+        }
+    }
+
+
+
+
+    //Other files
+
+    public String  performPostCall(String requestURL, HashMap<String, String> postDataParams) {
+
+        URL url;
+        String response = "";
+
+        try {
+            url = new URL(requestURL);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty ("Authorization", "Bearer "+GlobalVar.gReplacingToken);
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getPostDataString(postDataParams));
+
+            writer.flush();
+            writer.close();
+            os.close();
+            int responseCode=conn.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line=br.readLine()) != null) {
+                    response+=line;
+                }
+            }
+
+            else {
+                response="";
+            }
+
+        }
+        catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    private String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sb.toString();
+    }
+
+    private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+
+        boolean first = true;
+
+        for(Map.Entry<String, String> entry : params.entrySet()) {
+
+            if (first)
+                first = false;
+            else
+                result.append("&");
+
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        }
+
+        return result.toString();
     }
 
 }

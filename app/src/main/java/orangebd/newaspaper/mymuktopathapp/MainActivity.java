@@ -330,37 +330,42 @@ public class MainActivity extends AppCompatActivity {
                         modelCourseCatAll.setmCourseCategoryNameBn(courseNameBn);
 
                         detailListMainActivityCourseCat.add(modelCourseCatAll);
+
+
+                        String aaaa="";
                     }
                 } catch (Exception ex) {
                     Log.d("", "onResponse: ");
                 }
 
+                try {
+                    courseText1. setText(detailListMainActivityCourseCat.get(0).getmCourseCategoryNameBn());
+                    courseText2. setText(detailListMainActivityCourseCat.get(1).getmCourseCategoryNameBn());
+                    courseText3. setText(detailListMainActivityCourseCat.get(2).getmCourseCategoryNameBn());
+                    courseText4. setText(detailListMainActivityCourseCat.get(3).getmCourseCategoryNameBn());
+                    courseText5. setText(detailListMainActivityCourseCat.get(4).getmCourseCategoryNameBn());
+                    courseText6. setText(detailListMainActivityCourseCat.get(5).getmCourseCategoryNameBn());
+                    courseText7. setText(detailListMainActivityCourseCat.get(6).getmCourseCategoryNameBn());
+                    courseText8. setText(detailListMainActivityCourseCat.get(7).getmCourseCategoryNameBn());
+                    courseText9. setText(detailListMainActivityCourseCat.get(8).getmCourseCategoryNameBn());
+                    courseText10.setText(detailListMainActivityCourseCat.get(9).getmCourseCategoryNameBn());
+                }
+                catch (Exception ex){
+                    Log.d("", "onPostExecute: ");
+                }
 
 
-                ArrayList<String> strCourseNames =  new ArrayList<>();
-
-                try{
+                /*try{
                     for(int cname=0; cname<detailListMainActivityCourseCat.size(); cname++) {
 
                         strCourseNames.add(detailListMainActivityCourseCat.get(cname).getmCourseCategoryNameBn());
 
-                        courseText1.setText(strCourseNames.get(0));
-                        courseText2.setText(strCourseNames.get(1));
-                        courseText3.setText(strCourseNames.get(2));
-                        courseText4.setText(strCourseNames.get(3));
-                        courseText5.setText(strCourseNames.get(4));
-                        courseText6.setText(strCourseNames.get(5));
-                        courseText7.setText(strCourseNames.get(6));
-                        courseText8.setText(strCourseNames.get(7));
-                        courseText9.setText(strCourseNames.get(8));
-                        courseText10.setText(strCourseNames.get(9));
+
                     }
 
-                }
+                }*/
 
-                catch (Exception ex){
-                    Log.d("", "onPostExecute: ");
-                }
+
 
 
                 setRecyclerView();
@@ -533,8 +538,6 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray objectCourse = (JSONArray) jObjectMain.getJSONArray("data");
 
                 try {
-
-
 
                     for (int ec = 0; ec < objectCourse.length(); ec++)
                     {
@@ -780,7 +783,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -837,7 +840,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -1267,7 +1270,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -1324,7 +1327,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -1749,7 +1752,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -1806,7 +1809,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -2231,7 +2234,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -2288,7 +2291,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -2713,7 +2716,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -2770,7 +2773,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -3201,7 +3204,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -3258,7 +3261,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -3688,7 +3691,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -3745,7 +3748,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -4177,7 +4180,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -4234,7 +4237,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -4665,7 +4668,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -4722,7 +4725,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 
@@ -5152,7 +5155,7 @@ public class MainActivity extends AppCompatActivity {
                                             modelFileType.setmDoc(doc);
                                             modelFileType.setmCsv(csv);
 
-                                            /*try{
+                                            try{
                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -5209,7 +5212,7 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
-                                            }*/
+                                            }
 
                                             //For parsing Quizes
 

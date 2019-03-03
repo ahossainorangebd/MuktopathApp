@@ -183,7 +183,8 @@ public class LoginActivity extends AppCompatActivity {
                 RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
 
                 final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
-                        new Response.Listener<JSONObject>() {
+                        new Response.Listener<JSONObject>()
+                        {
                             @Override
                             public void onResponse(JSONObject response)
                             {
@@ -239,7 +240,7 @@ public class LoginActivity extends AppCompatActivity {
                                     GlobalVar.gName = name;
                                     GlobalVar.gMobile=phone;
                                     GlobalVar.gEmail=email;
-                                    GlobalVar.gReplacingToken=token;
+                                    GlobalVar.gReplacingToken= token;
 
                                     model.setmId(id);
                                     model.setmUserName(username);
