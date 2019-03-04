@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
-    private int NUM_ITEMS = 4;
-    private String[] titles= new String[] {"Video1","Video2","Video3", "Video4"};
+    private int NUM_ITEMS = 10;
+    private String[] titles= new String[] {"Video1","Video2","Video3", "Video4","Video5","Video6","Video7","Video8","Video9","Video10"};
 
     public TabsPagerAdapterDetail(FragmentManager fm) {
         super(fm);
@@ -32,6 +32,18 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
                 return new MyPageFragment3();
             case 3:
                 return new MyPageFragment4();
+            case 4:
+                return new MyPageFragment5();
+            case 5:
+                return new MyPageFragment6();
+            case 6:
+                return new MyPageFragment7();
+            case 7:
+                return new MyPageFragment8();
+            case 8:
+                return new MyPageFragment9();
+            case 9:
+                return new MyPageFragment10();
             default:
                 return null;
         }

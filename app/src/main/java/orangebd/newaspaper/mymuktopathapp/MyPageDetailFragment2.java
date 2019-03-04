@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,12 @@ public class MyPageDetailFragment2 extends Fragment {
             super.onPostExecute(result);
 
             //adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
-            adapter=new RecyclerViewAdapterMyPageQuizes(GlobalVar.thisFragmentQuizes,context);
+            try {
+                adapter = new RecyclerViewAdapterMyPageQuizes(GlobalVar.thisFragmentQuizes, context);
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();

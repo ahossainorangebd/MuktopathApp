@@ -85,20 +85,17 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
         TextView textViewName = holder.textViewName;
 
-        //TextView textViewVersion = holder.textViewVersion;
-        //TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
         final String titleText=dataSet.get(listPosition).getmCourseAliasName();
-        final String DetailDescription=dataSet.get(listPosition).getmDetails();
+        final String paymentStatus=dataSet.get(listPosition).getmPaymentStatus();
         final String batchId=dataSet.get(listPosition).getmId();
+        final String DetailDescription=dataSet.get(listPosition).getmDetails();
+
         textViewName.setText(titleText);
 
-        //final String parentCatID=dataSet.get(listPosition).getCat_id();
-        //String reporterString=dataSet.get(listPosition).getRpt();
-
-
-
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final String sContentSize= Integer.toString(contentArray.size());
+
         final Object[] mArrayList = contentArray.get(listPosition).toArray();
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
@@ -108,13 +105,6 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         String imgUrl = imgUrlModel.getCover_code_image();
 
         final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
-
-        //String detailString=dataSet.get(listPosition).getDtl_url();
-        //String imgCaption=dataSet.get(listPosition).getImg_caption();
-
-        /*if(reporterString.equalsIgnoreCase("")){
-            reporterString="Rtv Desk";
-        }*/
 
         try {
             Picasso.with(mContext)
@@ -143,6 +133,8 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
                 i.putExtra("img", CoverPhoto);
                 i.putExtra("detail", DetailDescription);
                 i.putExtra("batchid", batchId);
+                i.putExtra("pstatus", paymentStatus);
+                i.putExtra("scsize", sContentSize);
                 try {
                     v.getContext().startActivity(i);
                 }

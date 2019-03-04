@@ -262,10 +262,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:elevation="10dp"
+        android:background="#88000000"
         >
 
 

@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -59,7 +60,9 @@ public class CourseDetailActivity extends AppCompatActivity {
     String ImgUrl;
     String DetailDescription;
     String title;
+    String paymentStatus;
     String batchId;
+    String scSize;
 
     private TextView titleTextView;
     private WebView detailDescTextView;
@@ -74,6 +77,8 @@ public class CourseDetailActivity extends AppCompatActivity {
     private LinearLayout enrollThisSection;
 
     private TextView enrollText;
+
+    private String paymentStatusFreeOrNot;
 
     String urlCheckEnrolledOrNot = "http://api.muktopaath.orangebd.com/api/enrolled/check";
     String urlEnrollThis = "http://api.muktopaath.orangebd.com/api/course-enrollment";
@@ -92,6 +97,7 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         View view = LayoutInflater.from(context).inflate(R.layout.custom_logodetails, null, false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().hide();
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(view);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
@@ -107,7 +113,11 @@ public class CourseDetailActivity extends AppCompatActivity {
         ImgUrl = getIntent().getExtras().getString("img");
         DetailDescription=getIntent().getExtras().getString("detail");
         title = getIntent().getExtras().getString("ttl");
+        paymentStatus = getIntent().getExtras().getString("pstatus");
         batchId = getIntent().getExtras().getString("batchid");
+
+        scSize = getIntent().getExtras().getString("scsize");
+        final int scSizeConv = Integer.parseInt(scSize);
 
         titleTextView.setText(title);
 
@@ -121,12 +131,28 @@ public class CourseDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String jStatus="{\"start\":0,\"completeness\":0}";
+                StringBuilder sb= new StringBuilder();
+                String jStatus = "{\"start\":0,\"completeness\":0}";
+
+                for(int jStatusCount=0; jStatusCount<scSizeConv; jStatusCount++){
+                    sb=sb.append(jStatus+",");
+                }
+
+                int firstNumber=sb.length();
+
+                String something =sb.substring(0,firstNumber-1);
+
+                String fBrac="[[";
+                String lBrac="]]";
+
+                String jStatusInJsonFormat= fBrac + something + lBrac;
+
+                String finalJsonFormatStatus=jStatusInJsonFormat.replace("/","");
 
                 mapEnroll =  new HashMap<>();
                 mapEnroll.put("batches[]", batchId);
                 mapEnroll.put("amount", "0");
-                mapEnroll.put("journey_status", jStatus);
+                mapEnroll.put("journey_status", finalJsonFormatStatus);
 
                 new StartEnroll().execute(urlEnrollThis);
             }
@@ -266,6 +292,20 @@ public class CourseDetailActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
+            String abbbbaaaqq="";
+
+            if(paymentStatus==null){
+                paymentStatus="0";
+            }
+
+            if(paymentStatus.equalsIgnoreCase("0")) {
+
+                paymentStatusFreeOrNot="";
+            }
+            else{
+                paymentStatusFreeOrNot="(Paid)";
+            }
+
             try {
                 JSONObject jObject = new JSONObject(result);
 
@@ -273,10 +313,10 @@ public class CourseDetailActivity extends AppCompatActivity {
                 String mCheckEnrollmentId = jObject.getString("EnrollmentId");
 
                 if(mCheckStatus.equalsIgnoreCase("false")){
-                    enrollText.setText("ENROLL");
+                    enrollText.setText("ENROLL"+ paymentStatusFreeOrNot);
                 }
                 else
-                    enrollText.setText("ENROLLED");
+                    enrollText.setText("ENROLLED"+ paymentStatusFreeOrNot);
 
             }
             catch (Exception ex){
@@ -304,6 +344,20 @@ public class CourseDetailActivity extends AppCompatActivity {
         protected void onPostExecute(String result)
         {
             super.onPostExecute(result);
+
+            try {
+                JSONObject jObject = new JSONObject(result);
+
+                String returnMessage = jObject.getString("message");
+
+                Toast.makeText(context,returnMessage,Toast.LENGTH_LONG).show();
+
+                Intent i=new Intent(context,MyPageActivity.class);
+                startActivity(i);
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
 
         }
 

@@ -92,6 +92,8 @@ public class RecyclerViewAdapterCategory4 extends RecyclerView.Adapter<RecyclerV
         ImageView imageView = holder.imageViewIcon;
         final String titleText=dataSet.get(listPosition).getmCourseAliasName();
         final String DetailDescription=dataSet.get(listPosition).getmDetails();
+        final String paymentStatus=dataSet.get(listPosition).getmPaymentStatus();
+        final String batchId=dataSet.get(listPosition).getmId();
         textViewName.setText(titleText);
 
         //final String parentCatID=dataSet.get(listPosition).getCat_id();
@@ -99,10 +101,9 @@ public class RecyclerViewAdapterCategory4 extends RecyclerView.Adapter<RecyclerV
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
-
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final String sContentSize= Integer.toString(contentArray.size());
         final Object[] mArrayList = contentArray.get(listPosition).toArray();
-
 
         DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
@@ -132,35 +133,6 @@ public class RecyclerViewAdapterCategory4 extends RecyclerView.Adapter<RecyclerV
         updateDate=dataSet.get(listPosition).getmUpdatedAt();
        // textViewVersion2.setText(entryDate);
 
-            //final String returnDate=sdf.toString();
-
-        /*final String htmlText = "<html>"+"<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"+"<style>" + "@font-face {font-family: 'solaimanlipi';src: url('file:///android_asset/fonts/solaimanlipi.ttf');}body {font-family: 'solaimanlipi';}" +
-                "        img{ max-width:100%; height:auto !important}" +
-                "        a, span{ max-width:100%; display:inline-block; overflow:hidden}" +
-                "        iframe{ max-width:100%; display:inline-block; overflow:hidden}" +
-                "        </style>"+"</head>"+"<body style='height:100%; overflow:hidden;font-family:solaimanlipi'>" +
-                "        <h2 style='font-family:solaimanlipi'>" + titleText + "</h2>" +"<br/>"+"<strong>প্রকাশ :</strong>"+ entryDate + " <br/>"+"<br/>"+
-                "        <img style='width:100%' src='" +  "'  <div style='overflow-x:hidden;'>"+"<br/>"+ "<br/>"+ "<center> " + "</center> "
-                 +"<br/>"+
-                "               </div><style>" +
-                ".icon{width:35px; height:30px; border-radius:50%; background:#6A5ACD;}" +
-                ".icon1{width:35px; height:30px; border-radius:50%; background:#262626;}" +
-                ".icon2{width:35px; height:30px; border-radius:50%; background:#262626;}" +
-                ".icon3{width:35px; height:30px; border-radius:50%; background:#F23000;}" +
-                ".social_icon{display:block}" +
-                ".fotter{padding-bottom:15px;text-align:center;}" +
-                "</style>" +
-                "<div class='container'>" +
-                "<div class='row'>" +
-                "<div class='col-md-12'style='background:#fff;'>" +
-                "<div class='eskaton'style='text-align:center; color:#000;'>" +
-                "</div>" +
-                "</div>" +
-                "</div>" +
-                "</div>" +
-                "</body>" +
-                "</html>";*/
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -172,6 +144,9 @@ public class RecyclerViewAdapterCategory4 extends RecyclerView.Adapter<RecyclerV
                 i.putExtra("ttl", titleText);
                 i.putExtra("img", CoverPhoto);
                 i.putExtra("detail", DetailDescription);
+                i.putExtra("batchid", batchId);
+                i.putExtra("pstatus", paymentStatus);
+                i.putExtra("scsize", sContentSize);
                 try {
                     v.getContext().startActivity(i);
                 }

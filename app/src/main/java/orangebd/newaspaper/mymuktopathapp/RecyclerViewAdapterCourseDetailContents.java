@@ -181,7 +181,11 @@ public class RecyclerViewAdapterCourseDetailContents extends RecyclerView.Adapte
 
     @Override
     public int getItemCount() {
-        return dataSet.length;
+        if(dataSet==null) {
+            return 0;
+        }
+        else
+            return dataSet.length;
     }
 
     public String convertEngToBn(String num){

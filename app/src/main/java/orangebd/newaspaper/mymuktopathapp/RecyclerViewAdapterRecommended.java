@@ -178,7 +178,11 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
     @Override
     public int getItemCount() {
-        return dataSet.size();
+        if(dataSet==null) {
+            return 0;
+        }
+        else
+            return dataSet.size();
     }
 
     public String convertEngToBn(String num){

@@ -922,7 +922,6 @@ public class LoginActivity extends AppCompatActivity {
                                                     Log.d("", "onResponse: ");
                                                 }
 
-
                                                 detailListCourseDetailContentss.add(mContentArrayListNew);
 
                                                 detailListCourseDetailUnits.add(mUnitArrayListNew);

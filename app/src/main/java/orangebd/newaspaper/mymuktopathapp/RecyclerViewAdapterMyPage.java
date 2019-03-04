@@ -143,7 +143,11 @@ public class RecyclerViewAdapterMyPage extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public int getItemCount() {
-        return dataSet.length;
+        if(dataSet==null) {
+            return 0;
+        }
+        else
+            return dataSet.length;
     }
 
     public String convertEngToBn(String num){

@@ -39,14 +39,19 @@ public class MyPageDetailFragment1 extends Fragment {
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits();
         final ArrayList<DetailDataModelCoursesDetailContents> units = unitArray.get(GlobalVar.gNthCourse);
 
-        final String unitTitle = units.get(0).getUnitNames();
-        final String unitOrder = units.get(0).getUnitOrders();
+        if(units.size()>0) {
+            final String unitTitle = units.get(0).getUnitNames();
+            final String unitOrder = units.get(0).getUnitOrders();
 
-        unitOrderText = view.findViewById(R.id.unitOrder);
-        unitTitleText = view.findViewById(R.id.unitTitleId);
+            unitOrderText = view.findViewById(R.id.unitOrder);
+            unitTitleText = view.findViewById(R.id.unitTitleId);
 
-        unitOrderText.setText(unitOrder);
-        unitTitleText.setText(unitTitle);
+            unitOrderText.setText(unitOrder);
+            unitTitleText.setText(unitTitle);
+        }
+        else {
+            Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
+        }
 
         setRecyclerView();
 
