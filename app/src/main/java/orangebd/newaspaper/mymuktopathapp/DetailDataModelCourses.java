@@ -41,26 +41,6 @@ public class DetailDataModelCourses
     private String mTotalEnroll;
     private String mUpdatedAt;
 
-    //TODO
-    // For parsing the "data" of last object inside
-
-    private String mAllowPreview;
-    private String mAnsRand;
-    private String mAttempt;
-    private String mChooseVideoType;
-    private String mContentType;
-    private String mDesc;
-    private String mDownloadable;
-    private String mDurationAnother;
-    private String mForward;
-    private String mPeerLimit;
-    private String mPeerReview;
-    private String mPulse;
-    private String mQuesRand;
-    private String mQuiz;
-    private String mTimeUnit;
-    private String mTitleAnother;
-
     // For file type (pdf/doc/....)
 
     private String mDoc;
@@ -139,6 +119,7 @@ public class DetailDataModelCourses
 
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseUnits;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs;
 
@@ -396,134 +377,6 @@ public class DetailDataModelCourses
 
     public void setmUpdatedAt(String mUpdatedAt) {
         this.mUpdatedAt = mUpdatedAt;
-    }
-
-    public String getmAllowPreview() {
-        return mAllowPreview;
-    }
-
-    public void setmAllowPreview(String mAllowPreview) {
-        this.mAllowPreview = mAllowPreview;
-    }
-
-    public String getmAnsRand() {
-        return mAnsRand;
-    }
-
-    public void setmAnsRand(String mAnsRand) {
-        this.mAnsRand = mAnsRand;
-    }
-
-    public String getmAttempt() {
-        return mAttempt;
-    }
-
-    public void setmAttempt(String mAttempt) {
-        this.mAttempt = mAttempt;
-    }
-
-    public String getmChooseVideoType() {
-        return mChooseVideoType;
-    }
-
-    public void setmChooseVideoType(String mChooseVideoType) {
-        this.mChooseVideoType = mChooseVideoType;
-    }
-
-    public String getmContentType() {
-        return mContentType;
-    }
-
-    public void setmContentType(String mContentType) {
-        this.mContentType = mContentType;
-    }
-
-    public String getmDesc() {
-        return mDesc;
-    }
-
-    public void setmDesc(String mDesc) {
-        this.mDesc = mDesc;
-    }
-
-    public String getmDownloadable() {
-        return mDownloadable;
-    }
-
-    public void setmDownloadable(String mDownloadable) {
-        this.mDownloadable = mDownloadable;
-    }
-
-    public String getmDurationAnother() {
-        return mDurationAnother;
-    }
-
-    public void setmDurationAnother(String mDurationAnother) {
-        this.mDurationAnother = mDurationAnother;
-    }
-
-    public String getmForward() {
-        return mForward;
-    }
-
-    public void setmForward(String mForward) {
-        this.mForward = mForward;
-    }
-
-    public String getmPeerLimit() {
-        return mPeerLimit;
-    }
-
-    public void setmPeerLimit(String mPeerLimit) {
-        this.mPeerLimit = mPeerLimit;
-    }
-
-    public String getmPeerReview() {
-        return mPeerReview;
-    }
-
-    public void setmPeerReview(String mPeerReview) {
-        this.mPeerReview = mPeerReview;
-    }
-
-    public String getmPulse() {
-        return mPulse;
-    }
-
-    public void setmPulse(String mPulse) {
-        this.mPulse = mPulse;
-    }
-
-    public String getmQuesRand() {
-        return mQuesRand;
-    }
-
-    public void setmQuesRand(String mQuesRand) {
-        this.mQuesRand = mQuesRand;
-    }
-
-    public String getmQuiz() {
-        return mQuiz;
-    }
-
-    public void setmQuiz(String mQuiz) {
-        this.mQuiz = mQuiz;
-    }
-
-    public String getmTimeUnit() {
-        return mTimeUnit;
-    }
-
-    public void setmTimeUnit(String mTimeUnit) {
-        this.mTimeUnit = mTimeUnit;
-    }
-
-    public String getmTitleAnother() {
-        return mTitleAnother;
-    }
-
-    public void setmTitleAnother(String mTitleAnother) {
-        this.mTitleAnother = mTitleAnother;
     }
 
     public String getmDoc() {
@@ -1312,5 +1165,13 @@ public class DetailDataModelCourses
 
     public void setmArrayListCourseQuizs(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs) {
         this.mArrayListCourseQuizs = mArrayListCourseQuizs;
+    }
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmUnitDataArrayListContent() {
+        return mUnitDataArrayListContent;
+    }
+
+    public void setmUnitDataArrayListContent(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent) {
+        this.mUnitDataArrayListContent = mUnitDataArrayListContent;
     }
 }

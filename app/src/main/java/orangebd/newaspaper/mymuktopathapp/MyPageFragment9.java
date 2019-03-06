@@ -38,6 +38,10 @@ public class MyPageFragment9 extends Fragment {
     private LinearLayout mExamNumberSection;
     private LinearLayout mContentNumberSection;
 
+    private TextView mContentHour;
+    private TextView mExamHour;
+    private TextView mAssignmentHour;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,7 +52,9 @@ public class MyPageFragment9 extends Fragment {
 
         mCourseDetailCoverImage = view.findViewById(R.id.CourseDetailCoverImage);
 
-
+        mContentHour=view.findViewById(R.id.contenthour);
+        mExamHour=view.findViewById(R.id.examHour);
+        mAssignmentHour=view.findViewById(R.id.assignmentHour);
 
         startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);
         startMyPageBtn.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +65,7 @@ public class MyPageFragment9 extends Fragment {
             }
         });
 
-        ArrayList<DetailDataModelCoursesThumbnails> imgArray=GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails();
+        ArrayList<DetailDataModelCoursesThumbnails> imgArray= GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails();
 
         DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(8);
 
@@ -95,9 +101,11 @@ public class MyPageFragment9 extends Fragment {
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
         final ArrayList<DetailDataModelCoursesDetailContents> quizes = quizArray.get(8);
 
+        //Let's count the duration of Content/Quiz/Assignment
+
         final int nthCourse= 8;
-        int mAssignmentNumbers=GlobalVar.gEnrolledInstitution.get(8).getmAssignmentNumbers();
-        int mExamNumbers=GlobalVar.gEnrolledInstitution.get(8).getmExamNumbers();
+        int mAssignmentNumbers=GlobalVar.gEnrollCourseList.get(8).getmAssignmentNumbers();
+        int mExamNumbers=GlobalVar.gEnrollCourseList.get(8).getmExamNumbers();
         int mContentNumbers = contents.size();
 
         mCourseTitle.setText(enrolledCourseTitle);
@@ -108,16 +116,65 @@ public class MyPageFragment9 extends Fragment {
 
 
         if(mAssignmentNumbers==0){
-            mAssignmentSection.setVisibility(View.INVISIBLE);
+
+            int contentListCount3=GlobalVar.courseContentDetailList.get(8).getmUnitDataArrayListContent().get(2).size();
+
+            int contentDuration3=0;
+
+            for (int timeCount3=0; timeCount3<contentListCount3-1 ; timeCount3++) {
+
+                String temptestList3=GlobalVar.courseContentDetailList.get(8).getmUnitDataArrayListContent().get(2).get(timeCount3).getmDurationAnother();
+
+                if(!temptestList3.equalsIgnoreCase("null")) {
+                    contentDuration3 = contentDuration3 + Integer.parseInt(temptestList3);
+                }
+            }
+
+            mAssignmentSection.setVisibility(View.VISIBLE);
+
+            mAssignmentHour.setText(Integer.toString(contentDuration3));
         }
 
         if(mExamNumbers==0){
-            mExamNumberSection.setVisibility(View.INVISIBLE);
+
+            int contentListCount2=GlobalVar.courseContentDetailList.get(8).getmUnitDataArrayListContent().get(1).size();
+            int contentDuration2=0;
+
+            for (int timeCount2=0; timeCount2<contentListCount2-1 ; timeCount2++) {
+
+                String temptestList2=GlobalVar.courseContentDetailList.get(8).getmUnitDataArrayListContent().get(1).get(timeCount2).getmDurationAnother();
+
+                if(!temptestList2.equalsIgnoreCase("null")) {
+                    contentDuration2 = contentDuration2 + Integer.parseInt(temptestList2);
+                }
+            }
+
+            mExamNumberSection.setVisibility(View.VISIBLE);
+
+            mExamHour.setText(Integer.toString(contentDuration2));
         }
 
         if(mContentNumbers==0){
-            mContentNumberSection.setVisibility(View.INVISIBLE);
+
+
+            int contentListCount=GlobalVar.courseContentDetailList.get(8).getmUnitDataArrayListContent().get(0).size();
+            int contentDuration=0;
+
+            for (int timeCount=0; timeCount<contentListCount-1 ; timeCount++) {
+
+                String temptestList=GlobalVar.courseContentDetailList.get(8).getmUnitDataArrayListContent().get(0).get(timeCount).getmDurationAnother();
+
+                if(!temptestList.equalsIgnoreCase("null")) {
+                    contentDuration = contentDuration + Integer.parseInt(temptestList);
+                }
+            }
+
+            mContentNumberSection.setVisibility(View.VISIBLE);
+
+            mContentHour.setText(Integer.toString(contentDuration));
         }
+
+        //setting text for hour
 
         startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);
         startMyPageBtn.setOnClickListener(new View.OnClickListener() {

@@ -1,12 +1,36 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import java.util.ArrayList;
+
 public class DetailDataModelCoursesDetailContents
 {
+
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
+
+
+    //TODO
+    // For parsing the "data" of last object inside
+
+    private String mAllowPreview;
+    private String mAnsRand;
+    private String mAttempt;
+    private String mChooseVideoType;
+    private String mContentType;
+    private String mDesc;
+    private String mDownloadable;
+    private String mDurationAnother;
+    private String mForward;
+    private String mPeerLimit;
+    private String mPeerReview;
+    private String mPulse;
+    private String mQuesRand;
+    private String mQuiz;
+    private String mTimeUnit;
+    private String mTitleAnother;
 
     // For model of Quizes
 
     private String mQuizTitle;
-
 
     // for model of Units
 
@@ -245,5 +269,135 @@ public class DetailDataModelCoursesDetailContents
 
     public void setmQuizTitle(String mQuizTitle) {
         this.mQuizTitle = mQuizTitle;
+    }
+
+
+
+    public String getmAllowPreview() {
+        return mAllowPreview;
+    }
+
+    public void setmAllowPreview(String mAllowPreview) {
+        this.mAllowPreview = mAllowPreview;
+    }
+
+    public String getmAnsRand() {
+        return mAnsRand;
+    }
+
+    public void setmAnsRand(String mAnsRand) {
+        this.mAnsRand = mAnsRand;
+    }
+
+    public String getmAttempt() {
+        return mAttempt;
+    }
+
+    public void setmAttempt(String mAttempt) {
+        this.mAttempt = mAttempt;
+    }
+
+    public String getmChooseVideoType() {
+        return mChooseVideoType;
+    }
+
+    public void setmChooseVideoType(String mChooseVideoType) {
+        this.mChooseVideoType = mChooseVideoType;
+    }
+
+    public String getmContentType() {
+        return mContentType;
+    }
+
+    public void setmContentType(String mContentType) {
+        this.mContentType = mContentType;
+    }
+
+    public String getmDesc() {
+        return mDesc;
+    }
+
+    public void setmDesc(String mDesc) {
+        this.mDesc = mDesc;
+    }
+
+    public String getmDownloadable() {
+        return mDownloadable;
+    }
+
+    public void setmDownloadable(String mDownloadable) {
+        this.mDownloadable = mDownloadable;
+    }
+
+    public String getmDurationAnother() {
+        return mDurationAnother;
+    }
+
+    public void setmDurationAnother(String mDurationAnother) {
+        this.mDurationAnother = mDurationAnother;
+    }
+
+    public String getmForward() {
+        return mForward;
+    }
+
+    public void setmForward(String mForward) {
+        this.mForward = mForward;
+    }
+
+    public String getmPeerLimit() {
+        return mPeerLimit;
+    }
+
+    public void setmPeerLimit(String mPeerLimit) {
+        this.mPeerLimit = mPeerLimit;
+    }
+
+    public String getmPeerReview() {
+        return mPeerReview;
+    }
+
+    public void setmPeerReview(String mPeerReview) {
+        this.mPeerReview = mPeerReview;
+    }
+
+    public String getmPulse() {
+        return mPulse;
+    }
+
+    public void setmPulse(String mPulse) {
+        this.mPulse = mPulse;
+    }
+
+    public String getmQuesRand() {
+        return mQuesRand;
+    }
+
+    public void setmQuesRand(String mQuesRand) {
+        this.mQuesRand = mQuesRand;
+    }
+
+    public String getmQuiz() {
+        return mQuiz;
+    }
+
+    public void setmQuiz(String mQuiz) {
+        this.mQuiz = mQuiz;
+    }
+
+    public String getmTimeUnit() {
+        return mTimeUnit;
+    }
+
+    public void setmTimeUnit(String mTimeUnit) {
+        this.mTimeUnit = mTimeUnit;
+    }
+
+    public String getmTitleAnother() {
+        return mTitleAnother;
+    }
+
+    public void setmTitleAnother(String mTitleAnother) {
+        this.mTitleAnother = mTitleAnother;
     }
 }

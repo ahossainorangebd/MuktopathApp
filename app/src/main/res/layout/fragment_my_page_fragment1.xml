@@ -10,10 +10,6 @@
     android:layout_gravity="center"
     android:orientation="vertical">
 
-
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -52,6 +48,7 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:background="@drawable/border"
+                android:visibility="gone"
                 >
 
                 <LinearLayout
@@ -86,6 +83,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/contentHour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
@@ -96,13 +94,6 @@
                         />
 
                 </LinearLayout>
-
-
-
-
-
-
-
 
             </LinearLayout>
 
@@ -115,6 +106,7 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:background="@drawable/border"
+                android:visibility="gone"
                 >
 
                 <LinearLayout
@@ -153,6 +145,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/assignmentHour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
@@ -177,6 +170,7 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:background="@drawable/border"
+                android:visibility="gone"
                 >
 
                 <LinearLayout
@@ -211,9 +205,8 @@
                         android:layout_marginRight="40dp"
                         />
 
-
-
                     <TextView
+                        android:id="@+id/examHour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"

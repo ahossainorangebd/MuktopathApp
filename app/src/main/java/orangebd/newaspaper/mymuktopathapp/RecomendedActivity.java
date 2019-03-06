@@ -462,7 +462,9 @@ public class RecomendedActivity extends AppCompatActivity {
                                                 String time_unit = jObjAgain.getString("time_unit");
                                                 String mTitle = jObjAgain.getString("title");
 
-                                                model2.setmAllowPreview(allow_preview);
+                                                //TODO
+                                                //TODO
+                                                /*model2.setmAllowPreview(allow_preview);
                                                 model2.setmAnsRand(ans_rand);
                                                 model2.setmAttempt(attempt);
                                                 model2.setmChooseVideoType(choose_video_type);
@@ -477,7 +479,7 @@ public class RecomendedActivity extends AppCompatActivity {
                                                 model2.setmQuesRand(ques_rand);
                                                 model2.setmQuiz(quiz);
                                                 model2.setmTimeUnit(time_unit);
-                                                model2.setmTitleAnother(mTitle);
+                                                model2.setmTitleAnother(mTitle);*/
 
                                                 // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
 

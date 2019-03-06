@@ -68,4 +68,5 @@ public class GlobalVar {
     public static ArrayList<DetailDataModelCourses> gMainActivityInstitutionList;
     public static ArrayList<DetailDataModelCourses> allDataDetailList;
 
+    public static int gEnrollCourseNumber;
 }

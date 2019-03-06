@@ -59,8 +59,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.Manifest.permission.READ_CONTACTS;
-
 /**
  * A login screen that offers login via email/password.
  */
@@ -111,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailListEnrollCourses;
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnitData;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnits;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList;
 
@@ -121,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNew;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitArrayListNew;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizList;
+    ArrayList<DetailDataModelCoursesDetailContents> mUnitDataArrayList;
 
     private String token="";
     String url="http://api.muktopaath.orangebd.com/api/login";
@@ -164,7 +164,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 map = new HashMap<String, String>();
 
-
                 token = GlobalVar.getTokenArray.get(0).getmAccessToken();
                 String firstWord = GlobalVar.getTokenArray.get(0).getmTokenType();
 
@@ -178,7 +177,9 @@ public class LoginActivity extends AppCompatActivity {
                     object.put("email", mStrEmail);
                     object.put("password", mStrPwd);
                 }
-                catch (Exception ex){ }
+                catch (Exception ex){
+                    Log.d("", "onClick: ");
+                }
 
                 RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -200,6 +201,7 @@ public class LoginActivity extends AppCompatActivity {
                                 detailList8 = new ArrayList<DetailDataModelCourses>();
 
                                 detailListCourseDetailContentss = new ArrayList<>();
+                                detailListCourseUnitData = new ArrayList<>();
                                 detailListCourseDetailUnits = new ArrayList<>();
                                 detailListCourseDetailUnitQuizList = new ArrayList<>();
 
@@ -266,9 +268,11 @@ public class LoginActivity extends AppCompatActivity {
                                     DetailDataModelCourses model2 = new DetailDataModelCourses();
 
                                     try {
-                                        for (int ii2=0;ii2<jObjectData.length();ii2++)
+
+                                        JSONArray object = (JSONArray) jObjectData.getJSONArray("owninstitution");
+
+                                        for (int ii2=0;ii2<object.length();ii2++)
                                         {
-                                            JSONArray object = (JSONArray) jObjectData.getJSONArray("owninstitution");
                                             JSONObject object2 = (JSONObject) object.get(ii2);
 
                                             String instaddress = object2.getString("address");
@@ -338,11 +342,18 @@ public class LoginActivity extends AppCompatActivity {
                                     }
 
 
-                                    JSONObject objectForOwnersInfo = (JSONObject) jObjectData.getJSONObject("UserInfo");
+                                    try {
+                                        JSONObject objectForOwnersInfo = (JSONObject) jObjectData.getJSONObject("UserInfo");
 
-                                    String usersidnumber = objectForOwnersInfo.getString("user_id");
+                                        String usersidnumber = objectForOwnersInfo.getString("user_id");
 
-                                    GlobalVar.gUsersNumber = usersidnumber;
+                                        GlobalVar.gUsersNumber = usersidnumber;
+                                    }
+                                    catch (Exception ex){
+                                        Log.d("", "onResponse: ");
+                                    }
+
+
 
 
                                     // For parsing 2nd Array of info JSON
@@ -352,9 +363,11 @@ public class LoginActivity extends AppCompatActivity {
                                     DetailDataModelCourses model3 = new DetailDataModelCourses();
 
                                     try {
-                                        for (int iii=0;iii<jObjectData.length();iii++)
+
+                                        JSONArray objectAnother = (JSONArray) jObjectData.getJSONArray("institution");
+
+                                        for (int iii=0;iii<objectAnother.length();iii++)
                                         {
-                                            JSONArray objectAnother = (JSONArray) jObjectData.getJSONArray("institution");
                                             JSONObject objectAnother2 = (JSONObject) objectAnother.get(iii);
 
                                             String instaddress = objectAnother2.getString("address");
@@ -442,6 +455,10 @@ public class LoginActivity extends AppCompatActivity {
 
                                         JSONArray objectAgainAnother = (JSONArray) jObjectData.getJSONArray("RoleInstitution");
                                         JSONArray objectEnrollCourse = (JSONArray) jObjectData.getJSONArray("EnrollCourse");
+
+                                        int enrolledCourseNumbers=objectEnrollCourse.length();
+
+                                        GlobalVar.gEnrollCourseNumber=enrolledCourseNumbers;
 
                                         try {
                                             for (int ec = 0; ec < objectEnrollCourse.length(); ec++)
@@ -646,8 +663,10 @@ public class LoginActivity extends AppCompatActivity {
 
                                                         // parsing from syllebus
 
-                                                    try{
+                                                    try
+                                                    {
                                                         mContentArrayListNew = new ArrayList<>();
+                                                        mUnitDataArrayList = new ArrayList<>();
 
 
                                                         for (int ii = 0; ii < jObject.length()-1; ii++)
@@ -689,6 +708,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                 for (int lmn = 0; lmn < jSObject2.length() - 1; lmn++) {
                                                                     JSONObject jSObject3 = jSObject2.getJSONObject("" + lmn);
+
+                                                                    DetailDataModelCoursesDetailContents modelUnitCourseContents = new DetailDataModelCoursesDetailContents();
                                                                     JSONObject jObjAgain = jSObject3.getJSONObject("data");
 
                                                                     //*String allow_preview = jObjAgain.getString("allow_preview");
@@ -709,20 +730,22 @@ public class LoginActivity extends AppCompatActivity {
                                                                     String mTitle = jObjAgain.getString("title");
 
                                                                     // model2.setmAllowPreview(allow_preview);
-                                                                    model2.setmAnsRand(ans_rand);
-                                                                    model2.setmAttempt(attempt);
-                                                                    model2.setmChooseVideoType(choose_video_type);
-                                                                    model2.setmContentType(content_type);
-                                                                    model2.setmDesc(desc);
-                                                                    model2.setmDownloadable(downloadable);
-                                                                    model2.setmDurationAnother(mDuration);
-                                                                    model2.setmForward(forward);
-                                                                    model2.setmPeerLimit(peer_limit);
-                                                                    model2.setmPeerReview(peer_review);
-                                                                    model2.setmPulse(pulse);
-                                                                    model2.setmQuesRand(ques_rand);
-                                                                    model2.setmQuiz(quizYesOrNot);
-                                                                    model2.setmTimeUnit(time_unit);
+                                                                    modelUnitCourseContents.setmAnsRand(ans_rand);
+                                                                    modelUnitCourseContents.setmAttempt(attempt);
+                                                                    modelUnitCourseContents.setmChooseVideoType(choose_video_type);
+                                                                    modelUnitCourseContents.setmContentType(content_type);
+                                                                    modelUnitCourseContents.setmDesc(desc);
+                                                                    modelUnitCourseContents.setmDownloadable(downloadable);
+                                                                    modelUnitCourseContents.setmDurationAnother(mDuration);
+                                                                    modelUnitCourseContents.setmForward(forward);
+                                                                    modelUnitCourseContents.setmPeerLimit(peer_limit);
+                                                                    modelUnitCourseContents.setmPeerReview(peer_review);
+                                                                    modelUnitCourseContents.setmPulse(pulse);
+                                                                    modelUnitCourseContents.setmQuesRand(ques_rand);
+                                                                    modelUnitCourseContents.setmQuiz(quizYesOrNot);
+                                                                    modelUnitCourseContents.setmTimeUnit(time_unit);
+
+                                                                    mUnitDataArrayList.add(modelUnitCourseContents);
                                                                     //model2.setmTitleAnother(mTitle);//*
 
                                                                     // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
@@ -923,9 +946,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 }
 
                                                 detailListCourseDetailContentss.add(mContentArrayListNew);
-
+                                                detailListCourseUnitData.add(mUnitDataArrayList);
                                                 detailListCourseDetailUnits.add(mUnitArrayListNew);
-
                                                 detailListCourseDetailUnitQuizList.add(mUnitQuizList);
 
                                                 GlobalVar.gEnrolledInstitution=detailList10;
@@ -941,6 +963,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     modelAlter.setmArrayListThumbnails(detailListCourseThumbnail);
                                     modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
+                                    modelAlter.setmUnitDataArrayListContent(detailListCourseUnitData);
                                     modelAlter.setmArrayListCourseUnits(detailListCourseDetailUnits);
                                     modelAlter.setmArrayListCourseQuizs(detailListCourseDetailUnitQuizList);
 
