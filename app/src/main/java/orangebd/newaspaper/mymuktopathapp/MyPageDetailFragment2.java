@@ -11,10 +11,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class MyPageDetailFragment2 extends Fragment {
@@ -29,6 +35,8 @@ public class MyPageDetailFragment2 extends Fragment {
     private TextView unitOrderText;
     private TextView unitTitleText;
 
+    private ExpandableListView mExpandableList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +44,8 @@ public class MyPageDetailFragment2 extends Fragment {
         view = inflater.inflate(R.layout.fragment_my_page_detail_fragment2, container, false);
 
         context=getContext();
+
+        mExpandableList = view.findViewById(R.id.ques_option_list);
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits();
         final ArrayList<DetailDataModelCoursesDetailContents> units = unitArray.get(GlobalVar.gNthCourse);
@@ -77,7 +87,8 @@ public class MyPageDetailFragment2 extends Fragment {
         new GetCoursesContents().execute();
     }
 
-    public class GetCoursesContents extends AsyncTask<String, Void, Void> {
+    public class GetCoursesContents extends AsyncTask<String, Void, Void>
+    {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -108,6 +119,37 @@ public class MyPageDetailFragment2 extends Fragment {
             adapter.notifyDataSetChanged();
 
             //mProgressSpinner.setVisibility(View.GONE);
+
+            new GetQuestions().execute();
+        }
+    }
+
+
+    private class GetQuestions extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            mExpandableList.setAdapter(new MyCustomAdapterQuiz(context,GlobalVar.courseContentDetailList,mExpandableList));
+            mExpandableList.setGroupIndicator(null);
+            mExpandableList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                @Override
+                public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                    return true;
+                }
+            });
         }
     }
 }

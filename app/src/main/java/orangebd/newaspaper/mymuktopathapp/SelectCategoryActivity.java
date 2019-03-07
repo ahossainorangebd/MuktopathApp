@@ -47,8 +47,7 @@ public class SelectCategoryActivity extends AppCompatActivity {
             }
         });
 
-
-        mExpandableList = findViewById(R.id.expandable_list);
+        //mExpandableList = findViewById(R.id.expandable_list);
 
         new GetMenu().execute();
     }

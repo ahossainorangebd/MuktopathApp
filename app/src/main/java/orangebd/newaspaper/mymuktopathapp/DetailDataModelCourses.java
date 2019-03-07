@@ -113,15 +113,24 @@ public class DetailDataModelCourses
     private ArrayList<DetailDataModelCoursesThumbnails> mArrayListThumbnails;
 
 
+
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent2;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent3;
+
     //for parsing thumbnailImage;
 
     /*private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;*/
 
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;
-    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseUnits;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs;
+
+    //for ques list's options
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizOptions;
+
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mUnitDataArrayListArray;
 
     public String getmAdmissionStatus() {
         return mAdmissionStatus;
@@ -1173,5 +1182,37 @@ public class DetailDataModelCourses
 
     public void setmUnitDataArrayListContent(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent) {
         this.mUnitDataArrayListContent = mUnitDataArrayListContent;
+    }
+
+    public ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> getmUnitDataArrayListArray() {
+        return mUnitDataArrayListArray;
+    }
+
+    public void setmUnitDataArrayListArray(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mUnitDataArrayListArray) {
+        this.mUnitDataArrayListArray = mUnitDataArrayListArray;
+    }
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmUnitDataArrayListContent2() {
+        return mUnitDataArrayListContent2;
+    }
+
+    public void setmUnitDataArrayListContent2(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent2) {
+        this.mUnitDataArrayListContent2 = mUnitDataArrayListContent2;
+    }
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmUnitDataArrayListContent3() {
+        return mUnitDataArrayListContent3;
+    }
+
+    public void setmUnitDataArrayListContent3(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent3) {
+        this.mUnitDataArrayListContent3 = mUnitDataArrayListContent3;
+    }
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListCourseQuizOptions() {
+        return mArrayListCourseQuizOptions;
+    }
+
+    public void setmArrayListCourseQuizOptions(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizOptions) {
+        this.mArrayListCourseQuizOptions = mArrayListCourseQuizOptions;
     }
 }

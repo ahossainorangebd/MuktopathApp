@@ -79,6 +79,8 @@ public class WelcomeActivity extends AppCompatActivity {
             return data;
         }
 
+
+
         @Override
         protected void onPostExecute(String result)
         {
@@ -109,6 +111,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
                 GlobalVar.getTokenArray = detailList;
+
+                String abbb="";
             }
 
             catch (Exception ex){

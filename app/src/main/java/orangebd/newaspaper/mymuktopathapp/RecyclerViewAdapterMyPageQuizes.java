@@ -70,7 +70,7 @@ public class RecyclerViewAdapterMyPageQuizes extends RecyclerView.Adapter<Recycl
         View view= new View(mContext);
 
         try {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_mypage_contents, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_mypage_quizes, parent, false);
         }
         catch (Exception ex){
             Log.d("", ex.getMessage());

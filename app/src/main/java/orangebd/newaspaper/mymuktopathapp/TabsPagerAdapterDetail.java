@@ -8,7 +8,7 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
     private int NUM_ITEMS = 10;
 
-    private String[] titles = new String[] {};
+    private String[] titles = new String[] {"1","2","3","4","5","6","7","8","9","10"};
 
     /*private String[] titles3= new String[] {"1","2","3"};
     private String[] titles4= new String[] {"1","2","3","4"};
@@ -182,7 +182,7 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber>=10)
+        else if(GlobalVar.gEnrollCourseNumber==10)
         {
             switch (position) {
 
@@ -206,6 +206,409 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
                     return new MyPageFragment9();
                 case 9:
                     return new MyPageFragment10();
+                default:
+                    return null;
+            }
+        }
+
+        //from 11 to 20
+
+
+        else if(GlobalVar.gEnrollCourseNumber==11)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                default:
+                    return null;
+            }
+        }
+
+
+        else if(GlobalVar.gEnrollCourseNumber==12)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==13)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==14)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                case 13:
+                    return new MyPageFragment14();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==15)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                case 13:
+                    return new MyPageFragment14();
+                case 14:
+                    return new MyPageFragment15();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==16)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                case 13:
+                    return new MyPageFragment14();
+                case 14:
+                    return new MyPageFragment15();
+                case 15:
+                    return new MyPageFragment16();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==17)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                case 13:
+                    return new MyPageFragment14();
+                case 14:
+                    return new MyPageFragment15();
+                case 15:
+                    return new MyPageFragment16();
+                case 16:
+                    return new MyPageFragment17();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==18)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                case 13:
+                    return new MyPageFragment14();
+                case 14:
+                    return new MyPageFragment15();
+                case 15:
+                    return new MyPageFragment16();
+                case 16:
+                    return new MyPageFragment17();
+                case 17:
+                    return new MyPageFragment18();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==19)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                case 13:
+                    return new MyPageFragment14();
+                case 14:
+                    return new MyPageFragment15();
+                case 15:
+                    return new MyPageFragment16();
+                case 16:
+                    return new MyPageFragment17();
+                case 17:
+                    return new MyPageFragment18();
+                case 18:
+                    return new MyPageFragment19();
+
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber>=20)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                case 2:
+                    return new MyPageFragment3();
+                case 3:
+                    return new MyPageFragment4();
+                case 4:
+                    return new MyPageFragment5();
+                case 5:
+                    return new MyPageFragment6();
+                case 6:
+                    return new MyPageFragment7();
+                case 7:
+                    return new MyPageFragment8();
+                case 8:
+                    return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                case 13:
+                    return new MyPageFragment14();
+                case 14:
+                    return new MyPageFragment15();
+                case 15:
+                    return new MyPageFragment16();
+                case 16:
+                    return new MyPageFragment17();
+                case 17:
+                    return new MyPageFragment18();
+                case 18:
+                    return new MyPageFragment19();
+                case 19:
+                    return new MyPageFragment20();
                 default:
                     return null;
             }

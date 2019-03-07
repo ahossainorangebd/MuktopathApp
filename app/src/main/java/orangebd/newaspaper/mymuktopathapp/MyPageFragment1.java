@@ -17,7 +17,12 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Formatter;
+import java.util.TimeZone;
 
 
 public class MyPageFragment1 extends Fragment {
@@ -44,6 +49,8 @@ public class MyPageFragment1 extends Fragment {
     private TextView mContentHour;
     private TextView mExamHour;
     private TextView mAssignmentHour;
+
+    private Formatter mFormatter;
 
     //GlobalVar.gEnrollCourseList
 
@@ -112,41 +119,44 @@ public class MyPageFragment1 extends Fragment {
 
         if(mAssignmentNumbers>0){
 
-            int contentListCount3=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(2).size();
+            int contentListCount3=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent3().get(0).size();
 
             int contentDuration3=0;
 
-            for (int timeCount3=0; timeCount3<contentListCount3-1 ; timeCount3++) {
+            for (int timeCount3=0; timeCount3<contentListCount3 ; timeCount3++) {
 
-                String temptestList3=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(2).get(timeCount3).getmDurationAnother();
+                String temptestList3=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent3().get(0).get(timeCount3).getmDurationAnother();
 
                 if(!temptestList3.equalsIgnoreCase("null")) {
                     contentDuration3 = contentDuration3 + Integer.parseInt(temptestList3);
                 }
             }
 
+            String contentDuration3New= stringForTime(contentDuration3);
+
             mAssignmentSection.setVisibility(View.VISIBLE);
 
-            mAssignmentHour.setText(Integer.toString(contentDuration3));
+            mAssignmentHour.setText(contentDuration3New);
         }
 
         if(mExamNumbers>0){
 
-            int contentListCount2=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(1).size();
+            int contentListCount2=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent2().get(0).size();
             int contentDuration2=0;
 
-            for (int timeCount2=0; timeCount2<contentListCount2-1 ; timeCount2++) {
+            for (int timeCount2=0; timeCount2<contentListCount2 ; timeCount2++) {
 
-                String temptestList2=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(1).get(timeCount2).getmDurationAnother();
+                String temptestList2=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent2().get(0).get(timeCount2).getmDurationAnother();
 
                 if(!temptestList2.equalsIgnoreCase("null")) {
                     contentDuration2 = contentDuration2 + Integer.parseInt(temptestList2);
                 }
             }
 
-            mExamNumberSection.setVisibility(View.VISIBLE);
+            String contentDuration2New= stringForTime(contentDuration2);
 
-            mExamHour.setText(Integer.toString(contentDuration2));
+            mExamNumberSection.setVisibility(View.VISIBLE);
+            mExamHour.setText(contentDuration2New);
         }
 
         if(mContentNumbers>0){
@@ -154,7 +164,7 @@ public class MyPageFragment1 extends Fragment {
             int contentListCount=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(0).size();
             int contentDuration=0;
 
-            for (int timeCount=0; timeCount<contentListCount-1 ; timeCount++) {
+            for (int timeCount=0; timeCount<contentListCount ; timeCount++) {
 
                 String temptestList=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(0).get(timeCount).getmDurationAnother();
 
@@ -163,8 +173,10 @@ public class MyPageFragment1 extends Fragment {
                 }
             }
 
+            String contentDurationNew= stringForTime(contentDuration);
+
             mContentNumberSection.setVisibility(View.VISIBLE);
-            mContentHour.setText(Integer.toString(contentDuration));
+            mContentHour.setText(contentDurationNew);
         }
 
 
@@ -196,6 +208,43 @@ public class MyPageFragment1 extends Fragment {
 
 
         return view;
+    }
+
+
+
+    private String stringForTime(int timeMs) {
+
+        mFormatter= new Formatter();
+
+        //int seconds = timeMs % 60;
+        int minutes = (timeMs / 60) % 60;
+        int hours = timeMs / 3600;
+
+        String mintBn = convertEngToBn(Integer.toString(minutes));
+        String hrsBn = convertEngToBn(Integer.toString(hours));
+
+        if (hours > 0) {
+            return mFormatter.format("%s ঘণ্টা %s মিনিট", hrsBn, mintBn).toString();
+        }
+        else {
+            return mFormatter.format("%s মিনিট", mintBn).toString();
+        }
+    }
+
+    public String convertEngToBn(String num) {
+
+        num = num.replace("0","০");
+        num = num.replace("1","১");
+        num = num.replace("2","২");
+        num = num.replace("3","৩");
+        num = num.replace("4","৪");
+        num = num.replace("5","৫");
+        num = num.replace("6","৬");
+        num = num.replace("7","৭");
+        num = num.replace("8","৮");
+        num = num.replace("9","৯");
+
+        return num;
     }
 
 }

@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CourseContentDetailActivity"></activity>
+        <activity android:name=".MyPageFragment20"></activity>
+        <activity android:name=".CourseContentDetailActivity" />
         <activity android:name=".AccountVerificationActivity" />
         <activity android:name=".MainActivity" />
         <activity

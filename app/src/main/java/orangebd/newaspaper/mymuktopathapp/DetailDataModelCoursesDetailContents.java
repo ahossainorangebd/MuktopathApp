@@ -32,6 +32,11 @@ public class DetailDataModelCoursesDetailContents
 
     private String mQuizTitle;
 
+    // for quiz options
+    //private String mOptionBody;
+
+    private ArrayList<DetailDataModelQuizOptnModel> quizOptnList;
+
     // for model of Units
 
     private String unitNames;
@@ -399,5 +404,21 @@ public class DetailDataModelCoursesDetailContents
 
     public void setmTitleAnother(String mTitleAnother) {
         this.mTitleAnother = mTitleAnother;
+    }
+
+    /*public String getmOptionBody() {
+        return mOptionBody;
+    }
+
+    public void setmOptionBody(String mOptionBody) {
+        this.mOptionBody = mOptionBody;
+    }*/
+
+    public ArrayList<DetailDataModelQuizOptnModel> getQuizOptnList() {
+        return quizOptnList;
+    }
+
+    public void setQuizOptnList(ArrayList<DetailDataModelQuizOptnModel> quizOptnList) {
+        this.quizOptnList = quizOptnList;
     }
 }

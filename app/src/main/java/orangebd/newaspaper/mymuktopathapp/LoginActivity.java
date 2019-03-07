@@ -109,9 +109,17 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailListEnrollCourses;
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
-    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnitData;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnits;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizOptList;
+
+    //for declaring arraylist of units
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit1Data;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit2Data;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit3Data;
+
+
+    //TODO
 
     private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
 
@@ -119,8 +127,17 @@ public class LoginActivity extends AppCompatActivity {
 
     ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNew;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitArrayListNew;
+
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizList;
-    ArrayList<DetailDataModelCoursesDetailContents> mUnitDataArrayList;
+
+    //TODO
+    //ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizOptList;
+    ArrayList<DetailDataModelQuizOptnModel> mUnitQuizOptList;
+
+
+    ArrayList<DetailDataModelCoursesDetailContents> mUnit1DataArrayList;
+    ArrayList<DetailDataModelCoursesDetailContents> mUnit2DataArrayList;
+    ArrayList<DetailDataModelCoursesDetailContents> mUnit3DataArrayList;
 
     private String token="";
     String url="http://api.muktopaath.orangebd.com/api/login";
@@ -201,9 +218,15 @@ public class LoginActivity extends AppCompatActivity {
                                 detailList8 = new ArrayList<DetailDataModelCourses>();
 
                                 detailListCourseDetailContentss = new ArrayList<>();
-                                detailListCourseUnitData = new ArrayList<>();
                                 detailListCourseDetailUnits = new ArrayList<>();
                                 detailListCourseDetailUnitQuizList = new ArrayList<>();
+                                detailListCourseDetailUnitQuizOptList = new ArrayList<>();
+
+
+                                //for renew arraylist of units arrays
+                                detailListCourseUnit1Data = new ArrayList<>();
+                                detailListCourseUnit2Data = new ArrayList<>();
+                                detailListCourseUnit3Data = new ArrayList<>();
 
                                 DetailDataModelCourses model = new DetailDataModelCourses();
 
@@ -666,7 +689,9 @@ public class LoginActivity extends AppCompatActivity {
                                                     try
                                                     {
                                                         mContentArrayListNew = new ArrayList<>();
-                                                        mUnitDataArrayList = new ArrayList<>();
+                                                        mUnit1DataArrayList = new ArrayList<>();
+                                                        mUnit2DataArrayList = new ArrayList<>();
+                                                        mUnit3DataArrayList = new ArrayList<>();
 
 
                                                         for (int ii = 0; ii < jObject.length()-1; ii++)
@@ -745,7 +770,21 @@ public class LoginActivity extends AppCompatActivity {
                                                                     modelUnitCourseContents.setmQuiz(quizYesOrNot);
                                                                     modelUnitCourseContents.setmTimeUnit(time_unit);
 
-                                                                    mUnitDataArrayList.add(modelUnitCourseContents);
+
+                                                                    //let's add
+
+                                                                    if(content_type.equalsIgnoreCase("quiz")){
+                                                                        mUnit2DataArrayList.add(modelUnitCourseContents);
+                                                                    }
+
+                                                                    else if(content_type.equalsIgnoreCase("assignment")){
+                                                                        mUnit3DataArrayList.add(modelUnitCourseContents);
+                                                                    }
+
+                                                                    else {
+                                                                        mUnit1DataArrayList.add(modelUnitCourseContents);
+                                                                    }
+
                                                                     //model2.setmTitleAnother(mTitle);//*
 
                                                                     // For parsing "file_type" > "data" > {0} > {0} > "syllebus" > "0" > "data"
@@ -855,7 +894,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                                 mUnitQuizList = new ArrayList<>();
 
-                                                                                for(int qlist2=0; qlist2<jSonObjMultiQ2.length(); qlist2++){
+                                                                                for(int qlist2=0; qlist2<jSonObjMultiQ2.length(); qlist2++)
+                                                                                {
 
                                                                                     DetailDataModelCoursesDetailContents modelUnitQuizElements2 = new DetailDataModelCoursesDetailContents();
 
@@ -869,7 +909,36 @@ public class LoginActivity extends AppCompatActivity {
                                                                                     modelUnitQuizElements2.setmQuizTitle(qTitle);
 
                                                                                     mUnitQuizList.add(modelUnitQuizElements2);
+
+
+
+                                                                                    JSONArray jSonObjMultiQOptions = (JSONArray) objectAgainAnother2.getJSONArray("options");
+
+                                                                                    try{
+
+                                                                                        mUnitQuizOptList = new ArrayList<>();
+
+                                                                                        for(int optionList=0; optionList<jSonObjMultiQOptions.length(); optionList++){
+
+                                                                                            //DetailDataModelCoursesDetailContents modelUnitQuizOptions = new DetailDataModelCoursesDetailContents();
+                                                                                            DetailDataModelQuizOptnModel modelUnitQuizOptions = new DetailDataModelQuizOptnModel();
+
+                                                                                            JSONObject jObjectQuesOpt = (JSONObject) jSonObjMultiQOptions.get(optionList);
+
+                                                                                            String optionBody = jObjectQuesOpt.getString("body");
+
+                                                                                            modelUnitQuizOptions.setmOptionBody(optionBody);
+
+                                                                                            mUnitQuizOptList.add(modelUnitQuizOptions);
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ex){
+                                                                                        Log.d("", "onResponse: ");
+                                                                                    }
                                                                                 }
+
+                                                                                //TODO
+                                                                                //mUnitQuizList.add(mUnitQuizOptList);
 
 
                                                                             }
@@ -946,26 +1015,42 @@ public class LoginActivity extends AppCompatActivity {
                                                 }
 
                                                 detailListCourseDetailContentss.add(mContentArrayListNew);
-                                                detailListCourseUnitData.add(mUnitDataArrayList);
                                                 detailListCourseDetailUnits.add(mUnitArrayListNew);
                                                 detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+
+                                                //TODO
+                                                //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
+
+
+                                                // for unit arrays
+                                                detailListCourseUnit1Data.add(mUnit1DataArrayList);
+                                                detailListCourseUnit2Data.add(mUnit2DataArrayList);
+                                                detailListCourseUnit3Data.add(mUnit3DataArrayList);
+
 
                                                 GlobalVar.gEnrolledInstitution=detailList10;
                                             }
                                         } catch (Exception ex) {
                                             Log.d("", "onResponse: ");
                                         }
-
                                     }
                                     catch (Exception ex){
                                         Log.d("", "onResponse: ");
                                     }
 
+
+                                    modelAlter.setmUnitDataArrayListContent(detailListCourseUnit1Data);
+                                    modelAlter.setmUnitDataArrayListContent2(detailListCourseUnit2Data);
+                                    modelAlter.setmUnitDataArrayListContent3(detailListCourseUnit3Data);
+
                                     modelAlter.setmArrayListThumbnails(detailListCourseThumbnail);
                                     modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
-                                    modelAlter.setmUnitDataArrayListContent(detailListCourseUnitData);
+
                                     modelAlter.setmArrayListCourseUnits(detailListCourseDetailUnits);
                                     modelAlter.setmArrayListCourseQuizs(detailListCourseDetailUnitQuizList);
+
+                                    //for option list of quest list
+                                    modelAlter.setmArrayListCourseQuizOptions(detailListCourseDetailUnitQuizOptList);
 
                                     detailListCourse.add(modelAlter);
 
