@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ParentMenu {
     private String mTitle;
-    private String dtl_url;
+
     private String mID;
 
     private ArrayList<Parent> mArrayChildren;
@@ -20,14 +20,6 @@ public class ParentMenu {
 
     public void setArrayChildren(ArrayList<Parent> arrayChildren) {
         mArrayChildren = arrayChildren;
-    }
-
-    public String getDtl_url() {
-        return dtl_url;
-    }
-
-    public void setDtl_url(String dtl_url) {
-        this.dtl_url = dtl_url;
     }
 
     public String getmID() {

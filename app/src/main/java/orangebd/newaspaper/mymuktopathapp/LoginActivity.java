@@ -111,13 +111,14 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnits;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList;
-    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizOptList;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList2;
+
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailUnitQuizOptList;
 
     //for declaring arraylist of units
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit1Data;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit2Data;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit3Data;
-
 
     //TODO
 
@@ -130,10 +131,13 @@ public class LoginActivity extends AppCompatActivity {
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizList;
 
+    ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitQuizList2;
+
+    ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListWithOptions;
+
     //TODO
     //ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizOptList;
-    ArrayList<DetailDataModelQuizOptnModel> mUnitQuizOptList;
-
+    ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizOptList;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnit1DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit2DataArrayList;
@@ -142,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
     private String token="";
     String url="http://api.muktopaath.orangebd.com/api/login";
     @Override
-    protected void onCreate(Bundle savedInstanceState) 
+    protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -220,6 +224,9 @@ public class LoginActivity extends AppCompatActivity {
                                 detailListCourseDetailContentss = new ArrayList<>();
                                 detailListCourseDetailUnits = new ArrayList<>();
                                 detailListCourseDetailUnitQuizList = new ArrayList<>();
+                                detailListCourseDetailUnitQuizList2 = new ArrayList<>();
+
+
                                 detailListCourseDetailUnitQuizOptList = new ArrayList<>();
 
 
@@ -693,7 +700,6 @@ public class LoginActivity extends AppCompatActivity {
                                                         mUnit2DataArrayList = new ArrayList<>();
                                                         mUnit3DataArrayList = new ArrayList<>();
 
-
                                                         for (int ii = 0; ii < jObject.length()-1; ii++)
                                                         {
                                                             JSONObject jSObject2 = jObject.getJSONObject("" + ii);
@@ -884,20 +890,23 @@ public class LoginActivity extends AppCompatActivity {
                                                                     if (content_type.equalsIgnoreCase("quiz")) {
                                                                         try {
 
+
+
                                                                             for (int ctq = 0; ctq < jSObject3.length(); ctq++) {
-
-
-
-
 
                                                                                 JSONArray jSonObjMultiQ2 = (JSONArray) jSObject3.getJSONArray("ques_list");
 
                                                                                 mUnitQuizList = new ArrayList<>();
+                                                                                mUnitQuizList2 = new ArrayList<>();
+
+                                                                                mUnitQuizListWithOptions = new ArrayList<>();
 
                                                                                 for(int qlist2=0; qlist2<jSonObjMultiQ2.length(); qlist2++)
                                                                                 {
 
                                                                                     DetailDataModelCoursesDetailContents modelUnitQuizElements2 = new DetailDataModelCoursesDetailContents();
+
+                                                                                    DetailDataModelCoursesDetailContents modelUnitQuizListWithOptions = new DetailDataModelCoursesDetailContents();
 
                                                                                     JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ2.get(qlist2);
 
@@ -907,9 +916,10 @@ public class LoginActivity extends AppCompatActivity {
                                                                                     qTitle = qTitle.replace("</p>","");
 
                                                                                     modelUnitQuizElements2.setmQuizTitle(qTitle);
-
                                                                                     mUnitQuizList.add(modelUnitQuizElements2);
 
+                                                                                    modelUnitQuizListWithOptions.setmQuizTitle(qTitle);
+                                                                                    mUnitQuizListWithOptions.add(modelUnitQuizListWithOptions);
 
 
                                                                                     JSONArray jSonObjMultiQOptions = (JSONArray) objectAgainAnother2.getJSONArray("options");
@@ -921,7 +931,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                                         for(int optionList=0; optionList<jSonObjMultiQOptions.length(); optionList++){
 
                                                                                             //DetailDataModelCoursesDetailContents modelUnitQuizOptions = new DetailDataModelCoursesDetailContents();
-                                                                                            DetailDataModelQuizOptnModel modelUnitQuizOptions = new DetailDataModelQuizOptnModel();
+                                                                                            DetailDataModelCoursesDetailContents modelUnitQuizOptions = new DetailDataModelCoursesDetailContents();
 
                                                                                             JSONObject jObjectQuesOpt = (JSONObject) jSonObjMultiQOptions.get(optionList);
 
@@ -935,10 +945,11 @@ public class LoginActivity extends AppCompatActivity {
                                                                                     catch (Exception ex){
                                                                                         Log.d("", "onResponse: ");
                                                                                     }
+
+                                                                                    mUnitQuizList2.add(mUnitQuizOptList);
                                                                                 }
 
                                                                                 //TODO
-                                                                                //mUnitQuizList.add(mUnitQuizOptList);
 
 
                                                                             }
@@ -991,7 +1002,6 @@ public class LoginActivity extends AppCompatActivity {
                                                                                     }
                                                                                 }
 
-
                                                                             }
                                                                         } catch (Exception ex) {
                                                                             Log.d("", "onResponse: ");
@@ -999,6 +1009,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                     } else {
                                                                       //  Toast.makeText(mContext, "", Toast.LENGTH_LONG).show();
                                                                     }
+
                                                                 }
                                                             }
                                                             catch (Exception ex){
@@ -1009,18 +1020,27 @@ public class LoginActivity extends AppCompatActivity {
                                                     catch (Exception ex){
                                                         Log.d("", "onResponse: ");
                                                     }
+
+
                                                 }
                                                 catch (Exception ex){
                                                     Log.d("", "onResponse: ");
                                                 }
 
+
+                                                detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
+
                                                 detailListCourseDetailContentss.add(mContentArrayListNew);
                                                 detailListCourseDetailUnits.add(mUnitArrayListNew);
                                                 detailListCourseDetailUnitQuizList.add(mUnitQuizList);
 
+
+
+
+                                                //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
+
                                                 //TODO
                                                 //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
-
 
                                                 // for unit arrays
                                                 detailListCourseUnit1Data.add(mUnit1DataArrayList);
@@ -1061,6 +1081,9 @@ public class LoginActivity extends AppCompatActivity {
                                     GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
 
                                     GlobalVar.courseContentDetailList=detailListCourse;
+
+
+                                    //GlobalVar.gEnrollCourseQuestionList= GlobalVar.courseContentDetailList.get(i).getmArrayListCourseQuizs();
                                 }
                                 catch (Exception ex){
                                     Log.d("", "onResponse: ");

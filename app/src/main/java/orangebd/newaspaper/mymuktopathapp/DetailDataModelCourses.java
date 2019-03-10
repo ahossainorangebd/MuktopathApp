@@ -128,7 +128,7 @@ public class DetailDataModelCourses
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs;
 
     //for ques list's options
-    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizOptions;
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseQuizOptions;
 
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mUnitDataArrayListArray;
 
@@ -1208,11 +1208,11 @@ public class DetailDataModelCourses
         this.mUnitDataArrayListContent3 = mUnitDataArrayListContent3;
     }
 
-    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListCourseQuizOptions() {
+    public ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> getmArrayListCourseQuizOptions() {
         return mArrayListCourseQuizOptions;
     }
 
-    public void setmArrayListCourseQuizOptions(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizOptions) {
+    public void setmArrayListCourseQuizOptions(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseQuizOptions) {
         this.mArrayListCourseQuizOptions = mArrayListCourseQuizOptions;
     }
 }

@@ -19,15 +19,18 @@ import java.util.ArrayList;
 
 public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
 
+    private boolean isExpandedIsAlwaysTrue=true;
+
     Button btn;
     private ExpandableListView mExpandableList;
     private LayoutInflater inflater;
-    private ArrayList<DetailDataModelCourses> mParent;
+    private ArrayList<ParentMenu> mParent;
+    private ArrayList<Parent> mChild;
     private Context mContext;
     private String parentTxt;
     private boolean isChildSelected;
 
-    public MyCustomAdapterQuiz(Context context, ArrayList<DetailDataModelCourses> parent, ExpandableListView mExpandableList){
+    public MyCustomAdapterQuiz(Context context, ArrayList<ParentMenu> parent, ExpandableListView mExpandableList){
         mParent = parent;
         inflater = LayoutInflater.from(context);
         this.mExpandableList=mExpandableList;
@@ -39,15 +42,14 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
     @Override
     //counts the number of group/parent items so the list knows how many times calls getGroupView() method
     public int getGroupCount() {
-        return mParent.get(0).getmArrayListCourseQuizs().get(0).size();
+        return mParent.size();
     }
 
     @Override
     //counts the number of children items so the list knows how many times calls getChildView() method
     public int getChildrenCount(int i) {
 
-
-        return mParent.get(i).getmArrayListCourseQuizs().size();
+        return mParent.get(i).getArrayChildren().size();
     }
 
     @Override
@@ -55,16 +57,14 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
 
     public Object getGroup(int i) {
 
-
-        Object quizTitles=mParent.get(0).getmArrayListCourseQuizs().get(i);
-        return quizTitles;
+        return mParent.get(i).getTitle();
     }
 
     @Override
     //gets the name of each item
     public Object getChild(int i, int i1) {
 
-        return mParent.get(i).getmArrayListCourseQuizs().get(i1).get(i1).getmOptionBody();
+        return mParent.get(i).getArrayChildren().get(i1);
     }
 
     @Override
@@ -130,8 +130,16 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
             }
         });
 
+        if (isExpandedIsAlwaysTrue==true)
+            ( mExpandableList).expandGroup(groupPosition, true);
+
+        else
+            ( mExpandableList).expandGroup(groupPosition, true);
+
         textView.setText(headerTitle);
+
         //textView.setTextColor(Color.parseColor("#000"));
+
         convertView.setTag(holder);
 
         //return the entire view
@@ -172,9 +180,7 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
             }
         });
 
-
-        //textView.setText(mParent.get(groupPosition).getArrayChildren().get(childPosition));
-        textView.setText(mParent.get(groupPosition).getmArrayListCourseQuizOptions().get(childPosition).get(childPosition).getmOptionBody());
+        textView.setText(mParent.get(groupPosition).getArrayChildren().get(childPosition).getCat_name());
 
         view.setTag(holder);
 

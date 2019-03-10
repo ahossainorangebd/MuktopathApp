@@ -37,6 +37,10 @@ public class MyPageDetailFragment2 extends Fragment {
 
     private ExpandableListView mExpandableList;
 
+
+    ArrayList<ParentMenu> arrayParents = new ArrayList<ParentMenu>();
+    ArrayList<Parent> childList=new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,6 +57,56 @@ public class MyPageDetailFragment2 extends Fragment {
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitQuizes = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
         final ArrayList<DetailDataModelCoursesDetailContents> quizes = unitQuizes.get(GlobalVar.gNthCourse);
 
+
+
+        /** For question and option expandable list*/
+        final ArrayList<DetailDataModelCoursesDetailContents> mQuizParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mQuizOptionChilds = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizOptions().get(GlobalVar.gNthCourse);
+
+        for (int i=0;i<mQuizParents.size();i++){
+            ParentMenu parent = new ParentMenu();
+
+
+            String quesTitle = mQuizParents.get(i).getmQuizTitle();
+
+            parent.setTitle(quesTitle);
+
+            String childID="";
+            childList=new ArrayList<>();
+            for(int child=0; child<mQuizOptionChilds.size(); child++){
+                try {
+                     childID = mQuizOptionChilds.get(i).get(child).getmOptionBody();
+                }
+                catch (Exception ex){
+
+                }
+
+                Parent p = new Parent();
+
+                p.setCat_name(childID);
+                childList.add(p);
+            }
+
+
+            if (childList.size() > 0)
+                parent.setArrayChildren(childList);
+
+            arrayParents.add(parent);
+        }
+
+        mExpandableList.setAdapter(new MyCustomAdapterQuiz(context,arrayParents,mExpandableList));
+        mExpandableList.setGroupIndicator(null);
+        mExpandableList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                return true;
+            }
+        });
+
+
+        /**end of expandable list for questions and options*/
+
+
         if(units.size()>1) {
             final String unitTitle = units.get(1).getUnitNames();
             final String unitOrder = units.get(1).getUnitOrders();
@@ -67,13 +121,13 @@ public class MyPageDetailFragment2 extends Fragment {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
         }
 
-        setRecyclerView();
+        //setRecyclerView();
 
         return view;
 
     }
 
-    private void setRecyclerView() {
+    /*private void setRecyclerView() {
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -85,9 +139,9 @@ public class MyPageDetailFragment2 extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
 
         new GetCoursesContents().execute();
-    }
+    }*/
 
-    public class GetCoursesContents extends AsyncTask<String, Void, Void>
+    /*public class GetCoursesContents extends AsyncTask<String, Void, Void>
     {
         @Override
         protected void onPreExecute() {
@@ -119,37 +173,6 @@ public class MyPageDetailFragment2 extends Fragment {
             adapter.notifyDataSetChanged();
 
             //mProgressSpinner.setVisibility(View.GONE);
-
-            new GetQuestions().execute();
         }
-    }
-
-
-    private class GetQuestions extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            mExpandableList.setAdapter(new MyCustomAdapterQuiz(context,GlobalVar.courseContentDetailList,mExpandableList));
-            mExpandableList.setGroupIndicator(null);
-            mExpandableList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-                @Override
-                public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                    return true;
-                }
-            });
-        }
-    }
+    }*/
 }

@@ -8,6 +8,7 @@ public class DetailDataModelCoursesDetailContents
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
 
 
+
     //TODO
     // For parsing the "data" of last object inside
 
@@ -33,9 +34,17 @@ public class DetailDataModelCoursesDetailContents
     private String mQuizTitle;
 
     // for quiz options
-    //private String mOptionBody;
 
-    private ArrayList<DetailDataModelQuizOptnModel> quizOptnList;
+    private String mOptionBody;;
+
+    public String getmOptionBody() {
+        return mOptionBody;
+    }
+
+
+    public void setmOptionBody(String mOptionBody) {
+        this.mOptionBody = mOptionBody;
+    }
 
     // for model of Units
 
@@ -413,12 +422,4 @@ public class DetailDataModelCoursesDetailContents
     public void setmOptionBody(String mOptionBody) {
         this.mOptionBody = mOptionBody;
     }*/
-
-    public ArrayList<DetailDataModelQuizOptnModel> getQuizOptnList() {
-        return quizOptnList;
-    }
-
-    public void setQuizOptnList(ArrayList<DetailDataModelQuizOptnModel> quizOptnList) {
-        this.quizOptnList = quizOptnList;
-    }
 }

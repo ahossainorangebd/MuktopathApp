@@ -69,4 +69,9 @@ public class GlobalVar {
     public static ArrayList<DetailDataModelCourses> allDataDetailList;
 
     public static int gEnrollCourseNumber;
+
+
+
+    //for expandable list view for q and option
+    public static  ArrayList<DetailDataModelCoursesDetailContents> gEnrollCourseQuestionList;
 }
