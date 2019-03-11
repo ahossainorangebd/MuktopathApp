@@ -109,6 +109,11 @@ public class MyPageFragment14 extends Fragment {
         int mExamNumbers=GlobalVar.gEnrollCourseList.get(13).getmExamNumbers();
         int mContentNumbers = contents.size();
 
+
+        // Let's count the number of Units
+        GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse-1).size();
+
+
         mCourseTitle.setText(enrolledCourseTitle);
         mCourseOwner.setText(enrolledCourseOwner);
         mExmNumberTtl.setText(Integer.toString(mAssignmentNumbers));

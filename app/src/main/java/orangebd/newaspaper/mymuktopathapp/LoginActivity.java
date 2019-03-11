@@ -569,7 +569,6 @@ public class LoginActivity extends AppCompatActivity {
                                                     }
 
 
-
                                                     /*JSONArray quizList = (JSONArray) objectQuizes1.getJSONArray("ques_list");
 
                                                     mUnitQuizList = new ArrayList<>();
@@ -586,7 +585,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                                         mUnitQuizList.add(modelQuizElements);
                                                     }*/
-
 
 
                                                         //for parsing syllebus strings
@@ -666,8 +664,6 @@ public class LoginActivity extends AppCompatActivity {
                                                         model10.setCreated_at_owner(created_at_owner);
 
                                                         detailList10.add((model10));
-
-
 
                                                         //for parsing created by strings
                                                         JSONObject jObjectCreatedBy = objectCourse2.getJSONObject("CreatedBy");
@@ -776,7 +772,6 @@ public class LoginActivity extends AppCompatActivity {
                                                                     modelUnitCourseContents.setmQuiz(quizYesOrNot);
                                                                     modelUnitCourseContents.setmTimeUnit(time_unit);
 
-
                                                                     //let's add
 
                                                                     if(content_type.equalsIgnoreCase("quiz")){
@@ -809,8 +804,6 @@ public class LoginActivity extends AppCompatActivity {
                                                                     modelFileType.setmXcel(excel);
                                                                     modelFileType.setmDoc(doc);
                                                                     modelFileType.setmCsv(csv);
-
-
 
                                                                     try{
                                                                         DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
@@ -936,8 +929,10 @@ public class LoginActivity extends AppCompatActivity {
                                                                                             JSONObject jObjectQuesOpt = (JSONObject) jSonObjMultiQOptions.get(optionList);
 
                                                                                             String optionBody = jObjectQuesOpt.getString("body");
+                                                                                            String optionAnswer = jObjectQuesOpt.getString("answer");
 
                                                                                             modelUnitQuizOptions.setmOptionBody(optionBody);
+                                                                                            modelUnitQuizOptions.setmOptionAnswer(optionAnswer);
 
                                                                                             mUnitQuizOptList.add(modelUnitQuizOptions);
                                                                                         }

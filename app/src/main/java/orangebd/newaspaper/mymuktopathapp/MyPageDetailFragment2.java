@@ -57,8 +57,6 @@ public class MyPageDetailFragment2 extends Fragment {
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitQuizes = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
         final ArrayList<DetailDataModelCoursesDetailContents> quizes = unitQuizes.get(GlobalVar.gNthCourse);
 
-
-
         /** For question and option expandable list*/
         final ArrayList<DetailDataModelCoursesDetailContents> mQuizParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mQuizOptionChilds = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizOptions().get(GlobalVar.gNthCourse);
@@ -72,10 +70,12 @@ public class MyPageDetailFragment2 extends Fragment {
             parent.setTitle(quesTitle);
 
             String childID="";
+            String childAns="";
             childList=new ArrayList<>();
             for(int child=0; child<mQuizOptionChilds.size(); child++){
                 try {
                      childID = mQuizOptionChilds.get(i).get(child).getmOptionBody();
+                     childAns = mQuizOptionChilds.get(i).get(child).getmOptionAnswer();
                 }
                 catch (Exception ex){
 
@@ -84,6 +84,7 @@ public class MyPageDetailFragment2 extends Fragment {
                 Parent p = new Parent();
 
                 p.setCat_name(childID);
+                p.setCat_id(childAns);
                 childList.add(p);
             }
 

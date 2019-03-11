@@ -10,16 +10,21 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
 
 public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
 
+    private boolean isCorrAnsGiven = false;
     private boolean isExpandedIsAlwaysTrue=true;
+
+    private ArrayList<String> mCheckCheckedString = new ArrayList<>();
 
     Button btn;
     private ExpandableListView mExpandableList;
@@ -159,17 +164,10 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
             view = inflater.inflate(R.layout.list_item_child, viewGroup,false);
         }
 
-        TextView textView = view.findViewById(R.id.list_item_text_child);
+        final TextView textView = view.findViewById(R.id.list_item_text_child);
         final CheckBox checkBox = view.findViewById(R.id.checkBox1);
 
-        checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        textView.setOnClickListener(new View.OnClickListener() {
+        /*textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!checkBox.isChecked()) {
@@ -178,9 +176,69 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
                 else
                     checkBox.setChecked(false);
             }
-        });
+        });*/
 
         textView.setText(mParent.get(groupPosition).getArrayChildren().get(childPosition).getCat_name());
+
+        final ArrayList<Parent> answerList= mParent.get(groupPosition).getArrayChildren();
+
+        for(int ccs=0; ccs<mCheckCheckedString.size(); ccs++){
+
+            if(mCheckCheckedString.get(ccs).equalsIgnoreCase(mParent.get(groupPosition).getArrayChildren().get(childPosition).getCat_name())){
+
+                checkBox.setChecked(true);
+            }
+            else
+                checkBox.setChecked(false);
+        }
+
+
+
+        /*if(checkBox.isChecked() && isCorrAnsGiven){
+            checkBox.setChecked(true);
+        }
+        else
+            checkBox.setChecked(false);*/
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(checkBox.isChecked()){
+
+                    for(int tap=0; tap<answerList.size(); tap++){
+
+                        CharSequence checkedAns=textView.getText();
+
+                        String ans=answerList.get(tap).getCat_name();
+
+                        if(checkedAns.equals(ans)){
+
+                            String trueOrFalse = answerList.get(tap).getCat_id();
+
+                            mCheckCheckedString.add(checkedAns.toString());
+
+                            if (trueOrFalse.equalsIgnoreCase("true")){
+                                Toast.makeText(mContext,"Correct Answer",Toast.LENGTH_LONG).show();
+
+                               // isCorrAnsGiven=true;
+
+                            }
+                            else{
+                                Toast.makeText(mContext,"Incorrect Answer",Toast.LENGTH_LONG).show();
+                               // isCorrAnsGiven=false;
+                            }
+
+
+                            //Toast.makeText(mContext,"",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                }
+
+            }
+        }
+        );
+
 
         view.setTag(holder);
 
@@ -204,6 +262,7 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
         protected int groupPosition;
         protected Button button;
     }
+
     public static void deleteCache(Context context) {
         try {
             File dir = context.getCacheDir();

@@ -53,12 +53,12 @@ public class MyPageDetailFragment3 extends Fragment {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
         }
 
-        setRecyclerView();
+        //setRecyclerView();
 
         return view;
     }
 
-    private void setRecyclerView() {
+    /*private void setRecyclerView() {
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -70,9 +70,9 @@ public class MyPageDetailFragment3 extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
 
         new GetCoursesContents().execute();
-    }
+    }*/
 
-    public class GetCoursesContents extends AsyncTask<String, Void, Void> {
+    /*public class GetCoursesContents extends AsyncTask<String, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -98,5 +98,5 @@ public class MyPageDetailFragment3 extends Fragment {
 
             //mProgressSpinner.setVisibility(View.GONE);
         }
-    }
+    }*/
 }

@@ -107,6 +107,11 @@ public class MyPageFragment1 extends Fragment {
         //int mAssignmentNumbers=GlobalVar.gEnrolledInstitution.get(0).getmAssignmentNumbers();
         //int mExamNumbers=GlobalVar.gEnrolledInstitution.get(0).getmExamNumbers();
 
+        // Let's count the number of Units
+        final ArrayList<DetailDataModelCoursesDetailContents> units = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse);
+        int unitSize = units.size();
+        GlobalVar.gEnrolledCourseUnitSize=unitSize;
+
         int mAssignmentNumbers=GlobalVar.gEnrollCourseList.get(0).getmAssignmentNumbers();
         int mExamNumbers=GlobalVar.gEnrollCourseList.get(0).getmExamNumbers();
         int mContentNumbers = contents.size();

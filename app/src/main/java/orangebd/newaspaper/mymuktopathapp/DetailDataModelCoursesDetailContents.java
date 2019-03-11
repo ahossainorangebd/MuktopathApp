@@ -36,6 +36,7 @@ public class DetailDataModelCoursesDetailContents
     // for quiz options
 
     private String mOptionBody;;
+    private String mOptionAnswer;;
 
     public String getmOptionBody() {
         return mOptionBody;
@@ -413,6 +414,14 @@ public class DetailDataModelCoursesDetailContents
 
     public void setmTitleAnother(String mTitleAnother) {
         this.mTitleAnother = mTitleAnother;
+    }
+
+    public String getmOptionAnswer() {
+        return mOptionAnswer;
+    }
+
+    public void setmOptionAnswer(String mOptionAnswer) {
+        this.mOptionAnswer = mOptionAnswer;
     }
 
     /*public String getmOptionBody() {
