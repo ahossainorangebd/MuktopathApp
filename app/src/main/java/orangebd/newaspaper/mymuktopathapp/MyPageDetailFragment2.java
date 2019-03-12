@@ -95,8 +95,10 @@ public class MyPageDetailFragment2 extends Fragment {
             childList=new ArrayList<>();
 
 
+            arrayParents.add(parent);
 
-            for(int child=0; child<mQuizOptionChilds.size(); child++){
+            for(int child=0; child<mQuizOptionChilds.size(); child++)
+            {
 
                 try {
                      childID = mQuizOptionChilds.get(i).get(child).getmOptionBody();
@@ -122,32 +124,30 @@ public class MyPageDetailFragment2 extends Fragment {
                 if (childList.size() > 0)
                     parent.setArrayChildren(childList);
 
-                arrayParents.add(parent);
                 answerList= arrayParents.get(i).getArrayChildren();
 
                 optnCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                                                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                                                if(isChecked) {
-                                                                    for(int tap=0; tap<answerList.size(); tap++) {
-                                                                        CharSequence checkedAns=optnCheckbox.getText();
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked) {
+                            for(int tap=0; tap<answerList.size(); tap++) {
+                                CharSequence checkedAns=optnCheckbox.getText();
+                                String ans=answerList.get(tap).getCat_name();
 
-                                                                        String ans=answerList.get(tap).getCat_name();
+                                if(checkedAns.equals(ans)) {
 
-                                                                        if(checkedAns.equals(ans)) {
+                                    String trueOrFalse = answerList.get(tap).getCat_id();
 
-                                                                            String trueOrFalse = answerList.get(tap).getCat_id();
-
-                                                                            if (trueOrFalse.equalsIgnoreCase("true")) {
-                                                                                Toast.makeText(context,"Correct Answer",Toast.LENGTH_SHORT).show();
-                                                                            }
-                                                                            else{
-                                                                                Toast.makeText(context,"Incorrect Answer",Toast.LENGTH_SHORT).show();
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
+                                    if (trueOrFalse.equalsIgnoreCase("true")) {
+                                        Toast.makeText(context,"Correct Answer",Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        Toast.makeText(context,"Incorrect Answer",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 );
             }
 
