@@ -87,6 +87,7 @@ public class MyPageDetailFragment2 extends Fragment {
 
             mParentLinLay.addView(mParentQTtl);
 
+
             parent.setTitle(quesTitle);
 
             String childID="";
@@ -104,13 +105,14 @@ public class MyPageDetailFragment2 extends Fragment {
                      childID = mQuizOptionChilds.get(i).get(child).getmOptionBody();
                      childAns = mQuizOptionChilds.get(i).get(child).getmOptionAnswer();
                 }
-                catch (Exception ex){
-
+                catch (Exception ex) {
+                    Log.d("", "onCreateView: ");
                 }
-
 
                 optnCheckbox= new CheckBox(context);
                 optnCheckbox.setText(childID);
+
+
                 mParentLinLay.addView(optnCheckbox);
 
 
@@ -120,35 +122,52 @@ public class MyPageDetailFragment2 extends Fragment {
                 p.setCat_id(childAns);
                 childList.add(p);
 
-
                 if (childList.size() > 0)
                     parent.setArrayChildren(childList);
 
                 answerList= arrayParents.get(i).getArrayChildren();
-
+                optnCheckbox.setTag(childAns);
                 optnCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                         if(isChecked) {
-                            for(int tap=0; tap<answerList.size(); tap++) {
-                                CharSequence checkedAns=optnCheckbox.getText();
+                            //buttonView.getTag();
+
+
+                            try {
+                                Object something = buttonView.getTag();
+
+                                if (something.equals("true")) {
+                                    Toast.makeText(context,"Correct Answer",Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(context,"Incorrect Answer",Toast.LENGTH_SHORT).show();
+                                }
+
+                                String abcd = something.toString();
+                            }
+                            catch (Exception ex){
+                                Log.d("", "onCheckedChanged: ");
+                            }
+
+                            String abcd="";
+
+                            /*for(int tap=0; tap<answerList.size(); tap++) {
+                                CharSequence checkedAns=buttonView.getText();
                                 String ans=answerList.get(tap).getCat_name();
 
                                 if(checkedAns.equals(ans)) {
 
-                                    String trueOrFalse = answerList.get(tap).getCat_id();
 
-                                    if (trueOrFalse.equalsIgnoreCase("true")) {
-                                        Toast.makeText(context,"Correct Answer",Toast.LENGTH_SHORT).show();
-                                    }
-                                    else{
-                                        Toast.makeText(context,"Incorrect Answer",Toast.LENGTH_SHORT).show();
-                                    }
                                 }
-                            }
+                            }*/
                         }
                     }
                 }
                 );
+
+
+
             }
 
 
