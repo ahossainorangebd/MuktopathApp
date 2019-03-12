@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,8 +43,13 @@ public class MyPageDetailFragment2 extends Fragment {
     private LinearLayout mParentLinLay;
 
 
-    ArrayList<ParentMenu> arrayParents = new ArrayList<ParentMenu>();
+    ArrayList<ParentMenu> arrayParents;
     ArrayList<Parent> childList=new ArrayList<>();
+
+    private ArrayList<String> mCheckCheckedString = new ArrayList<>();
+    ArrayList<Parent> answerList = new ArrayList<>();
+
+    private CheckBox optnCheckbox;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +73,8 @@ public class MyPageDetailFragment2 extends Fragment {
         final ArrayList<DetailDataModelCoursesDetailContents> mQuizParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mQuizOptionChilds = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizOptions().get(GlobalVar.gNthCourse);
 
+        arrayParents = new ArrayList<ParentMenu>();
+
         for (int i=0;i<mQuizParents.size();i++)
         {
             ParentMenu parent = new ParentMenu();
@@ -74,7 +82,7 @@ public class MyPageDetailFragment2 extends Fragment {
 
             String quesTitle = mQuizParents.get(i).getmQuizTitle();
 
-            TextView mParentQTtl=new TextView(context);
+            final TextView mParentQTtl=new TextView(context);
             mParentQTtl.setText(quesTitle);
 
             mParentLinLay.addView(mParentQTtl);
@@ -83,8 +91,13 @@ public class MyPageDetailFragment2 extends Fragment {
 
             String childID="";
             String childAns="";
+
             childList=new ArrayList<>();
+
+
+
             for(int child=0; child<mQuizOptionChilds.size(); child++){
+
                 try {
                      childID = mQuizOptionChilds.get(i).get(child).getmOptionBody();
                      childAns = mQuizOptionChilds.get(i).get(child).getmOptionAnswer();
@@ -93,24 +106,59 @@ public class MyPageDetailFragment2 extends Fragment {
 
                 }
 
-                CheckBox optnCheckbox= new CheckBox(context);
-                optnCheckbox.setText(childID);
 
+                optnCheckbox= new CheckBox(context);
+                optnCheckbox.setText(childID);
                 mParentLinLay.addView(optnCheckbox);
+
 
                 Parent p = new Parent();
 
                 p.setCat_name(childID);
                 p.setCat_id(childAns);
                 childList.add(p);
+
+
+                if (childList.size() > 0)
+                    parent.setArrayChildren(childList);
+
+                arrayParents.add(parent);
+                answerList= arrayParents.get(i).getArrayChildren();
+
+                optnCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                                if(isChecked) {
+                                                                    for(int tap=0; tap<answerList.size(); tap++) {
+                                                                        CharSequence checkedAns=optnCheckbox.getText();
+
+                                                                        String ans=answerList.get(tap).getCat_name();
+
+                                                                        if(checkedAns.equals(ans)) {
+
+                                                                            String trueOrFalse = answerList.get(tap).getCat_id();
+
+                                                                            if (trueOrFalse.equalsIgnoreCase("true")) {
+                                                                                Toast.makeText(context,"Correct Answer",Toast.LENGTH_SHORT).show();
+                                                                            }
+                                                                            else{
+                                                                                Toast.makeText(context,"Incorrect Answer",Toast.LENGTH_SHORT).show();
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                );
             }
 
 
-            if (childList.size() > 0)
-                parent.setArrayChildren(childList);
 
-            arrayParents.add(parent);
+
+
         }
+
+
+
 
         //TODO
         /*mExpandableList.setAdapter(new MyCustomAdapterQuiz(context,arrayParents,mExpandableList));
