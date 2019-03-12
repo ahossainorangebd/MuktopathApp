@@ -97,6 +97,7 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_item_parent, viewGroup,false);
         }
+
         TextView textView = convertView.findViewById(R.id.list_item_text_view);
         ImageView expand = convertView.findViewById(R.id.expand);
 
@@ -182,7 +183,7 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
 
         final ArrayList<Parent> answerList= mParent.get(groupPosition).getArrayChildren();
 
-        for(int ccs=0; ccs<mCheckCheckedString.size(); ccs++){
+        for(int ccs=0; ccs<mCheckCheckedString.size(); ccs++) {
 
             if(mCheckCheckedString.get(ccs).equalsIgnoreCase(mParent.get(groupPosition).getArrayChildren().get(childPosition).getCat_name())){
 
@@ -192,49 +193,42 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
                 checkBox.setChecked(false);
         }
 
-
-
-        /*if(checkBox.isChecked() && isCorrAnsGiven){
+        if(checkBox.isChecked() && isCorrAnsGiven==true) {
             checkBox.setChecked(true);
         }
         else
-            checkBox.setChecked(false);*/
+            checkBox.setChecked(false);
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if(checkBox.isChecked()){
+                if(checkBox.isChecked()) {
 
-                    for(int tap=0; tap<answerList.size(); tap++){
+                    for(int tap=0; tap<answerList.size(); tap++) {
 
                         CharSequence checkedAns=textView.getText();
 
                         String ans=answerList.get(tap).getCat_name();
 
-                        if(checkedAns.equals(ans)){
+                        if(checkedAns.equals(ans)) {
 
                             String trueOrFalse = answerList.get(tap).getCat_id();
 
                             mCheckCheckedString.add(checkedAns.toString());
 
-                            if (trueOrFalse.equalsIgnoreCase("true")){
-                                Toast.makeText(mContext,"Correct Answer",Toast.LENGTH_LONG).show();
+                            if (trueOrFalse.equalsIgnoreCase("true")) {
 
-                               // isCorrAnsGiven=true;
-
+                                Toast.makeText(mContext,"Correct Answer",Toast.LENGTH_SHORT).show();
+                                 isCorrAnsGiven=true;
                             }
                             else{
-                                Toast.makeText(mContext,"Incorrect Answer",Toast.LENGTH_LONG).show();
-                               // isCorrAnsGiven=false;
+
+                                Toast.makeText(mContext,"Incorrect Answer",Toast.LENGTH_SHORT).show();
+                                 isCorrAnsGiven=false;
                             }
-
-
-                            //Toast.makeText(mContext,"",Toast.LENGTH_LONG).show();
                         }
                     }
-
                 }
-
             }
         }
         );
@@ -267,9 +261,13 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
         try {
             File dir = context.getCacheDir();
             deleteDir(dir);
-        } catch (Exception e) {}
+        }
+        catch (Exception e) {
+            Log.d("", "msg: ");
+        }
     }
     public static boolean deleteDir(File dir) {
+
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();
             for (int i = 0; i < children.length; i++) {
@@ -279,9 +277,13 @@ public class MyCustomAdapterQuiz extends BaseExpandableListAdapter {
                 }
             }
             return dir.delete();
-        } else if(dir!= null && dir.isFile()) {
+        }
+
+        else if(dir!= null && dir.isFile()) {
             return dir.delete();
-        } else {
+        }
+
+        else {
             return false;
         }
     }

@@ -4,14 +4,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class SelectACategoryActivity extends AppCompatActivity {
 
@@ -68,8 +84,26 @@ public class SelectACategoryActivity extends AppCompatActivity {
     private ImageView expandIcon10;
     private ImageView expandIcon11;
 
+
+    private TextView mCourseText1;
+    private TextView mCourseText2;
+    private TextView mCourseText3;
+    private TextView mCourseText4;
+    private TextView mCourseText5;
+    private TextView mCourseText6;
+    private TextView mCourseText7;
+    private TextView mCourseText8;
+    private TextView mCourseText9;
+    private TextView mCourseText10;
+
+    String urlGetCourseCats = "http://api.muktopaath.orangebd.com/api/course-categories";
+
+    //All the detail Lists
+    private ArrayList<DetailDataModelAll> detailListMainActivityCourseCat;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_acategory);
 
@@ -86,6 +120,18 @@ public class SelectACategoryActivity extends AppCompatActivity {
         expandIcon9=findViewById(R.id.expandIconId9);
         expandIcon10=findViewById(R.id.expandIconId10);
         expandIcon11=findViewById(R.id.expandIconId11);
+
+
+        mCourseText1=findViewById(R.id.courseName1);
+        mCourseText2=findViewById(R.id.courseName2);
+        mCourseText3=findViewById(R.id.courseName3);
+        mCourseText4=findViewById(R.id.courseName4);
+        mCourseText5=findViewById(R.id.courseName5);
+        mCourseText6=findViewById(R.id.courseName6);
+        mCourseText7=findViewById(R.id.courseName7);
+        mCourseText8=findViewById(R.id.courseName8);
+        mCourseText9=findViewById(R.id.courseName9);
+        mCourseText10=findViewById(R.id.courseName10);
 
         category1Expand=findViewById(R.id.category1Expand);
         chooseCategory1=findViewById(R.id.chooseCategory1);
@@ -147,6 +193,7 @@ public class SelectACategoryActivity extends AppCompatActivity {
                     isExpand=false;
 
                 }
+
                 else {
                     category1Expand.setVisibility(View.VISIBLE);
                     chooseCategory1.setBackgroundColor(Color.parseColor("#bfebff"));
@@ -489,6 +536,116 @@ public class SelectACategoryActivity extends AppCompatActivity {
             }
         });
 
+        new GetCourseCategories().execute(urlGetCourseCats);
 
+    }
+
+    public class GetCourseCategories extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            String response = null;
+
+            try {
+                HttpURLConnection c = (HttpURLConnection) new URL(arg0[0]).openConnection();
+                c.setRequestMethod("GET");
+                c.setUseCaches(false);
+                c.setRequestProperty ("Authorization", GlobalVar.gReplacingTokenForAllCategories);
+                c.connect();
+
+                InputStream in = new BufferedInputStream(c.getInputStream());
+                response = convertStreamToString(in);
+                c.disconnect();
+            }
+            catch (Exception ex){
+                Log.d("",ex.getMessage());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+
+                detailListMainActivityCourseCat = new ArrayList<DetailDataModelAll>();
+
+                JSONObject jObject = new JSONObject(result);
+                JSONArray objectCourseCatNames = (JSONArray) jObject.getJSONArray("data");
+
+                try {
+
+                    for (int cc = 0; cc < objectCourseCatNames.length(); cc++)
+                    {
+
+
+                        JSONObject jObjEnrolledCourses = objectCourseCatNames.getJSONObject(cc);
+                        DetailDataModelAll modelCourseCatAll = new DetailDataModelAll();
+
+                        String courseNameBn = jObjEnrolledCourses.getString("bn_title");
+                        String courseNameEn = jObjEnrolledCourses.getString("title");
+                        String courseId = jObjEnrolledCourses.getString("id");
+
+                        modelCourseCatAll.setmCourseCategoryId(courseId);
+                        modelCourseCatAll.setmCourseCategoryNameEn(courseNameEn);
+                        modelCourseCatAll.setmCourseCategoryNameBn(courseNameBn);
+
+                        detailListMainActivityCourseCat.add(modelCourseCatAll);
+
+
+                        String aaaa="";
+                    }
+                } catch (Exception ex) {
+                    Log.d("", "onResponse: ");
+                }
+
+                try {
+                    mCourseText1. setText(detailListMainActivityCourseCat.get(0).getmCourseCategoryNameBn());
+                    mCourseText2. setText(detailListMainActivityCourseCat.get(1).getmCourseCategoryNameBn());
+                    mCourseText3. setText(detailListMainActivityCourseCat.get(2).getmCourseCategoryNameBn());
+                    mCourseText4. setText(detailListMainActivityCourseCat.get(3).getmCourseCategoryNameBn());
+                    mCourseText5. setText(detailListMainActivityCourseCat.get(4).getmCourseCategoryNameBn());
+                    mCourseText6. setText(detailListMainActivityCourseCat.get(5).getmCourseCategoryNameBn());
+                    mCourseText7. setText(detailListMainActivityCourseCat.get(6).getmCourseCategoryNameBn());
+                    mCourseText8. setText(detailListMainActivityCourseCat.get(7).getmCourseCategoryNameBn());
+                    mCourseText9. setText(detailListMainActivityCourseCat.get(8).getmCourseCategoryNameBn());
+                    mCourseText10.setText(detailListMainActivityCourseCat.get(9).getmCourseCategoryNameBn());
+                }
+                catch (Exception ex){
+                    Log.d("", "onPostExecute: ");
+                }
+
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
+        }
+    }
+
+    private String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sb.toString();
     }
 }

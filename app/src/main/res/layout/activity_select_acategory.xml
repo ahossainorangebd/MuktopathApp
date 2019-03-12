@@ -43,6 +43,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Arts and Humanities"
@@ -164,6 +165,7 @@
         android:elevation="3dp"
         >
         <TextView
+            android:id="@+id/courseName2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Business"
@@ -361,6 +363,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Computer Science"
@@ -532,6 +535,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data Science"
@@ -653,6 +657,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Information Technology"
@@ -824,6 +829,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Life Sciences"
@@ -1021,6 +1027,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Math and logic"
@@ -1078,6 +1085,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Personal Development"
@@ -1135,6 +1143,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Physical Science and Engineering"
@@ -1331,6 +1340,7 @@
         >
 
         <TextView
+            android:id="@+id/courseName11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Social Sciences"

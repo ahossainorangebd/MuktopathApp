@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListMainActivityCourseDetailContentss;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListMainActivityCourseDetailUnits;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListMainActivityCourseDetailUnitQuizList;
+
     private ArrayList<DetailDataModelCoursesThumbnails> detailListMainActivityCourseThumbnail;
 
     ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNew;

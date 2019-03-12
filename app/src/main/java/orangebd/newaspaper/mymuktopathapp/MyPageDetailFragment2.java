@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,8 @@ public class MyPageDetailFragment2 extends Fragment {
 
     private ExpandableListView mExpandableList;
 
+    private LinearLayout mParentLinLay;
+
 
     ArrayList<ParentMenu> arrayParents = new ArrayList<ParentMenu>();
     ArrayList<Parent> childList=new ArrayList<>();
@@ -49,7 +53,9 @@ public class MyPageDetailFragment2 extends Fragment {
 
         context=getContext();
 
-        mExpandableList = view.findViewById(R.id.ques_option_list);
+        //TODO
+        //mExpandableList = view.findViewById(R.id.ques_option_list);
+        mParentLinLay=view.findViewById(R.id.parentLinLay);
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits();
         final ArrayList<DetailDataModelCoursesDetailContents> units = unitArray.get(GlobalVar.gNthCourse);
@@ -61,11 +67,17 @@ public class MyPageDetailFragment2 extends Fragment {
         final ArrayList<DetailDataModelCoursesDetailContents> mQuizParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mQuizOptionChilds = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizOptions().get(GlobalVar.gNthCourse);
 
-        for (int i=0;i<mQuizParents.size();i++){
+        for (int i=0;i<mQuizParents.size();i++)
+        {
             ParentMenu parent = new ParentMenu();
 
 
             String quesTitle = mQuizParents.get(i).getmQuizTitle();
+
+            TextView mParentQTtl=new TextView(context);
+            mParentQTtl.setText(quesTitle);
+
+            mParentLinLay.addView(mParentQTtl);
 
             parent.setTitle(quesTitle);
 
@@ -81,6 +93,11 @@ public class MyPageDetailFragment2 extends Fragment {
 
                 }
 
+                CheckBox optnCheckbox= new CheckBox(context);
+                optnCheckbox.setText(childID);
+
+                mParentLinLay.addView(optnCheckbox);
+
                 Parent p = new Parent();
 
                 p.setCat_name(childID);
@@ -95,14 +112,15 @@ public class MyPageDetailFragment2 extends Fragment {
             arrayParents.add(parent);
         }
 
-        mExpandableList.setAdapter(new MyCustomAdapterQuiz(context,arrayParents,mExpandableList));
+        //TODO
+        /*mExpandableList.setAdapter(new MyCustomAdapterQuiz(context,arrayParents,mExpandableList));
         mExpandableList.setGroupIndicator(null);
         mExpandableList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 return true;
             }
-        });
+        });*/
 
 
         /**end of expandable list for questions and options*/
