@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,6 +39,8 @@ public class SearchActivity extends AppCompatActivity {
     String selectedItem;
 
     // Button Layout of footer
+
+    private String IdOfSelectedItem="";
 
     private LinearLayout allCourseBtn;
     private LinearLayout recomendedBtn;
@@ -74,6 +77,8 @@ public class SearchActivity extends AppCompatActivity {
         mContext=this;
 
         mBtnSearch=findViewById(R.id.btnSearch);
+
+        getSupportActionBar().hide();
 
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
@@ -122,22 +127,24 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         //Dropdown List ids
-        Spinner mSpinner=findViewById(R.id.spnrOne);
+        /*Spinner mSpinner=findViewById(R.id.spnrOne);
         Spinner mSpinner2=findViewById(R.id.spnrTwo);
         Spinner mSpinner3=findViewById(R.id.spnrThree);
         Spinner mSpinner4=findViewById(R.id.spnrFour);
-        Spinner mSpinner5=findViewById(R.id.spnrFive);
+        Spinner mSpinner5=findViewById(R.id.spnrFive);*/
+
+        final Spinner mSpinnerCat=findViewById(R.id.spnrCategory);
 
         //Adding options
-        final List<String> cc=new ArrayList<String>();
+        /*final List<String> cc=new ArrayList<String>();
         cc.add("★ ★ ★ ★ ★");
         cc.add("★ ★ ★ ★");
         cc.add("★ ★ ★");
         cc.add("★ ★");
-        cc.add("★");
+        cc.add("★");*/
 
 
-        final List<String> cc2=new ArrayList<String>();
+        /*final List<String> cc2=new ArrayList<String>();
         cc2.add("0-1 Hours");
         cc2.add("1-1 Hours");
         cc2.add("2-3 Hours");
@@ -149,18 +156,15 @@ public class SearchActivity extends AppCompatActivity {
         cc2.add("8-9 Hours");
         cc2.add("9-10 Hours");
 
-
         final List<String> cc3=new ArrayList<String>();
         cc3.add("Bangla");
         cc3.add("English");
-
 
         final List<String> cc4=new ArrayList<String>();
         cc4.add("Beginner");
         cc4.add("Intermediate");
         cc4.add("Expert");
         cc4.add("All levels");
-
 
         final List<String> cc5=new ArrayList<String>();
         cc5.add("BDT 1-999");
@@ -172,39 +176,90 @@ public class SearchActivity extends AppCompatActivity {
         cc5.add("BDT 6000-6999");
         cc5.add("BDT 7000-7999");
         cc5.add("BDT 800 0-8999");
-        cc5.add("BDT 9000-10,000");
+        cc5.add("BDT 9000-10,000");*/
+
+
+        final List<String> ccCat=new ArrayList<String>();
+
+        try {
+            ccCat.add(GlobalVar.gAllCourseCategories.get(0).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(1).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(2).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(3).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(4).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(5).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(6).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(7).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(8).getmCourseCategoryNameBn());
+            ccCat.add(GlobalVar.gAllCourseCategories.get(9).getmCourseCategoryNameBn());
+        }
+        catch (Exception ex){
+            Log.d("", "onCreate: ");
+        }
 
         //calling the spinner_item_layout
-        ArrayAdapter<String> spinnerArrayAdapterCC = new ArrayAdapter<>(mContext, R.layout.spinner_item, cc);
+        /*ArrayAdapter<String> spinnerArrayAdapterCC = new ArrayAdapter<>(mContext, R.layout.spinner_item, cc);
         spinnerArrayAdapterCC.setDropDownViewResource(R.layout.spinner_item);
-        mSpinner.setAdapter(spinnerArrayAdapterCC);
+        mSpinner.setAdapter(spinnerArrayAdapterCC);*/
 
-
-
-
-        ArrayAdapter<String> spinnerArrayAdapterCC2 = new ArrayAdapter<>(mContext, R.layout.spinner_item, cc2);
+        /*ArrayAdapter<String> spinnerArrayAdapterCC2 = new ArrayAdapter<>(mContext, R.layout.spinner_item, cc2);
         spinnerArrayAdapterCC2.setDropDownViewResource(R.layout.spinner_item);
         mSpinner2.setAdapter(spinnerArrayAdapterCC2);
-
-
 
         ArrayAdapter<String> spinnerArrayAdapterCC3 = new ArrayAdapter<>(mContext, R.layout.spinner_item, cc3);
         spinnerArrayAdapterCC3.setDropDownViewResource(R.layout.spinner_item);
         mSpinner3.setAdapter(spinnerArrayAdapterCC3);
 
-
-
         ArrayAdapter<String> spinnerArrayAdapterCC4 = new ArrayAdapter<>(mContext, R.layout.spinner_item, cc4);
         spinnerArrayAdapterCC4.setDropDownViewResource(R.layout.spinner_item);
         mSpinner4.setAdapter(spinnerArrayAdapterCC4);
 
-
         ArrayAdapter<String> spinnerArrayAdapterCC5 = new ArrayAdapter<>(mContext, R.layout.spinner_item, cc5);
         spinnerArrayAdapterCC5.setDropDownViewResource(R.layout.spinner_item);
-        mSpinner5.setAdapter(spinnerArrayAdapterCC5);
+        mSpinner5.setAdapter(spinnerArrayAdapterCC5);*/
 
 
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ArrayAdapter<String> spinnerArrayAdapterCCCat = new ArrayAdapter<>(mContext, R.layout.spinner_item, ccCat);
+        spinnerArrayAdapterCCCat.setDropDownViewResource(R.layout.spinner_item);
+        mSpinnerCat.setAdapter(spinnerArrayAdapterCCCat);
+
+        mSpinnerCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                int item=position;
+                selectedItem  =ccCat.get(item);
+
+
+                for(int si=0; si<GlobalVar.gAllCourseCategories.size(); si++){
+
+                    DetailDataModelAll idNameOfSelectedItem = GlobalVar.gAllCourseCategories.get(si);
+                    String matchName=idNameOfSelectedItem.getmCourseCategoryNameBn();
+
+                    if (selectedItem.equalsIgnoreCase(matchName)){
+                        IdOfSelectedItem=idNameOfSelectedItem.getmCourseCategoryId();
+
+                        Toast.makeText(mContext,IdOfSelectedItem,Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+
+
+                String breakpoint="gradle";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
+
+
+        String iiii="";
+
+        /*mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
@@ -217,10 +272,10 @@ public class SearchActivity extends AppCompatActivity {
             {
 
             }
-        });
+        });*/
 
 
-        mSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*mSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
@@ -278,7 +333,7 @@ public class SearchActivity extends AppCompatActivity {
             {
 
             }
-        });
+        });*/
 
         mBtnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -302,9 +357,13 @@ public class SearchActivity extends AppCompatActivity {
 
         map1 = new HashMap<String, String>();
 
-       /* map1.put("id", );
-        map1.put("name", );
-        map1.put("rating", );*/
+        map1.put("p","");
+        map1.put("id", "1");
+        map1.put("name","");
+        map1.put("type","");
+        map1.put("search", "");
+        map1.put("rating","");
+        map1.put("duration","");
 
         new GetSearchedCourses().execute(urlGetCourseCats);
     }
@@ -487,7 +546,6 @@ public class SearchActivity extends AppCompatActivity {
 
                             //for parsing created by strings
                             JSONObject jObjectCreatedBy = jObjEnrolledCourses.getJSONObject("CreatedBy");
-
 
                             DetailDataModelCourses model11 = new DetailDataModelCourses();
 

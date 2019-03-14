@@ -52,8 +52,7 @@ public class MyPageDetailFragment2 extends Fragment {
     private CheckBox optnCheckbox;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_my_page_detail_fragment2, container, false);
 

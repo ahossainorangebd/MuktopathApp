@@ -8,7 +8,7 @@ import android.widget.Toast;
 public class TabsPagerAdapterMyPageDetail extends FragmentPagerAdapter {
 
     private int NUM_ITEMS = 4;
-    private String[] titles= new String[] {"Video1","Video2","Video3", "Video4"};
+    private String[] titles= new String[] {"1","2","3","4"};
 
     public TabsPagerAdapterMyPageDetail(FragmentManager fm) {
         super(fm);
@@ -19,7 +19,6 @@ public class TabsPagerAdapterMyPageDetail extends FragmentPagerAdapter {
     public int getCount() {
         return  GlobalVar.gEnrolledCourseUnitSize;
         //return  NUM_ITEMS ;
-
     }
 
     // Returns the fragment to display for that page
@@ -37,8 +36,7 @@ public class TabsPagerAdapterMyPageDetail extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gEnrolledCourseUnitSize==2)
-        {
+        else if(GlobalVar.gEnrolledCourseUnitSize==2) {
             switch (position) {
 
                 case 0:

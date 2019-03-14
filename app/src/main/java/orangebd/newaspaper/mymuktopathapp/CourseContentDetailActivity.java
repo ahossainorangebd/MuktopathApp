@@ -3,6 +3,7 @@ package orangebd.newaspaper.mymuktopathapp;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -48,6 +50,13 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private VideoView vView;
     Uri videoUri;
 
+    private VideoView videoView;
+    private SeekBar mProgressBar;
+    private int time;
+    private int seconds;
+    private int duration;
+    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,37 +75,86 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         titleTextView=findViewById(R.id.courseTitle);
         detailDescTextView=findViewById(R.id.detailDesc);
 
-
-
         DetailDescription=getIntent().getExtras().getString("detail");
         title = getIntent().getExtras().getString("ttl");
         eCode = getIntent().getExtras().getString("vcode");
         mUserNumber = getIntent().getExtras().getString("usernumber");
         timeStatus = getIntent().getExtras().getString("videostatus");
 
-        String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode;
+        //String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode;
+        //finalVideoUrl = "<video controls='controls' autoplay='1' src="+ videoUrl+ " height='220' width='350' type='video/mp4' " + "#t=" + timeStatus +  "></video>";
 
-        finalVideoUrl = "<video controls='controls' autoplay='1' src="+ videoUrl+ " height='220' width='350' type='video/mp4' " + "#t=" + timeStatus +  "></video>";
+        String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode+"#t=" + timeStatus;
 
         titleTextView.setText(title);
-
-        mVideoView=findViewById(R.id.videoView);
-        mVideoView.getSettings().setJavaScriptEnabled(true);
-        mVideoView.getSettings().setDomStorageEnabled(true);
-        //mVideoView.loadDataWithBaseURL("",finalVideoUrl, "text/html", "utf-8", "");
-
-        mVideoView.loadDataWithBaseURL("", finalVideoUrl, "text/html; charset=utf-8", "UTF-8", null);
-
-        //
-        mVideoView.setWebChromeClient(new WebChromeClient());
-        mVideoView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        mVideoView.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND);
-        mVideoView.setWebViewClient(new WebViewClient());
-        mVideoView.getSettings().setJavaScriptEnabled(true);
 
         detailDescTextView.getSettings().setJavaScriptEnabled(true);
         detailDescTextView.getSettings().setDomStorageEnabled(true);
         detailDescTextView.loadDataWithBaseURL("",DetailDescription, "text/html", "utf-8", "");
 
+        videoView = findViewById(R.id.vdVw);
+        mProgressBar = findViewById(R.id.Progressbar);
+        textView=findViewById(R.id.txtView);
+
+        Uri uri = Uri.parse(videoUrl);
+        videoView.setVideoURI(uri);
+        videoView.requestFocus();
+        videoView.start();
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                duration=videoView.getDuration();
+                mProgressBar.setMax(videoView.getDuration());
+                mProgressBar.postDelayed(onEverySecond, 1000);
+            }
+        });
+        //mProgressBar.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_progress));
+        //mProgressBar.setThumb(getResources().getDrawable(R.drawable.seekbar_thumb));
+        mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                seconds=videoView.getCurrentPosition()/1000;
+                textView.setText(""+seconds);
+
+                //seekBar.setBackgroundColor(Color.rgb(200,200,150));
+                //seekBar.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_progress));
+
+                if(fromUser) {
+                    int vprog=videoView.getCurrentPosition();
+                    int prog=progress;
+                    if(prog<vprog)
+                        videoView.seekTo(progress);
+                    else
+                        videoView.seekTo(vprog);
+                }
+            }
+        });
     }
+
+    private Runnable onEverySecond=new Runnable() {
+
+        @Override
+        public void run() {
+
+            if(mProgressBar != null) {
+                time = (videoView.getCurrentPosition()*100)/duration;
+                seconds=videoView.getCurrentPosition()/1000;
+                mProgressBar.setProgress(videoView.getCurrentPosition());
+            }
+
+            if(videoView.isPlaying()) {
+                mProgressBar.postDelayed(onEverySecond, 1000);
+            }
+
+        }
+    };
 }

@@ -10,6 +10,56 @@
     >
 
     <LinearLayout
+        android:id="@+id/searchBarId"
+        android:background="@color/AppTextColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#9d23db"
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+
+            <Button
+                android:id="@+id/searchBtnIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/search_for_custom_white"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textColor="@color/AppBackgroundColor"
+                android:textSize="45sp" />
+
+            <EditText
+                android:id="@+id/searchViewId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ক্যাটালগ খুঁজুন"
+                android:textColor="@color/Colorpeace"
+                android:singleLine="true"
+                android:textColorHint="#fff"
+                android:background="#9d23db"
+                android:autofillHints="Search"
+                >
+
+                <requestFocus/>
+
+            </EditText>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
@@ -25,7 +75,7 @@
             android:gravity="center"
             >
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -37,7 +87,7 @@
                     android:layout_height="wrap_content">
 
                 </LinearLayout>
-            <TextView
+            &lt;!&ndash;<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ratings" />
@@ -48,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 >
-            </Spinner>
+            </Spinner>&ndash;&gt;
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,7 +125,7 @@
                     >
                 </Spinner>
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -83,7 +133,7 @@
                 android:orientation="vertical"
                 >
 
-                <TextView
+                <!--<TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Level" />
@@ -106,8 +156,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     >
-                </Spinner>
+                </Spinner>-->
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    />
+
+                <Spinner
+                    android:id="@+id/spnrCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    >
+                </Spinner>
             </LinearLayout>
 
         </LinearLayout>

@@ -76,5 +76,8 @@ public class GlobalVar {
     public static  ArrayList<DetailDataModelCoursesDetailContents> gEnrollCourseQuestionList;
 
 
+    public static  ArrayList<DetailDataModelAll> gAllCourseCategories;
+
+
     public static int gEnrolledCourseUnitSize;
 }

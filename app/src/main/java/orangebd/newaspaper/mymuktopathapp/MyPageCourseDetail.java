@@ -36,6 +36,7 @@ public class MyPageCourseDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_my_page_course_detail);
 
         getSupportActionBar().hide();
@@ -55,6 +56,7 @@ public class MyPageCourseDetail extends AppCompatActivity {
         mSlidingTabLayout = findViewById(R.id.sliding_tabs);
 
         mSlidingTabLayout.setDistributeEvenly(true);
+        mSlidingTabLayout.setViewPager(vpPager);
 
         ImgUrl = getIntent().getExtras().getString("img");
         title = getIntent().getExtras().getString("ttl");

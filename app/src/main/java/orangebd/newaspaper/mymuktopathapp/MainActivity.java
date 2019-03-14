@@ -332,10 +332,12 @@ public class MainActivity extends AppCompatActivity {
 
                         detailListMainActivityCourseCat.add(modelCourseCatAll);
 
+                        GlobalVar.gAllCourseCategories=detailListMainActivityCourseCat;
 
                         String aaaa="";
                     }
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     Log.d("", "onResponse: ");
                 }
 
@@ -355,19 +357,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("", "onPostExecute: ");
                 }
 
-
                 /*try{
                     for(int cname=0; cname<detailListMainActivityCourseCat.size(); cname++) {
 
                         strCourseNames.add(detailListMainActivityCourseCat.get(cname).getmCourseCategoryNameBn());
 
-
                     }
-
                 }*/
-
-
-
 
                 setRecyclerView();
 
