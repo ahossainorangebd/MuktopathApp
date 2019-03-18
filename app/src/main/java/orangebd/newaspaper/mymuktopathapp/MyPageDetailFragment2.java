@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
@@ -50,6 +51,10 @@ public class MyPageDetailFragment2 extends Fragment {
     ArrayList<Parent> answerList = new ArrayList<>();
 
     private CheckBox optnCheckbox;
+
+    private int markCount;
+
+    private Button submitBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -137,10 +142,12 @@ public class MyPageDetailFragment2 extends Fragment {
                                 Object something = buttonView.getTag();
 
                                 if (something.equals("true")) {
-                                    Toast.makeText(context,"Correct Answer",Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(context,"Correct Answer",Toast.LENGTH_SHORT).show();
+
+                                    markCount++;
                                 }
                                 else{
-                                    Toast.makeText(context,"Incorrect Answer",Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(context,"Incorrect Answer",Toast.LENGTH_SHORT).show();
                                 }
 
                                 String abcd = something.toString();
@@ -205,6 +212,17 @@ public class MyPageDetailFragment2 extends Fragment {
         else {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
         }
+
+        submitBtn = view.findViewById(R.id.submitBtnId);
+
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Toast.makeText(context,Integer.toString(markCount),Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //setRecyclerView();
 
