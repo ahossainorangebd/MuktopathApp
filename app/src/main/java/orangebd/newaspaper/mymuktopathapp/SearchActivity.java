@@ -388,6 +388,13 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
+        detailListMainActivityCourse=new ArrayList<DetailDataModelCourses>();
+        detailListMainActivityCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
+
+        detailListMainActivityCourseDetailContentss = new ArrayList<>();
+        detailListMainActivityCourseDetailUnits = new ArrayList<>();
+        detailListMainActivityCourseDetailUnitQuizList = new ArrayList<>();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(layoutManager);
@@ -422,15 +429,10 @@ public class SearchActivity extends AppCompatActivity {
 
             String data = performPostCall(params[0], map1);
 
-            detailListMainActivityCourse=new ArrayList<DetailDataModelCourses>();
 
             //detailList=new ArrayList<DetailDataModelCourses>();
 
-            detailListMainActivityCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
 
-            detailListMainActivityCourseDetailContentss = new ArrayList<>();
-            detailListMainActivityCourseDetailUnits = new ArrayList<>();
-            detailListMainActivityCourseDetailUnitQuizList = new ArrayList<>();
 
             DetailDataModelCourses model = new DetailDataModelCourses();
 
@@ -852,21 +854,17 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String result)
-        {
+        protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            adapter=new RecyclerViewAdapterCategory1(detailListMainActivityCourse,mContext);
+            adapter=new RecyclerViewAdapterForSearch(detailListMainActivityCourse,mContext);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-
         }
 
         @Override
-        protected void onCancelled() {
-
-        }
+        protected void onCancelled() { }
     }
 
     public String  performPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -874,7 +872,8 @@ public class SearchActivity extends AppCompatActivity {
         URL url;
         String response = "";
 
-        try {
+        try
+        {
             url = new URL(requestURL);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -907,7 +906,6 @@ public class SearchActivity extends AppCompatActivity {
             else {
                 response="";
             }
-
         }
         catch (Exception e) {
 
