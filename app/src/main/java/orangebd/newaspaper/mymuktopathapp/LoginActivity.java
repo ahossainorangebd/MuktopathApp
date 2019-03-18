@@ -109,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailListEnrollCourses;
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
+    private ArrayList<DetailDataModelCoursesDetailContents> detailListVideoPulse;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnits;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList2;
@@ -127,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailListFileType;
 
     ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNew;
+    ArrayList<DetailDataModelCourses3rdGrandFather> mContentArrayListNewPulse;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitArrayListNew;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizList;
@@ -692,6 +694,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     try
                                                     {
                                                         mContentArrayListNew = new ArrayList<>();
+                                                        mContentArrayListNewPulse = new ArrayList<>();
                                                         mUnit1DataArrayList = new ArrayList<>();
                                                         mUnit2DataArrayList = new ArrayList<>();
                                                         mUnit3DataArrayList = new ArrayList<>();
@@ -963,9 +966,15 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                                 for (int mql = 0; mql < jSonObjMultiQ.length(); mql++) {
 
+                                                                                    DetailDataModelCourses3rdGrandFather modelVideoMultiPulse = new DetailDataModelCourses3rdGrandFather();
+
                                                                                     JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(mql);
 
                                                                                     String mPulse = objectAgainAnother2.getString("pulse");
+
+                                                                                    modelVideoMultiPulse.setmPulseOfVideoMulti(mPulse);
+
+                                                                                    mContentArrayListNewPulse.add(modelVideoMultiPulse);
 
                                                                                     try {
                                                                                         for (int qs = 0; qs < objectAgainAnother2.length(); qs++) {
@@ -1026,6 +1035,9 @@ public class LoginActivity extends AppCompatActivity {
                                                 detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
 
                                                 detailListCourseDetailContentss.add(mContentArrayListNew);
+
+                                                //detailListVideoPulse.add(mContentArrayListNewPulse);
+
                                                 detailListCourseDetailUnits.add(mUnitArrayListNew);
                                                 detailListCourseDetailUnitQuizList.add(mUnitQuizList);
 

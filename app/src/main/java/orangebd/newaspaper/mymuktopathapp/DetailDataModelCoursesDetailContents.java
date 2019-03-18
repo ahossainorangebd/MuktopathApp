@@ -7,8 +7,6 @@ public class DetailDataModelCoursesDetailContents
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
 
-
-
     //TODO
     // For parsing the "data" of last object inside
 
@@ -35,8 +33,16 @@ public class DetailDataModelCoursesDetailContents
 
     // for quiz options
 
-    private String mOptionBody;;
-    private String mOptionAnswer;;
+    private String mOptionBody;
+    private String mOptionAnswer;
+
+    //for video ques pulse
+
+    private String mVideoQuesPulse;
+
+
+
+
 
     public String getmOptionBody() {
         return mOptionBody;
@@ -88,6 +94,9 @@ public class DetailDataModelCoursesDetailContents
     private String deleted_at_content;
     private String description_content;
     private String file_encode_path;
+
+    private ArrayList<DetailDataModelCourses3rdGrandFather> mVideoMultiPulse;
+
     private String file_name;
     private String id_content;
     private String license;
@@ -422,6 +431,22 @@ public class DetailDataModelCoursesDetailContents
 
     public void setmOptionAnswer(String mOptionAnswer) {
         this.mOptionAnswer = mOptionAnswer;
+    }
+
+    public String getmVideoQuesPulse() {
+        return mVideoQuesPulse;
+    }
+
+    public void setmVideoQuesPulse(String mVideoQuesPulse) {
+        this.mVideoQuesPulse = mVideoQuesPulse;
+    }
+
+    public ArrayList<DetailDataModelCourses3rdGrandFather> getmVideoMultiPulse() {
+        return mVideoMultiPulse;
+    }
+
+    public void setmVideoMultiPulse(ArrayList<DetailDataModelCourses3rdGrandFather> mVideoMultiPulse) {
+        this.mVideoMultiPulse = mVideoMultiPulse;
     }
 
     /*public String getmOptionBody() {

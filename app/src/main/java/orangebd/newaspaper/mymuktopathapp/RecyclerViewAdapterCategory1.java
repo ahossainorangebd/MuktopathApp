@@ -125,7 +125,6 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
             @Override
             public void onClick(View v)
             {
-
                 GlobalVar.gChildArrayOfContent = mArrayList;
 
                 Intent i = new Intent(mContext, CourseDetailActivity.class);

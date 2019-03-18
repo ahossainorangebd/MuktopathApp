@@ -2,19 +2,27 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.support.v7.app.ActionBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,11 +56,11 @@ public class SearchActivity extends AppCompatActivity {
     private LinearLayout downloadsBtn;
     private LinearLayout profileBtn;
 
-    private Button mBtnSearch;
+    //private Button mBtnSearch;
 
     private HashMap<String,String> map1;
 
-    String urlGetCourseCats = "http://api.muktopaath.orangebd.com/api/course-categories";
+    String urlGetCourses = "http://api.muktopaath.orangebd.com/api/course/search";
 
     private ArrayList<DetailDataModelCourses> detailListMainActivityCourse=new ArrayList<>();
     private ArrayList<DetailDataModelCoursesThumbnails> detailListMainActivityCourseThumbnail;
@@ -69,16 +77,38 @@ public class SearchActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter adapter;
 
+    ImageView imageLogo;
+
+    private EditText mSearchView;
+
+    private String mStrLetters;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
         mContext=this;
 
-        mBtnSearch=findViewById(R.id.btnSearch);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.customlogo_for_search, null, false);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(view);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setElevation(0);
+
+
+        recyclerView=findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+
+        //This section is for Search overall Functions
+        imageLogo=view.findViewById(R.id.rtvheadlogo);
+
+        mSearchView=view.findViewById(R.id.searchViewId);
 
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
@@ -335,12 +365,21 @@ public class SearchActivity extends AppCompatActivity {
             }
         });*/
 
-        mBtnSearch.setOnClickListener(new View.OnClickListener() {
+
+        mSearchView.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                mStrLetters=s.toString();
 
                 setRecyclerView();
             }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
         });
 
     }
@@ -358,14 +397,14 @@ public class SearchActivity extends AppCompatActivity {
         map1 = new HashMap<String, String>();
 
         map1.put("p","");
-        map1.put("id", "1");
+        map1.put("id", IdOfSelectedItem);
         map1.put("name","");
         map1.put("type","");
-        map1.put("search", "");
+        map1.put("search", mStrLetters);
         map1.put("rating","");
         map1.put("duration","");
 
-        new GetSearchedCourses().execute(urlGetCourseCats);
+        new GetSearchedCourses().execute(urlGetCourses);
     }
 
     public class GetSearchedCourses extends AsyncTask<String, Void, String> {

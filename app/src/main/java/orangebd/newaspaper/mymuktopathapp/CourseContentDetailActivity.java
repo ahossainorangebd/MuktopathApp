@@ -22,6 +22,7 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.util.ArrayList;
@@ -123,6 +124,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 seconds=videoView.getCurrentPosition()/1000;
+
+
+
                 textView.setText(""+seconds);
 
                 //seekBar.setBackgroundColor(Color.rgb(200,200,150));
@@ -135,6 +139,10 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                         videoView.seekTo(progress);
                     else
                         videoView.seekTo(vprog);
+                }
+
+                if(Integer.toString(seconds)=="1"){
+                    Toast.makeText(context,"th Position",Toast.LENGTH_SHORT).show();
                 }
             }
         });
