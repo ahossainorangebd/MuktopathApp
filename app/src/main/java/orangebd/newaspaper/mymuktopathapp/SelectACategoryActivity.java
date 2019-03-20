@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -85,16 +87,17 @@ public class SelectACategoryActivity extends AppCompatActivity {
     private ImageView expandIcon11;
 
 
-    private TextView mCourseText1;
-    private TextView mCourseText2;
-    private TextView mCourseText3;
-    private TextView mCourseText4;
-    private TextView mCourseText5;
-    private TextView mCourseText6;
-    private TextView mCourseText7;
-    private TextView mCourseText8;
-    private TextView mCourseText9;
-    private TextView mCourseText10;
+    private CheckBox mCourseCheckBox1;
+    private CheckBox mCourseCheckBox2;
+    private CheckBox mCourseCheckBox3;
+    private CheckBox mCourseCheckBox4;
+    private CheckBox mCourseCheckBox5;
+    private CheckBox mCourseCheckBox6;
+    private CheckBox mCourseCheckBox7;
+    private CheckBox mCourseCheckBox8;
+    private CheckBox mCourseCheckBox9;
+    private CheckBox mCourseCheckBox10;
+
 
     String urlGetCourseCats = "http://api.muktopaath.orangebd.com/api/course-categories";
 
@@ -109,29 +112,12 @@ public class SelectACategoryActivity extends AppCompatActivity {
 
         mContext=this;
 
-        expandIcon1=findViewById(R.id.expandIconId1);
-        expandIcon2=findViewById(R.id.expandIconId2);
-        expandIcon3=findViewById(R.id.expandIconId3);
-        expandIcon4=findViewById(R.id.expandIconId4);
-        expandIcon5=findViewById(R.id.expandIconId5);
-        expandIcon6=findViewById(R.id.expandIconId6);
-        expandIcon7=findViewById(R.id.expandIconId7);
-        expandIcon8=findViewById(R.id.expandIconId8);
-        expandIcon9=findViewById(R.id.expandIconId9);
-        expandIcon10=findViewById(R.id.expandIconId10);
-        expandIcon11=findViewById(R.id.expandIconId11);
-
-
-        mCourseText1=findViewById(R.id.courseName1);
-        mCourseText2=findViewById(R.id.courseName2);
-        mCourseText3=findViewById(R.id.courseName3);
-        mCourseText4=findViewById(R.id.courseName4);
-        mCourseText5=findViewById(R.id.courseName5);
-        mCourseText6=findViewById(R.id.courseName6);
-        mCourseText7=findViewById(R.id.courseName7);
-        mCourseText8=findViewById(R.id.courseName8);
-        mCourseText9=findViewById(R.id.courseName9);
-        mCourseText10=findViewById(R.id.courseName10);
+        mCourseCheckBox1=findViewById(R.id.firstCatCheckBoxId);
+        mCourseCheckBox2=findViewById(R.id.SecondCatCheckBoxId);
+        mCourseCheckBox3=findViewById(R.id.ThirdCatCheckBoxId);
+        mCourseCheckBox4=findViewById(R.id.fourthCatCheckBoxId);
+        mCourseCheckBox5=findViewById(R.id.fifthCatCheckBoxId);
+        mCourseCheckBox6=findViewById(R.id.SixthCatCheckBoxId);
 
         category1Expand=findViewById(R.id.category1Expand);
         chooseCategory1=findViewById(R.id.chooseCategory1);
@@ -166,373 +152,95 @@ public class SelectACategoryActivity extends AppCompatActivity {
         category11Expand=findViewById(R.id.category11Expand);
         chooseCategory11=findViewById(R.id.chooseCategory11);
 
+        GlobalVar.gRecommendedCategories = new ArrayList<>();
+
+        mCourseCheckBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    CharSequence checkedCat1=buttonView.getText();
+
+                    String checkedStrCat2=checkedCat1.toString();
+
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+                }
+            }
+        });
+
+        mCourseCheckBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    CharSequence checkedCat2=buttonView.getText();
+
+                    String checkedStrCat2=checkedCat2.toString();
+
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+                }
+            }
+        });
+
+        mCourseCheckBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    CharSequence checkedCat3=buttonView.getText();
+
+                    String checkedStrCat2=checkedCat3.toString();
+
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+                }
+            }
+        });
+
+        mCourseCheckBox4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    CharSequence checkedCat4=buttonView.getText();
+
+                    String checkedStrCat2=checkedCat4.toString();
+
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+                }
+            }
+        });
+
+        mCourseCheckBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    CharSequence checkedCat5=buttonView.getText();
+
+                    String checkedStrCat2=checkedCat5.toString();
+
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+                }
+            }
+        });
+
+        mCourseCheckBox6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    CharSequence checkedCat6=buttonView.getText();
+
+                    String checkedStrCat2=checkedCat6.toString();
+
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+
+                    String text="abcd";
+                }
+            }
+        });
+
+
         mNextBtn=findViewById(R.id.nextBtnId);
         mNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, MyPageActivity.class);
                 v.getContext().startActivity(i);
-            }
-        });
-
-        chooseCategory1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category1Expand.setVisibility(View.GONE);
-                    chooseCategory1.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon1.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-
-                else {
-                    category1Expand.setVisibility(View.VISIBLE);
-                    chooseCategory1.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon1.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (isExpand==true){
-                    category2Expand.setVisibility(View.GONE);
-                    chooseCategory2.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon2.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-                }
-                else {
-                    category2Expand.setVisibility(View.VISIBLE);
-                    chooseCategory2.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon2.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-            }
-        });
-
-        chooseCategory3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category3Expand.setVisibility(View.GONE);
-                    chooseCategory3.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon3.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category3Expand.setVisibility(View.VISIBLE);
-                    chooseCategory3.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon3.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category4Expand.setVisibility(View.GONE);
-                    chooseCategory4.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon4.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category4Expand.setVisibility(View.VISIBLE);
-                    chooseCategory4.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon4.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category5Expand.setVisibility(View.GONE);
-                    chooseCategory5.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon5.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category5Expand.setVisibility(View.VISIBLE);
-                    chooseCategory5.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon5.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category6Expand.setVisibility(View.GONE);
-                    chooseCategory6.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon6.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category6Expand.setVisibility(View.VISIBLE);
-                    chooseCategory6.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon6.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category7Expand.setVisibility(View.GONE);
-                    chooseCategory7.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon7.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category7Expand.setVisibility(View.VISIBLE);
-                    chooseCategory7.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon7.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category8Expand.setVisibility(View.GONE);
-                    chooseCategory8.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon8.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category8Expand.setVisibility(View.VISIBLE);
-                    chooseCategory8.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon8.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category9Expand.setVisibility(View.GONE);
-                    chooseCategory9.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon9.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category9Expand.setVisibility(View.VISIBLE);
-                    chooseCategory9.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon9.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category10Expand.setVisibility(View.GONE);
-                    chooseCategory10.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon10.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category10Expand.setVisibility(View.VISIBLE);
-                    chooseCategory10.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon10.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
-            }
-        });
-
-        chooseCategory11.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (isExpand==true){
-                    category11Expand.setVisibility(View.GONE);
-                    chooseCategory11.setBackgroundColor(Color.parseColor("#ffffff"));
-
-                    // rotate clockwise
-                    rotateAnimation = new RotateAnimation(90, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon11.startAnimation(rotateAnimation);
-
-                    isExpand=false;
-
-                }
-                else {
-                    category11Expand.setVisibility(View.VISIBLE);
-                    chooseCategory11.setBackgroundColor(Color.parseColor("#bfebff"));
-
-                    rotateAnimation = new RotateAnimation( 0, 90, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                    rotateAnimation.setDuration(200);
-                    rotateAnimation.setFillAfter(true);
-                    expandIcon11.startAnimation(rotateAnimation);
-
-                    isExpand=true;
-                }
-
             }
         });
 
@@ -582,8 +290,6 @@ public class SelectACategoryActivity extends AppCompatActivity {
 
                     for (int cc = 0; cc < objectCourseCatNames.length(); cc++)
                     {
-
-
                         JSONObject jObjEnrolledCourses = objectCourseCatNames.getJSONObject(cc);
                         DetailDataModelAll modelCourseCatAll = new DetailDataModelAll();
 
@@ -597,7 +303,6 @@ public class SelectACategoryActivity extends AppCompatActivity {
 
                         detailListMainActivityCourseCat.add(modelCourseCatAll);
 
-
                         String aaaa="";
                     }
                 } catch (Exception ex) {
@@ -605,16 +310,16 @@ public class SelectACategoryActivity extends AppCompatActivity {
                 }
 
                 try {
-                    mCourseText1. setText(detailListMainActivityCourseCat.get(0).getmCourseCategoryNameBn());
-                    mCourseText2. setText(detailListMainActivityCourseCat.get(1).getmCourseCategoryNameBn());
-                    mCourseText3. setText(detailListMainActivityCourseCat.get(2).getmCourseCategoryNameBn());
-                    mCourseText4. setText(detailListMainActivityCourseCat.get(3).getmCourseCategoryNameBn());
-                    mCourseText5. setText(detailListMainActivityCourseCat.get(4).getmCourseCategoryNameBn());
-                    mCourseText6. setText(detailListMainActivityCourseCat.get(5).getmCourseCategoryNameBn());
-                    mCourseText7. setText(detailListMainActivityCourseCat.get(6).getmCourseCategoryNameBn());
+                    mCourseCheckBox1.setText(detailListMainActivityCourseCat.get(0).getmCourseCategoryNameBn());
+                    mCourseCheckBox2.setText(detailListMainActivityCourseCat.get(1).getmCourseCategoryNameBn());
+                    mCourseCheckBox3.setText(detailListMainActivityCourseCat.get(2).getmCourseCategoryNameBn());
+                    mCourseCheckBox4.setText(detailListMainActivityCourseCat.get(3).getmCourseCategoryNameBn());
+                    mCourseCheckBox5.setText(detailListMainActivityCourseCat.get(4).getmCourseCategoryNameBn());
+                    mCourseCheckBox6.setText(detailListMainActivityCourseCat.get(5).getmCourseCategoryNameBn());
+                    /*mCourseText7. setText(detailListMainActivityCourseCat.get(6).getmCourseCategoryNameBn());
                     mCourseText8. setText(detailListMainActivityCourseCat.get(7).getmCourseCategoryNameBn());
                     mCourseText9. setText(detailListMainActivityCourseCat.get(8).getmCourseCategoryNameBn());
-                    mCourseText10.setText(detailListMainActivityCourseCat.get(9).getmCourseCategoryNameBn());
+                    mCourseText10.setText(detailListMainActivityCourseCat.get(9).getmCourseCategoryNameBn());*/
                 }
                 catch (Exception ex){
                     Log.d("", "onPostExecute: ");

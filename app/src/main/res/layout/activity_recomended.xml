@@ -37,13 +37,16 @@
                     android:textColor="@color/colorVoldemort"
                     />
 
-                <RelativeLayout
-                    android:id="@+id/MasterMenuHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    >
-                    <HorizontalScrollView
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/my_recycler_view_recom_cats"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="5dp"
+                        android:orientation="horizontal"
+                        />
+
+                    <!--<HorizontalScrollView
                         android:id="@+id/buttonLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -70,16 +73,15 @@
                                 android:orientation="horizontal"
                                 >
 
-                                <!--<ImageView
+                                &lt;!&ndash;<ImageView
                                     android:layout_width="20dp"
                                     android:layout_height="28dp"
                                     android:src="@drawable/photo"
                                     android:layout_marginLeft="5dp"
-                                    />-->
+                                    />&ndash;&gt;
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:text="ফটোগ্রাফি"
                                     android:gravity="center"
                                     android:textColor="#fff"
                                     android:textSize="15sp"
@@ -96,16 +98,15 @@
                                 android:orientation="horizontal"
                                 >
 
-                                <!--<ImageView
+                                &lt;!&ndash;<ImageView
                                     android:layout_width="20dp"
                                     android:layout_height="28dp"
                                     android:src="@drawable/market"
                                     android:layout_marginLeft="5dp"
-                                    />-->
+                                    />&ndash;&gt;
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:text="মার্কেটিং"
                                     android:gravity="center"
                                     android:textColor="#fff"
                                     android:textSize="15sp"
@@ -123,16 +124,15 @@
                                 android:layout_marginLeft="5dp"
                                 >
 
-                                <!--<ImageView
+                                &lt;!&ndash;<ImageView
                                     android:layout_width="20dp"
                                     android:layout_height="28dp"
                                     android:src="@drawable/shongit"
                                     android:layout_marginLeft="5dp"
-                                    />-->
+                                    />&ndash;&gt;
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:text="সংগীত"
                                     android:gravity="center"
                                     android:textColor="#fff"
                                     android:textSize="15sp"
@@ -143,9 +143,7 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                    </HorizontalScrollView>
-
-                </RelativeLayout>
+                    </HorizontalScrollView>-->
 
                 <!--<LinearLayout
                     android:layout_width="wrap_content"

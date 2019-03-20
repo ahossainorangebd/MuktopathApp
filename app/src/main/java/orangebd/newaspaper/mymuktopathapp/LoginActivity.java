@@ -115,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList2;
 
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailUnitQuizOptList;
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailVideoPulseMulti;
 
     //for declaring arraylist of units
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit1Data;
@@ -128,18 +129,19 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailListFileType;
 
     ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNew;
-    ArrayList<DetailDataModelCourses3rdGrandFather> mContentArrayListNewPulse;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitArrayListNew;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizList;
 
     ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitQuizList2;
+    ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mVideoPulseMulti;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListWithOptions;
 
     //TODO
     //ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizOptList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizOptList;
+    ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNewPulse;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnit1DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit2DataArrayList;
@@ -230,6 +232,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                 detailListCourseDetailUnitQuizOptList = new ArrayList<>();
+                                detailListCourseDetailVideoPulseMulti = new ArrayList<>();
 
 
                                 //for renew arraylist of units arrays
@@ -694,7 +697,6 @@ public class LoginActivity extends AppCompatActivity {
                                                     try
                                                     {
                                                         mContentArrayListNew = new ArrayList<>();
-                                                        mContentArrayListNewPulse = new ArrayList<>();
                                                         mUnit1DataArrayList = new ArrayList<>();
                                                         mUnit2DataArrayList = new ArrayList<>();
                                                         mUnit3DataArrayList = new ArrayList<>();
@@ -894,6 +896,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                                 mUnitQuizList = new ArrayList<>();
                                                                                 mUnitQuizList2 = new ArrayList<>();
+                                                                                mVideoPulseMulti = new ArrayList<>();
 
                                                                                 mUnitQuizListWithOptions = new ArrayList<>();
 
@@ -964,9 +967,12 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                                 JSONArray jSonObjMultiQ = (JSONArray) jSObject3.getJSONArray("multi_ques_list");
 
-                                                                                for (int mql = 0; mql < jSonObjMultiQ.length(); mql++) {
+                                                                                mContentArrayListNewPulse = new ArrayList<>();
 
-                                                                                    DetailDataModelCourses3rdGrandFather modelVideoMultiPulse = new DetailDataModelCourses3rdGrandFather();
+                                                                                for (int mql = 0; mql < jSonObjMultiQ.length(); mql++)
+                                                                                {
+
+                                                                                    DetailDataModelCoursesDetailContents modelVideoMultiPulse = new DetailDataModelCoursesDetailContents();
 
                                                                                     JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(mql);
 
@@ -1006,6 +1012,8 @@ public class LoginActivity extends AppCompatActivity {
                                                                                     }
                                                                                 }
 
+                                                                                mVideoPulseMulti.add(mContentArrayListNewPulse);
+
                                                                             }
                                                                         } catch (Exception ex) {
                                                                             Log.d("", "onResponse: ");
@@ -1024,8 +1032,6 @@ public class LoginActivity extends AppCompatActivity {
                                                     catch (Exception ex){
                                                         Log.d("", "onResponse: ");
                                                     }
-
-
                                                 }
                                                 catch (Exception ex){
                                                     Log.d("", "onResponse: ");
@@ -1034,15 +1040,14 @@ public class LoginActivity extends AppCompatActivity {
 
                                                 detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
 
+                                                detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
+
                                                 detailListCourseDetailContentss.add(mContentArrayListNew);
 
                                                 //detailListVideoPulse.add(mContentArrayListNewPulse);
 
                                                 detailListCourseDetailUnits.add(mUnitArrayListNew);
                                                 detailListCourseDetailUnitQuizList.add(mUnitQuizList);
-
-
-
 
                                                 //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
 
@@ -1053,7 +1058,6 @@ public class LoginActivity extends AppCompatActivity {
                                                 detailListCourseUnit1Data.add(mUnit1DataArrayList);
                                                 detailListCourseUnit2Data.add(mUnit2DataArrayList);
                                                 detailListCourseUnit3Data.add(mUnit3DataArrayList);
-
 
                                                 GlobalVar.gEnrolledInstitution=detailList10;
                                             }
@@ -1078,6 +1082,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                     //for option list of quest list
                                     modelAlter.setmArrayListCourseQuizOptions(detailListCourseDetailUnitQuizOptList);
+
+                                    modelAlter.setmArrayListCourseVideoPulseMulti(detailListCourseDetailVideoPulseMulti);
 
                                     detailListCourse.add(modelAlter);
 

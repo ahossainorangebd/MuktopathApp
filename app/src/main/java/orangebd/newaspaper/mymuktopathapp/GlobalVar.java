@@ -1,8 +1,5 @@
 package orangebd.newaspaper.mymuktopathapp;
 
-import android.support.v4.widget.NestedScrollView;
-import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -13,7 +10,8 @@ public class GlobalVar {
     public static ArrayList<ParentMenu> gParentMenue;
 
 
-    public static ArrayList<String> gMenuArrayList;
+    public static ArrayList<String> gRecommendedCategories;
+
     public static ArrayList<DetailDataModelCourses> gRecommendedDetailList10;
     public static ArrayList<DetailDataModelCourses> gEnrolledInstitution;
     public static ArrayList<DetailDataModelCoursesDetailContents> thisFragmentContents;

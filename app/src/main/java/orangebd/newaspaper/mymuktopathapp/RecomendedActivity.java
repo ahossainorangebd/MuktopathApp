@@ -85,8 +85,12 @@ public class RecomendedActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCoursesDetailContents> detailListCourseDetailContents;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
 
+    private RecyclerView.Adapter adapterCats;
+
     private ArrayList<DetailDataModelCourses> detailList2parent;
     private ArrayList<DetailDataModelCourses3rdGrandFather> detailList3parent;
+
+    private RecyclerView recyclerViewCat;
 
     String url="http://api.muktopaath.orangebd.com/api/courses";
 
@@ -152,6 +156,19 @@ public class RecomendedActivity extends AppCompatActivity {
                 v.getContext().startActivity(i);
             }
         });
+
+
+
+        recyclerViewCat = findViewById(R.id.my_recycler_view_recom_cats);
+        recyclerViewCat.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewCat.setLayoutManager(layoutManager);
+        recyclerViewCat.setNestedScrollingEnabled(false);
+        adapterCats=new RecyclerViewAdapterRecomCats(GlobalVar.gRecommendedCategories,mContext);
+        recyclerViewCat.setAdapter(adapterCats);
+        adapterCats.notifyDataSetChanged();
+
+
 
         map = new HashMap<String, String>();
 

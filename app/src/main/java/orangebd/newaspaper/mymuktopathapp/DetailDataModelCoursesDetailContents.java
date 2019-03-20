@@ -42,6 +42,17 @@ public class DetailDataModelCoursesDetailContents
 
 
 
+    //pulse of video multi
+    private String mPulseOfVideoMulti;
+
+    public String getmPulseOfVideoMulti() {
+        return mPulseOfVideoMulti;
+    }
+
+    public void setmPulseOfVideoMulti(String mPulseOfVideoMulti) {
+        this.mPulseOfVideoMulti = mPulseOfVideoMulti;
+    }
+
 
 
     public String getmOptionBody() {

@@ -129,6 +129,7 @@ public class DetailDataModelCourses
 
     //for ques list's options
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseQuizOptions;
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseVideoPulseMulti;
 
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mUnitDataArrayListArray;
 
@@ -1214,5 +1215,13 @@ public class DetailDataModelCourses
 
     public void setmArrayListCourseQuizOptions(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseQuizOptions) {
         this.mArrayListCourseQuizOptions = mArrayListCourseQuizOptions;
+    }
+
+    public ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> getmArrayListCourseVideoPulseMulti() {
+        return mArrayListCourseVideoPulseMulti;
+    }
+
+    public void setmArrayListCourseVideoPulseMulti(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseVideoPulseMulti) {
+        this.mArrayListCourseVideoPulseMulti = mArrayListCourseVideoPulseMulti;
     }
 }

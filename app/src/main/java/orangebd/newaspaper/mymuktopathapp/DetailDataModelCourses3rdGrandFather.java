@@ -13,8 +13,7 @@ public class DetailDataModelCourses3rdGrandFather
     private String to_metaThirdParent;
     private String total_metaThirdParent;
 
-    //pulse of video multi
-    private String mPulseOfVideoMulti;
+
 
     public String getCurrent_page_metaThirdParent() {
         return current_page_metaThirdParent;
@@ -72,11 +71,4 @@ public class DetailDataModelCourses3rdGrandFather
         this.total_metaThirdParent = total_metaThirdParent;
     }
 
-    public String getmPulseOfVideoMulti() {
-        return mPulseOfVideoMulti;
-    }
-
-    public void setmPulseOfVideoMulti(String mPulseOfVideoMulti) {
-        this.mPulseOfVideoMulti = mPulseOfVideoMulti;
-    }
 }
