@@ -130,6 +130,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
                 outValue, true);
 
+
         //textView.setBackgroundResource(outValue.resourceId);
         textView.setBackgroundResource(R.drawable.rounded_textview);
 
