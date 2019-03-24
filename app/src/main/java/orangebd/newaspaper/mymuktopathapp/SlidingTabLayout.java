@@ -237,14 +237,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 return;
             }
 
-
             mTabStrip.onViewPagerPageChanged(position, positionOffset);
             View selectedTitle = mTabStrip.getChildAt(position);
 
             TextView selectedTextview=(TextView) selectedTitle;
 
+            selectedTextview.setBackgroundResource(R.drawable.rounded_selected_textview);
 
-            selectedTextview.setBackgroundResource(R.drawable.rounded_textview);
 
             int extraOffset = (selectedTitle != null)
                     ? (int) (positionOffset * selectedTitle.getWidth())
@@ -280,6 +279,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                     /**
                      * This two lines was for focusing (Changing the background color of selected tab of pager)
                      * */
+
                     //TODO
                     //TODO
                     // mTabStrip.getChildAt(i).setBackgroundColor(Color.parseColor("#a3a3a3"));
