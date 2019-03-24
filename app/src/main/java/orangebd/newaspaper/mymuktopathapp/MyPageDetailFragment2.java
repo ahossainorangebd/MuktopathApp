@@ -83,14 +83,12 @@ public class MyPageDetailFragment2 extends Fragment {
         {
             ParentMenu parent = new ParentMenu();
 
-
             String quesTitle = mQuizParents.get(i).getmQuizTitle();
 
             final TextView mParentQTtl=new TextView(context);
             mParentQTtl.setText(quesTitle);
 
             mParentLinLay.addView(mParentQTtl);
-
 
             parent.setTitle(quesTitle);
 

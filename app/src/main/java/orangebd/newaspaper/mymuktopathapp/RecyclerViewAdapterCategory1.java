@@ -35,6 +35,8 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
 
     private ArrayList<DetailDataModel> mFilteredList;
 
+    private Object[] mArrayList;
+
     //private String copyRightText;
     // private ImageView mainImage;
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -96,13 +98,23 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
         final String sContentSize= Integer.toString(contentArray.size());
 
-        final Object[] mArrayList = contentArray.get(listPosition).toArray();
+        String imgUrl="";
+
+        try {
+            mArrayList = contentArray.get(listPosition).toArray();
+
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
         DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
-        String imgUrl = imgUrlModel.getCover_code_image();
+            imgUrl = imgUrlModel.getCover_code_image();
+
+        }
+        catch (Exception ex){
+            Log.d("", "onBindViewHolder: ");
+        }
+
 
         final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
 

@@ -47,7 +47,30 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        if(GlobalVar.gEnrollCourseNumber==3)
+
+        if(GlobalVar.gEnrollCourseNumber==1){
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==2){
+            switch (position) {
+
+                case 0:
+                    return new MyPageFragment1();
+                case 1:
+                    return new MyPageFragment2();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrollCourseNumber==3)
         {
             switch (position) {
 

@@ -312,11 +312,15 @@ public class CourseDetailActivity extends AppCompatActivity {
                 String mCheckStatus = jObject.getString("status");
                 String mCheckEnrollmentId = jObject.getString("EnrollmentId");
 
-                if(mCheckStatus.equalsIgnoreCase("false")){
+                if(mCheckStatus.equalsIgnoreCase("2")) {
                     enrollText.setText("ENROLL"+ paymentStatusFreeOrNot);
                 }
-                else
-                    enrollText.setText("ENROLLED"+ paymentStatusFreeOrNot);
+                else if (mCheckStatus.equalsIgnoreCase("1")) {
+                    enrollText.setText("ENROLLED" + paymentStatusFreeOrNot);
+                }
+                else if (mCheckStatus.equalsIgnoreCase("3")) {
+                    enrollText.setText("Coordinator");
+                }
 
             }
             catch (Exception ex){

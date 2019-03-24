@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -61,6 +62,8 @@ public class MyPageActivity extends AppCompatActivity {
     private LinearLayout downloadsBtn;
     private LinearLayout profileBtn;
 
+    private TextView enrolledCourse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +87,10 @@ public class MyPageActivity extends AppCompatActivity {
         myPageBtn = findViewById(R.id.myPageBtnId);
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
+        enrolledCourse = findViewById(R.id.enrolledCourseNo);
 
+
+        //enrolledCourse.setText(GlobalVar.gEnrollCourseNumber);
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override

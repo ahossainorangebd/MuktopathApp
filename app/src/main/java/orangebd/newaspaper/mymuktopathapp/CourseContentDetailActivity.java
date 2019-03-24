@@ -58,6 +58,16 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private int duration;
     private TextView textView;
 
+    private int seekbarProgress;
+
+    private int seekbarStartPosition;
+    private int pausePosition;
+
+    private boolean isStartTrackingTouch;
+    private boolean isVideoStarted;
+
+    private ImageView imgPauseView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +97,27 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode+"#t=" + timeStatus;
 
+        imgPauseView=findViewById(R.id.pause_button);
+        imgPauseView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isVideoStarted) {
+                    pausePosition = videoView.getCurrentPosition();
+                    videoView.pause();
+                    imgPauseView.setImageResource(R.drawable.play_icon_mukto);
+                    isVideoStarted=true;
+                }else{
+                    videoView.seekTo(pausePosition);
+                    videoView.start();
+                    mProgressBar.setProgress(pausePosition);
+                    mProgressBar.postDelayed(onEverySecond, 1000);
+                    imgPauseView.setImageResource(R.drawable.pause_icon_mukto);
+                    isVideoStarted=false;
+                }
+            }
+        });
+
+
         titleTextView.setText(title);
 
         detailDescTextView.getSettings().setJavaScriptEnabled(true);
@@ -114,16 +145,39 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
+                int vprog=0;
+                if (isStartTrackingTouch) {
+                    vprog = seekbarStartPosition;
+                    isStartTrackingTouch=false;
+                }
+                else
+                    vprog = videoView.getCurrentPosition();
+                int prog=seekbarProgress;
+                if(prog<vprog) {
+                    videoView.seekTo(seekbarProgress);
+                    mProgressBar.setSecondaryProgress(vprog);
+                }
+                else {
+                    videoView.seekTo(vprog);
+                    //mProgressBar.setSecondaryProgress(seekbarProgress);
+
+                }
+                mProgressBar.postDelayed(onEverySecond, 1000);
+
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+
+                isStartTrackingTouch=true;
+                seekbarStartPosition=videoView.getCurrentPosition();
             }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                seconds=videoView.getCurrentPosition()/1000;
+                /*seconds=videoView.getCurrentPosition()/1000;
 
 
 
@@ -143,7 +197,25 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 if(Integer.toString(seconds)=="1"){
                     Toast.makeText(context,"th Position",Toast.LENGTH_SHORT).show();
+                }*/
+
+
+                seconds=videoView.getCurrentPosition()/1000;
+                textView.setText(""+seconds);
+                seekbarProgress=progress;
+
+                if(fromUser) {
+                    int vprog=videoView.getCurrentPosition();
+                    int prog=progress;
+                    if(prog<vprog) {
+                        videoView.seekTo(progress);
+                        mProgressBar.setSecondaryProgress(vprog);
+                    }
+                    else {
+                        videoView.seekTo(vprog);
+                    }
                 }
+
             }
         });
     }

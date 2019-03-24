@@ -384,11 +384,15 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setNestedScrollingEnabled(false);
 
-        map1.put("id", detailListMainActivityCourseCat.get(0).getmCourseCategoryId());
-        map1.put("name", detailListMainActivityCourseCat.get(0).getmCourseCategoryNameEn());
-        map1.put("rating", "");
 
-        new Category1().execute(urlGetCourses);
+
+        if(detailListMainActivityCourseCat.size()>0){
+            map1.put("id", detailListMainActivityCourseCat.get(0).getmCourseCategoryId());
+            map1.put("name", detailListMainActivityCourseCat.get(0).getmCourseCategoryNameEn());
+            map1.put("rating", "");
+
+            new Category1().execute(urlGetCourses);
+        }
     }
 
     private void setRecyclerView2() {
@@ -500,7 +504,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Category call
 
-    public class Category1 extends AsyncTask<String, Void, String> {
+    public class Category1 extends AsyncTask<String, Void, String>
+    {
 
         @Override
         protected void onPreExecute() {
@@ -971,11 +976,14 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner.setVisibility(View.GONE);
 
-            map2.put("id", detailListMainActivityCourseCat.get(1).getmCourseCategoryId());
-            map2.put("name", detailListMainActivityCourseCat.get(1).getmCourseCategoryNameEn());
-            map2.put("rating", "");
+            if(detailListMainActivityCourseCat.size()>1){
+                map2.put("id", detailListMainActivityCourseCat.get(1).getmCourseCategoryId());
+                map2.put("name", detailListMainActivityCourseCat.get(1).getmCourseCategoryNameEn());
+                map2.put("rating", "");
 
-            new Category2().execute(urlGetCourses);
+                new Category2().execute(urlGetCourses);
+            }
+
         }
 
         @Override
@@ -1455,11 +1463,14 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner2.setVisibility(View.GONE);
 
-            map3.put("id", detailListMainActivityCourseCat.get(2).getmCourseCategoryId());
-            map3.put("name", detailListMainActivityCourseCat.get(2).getmCourseCategoryNameEn());
-            map3.put("rating", "");
+            if(detailListMainActivityCourseCat.size()>2) {
 
-            new Category3().execute(urlGetCourses);
+                map3.put("id", detailListMainActivityCourseCat.get(2).getmCourseCategoryId());
+                map3.put("name", detailListMainActivityCourseCat.get(2).getmCourseCategoryNameEn());
+                map3.put("rating", "");
+
+                new Category3().execute(urlGetCourses);
+            }
         }
 
         @Override
@@ -1937,11 +1948,13 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner3.setVisibility(View.GONE);
 
-            map4.put("id", detailListMainActivityCourseCat.get(3).getmCourseCategoryId());
-            map4.put("name", detailListMainActivityCourseCat.get(3).getmCourseCategoryNameEn());
-            map4.put("rating", "");
+            if(detailListMainActivityCourseCat.size()>3) {
+                map4.put("id", detailListMainActivityCourseCat.get(3).getmCourseCategoryId());
+                map4.put("name", detailListMainActivityCourseCat.get(3).getmCourseCategoryNameEn());
+                map4.put("rating", "");
 
-            new Category4().execute(urlGetCourses);
+                new Category4().execute(urlGetCourses);
+            }
         }
 
         @Override
@@ -2419,11 +2432,13 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner4.setVisibility(View.GONE);
 
-            map5.put("id", detailListMainActivityCourseCat.get(4).getmCourseCategoryId());
-            map5.put("name", detailListMainActivityCourseCat.get(4).getmCourseCategoryNameEn());
-            map5.put("rating", "");
+            if(detailListMainActivityCourseCat.size()>4) {
+                map5.put("id", detailListMainActivityCourseCat.get(4).getmCourseCategoryId());
+                map5.put("name", detailListMainActivityCourseCat.get(4).getmCourseCategoryNameEn());
+                map5.put("rating", "");
 
-            new Category5().execute(urlGetCourses);
+                new Category5().execute(urlGetCourses);
+            }
         }
 
         @Override
@@ -2901,16 +2916,19 @@ public class MainActivity extends AppCompatActivity {
 
             mProgressSpinner5.setVisibility(View.GONE);
 
-            try {
-                map6.put("id", detailListMainActivityCourseCat.get(5).getmCourseCategoryId());
-                map6.put("name", detailListMainActivityCourseCat.get(5).getmCourseCategoryNameEn());
-                map6.put("rating", "");
-            }
-            catch (Exception ex){
-                Log.d("", "onPostExecute: ");
-            }
+            if(detailListMainActivityCourseCat.size()>5) {
 
-            new Category6().execute(urlGetCourses);
+                try {
+                    map6.put("id", detailListMainActivityCourseCat.get(5).getmCourseCategoryId());
+                    map6.put("name", detailListMainActivityCourseCat.get(5).getmCourseCategoryNameEn());
+                    map6.put("rating", "");
+                }
+                catch (Exception ex){
+                    Log.d("", "onPostExecute: ");
+                }
+
+                new Category6().execute(urlGetCourses);
+            }
         }
 
         @Override
@@ -3394,7 +3412,9 @@ public class MainActivity extends AppCompatActivity {
                 map7.put("name", detailListMainActivityCourseCat.get(6).getmCourseCategoryNameEn());
                 map7.put("rating", "");
 
-                new Category7().execute(urlGetCourses);
+                if(detailListMainActivityCourseCat.size()>6) {
+                    new Category7().execute(urlGetCourses);
+                }
             }
             catch (Exception ex){
                 Log.d("", "onPostExecute: ");
@@ -3881,7 +3901,9 @@ public class MainActivity extends AppCompatActivity {
                 map8.put("name", detailListMainActivityCourseCat.get(7).getmCourseCategoryNameEn());
                 map8.put("rating", "");
 
-                new Category8().execute(urlGetCourses);
+                if(detailListMainActivityCourseCat.size()>7) {
+                    new Category8().execute(urlGetCourses);
+                }
             }
             catch (Exception ex){
                 Log.d("", "onPostExecute: ");
@@ -4370,7 +4392,9 @@ public class MainActivity extends AppCompatActivity {
                 map9.put("name", detailListMainActivityCourseCat.get(8).getmCourseCategoryNameEn());
                 map9.put("rating", "");
 
-                new Category9().execute(urlGetCourses);
+                if(detailListMainActivityCourseCat.size()>8) {
+                    new Category9().execute(urlGetCourses);
+                }
             }
 
             catch (Exception ex){
@@ -4858,7 +4882,9 @@ public class MainActivity extends AppCompatActivity {
                 map10.put("name", detailListMainActivityCourseCat.get(9).getmCourseCategoryNameEn());
                 map10.put("rating", "");
 
-                new Category10().execute(urlGetCourses);
+                if(detailListMainActivityCourseCat.size()>9) {
+                    new Category10().execute(urlGetCourses);
+                }
             }
             catch (Exception ex){
                 Log.d("", "onPostExecute: ");

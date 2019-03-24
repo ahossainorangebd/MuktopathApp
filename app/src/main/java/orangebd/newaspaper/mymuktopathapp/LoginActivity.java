@@ -495,6 +495,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                         GlobalVar.gEnrollCourseNumber=enrolledCourseNumbers;
 
+                                        String aaaaaa= "";
+
                                         try {
                                             for (int ec = 0; ec < objectEnrollCourse.length(); ec++)
                                             {

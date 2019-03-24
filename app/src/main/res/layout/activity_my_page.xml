@@ -19,11 +19,35 @@
         android:gravity="center"
         />
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Enrolled Course:"
+        android:textColor="@color/AppTextColor"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/enrolledCourseNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number"
+        android:textColor="@color/AppTextColor"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/VideoSliderviewPagerId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="120dp"
         >
 
         <WebView

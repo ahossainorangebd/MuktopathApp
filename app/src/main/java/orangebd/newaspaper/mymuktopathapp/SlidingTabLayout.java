@@ -14,6 +14,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class SlidingTabLayout extends HorizontalScrollView {
     /**
      * Allows complete control over the colors drawn in the tab layout. Set with
@@ -127,7 +129,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
         TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
                 outValue, true);
-        textView.setBackgroundResource(outValue.resourceId);
+
+        //textView.setBackgroundResource(outValue.resourceId);
+        textView.setBackgroundResource(R.drawable.rounded_textview);
+
         textView.setAllCaps(true);
 
         //textView.setWidth(380);
@@ -225,20 +230,29 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             int tabStripChildCount = mTabStrip.getChildCount();
+
             if ((tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
                 return;
             }
 
+
             mTabStrip.onViewPagerPageChanged(position, positionOffset);
             View selectedTitle = mTabStrip.getChildAt(position);
+
+            TextView selectedTextview=(TextView) selectedTitle;
+
+
+            selectedTextview.setBackgroundResource(R.drawable.rounded_textview);
+
             int extraOffset = (selectedTitle != null)
                     ? (int) (positionOffset * selectedTitle.getWidth())
                     : 0;
             scrollToTab(position, extraOffset);
+
             if (mViewPagerPageChangeListener != null) {
-                mViewPagerPageChangeListener.onPageScrolled(position, positionOffset,
-                        positionOffsetPixels);
+                mViewPagerPageChangeListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
         }
         @Override
