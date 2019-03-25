@@ -234,19 +234,20 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             int tabStripChildCount = mTabStrip.getChildCount();
 
+            if(position==0) {
+                TextView selectedView=(TextView)mTabStrip.getChildAt(position);
+                selectedView.setBackgroundResource(R.drawable.rounded_selected_textview);
+            }
+            else if(position==1) {
+                TextView selectedView=(TextView)mTabStrip.getChildAt(0);
+                selectedView.setBackgroundResource(R.drawable.rounded_textview);
+            }
+
             if ((tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
                 return;
             }
 
-            mTabStrip.onViewPagerPageChanged(position, positionOffset);
             View selectedTitle = mTabStrip.getChildAt(position);
-
-            TextView selectedTextview=(TextView) selectedTitle;
-
-            selectedTextview.setBackgroundResource(R.drawable.rounded_selected_textview);
-
-
-
             int extraOffset = (selectedTitle != null)
                     ? (int) (positionOffset * selectedTitle.getWidth())
                     : 0;
@@ -256,6 +257,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 mViewPagerPageChangeListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
         }
+
+
         @Override
         public void onPageScrollStateChanged(int state) {
             mScrollState = state;
@@ -263,91 +266,31 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 mViewPagerPageChangeListener.onPageScrollStateChanged(state);
             }
         }
+
         @Override
         public void onPageSelected(int position) {
+
             if (mScrollState == ViewPager.SCROLL_STATE_IDLE) {
                 mTabStrip.onViewPagerPageChanged(position, 0f);
                 scrollToTab(position, 0);
             }
 
-
-            TextView nonChangeTextView=(TextView)mTabStrip.getChildAt(position);
-            //nonChangeTextView.setBackgroundResource(R.drawable.rounded_textview );
-
             for (int i = 0; i < mTabStrip.getChildCount(); i++) {
-                mTabStrip.getChildAt(i).setSelected(position == i);
+                //mTabStrip.getChildAt(i).setSelected(position == i);
 
-                View v=null;
+                View v=mTabStrip.getChildAt(i);
 
-                if(i==position)
-                {
-                    nonChangeTextView.setBackgroundResource(R.drawable.rounded_selected_textview);
+                if(i==position) {
+
+                    TextView selectedView=(TextView)v;
+                    selectedView.setBackgroundResource(R.drawable.rounded_selected_textview);
                 }
                 else {
-                    nonChangeTextView.setBackgroundResource(R.drawable.rounded_textview );
+                    TextView selectedView=(TextView)v;
+                    selectedView.setBackgroundResource(R.drawable.rounded_textview);
                 }
-
 
             }
-
-            /*TextView nonChangeTextView=(TextView)mTabStrip.getChildAt(position);
-            nonChangeTextView.setBackgroundResource(R.drawable.rounded_textview );
-
-            for (int i = 0; i < mTabStrip.getChildCount(); i++) {
-                mTabStrip.getChildAt(i).setSelected(position == i);
-
-
-
-
-
-                View v=null;
-
-
-
-               // if (v == mTabStrip.getChildAt(i))
-                if(i==position)
-                {
-
-                    //TextView nonChangeTextView1=(TextView)mTabStrip.getChildAt(i);
-                    nonChangeTextView.setBackgroundResource(R.drawable.rounded_selected_textview);
-                    *//**
-                     * This two lines was for focusing (Changing the background color of selected tab of pager)
-                     * *//*
-
-                    //TODO
-                    //TODO
-                    // mTabStrip.getChildAt(i).setBackgroundColor(Color.parseColor("#a3a3a3"));
-                    //GlobalVar.fragmentPosition = position;
-
-                    *//**
-                     * These global variables did'nt work
-                     * *//*
-                    *//*GlobalVar.gSearchBtn.setVisibility(VISIBLE);
-                    GlobalVar.gRtvHeadLogoCustom.setVisibility(VISIBLE);
-                    GlobalVar.gSearchCrossBtn.setVisibility(INVISIBLE);
-                    GlobalVar.gSearchView.setVisibility(INVISIBLE);*//*
-                }
-                else {
-                    //TextView nonChangeTextView=(TextView)mTabStrip.getChildAt(i);
-                    nonChangeTextView.setBackgroundResource(R.drawable.rounded_textview );
-                }
-
-                *//**
-                 * This line was for focusing (Changing the background color of selected tab of pager)
-                 * *//*
-                //TODO
-                // mTabStrip.getChildAt(i).setBackgroundColor(Color.BLACK);
-
-                *//**
-                 * This Three lines was for focusing (Changing the background color of selected tab of pager)
-                 * *//*
-                //TODO
-              //else
-              //mTabStrip.getChildAt(i).setBackgroundColor(Color.BLACK);
-              //mTabStrip.getChildAt(i).setBackgroundColor(Color.parseColor("#a3a3a3"));
-
-
-            }*/
 
             if (mViewPagerPageChangeListener != null) {
                 mViewPagerPageChangeListener.onPageSelected(position);
