@@ -56,7 +56,7 @@ public class WelcomeActivity extends AppCompatActivity {
         map.put("client_id", "1");
         map.put("client_secret", "kb4wGS6M3TKWfRRuZOeh0ZfGtDXE8L1N7htXTDub");
 
-        new getTokenInfo().execute("http://api.muktopaath.orangebd.com/oauth/token");
+        new getTokenInfo().execute(GlobalVar.gApiBaseUrl +"/oauth/token");
 
         mHandler.postDelayed(new Runnable() {
             @Override

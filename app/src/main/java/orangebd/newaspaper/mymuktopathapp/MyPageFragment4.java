@@ -120,7 +120,6 @@ public class MyPageFragment4 extends Fragment {
         mAssignmentNumberTtl.setText(Integer.toString(mExamNumbers));
         mContentNumberTtl.setText(Integer.toString(mContentNumbers));
 
-
         if(mAssignmentNumbers>0){
 
             int contentListCount3=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent3().get(3).size();

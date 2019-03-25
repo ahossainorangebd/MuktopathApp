@@ -148,7 +148,8 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<DetailDataModelCoursesDetailContents> mUnit3DataArrayList;
 
     private String token="";
-    String url="http://api.muktopaath.orangebd.com/api/login";
+    String url= GlobalVar.gApiBaseUrl + "/api/login";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -1071,7 +1072,6 @@ public class LoginActivity extends AppCompatActivity {
                                         Log.d("", "onResponse: ");
                                     }
 
-
                                     modelAlter.setmUnitDataArrayListContent(detailListCourseUnit1Data);
                                     modelAlter.setmUnitDataArrayListContent2(detailListCourseUnit2Data);
                                     modelAlter.setmUnitDataArrayListContent3(detailListCourseUnit3Data);
@@ -1096,7 +1096,6 @@ public class LoginActivity extends AppCompatActivity {
                                     GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
 
                                     GlobalVar.courseContentDetailList=detailListCourse;
-
 
                                     //GlobalVar.gEnrollCourseQuestionList= GlobalVar.courseContentDetailList.get(i).getmArrayListCourseQuizs();
                                 }

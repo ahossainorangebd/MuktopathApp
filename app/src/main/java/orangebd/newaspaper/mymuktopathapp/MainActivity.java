@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressSpinner9;
     private ProgressBar mProgressSpinner10;
 
-    String urlGetCourses = "http://api.muktopaath.orangebd.com/api/course/search";
-    String urlGetCourseCats = "http://api.muktopaath.orangebd.com/api/course-categories";
+    String urlGetCourses = GlobalVar.gApiBaseUrl + "/api/course/search";
+    String urlGetCourseCats = GlobalVar.gApiBaseUrl + "/api/course-categories";
 
     private HashMap<String,String> map1;
     private HashMap<String,String> map2;

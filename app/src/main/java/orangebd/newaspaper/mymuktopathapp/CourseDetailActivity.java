@@ -80,8 +80,8 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     private String paymentStatusFreeOrNot;
 
-    String urlCheckEnrolledOrNot = "http://api.muktopaath.orangebd.com/api/enrolled/check";
-    String urlEnrollThis = "http://api.muktopaath.orangebd.com/api/course-enrollment";
+    String urlCheckEnrolledOrNot = GlobalVar.gApiBaseUrl +"/api/enrolled/check";
+    String urlEnrollThis = GlobalVar.gApiBaseUrl +"/api/course-enrollment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,28 +131,53 @@ public class CourseDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                JSONArray jArray = new JSONArray();
+
                 StringBuilder sb= new StringBuilder();
-                String jStatus = "{\"start\":0,\"completeness\":0}";
+
+                String start = "start";
+                String completeness = "completeness";
+
+                try {
+                    JSONObject jObj = new JSONObject();
+                    jObj.put(start, 0);
+                    jObj.put(completeness, 0);
+
+
 
                 for(int jStatusCount=0; jStatusCount<scSizeConv; jStatusCount++){
-                    sb=sb.append(jStatus+",");
+
+                    jArray.put(jObj);
                 }
 
-                int firstNumber=sb.length();
+                }
+                catch (Exception ex){
+                    Log.d("", "onClick: ");
+                }
 
-                String something =sb.substring(0,firstNumber-1);
+                JSONArray jArray2= new JSONArray();
 
-                String fBrac="[[";
+                jArray2.put(jArray);
+
+                String strForReplacing=jArray2.toString();
+                strForReplacing.replace("","");
+                strForReplacing.toCharArray();
+
+                //int firstNumber=sb.length();
+
+                //String something =sb.substring(0,firstNumber-1);
+
+                /*String fBrac="[[";
                 String lBrac="]]";
 
-                String jStatusInJsonFormat= fBrac + something + lBrac;
+                String jStatusInJsonFormat= fBrac + something + lBrac;*/
 
-                String finalJsonFormatStatus=jStatusInJsonFormat.replace("/","");
+                String jObjStr=jArray2.toString();
 
                 mapEnroll =  new HashMap<>();
                 mapEnroll.put("batches[]", batchId);
                 mapEnroll.put("amount", "0");
-                mapEnroll.put("journey_status", finalJsonFormatStatus);
+                mapEnroll.put("journey_status", jObjStr);
 
                 new StartEnroll().execute(urlEnrollThis);
             }
@@ -345,8 +370,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String result)
-        {
+        protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
             try {

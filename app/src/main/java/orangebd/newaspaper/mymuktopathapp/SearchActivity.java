@@ -60,7 +60,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private HashMap<String,String> map1;
 
-    String urlGetCourses = "http://api.muktopaath.orangebd.com/api/course/search";
+    String urlGetCourses = GlobalVar.gApiBaseUrl + "/api/course/search";
 
     private ArrayList<DetailDataModelCourses> detailListMainActivityCourse=new ArrayList<>();
     private ArrayList<DetailDataModelCoursesThumbnails> detailListMainActivityCourseThumbnail;

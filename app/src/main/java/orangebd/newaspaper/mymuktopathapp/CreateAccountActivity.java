@@ -94,7 +94,7 @@ public class CreateAccountActivity extends AppCompatActivity{
     private ArrayList<DetailDataModelCourses> detailListAnoPart2=new ArrayList<>();
     private ArrayList<DetailDataModelCourses> detailListAnoPart3=new ArrayList<>();
 
-    String url="http://api.muktopaath.orangebd.com/api/registration?type=registration";
+    String url= GlobalVar.gApiBaseUrl + "/api/registration?type=registration";
     private String token="";
 
     @Override

@@ -92,7 +92,7 @@ public class RecomendedActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewCat;
 
-    String url="http://api.muktopaath.orangebd.com/api/courses";
+    String url= GlobalVar.gApiBaseUrl + "/api/courses";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -99,7 +99,7 @@ public class SelectACategoryActivity extends AppCompatActivity {
     private CheckBox mCourseCheckBox10;
 
 
-    String urlGetCourseCats = "http://api.muktopaath.orangebd.com/api/course-categories";
+    String urlGetCourseCats = GlobalVar.gApiBaseUrl + "/api/course-categories";
 
     //All the detail Lists
     private ArrayList<DetailDataModelAll> detailListMainActivityCourseCat;
