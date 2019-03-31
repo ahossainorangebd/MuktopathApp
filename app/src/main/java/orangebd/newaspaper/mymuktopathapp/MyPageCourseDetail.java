@@ -7,11 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class MyPageCourseDetail extends AppCompatActivity {
 
@@ -61,7 +65,6 @@ public class MyPageCourseDetail extends AppCompatActivity {
         ImgUrl = getIntent().getExtras().getString("img");
         title = getIntent().getExtras().getString("ttl");
         ownerName = getIntent().getExtras().getString("oname");
-
         nthCourse = getIntent().getExtras().getInt("nthcourse");
 
         GlobalVar.gNthCourse=nthCourse;
@@ -81,47 +84,5 @@ public class MyPageCourseDetail extends AppCompatActivity {
         //setRecyclerView();
 
     }
-
-    /*private void setRecyclerView() {
-
-        recyclerView = findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
-        recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.setNestedScrollingEnabled(false);
-
-       // new GetCoursesContents().execute();
-    }*/
-
-    /*public class GetCoursesContents extends AsyncTask<String, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            //mProgressSpinner.setIndeterminate(true);
-            //mProgressSpinner.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected Void doInBackground(String... arg0) {
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,mContext);
-
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-            //mProgressSpinner.setVisibility(View.GONE);
-        }
-    }*/
 
 }

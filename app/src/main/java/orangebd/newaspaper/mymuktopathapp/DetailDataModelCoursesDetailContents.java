@@ -31,10 +31,20 @@ public class DetailDataModelCoursesDetailContents
 
     private String mQuizTitle;
 
+    // For model of pulse Quizes
+
+    private String mpQuizTitle;
+
     // for quiz options
 
     private String mOptionBody;
     private String mOptionAnswer;
+
+
+    // for pulse quiz options
+
+    private String mpOptionBody;
+    private String mpOptionAnswer;
 
     //for video ques pulse
 
@@ -44,6 +54,7 @@ public class DetailDataModelCoursesDetailContents
 
     //pulse of video multi
     private String mPulseOfVideoMulti;
+    private int mPulseOfVideoMultiId;
 
     public String getmPulseOfVideoMulti() {
         return mPulseOfVideoMulti;
@@ -458,6 +469,38 @@ public class DetailDataModelCoursesDetailContents
 
     public void setmVideoMultiPulse(ArrayList<DetailDataModelCourses3rdGrandFather> mVideoMultiPulse) {
         this.mVideoMultiPulse = mVideoMultiPulse;
+    }
+
+    public String getMpQuizTitle() {
+        return mpQuizTitle;
+    }
+
+    public void setMpQuizTitle(String mpQuizTitle) {
+        this.mpQuizTitle = mpQuizTitle;
+    }
+
+    public String getMpOptionBody() {
+        return mpOptionBody;
+    }
+
+    public void setMpOptionBody(String mpOptionBody) {
+        this.mpOptionBody = mpOptionBody;
+    }
+
+    public String getMpOptionAnswer() {
+        return mpOptionAnswer;
+    }
+
+    public void setMpOptionAnswer(String mpOptionAnswer) {
+        this.mpOptionAnswer = mpOptionAnswer;
+    }
+
+    public int getmPulseOfVideoMultiId() {
+        return mPulseOfVideoMultiId;
+    }
+
+    public void setmPulseOfVideoMultiId(int mPulseOfVideoMultiId) {
+        this.mPulseOfVideoMultiId = mPulseOfVideoMultiId;
     }
 
     /*public String getmOptionBody() {

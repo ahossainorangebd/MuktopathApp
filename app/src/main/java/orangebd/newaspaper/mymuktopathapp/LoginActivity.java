@@ -1,38 +1,14 @@
 package orangebd.newaspaper.mymuktopathapp;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -44,19 +20,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -115,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList2;
 
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailUnitQuizOptList;
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailPulseQuizOptList;
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailVideoPulseMulti;
 
     //for declaring arraylist of units
@@ -132,20 +98,27 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<DetailDataModelCoursesDetailContents> mUnitArrayListNew;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizList;
-
+    ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListMp;
     ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitQuizList2;
+    ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mPulseQuizList2;
+
     ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mVideoPulseMulti;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListWithOptions;
 
+    ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListWithOptionsMp;
+
     //TODO
     //ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizOptList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizOptList;
+    ArrayList<DetailDataModelCoursesDetailContents> mPulseQuizOptList;
     ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNewPulse;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnit1DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit2DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit3DataArrayList;
+
+    private int multiQKey=-1;
 
     private String token="";
     String url= GlobalVar.gApiBaseUrl + "/api/login";
@@ -202,6 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     object.put("email", mStrEmail);
                     object.put("password", mStrPwd);
+                    object.put("type", "1");
                 }
                 catch (Exception ex){
                     Log.d("", "onClick: ");
@@ -233,6 +207,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                 detailListCourseDetailUnitQuizOptList = new ArrayList<>();
+                                detailListCourseDetailPulseQuizOptList = new ArrayList<>();
                                 detailListCourseDetailVideoPulseMulti = new ArrayList<>();
 
 
@@ -704,6 +679,8 @@ public class LoginActivity extends AppCompatActivity {
                                                         mUnit2DataArrayList = new ArrayList<>();
                                                         mUnit3DataArrayList = new ArrayList<>();
 
+                                                        mVideoPulseMulti = new ArrayList<>();
+
                                                         for (int ii = 0; ii < jObject.length()-1; ii++)
                                                         {
                                                             JSONObject jSObject2 = jObject.getJSONObject("" + ii);
@@ -893,13 +870,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
                                                                             for (int ctq = 0; ctq < jSObject3.length(); ctq++) {
 
                                                                                 JSONArray jSonObjMultiQ2 = (JSONArray) jSObject3.getJSONArray("ques_list");
 
                                                                                 mUnitQuizList = new ArrayList<>();
                                                                                 mUnitQuizList2 = new ArrayList<>();
-                                                                                mVideoPulseMulti = new ArrayList<>();
+
 
                                                                                 mUnitQuizListWithOptions = new ArrayList<>();
 
@@ -962,9 +940,13 @@ public class LoginActivity extends AppCompatActivity {
                                                                         }
                                                                     }
 
+
+                                                                    multiQKey++;
+
                                                                     if (quizYesOrNot.equalsIgnoreCase("1")) {
 
-                                                                        try {
+                                                                        try
+                                                                        {
 
                                                                             for (int l = 0; l < jSObject3.length(); l++) {
 
@@ -972,65 +954,117 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                                 mContentArrayListNewPulse = new ArrayList<>();
 
-                                                                                for (int mql = 0; mql < jSonObjMultiQ.length(); mql++)
-                                                                                {
+                                                                                try {
+                                                                                    for (int mql = 0; mql < jSonObjMultiQ.length(); mql++) {
 
-                                                                                    DetailDataModelCoursesDetailContents modelVideoMultiPulse = new DetailDataModelCoursesDetailContents();
+                                                                                        DetailDataModelCoursesDetailContents modelVideoMultiPulse = new DetailDataModelCoursesDetailContents();
 
-                                                                                    JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(mql);
+                                                                                        JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ.get(mql);
 
-                                                                                    String mPulse = objectAgainAnother2.getString("pulse");
+                                                                                        String mPulse = objectAgainAnother2.getString("pulse");
 
-                                                                                    modelVideoMultiPulse.setmPulseOfVideoMulti(mPulse);
+                                                                                        modelVideoMultiPulse.setmPulseOfVideoMulti(mPulse);
+                                                                                        modelVideoMultiPulse.setmPulseOfVideoMultiId(multiQKey);
 
-                                                                                    mContentArrayListNewPulse.add(modelVideoMultiPulse);
+                                                                                        try {
 
-                                                                                    try {
-                                                                                        for (int qs = 0; qs < objectAgainAnother2.length(); qs++) {
+                                                                                            mPulseQuizList2 = new ArrayList<>();
 
-                                                                                            JSONArray jSonObjMultiQuizes = (JSONArray) objectAgainAnother2.getJSONArray("ques_list");
+                                                                                            for (int qs = 0; qs < objectAgainAnother2.length(); qs++) {
 
-                                                                                            try {
-                                                                                                //mUnitQuizList = new ArrayList<>();
+                                                                                                JSONArray jSonObjMultiQuizes = (JSONArray) objectAgainAnother2.getJSONArray("ques_list");
 
-                                                                                                for (int qlist = 0; qlist < jSonObjMultiQuizes.length(); qlist++) {
+                                                                                                try {
+                                                                                                    mUnitQuizListMp = new ArrayList<>();
 
-                                                                                                    DetailDataModelCoursesDetailContents modelUnitQuizElements = new DetailDataModelCoursesDetailContents();
+                                                                                                    mUnitQuizListWithOptionsMp = new ArrayList<>();
 
-                                                                                                    JSONObject jSObjectQuizElements = jSonObjMultiQuizes.getJSONObject(qlist);
+                                                                                                    for (int qlist = 0; qlist < jSonObjMultiQuizes.length(); qlist++) {
 
-                                                                                                    String qTitle = jSObjectQuizElements.getString("title");
-                                                                                                    modelUnitQuizElements.setmQuizTitle(qTitle);
+                                                                                                        DetailDataModelCoursesDetailContents modelPulseQuizListWithOptionsMp = new DetailDataModelCoursesDetailContents();
 
-                                                                                                    //mUnitQuizList.add(modelUnitQuizElements);
+                                                                                                        JSONObject jSObjectQuizElements = jSonObjMultiQuizes.getJSONObject(qlist);
 
-                                                                                                    String okok = "";
+                                                                                                        String mqTitle = jSObjectQuizElements.getString("title");
+
+                                                                                                        mqTitle = mqTitle.replace("<p>","");
+                                                                                                        mqTitle = mqTitle.replace("</p>","");
+
+                                                                                                       // modelPulseQuizListWithOptionsMp.setMpQuizTitle(mqTitle);
+                                                                                                       // mUnitQuizListWithOptionsMp.add(modelPulseQuizListWithOptionsMp);
+
+                                                                                                        JSONArray jSonObjMultiQOptionsPulse = (JSONArray) jSObjectQuizElements.getJSONArray("options");
+
+                                                                                                        try{
+
+                                                                                                            mPulseQuizOptList = new ArrayList<>();
+
+                                                                                                            for(int optionList=0; optionList<jSonObjMultiQOptionsPulse.length(); optionList++){
+
+                                                                                                                DetailDataModelCoursesDetailContents modelPulseQuizOptions = new DetailDataModelCoursesDetailContents();
+
+                                                                                                                JSONObject jObjectQuesOpt = (JSONObject) jSonObjMultiQOptionsPulse.get(optionList);
+
+                                                                                                                String optionPulseBody = jObjectQuesOpt.getString("body");
+                                                                                                                String optionPulseAnswer = jObjectQuesOpt.getString("answer");
+
+                                                                                                                modelPulseQuizOptions.setMpOptionBody(optionPulseBody);
+                                                                                                                modelPulseQuizOptions.setMpOptionAnswer(optionPulseAnswer);
+                                                                                                                modelPulseQuizOptions.setMpQuizTitle(mqTitle);
+
+                                                                                                                mPulseQuizOptList.add(modelPulseQuizOptions);
+                                                                                                            }
+                                                                                                        }
+                                                                                                        catch (Exception ex){
+                                                                                                            Log.d("", "onResponse: ");
+                                                                                                        }
+
+                                                                                                        mPulseQuizList2.add(mPulseQuizOptList);
+
+                                                                                                    }
+                                                                                                } catch (Exception ex) {
+                                                                                                    Log.d("", "onResponse: ");
                                                                                                 }
-                                                                                            } catch (Exception ex) {
-                                                                                                Log.d("", "onResponse: ");
+
                                                                                             }
+                                                                                        } catch (Exception ex) {
+                                                                                            Log.d("", "onResponse: ");
                                                                                         }
-                                                                                    } catch (Exception ex) {
-                                                                                        Log.d("", "onResponse: ");
+
+                                                                                        mContentArrayListNewPulse.add(modelVideoMultiPulse);
+
+                                                                                        String testing="";
                                                                                     }
                                                                                 }
+                                                                                catch (Exception ex){
+                                                                                    Log.d("", "onResponse: ");
+                                                                                }
 
-                                                                                mVideoPulseMulti.add(mContentArrayListNewPulse);
+
 
                                                                             }
+
+                                                                            mVideoPulseMulti.add(mContentArrayListNewPulse);
+
+                                                                            String stepover="";
+
+
+
                                                                         } catch (Exception ex) {
                                                                             Log.d("", "onResponse: ");
                                                                         }
-                                                                    } else {
-                                                                      //  Toast.makeText(mContext, "", Toast.LENGTH_LONG).show();
                                                                     }
-
+                                                                    else {
+                                                                        mVideoPulseMulti.add(mContentArrayListNewPulse);
+                                                                    }
                                                                 }
                                                             }
                                                             catch (Exception ex){
                                                                 Log.d("", "onResponse: ");
                                                             }
                                                         }
+
+
                                                     }
                                                     catch (Exception ex){
                                                         Log.d("", "onResponse: ");
@@ -1040,8 +1074,8 @@ public class LoginActivity extends AppCompatActivity {
                                                     Log.d("", "onResponse: ");
                                                 }
 
-
                                                 detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
+                                                detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
 
                                                 detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
 
@@ -1084,6 +1118,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     //for option list of quest list
                                     modelAlter.setmArrayListCourseQuizOptions(detailListCourseDetailUnitQuizOptList);
+                                    modelAlter.setmArrayListCoursePulseQuizOptions(detailListCourseDetailPulseQuizOptList);
 
                                     modelAlter.setmArrayListCourseVideoPulseMulti(detailListCourseDetailVideoPulseMulti);
 

@@ -12,4 +12,7 @@
     <color name="FooterBtnsColor">#eeeeee</color>
     <color name="Colorpeace">#fff</color>
     <color name="AppTextColor">#7a19aa</color>
+
+    <color name="colorFadedBlack">#282828</color>
+    <color name="colorGray">#8F8F8B</color>
 </resources>

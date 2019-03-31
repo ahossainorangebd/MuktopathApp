@@ -100,6 +100,8 @@ public class MyPageFragment7 extends Fragment {
         final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(3).getInstitution_name_owner();
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
+
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseMultiArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseVideoPulseMulti().get(6);
         final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(7);
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
@@ -115,6 +117,7 @@ public class MyPageFragment7 extends Fragment {
         // Let's count the number of Units
         GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse-1).size();
 
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse-1);
 
         mCourseTitle.setText(enrolledCourseTitle);
         mCourseOwner.setText(enrolledCourseOwner);
@@ -203,6 +206,8 @@ public class MyPageFragment7 extends Fragment {
 
                 GlobalVar.thisFragmentContents=contents;
                 GlobalVar.thisFragmentQuizes=quizes;
+
+                GlobalVar.thisFragmentPulses=pulseMultiArray;
 
                 try {
                     v.getContext().startActivity(i);

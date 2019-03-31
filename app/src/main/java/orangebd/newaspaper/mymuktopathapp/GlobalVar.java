@@ -17,6 +17,13 @@ public class GlobalVar {
     public static ArrayList<DetailDataModelCoursesDetailContents> thisFragmentContents;
     public static ArrayList<DetailDataModelCoursesDetailContents> thisFragmentQuizes;
 
+    public static ArrayList<DetailDataModelCoursesDetailContents> gThisVideoPulses;
+
+    public static ArrayList<DetailDataModelCoursesDetailContents> gThisVideoPulsesQs;
+
+    public static ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> thisFragmentPulses;
+    public static ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> thisFragmentPulseQs;
+
     public static ArrayList<DetailDataModelCoursesThumbnails> gEnrollCoursePhotoList;
 
     public static String gParentMenuURL;

@@ -1,5 +1,6 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,16 +10,21 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -40,8 +46,9 @@ import java.util.Map;
 
 public class CourseContentDetailActivity extends AppCompatActivity {
 
-
     private Context context;
+
+    PopupWindow pw;
 
     String DetailDescription;
     String title;
@@ -86,7 +93,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         context=this;
 
-        View view = LayoutInflater.from(context).inflate(R.layout.custom_logodetails, null, false);
+        final View view = LayoutInflater.from(context).inflate(R.layout.custom_logodetails, null, false);
         getSupportActionBar().hide();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -103,6 +110,12 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         mUserNumber = getIntent().getExtras().getString("usernumber");
         timeStatus = getIntent().getExtras().getString("videostatus");
 
+        final String firstPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+        /*String secondPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+        String thirdPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+        String fourthPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+        String fifthPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();*/
+
         //String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode;
         //finalVideoUrl = "<video controls='controls' autoplay='1' src="+ videoUrl+ " height='220' width='350' type='video/mp4' " + "#t=" + timeStatus +  "></video>";
 
@@ -113,6 +126,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isVideoStarted) {
+
                     pausePosition = videoView.getCurrentPosition();
                     videoView.pause();
                     imgPauseView.setImageResource(R.drawable.play_icon_mukto);
@@ -145,7 +159,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         videoView.setVideoURI(uri);
         videoView.requestFocus();
         videoView.start();
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
+        {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 duration=videoView.getDuration();
@@ -212,8 +227,40 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     Toast.makeText(context,"th Position",Toast.LENGTH_SHORT).show();
                 }*/
 
-
                 seconds=videoView.getCurrentPosition()/1000;
+
+                //int targetPopUp=Integer.parseInt(firstPulse);
+                int targetPopUp=5;
+
+                if(seconds==targetPopUp){
+                    //Toast.makeText(context,"A multiple question will pop up on "+firstPulse+"th Second",Toast.LENGTH_SHORT).show();
+
+                    isVideoStarted=false;
+
+                    if (!isVideoStarted) {
+
+                        pausePosition = videoView.getCurrentPosition();
+                        videoView.pause();
+                        imgPauseView.setImageResource(R.drawable.play_icon_mukto);
+                        isVideoStarted=true;
+                    }
+
+                    else{
+                        videoView.seekTo(pausePosition);
+                        videoView.start();
+                        mProgressBar.setProgress(pausePosition);
+                        mProgressBar.postDelayed(onEverySecond, 1000);
+                        imgPauseView.setImageResource(R.drawable.pause_icon_mukto);
+                        isVideoStarted=false;
+                    }
+
+
+                    showPopUpImageBox();
+
+
+
+                }
+
                 textView.setText(""+seconds);
                 seekbarProgress=progress;
 
@@ -336,5 +383,15 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         }
 
         return result.toString();
+    }
+
+    private void showPopUpImageBox()
+    {
+        // custom dialog
+        final Dialog dialog = new Dialog(context, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforimage);
+
+        dialog.show();
     }
 }

@@ -96,6 +96,9 @@ public class MyPageFragment1 extends Fragment {
         final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(0).getInstitution_name_owner();
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
+
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseMultiArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseVideoPulseMulti().get(0);
+
         final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(0);
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
@@ -109,6 +112,9 @@ public class MyPageFragment1 extends Fragment {
 
         // Let's count the number of Units
         final ArrayList<DetailDataModelCoursesDetailContents> units = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse);
+
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse);
+
         int unitSize = units.size();
         GlobalVar.gEnrolledCourseUnitSize=unitSize;
 
@@ -199,6 +205,11 @@ public class MyPageFragment1 extends Fragment {
 
                 GlobalVar.thisFragmentContents=contents;
                 GlobalVar.thisFragmentQuizes=quizes;
+
+                GlobalVar.thisFragmentPulses=pulseMultiArray;
+                GlobalVar.thisFragmentPulseQs=pulseQuesListWithAns;
+
+                String apapa="";
 
                 try {
                     v.getContext().startActivity(i);

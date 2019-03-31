@@ -96,11 +96,12 @@ public class MyPageFragment2 extends Fragment {
         mContentNumberSection = view.findViewById(R.id.contentNumberSection);
         mExamNumberSection = view.findViewById(R.id.mExamNumberSection);
 
-
         final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(1).getmCourseAliasName();
         final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(1).getInstitution_name_owner();
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
+
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseMultiArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseVideoPulseMulti().get(1);
         final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(1);
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
@@ -117,6 +118,8 @@ public class MyPageFragment2 extends Fragment {
 
         // Let's count the number of Units
         GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse-1).size();
+
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse-1);
 
         mCourseTitle.setText(enrolledCourseTitle);
         mCourseOwner.setText(enrolledCourseOwner);
@@ -207,6 +210,7 @@ public class MyPageFragment2 extends Fragment {
 
                 GlobalVar.thisFragmentContents=contents;
                 GlobalVar.thisFragmentQuizes=quizes;
+                GlobalVar.thisFragmentPulses=pulseMultiArray;
 
                 try {
                     v.getContext().startActivity(i);

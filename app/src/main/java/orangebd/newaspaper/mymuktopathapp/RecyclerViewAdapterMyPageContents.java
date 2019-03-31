@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -34,6 +35,8 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
     private Typeface tf;
 
     private ArrayList<DetailDataModel> mFilteredList;
+
+    ArrayList<DetailDataModelCoursesDetailContents> mPulseArrayList = new ArrayList<DetailDataModelCoursesDetailContents>();
 
     //private String copyRightText;
     // private ImageView mainImage;
@@ -94,6 +97,19 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         final String videoCode=dataSet.get(listPosition).getFile_name();
         final String timeStatus=dataSet.get(listPosition).getStatus_content();
         final String ownerId=dataSet.get(listPosition).getOwner_id();
+
+        /*ArrayList<String> pulseArray = new ArrayList<>();
+
+        for(int pulseN=0; pulseN<GlobalVar.thisFragmentPulses.size(); pulseN++){
+
+            pulseArray.add(GlobalVar.thisFragmentPulses.get(pulseN).get(0).getmPulseOfVideoMulti());
+
+            String aaaa="aaaa";
+        }
+
+        Toast.makeText(mContext,"On this second a multiple pop up will appear",Toast.LENGTH_LONG).show();*/
+
+
         textViewName.setText(titleText);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -101,12 +117,33 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
             public void onClick(View v)
             {
 
+                GlobalVar.gThisVideoPulses=GlobalVar.thisFragmentPulses.get(listPosition);
+                GlobalVar.gThisVideoPulsesQs=GlobalVar.thisFragmentPulseQs.get(listPosition);
+
+                for(int checkKey=0; checkKey<GlobalVar.gThisVideoPulses.size(); checkKey++){
+
+
+                    int aaaa=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMultiId();
+                    String accurate=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMulti();
+
+                    String aaaqqq="";
+                }
+
+
                 Intent i = new Intent(mContext, CourseContentDetailActivity.class);
                 i.putExtra("ttl", titleText);
                 i.putExtra("detail", descriptionText);
                 i.putExtra("usernumber", ownerId);
                 i.putExtra("vcode", videoCode);
                 i.putExtra("videostatus", timeStatus);
+
+
+
+
+
+
+
+
                 //i.putExtra("img", CoverPhoto);
                 try {
                     v.getContext().startActivity(i);
