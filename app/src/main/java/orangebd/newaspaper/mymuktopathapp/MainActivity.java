@@ -385,7 +385,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setNestedScrollingEnabled(false);
 
 
-
         if(detailListMainActivityCourseCat.size()>0){
             map1.put("id", detailListMainActivityCourseCat.get(0).getmCourseCategoryId());
             map1.put("name", detailListMainActivityCourseCat.get(0).getmCourseCategoryNameEn());

@@ -11,6 +11,8 @@ public class GlobalVar {
 
 
     public static ArrayList<String> gRecommendedCategories;
+    public static ArrayList<String> gRecommendedCategoriesEn;
+    public static ArrayList<String> gRecommendedCategoriesId;
 
     public static ArrayList<DetailDataModelCourses> gRecommendedDetailList10;
     public static ArrayList<DetailDataModelCourses> gEnrolledInstitution;

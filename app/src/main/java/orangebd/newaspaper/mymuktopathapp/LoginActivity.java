@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -118,6 +119,8 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<DetailDataModelCoursesDetailContents> mUnit2DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit3DataArrayList;
 
+    private TextView mGoToRegiPage;
+
     private int multiQKey=-1;
 
     private String token="";
@@ -137,15 +140,15 @@ public class LoginActivity extends AppCompatActivity {
 
         mContext=this;
 
-        /*mRegiPageSignUpBtn=findViewById(R.id.regiPageSignUpId);
-
-        mRegiPageSignUpBtn.setOnClickListener(new OnClickListener()
-        {
+        mGoToRegiPage=findViewById(R.id.goToregiPage);
+        mGoToRegiPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Intent i=new Intent(mContext,CreateAccountActivity.class);
+                startActivity(i);
             }
-        });*/
+        });
 
         Button mEmailSignInButton = findViewById(R.id.regiPageSignUpId);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -671,7 +674,6 @@ public class LoginActivity extends AppCompatActivity {
                                                         model11.setUsernameCreatedBy(usernameCreatedBy);
 
                                                         // parsing from syllebus
-
                                                     try
                                                     {
                                                         mContentArrayListNew = new ArrayList<>();
@@ -714,7 +716,6 @@ public class LoginActivity extends AppCompatActivity {
                                                             // for parsing "data" > {0} > {0} > "syllebus" > "0" > "data"
 
                                                             try {
-
                                                                 //TODO
 //                                                               mContentArrayListNew = new ArrayList<>();
 
@@ -849,28 +850,18 @@ public class LoginActivity extends AppCompatActivity {
                                                                         Log.d("", "onResponse: ");
                                                                     }
 
-
                                                                     //For parsing Quizes
 
                                                                     //JSONArray jObjQuizes = (JSONArray) jSObject3.getJSONArray("multi_ques_list");
 
-
                                                                     // For parsing object "Content" > {0} > {0} > "syllebus" > "0" > "data"
-
-
 
                                                                     detailList5 = new ArrayList<DetailDataModelCourses>();
 
                                                                     DetailDataModelCourses model5 = new DetailDataModelCourses();
 
-
-
                                                                     if (content_type.equalsIgnoreCase("quiz")) {
                                                                         try {
-
-
-
-
                                                                             for (int ctq = 0; ctq < jSObject3.length(); ctq++) {
 
                                                                                 JSONArray jSonObjMultiQ2 = (JSONArray) jSObject3.getJSONArray("ques_list");
@@ -930,27 +921,22 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                                     mUnitQuizList2.add(mUnitQuizOptList);
                                                                                 }
-
-                                                                                //TODO
-
-
                                                                             }
                                                                         } catch (Exception ex) {
                                                                             Log.d("", "onResponse: ");
                                                                         }
                                                                     }
-
-
                                                                     multiQKey++;
 
-                                                                    if (quizYesOrNot.equalsIgnoreCase("1")) {
-
+                                                                    if (quizYesOrNot.equalsIgnoreCase("1"))
+                                                                    {
                                                                         try
                                                                         {
+                                                                            for (int l = 0; l < jSObject3.length(); l++)
+                                                                            {
+                                                                                JSONArray jSonObjMultiQ= new JSONArray();
 
-                                                                            for (int l = 0; l < jSObject3.length(); l++) {
-
-                                                                                JSONArray jSonObjMultiQ = (JSONArray) jSObject3.getJSONArray("multi_ques_list");
+                                                                                jSonObjMultiQ = (JSONArray) jSObject3.getJSONArray("multi_ques_list");
 
                                                                                 mContentArrayListNewPulse = new ArrayList<>();
 
@@ -967,7 +953,6 @@ public class LoginActivity extends AppCompatActivity {
                                                                                         modelVideoMultiPulse.setmPulseOfVideoMultiId(multiQKey);
 
                                                                                         try {
-
                                                                                             mPulseQuizList2 = new ArrayList<>();
 
                                                                                             for (int qs = 0; qs < objectAgainAnother2.length(); qs++) {
@@ -996,7 +981,6 @@ public class LoginActivity extends AppCompatActivity {
                                                                                                         JSONArray jSonObjMultiQOptionsPulse = (JSONArray) jSObjectQuizElements.getJSONArray("options");
 
                                                                                                         try{
-
                                                                                                             mPulseQuizOptList = new ArrayList<>();
 
                                                                                                             for(int optionList=0; optionList<jSonObjMultiQOptionsPulse.length(); optionList++){
@@ -1018,44 +1002,32 @@ public class LoginActivity extends AppCompatActivity {
                                                                                                         catch (Exception ex){
                                                                                                             Log.d("", "onResponse: ");
                                                                                                         }
-
                                                                                                         mPulseQuizList2.add(mPulseQuizOptList);
-
                                                                                                     }
-                                                                                                } catch (Exception ex) {
+                                                                                                }
+                                                                                                catch (Exception ex) {
                                                                                                     Log.d("", "onResponse: ");
                                                                                                 }
-
                                                                                             }
-                                                                                        } catch (Exception ex) {
+                                                                                        }
+                                                                                        catch (Exception ex) {
                                                                                             Log.d("", "onResponse: ");
                                                                                         }
-
                                                                                         mContentArrayListNewPulse.add(modelVideoMultiPulse);
-
-                                                                                        String testing="";
                                                                                     }
                                                                                 }
                                                                                 catch (Exception ex){
                                                                                     Log.d("", "onResponse: ");
                                                                                 }
-
-
-
                                                                             }
-
                                                                             mVideoPulseMulti.add(mContentArrayListNewPulse);
-
-                                                                            String stepover="";
-
-
-
-                                                                        } catch (Exception ex) {
+                                                                        }
+                                                                        catch (Exception ex) {
                                                                             Log.d("", "onResponse: ");
                                                                         }
                                                                     }
                                                                     else {
-                                                                        mVideoPulseMulti.add(mContentArrayListNewPulse);
+
                                                                     }
                                                                 }
                                                             }
@@ -1063,8 +1035,6 @@ public class LoginActivity extends AppCompatActivity {
                                                                 Log.d("", "onResponse: ");
                                                             }
                                                         }
-
-
                                                     }
                                                     catch (Exception ex){
                                                         Log.d("", "onResponse: ");

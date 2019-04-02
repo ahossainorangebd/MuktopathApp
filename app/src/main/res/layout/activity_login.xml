@@ -242,9 +242,9 @@
                             android:background="#fff"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="8dp"
-                            android:inputType="textEmailAddress"
+                            android:inputType="textPassword"
                             android:maxLines="1"
-                            android:singleLine="true" />
+                            android:singleLine="true"/>
 
                     </LinearLayout>
 
@@ -337,12 +337,8 @@
     </LinearLayout>
 
 
-
-
-
-
-
     <TextView
+        android:id="@+id/goToregiPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="রেজিস্ট্রেশন করুন"

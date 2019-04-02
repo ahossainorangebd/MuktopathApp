@@ -52,6 +52,18 @@
             android:textStyle="bold"
             />
 
+        <TextView
+            android:id="@+id/CourseHiddenEnId1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/CourseHiddenEnIdId1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff" />
+
     </RelativeLayout>
             
 
@@ -77,6 +89,19 @@
             android:textStyle="bold"
             />
 
+        <TextView
+            android:id="@+id/CourseHiddenEnId2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:id="@+id/CourseHiddenEnIdId2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -101,6 +126,19 @@
             android:textStyle="bold"
             />
 
+        <TextView
+            android:id="@+id/CourseHiddenEnId3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:id="@+id/CourseHiddenEnIdId3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -124,9 +162,23 @@
             android:textSize="18sp"
             android:textStyle="bold"
             />
+
+        <TextView
+            android:id="@+id/CourseHiddenEnId4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:id="@+id/CourseHiddenEnIdId4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff" />
+
     </RelativeLayout>
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:id="@+id/chooseCategory5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -171,7 +223,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             />
-    </RelativeLayout>
+    </RelativeLayout>-->
 
         </LinearLayout>
 

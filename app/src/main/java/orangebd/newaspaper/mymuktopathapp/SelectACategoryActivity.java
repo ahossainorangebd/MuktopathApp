@@ -99,6 +99,18 @@ public class SelectACategoryActivity extends AppCompatActivity {
     private CheckBox mCourseCheckBox10;
 
 
+    private TextView mCourseHiddenEn1;
+    private TextView mCourseHiddenEn2;
+    private TextView mCourseHiddenEn3;
+    private TextView mCourseHiddenEn4;
+
+
+    private TextView mCourseHiddenEnId1;
+    private TextView mCourseHiddenEnId2;
+    private TextView mCourseHiddenEnId3;
+    private TextView mCourseHiddenEnId4;
+
+
     String urlGetCourseCats = GlobalVar.gApiBaseUrl + "/api/course-categories";
 
     //All the detail Lists
@@ -116,8 +128,24 @@ public class SelectACategoryActivity extends AppCompatActivity {
         mCourseCheckBox2=findViewById(R.id.SecondCatCheckBoxId);
         mCourseCheckBox3=findViewById(R.id.ThirdCatCheckBoxId);
         mCourseCheckBox4=findViewById(R.id.fourthCatCheckBoxId);
-        mCourseCheckBox5=findViewById(R.id.fifthCatCheckBoxId);
-        mCourseCheckBox6=findViewById(R.id.SixthCatCheckBoxId);
+        //TODO
+        //TODO
+        //mCourseCheckBox5=findViewById(R.id.fifthCatCheckBoxId);
+        //mCourseCheckBox6=findViewById(R.id.SixthCatCheckBoxId);
+
+        //For hidden en texts ens
+        mCourseHiddenEn1=findViewById(R.id.CourseHiddenEnId1);
+        mCourseHiddenEn2=findViewById(R.id.CourseHiddenEnId2);
+        mCourseHiddenEn3=findViewById(R.id.CourseHiddenEnId3);
+        mCourseHiddenEn4=findViewById(R.id.CourseHiddenEnId4);
+
+        //For hidden en texts ids
+        mCourseHiddenEnId1=findViewById(R.id.CourseHiddenEnIdId1);
+        mCourseHiddenEnId2=findViewById(R.id.CourseHiddenEnIdId2);
+        mCourseHiddenEnId3=findViewById(R.id.CourseHiddenEnIdId3);
+        mCourseHiddenEnId4=findViewById(R.id.CourseHiddenEnIdId4);
+
+        //
 
         category1Expand=findViewById(R.id.category1Expand);
         chooseCategory1=findViewById(R.id.chooseCategory1);
@@ -154,15 +182,24 @@ public class SelectACategoryActivity extends AppCompatActivity {
 
         GlobalVar.gRecommendedCategories = new ArrayList<>();
 
+        GlobalVar.gRecommendedCategoriesEn = new ArrayList<>();
+        GlobalVar.gRecommendedCategoriesId = new ArrayList<>();
+
         mCourseCheckBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     CharSequence checkedCat1=buttonView.getText();
+                    String checkedStrCat1=checkedCat1.toString();
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat1);
 
-                    String checkedStrCat2=checkedCat1.toString();
+                    CharSequence checkedStrCatEnCs1=mCourseHiddenEn1.getText();
+                    String checkedStrCatEn1=checkedStrCatEnCs1.toString();
+                    GlobalVar.gRecommendedCategoriesEn.add(checkedStrCatEn1);
 
-                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+                    CharSequence checkedStrCatEnCsId1=mCourseHiddenEnId1.getText();
+                    String checkedStrCatEnId1=checkedStrCatEnCsId1.toString();
+                    GlobalVar.gRecommendedCategoriesId.add(checkedStrCatEnId1);
                 }
             }
         });
@@ -172,10 +209,16 @@ public class SelectACategoryActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     CharSequence checkedCat2=buttonView.getText();
-
                     String checkedStrCat2=checkedCat2.toString();
-
                     GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+
+                    CharSequence checkedStrCatEnCs2=mCourseHiddenEn2.getText();
+                    String checkedStrCatEn2=checkedStrCatEnCs2.toString();
+                    GlobalVar.gRecommendedCategoriesEn.add(checkedStrCatEn2);
+
+                    CharSequence checkedStrCatEnCsId2=mCourseHiddenEnId2.getText();
+                    String checkedStrCatEnId2=checkedStrCatEnCsId2.toString();
+                    GlobalVar.gRecommendedCategoriesId.add(checkedStrCatEnId2);
                 }
             }
         });
@@ -185,10 +228,16 @@ public class SelectACategoryActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     CharSequence checkedCat3=buttonView.getText();
+                    String checkedStrCat3=checkedCat3.toString();
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat3);
 
-                    String checkedStrCat2=checkedCat3.toString();
+                    CharSequence checkedStrCatEnCs3=mCourseHiddenEn3.getText();
+                    String checkedStrCatEn3=checkedStrCatEnCs3.toString();
+                    GlobalVar.gRecommendedCategoriesEn.add(checkedStrCatEn3);
 
-                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+                    CharSequence checkedStrCatEnCsId3=mCourseHiddenEnId3.getText();
+                    String checkedStrCatEnId3=checkedStrCatEnCsId3.toString();
+                    GlobalVar.gRecommendedCategoriesId.add(checkedStrCatEnId3);
                 }
             }
         });
@@ -198,15 +247,23 @@ public class SelectACategoryActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     CharSequence checkedCat4=buttonView.getText();
+                    String checkedStrCat4=checkedCat4.toString();
+                    GlobalVar.gRecommendedCategories.add(checkedStrCat4);
 
-                    String checkedStrCat2=checkedCat4.toString();
+                    CharSequence checkedStrCatEnCs4=mCourseHiddenEn4.getText();
+                    String checkedStrCatEn4=checkedStrCatEnCs4.toString();
+                    GlobalVar.gRecommendedCategoriesEn.add(checkedStrCatEn4);
 
-                    GlobalVar.gRecommendedCategories.add(checkedStrCat2);
+                    CharSequence checkedStrCatEnCsId4=mCourseHiddenEnId4.getText();
+                    String checkedStrCatEnId4=checkedStrCatEnCsId4.toString();
+                    GlobalVar.gRecommendedCategoriesId.add(checkedStrCatEnId4);
                 }
             }
         });
 
-        mCourseCheckBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        //TODO
+        //TODO
+        /*mCourseCheckBox5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
@@ -232,7 +289,7 @@ public class SelectACategoryActivity extends AppCompatActivity {
                     String text="abcd";
                 }
             }
-        });
+        });*/
 
 
         mNextBtn=findViewById(R.id.nextBtnId);
@@ -314,12 +371,24 @@ public class SelectACategoryActivity extends AppCompatActivity {
                     mCourseCheckBox2.setText(detailListMainActivityCourseCat.get(1).getmCourseCategoryNameBn());
                     mCourseCheckBox3.setText(detailListMainActivityCourseCat.get(2).getmCourseCategoryNameBn());
                     mCourseCheckBox4.setText(detailListMainActivityCourseCat.get(3).getmCourseCategoryNameBn());
+
+                    mCourseHiddenEn1.setText(detailListMainActivityCourseCat.get(0).getmCourseCategoryNameEn());
+                    mCourseHiddenEn2.setText(detailListMainActivityCourseCat.get(1).getmCourseCategoryNameEn());
+                    mCourseHiddenEn3.setText(detailListMainActivityCourseCat.get(2).getmCourseCategoryNameEn());
+                    mCourseHiddenEn4.setText(detailListMainActivityCourseCat.get(3).getmCourseCategoryNameEn());
+
+                    mCourseHiddenEnId1.setText(detailListMainActivityCourseCat.get(0).getmCourseCategoryId());
+                    mCourseHiddenEnId2.setText(detailListMainActivityCourseCat.get(1).getmCourseCategoryId());
+                    mCourseHiddenEnId3.setText(detailListMainActivityCourseCat.get(2).getmCourseCategoryId());
+                    mCourseHiddenEnId4.setText(detailListMainActivityCourseCat.get(3).getmCourseCategoryId());
+
+                    /*
                     mCourseCheckBox5.setText(detailListMainActivityCourseCat.get(4).getmCourseCategoryNameBn());
                     mCourseCheckBox6.setText(detailListMainActivityCourseCat.get(5).getmCourseCategoryNameBn());
-                    /*mCourseText7. setText(detailListMainActivityCourseCat.get(6).getmCourseCategoryNameBn());
-                    mCourseText8. setText(detailListMainActivityCourseCat.get(7).getmCourseCategoryNameBn());
-                    mCourseText9. setText(detailListMainActivityCourseCat.get(8).getmCourseCategoryNameBn());
-                    mCourseText10.setText(detailListMainActivityCourseCat.get(9).getmCourseCategoryNameBn());*/
+                    mCourseCheckBox7. setText(detailListMainActivityCourseCat.get(6).getmCourseCategoryNameBn());
+                    mCourseCheckBox8. setText(detailListMainActivityCourseCat.get(7).getmCourseCategoryNameBn());
+                    mCourseCheckBox9. setText(detailListMainActivityCourseCat.get(8).getmCourseCategoryNameBn());
+                    mCourseCheckBox10.setText(detailListMainActivityCourseCat.get(9).getmCourseCategoryNameBn());*/
                 }
                 catch (Exception ex){
                     Log.d("", "onPostExecute: ");

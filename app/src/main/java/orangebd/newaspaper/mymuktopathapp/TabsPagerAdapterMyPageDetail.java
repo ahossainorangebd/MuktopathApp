@@ -38,7 +38,13 @@ public class TabsPagerAdapterMyPageDetail extends FragmentPagerAdapter {
     // Returns total number of pages
     @Override
     public int getCount() {
-        return  GlobalVar.gEnrolledCourseUnitSize;
+
+        if(GlobalVar.gEnrolledCourseUnitSize<5) {
+            return GlobalVar.gEnrolledCourseUnitSize;
+        }
+        else {
+            return 5;
+        }
         //return  NUM_ITEMS ;
     }
 

@@ -229,8 +229,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 seconds=videoView.getCurrentPosition()/1000;
 
-                //int targetPopUp=Integer.parseInt(firstPulse);
-                int targetPopUp=5;
+                int targetPopUp=Integer.parseInt(firstPulse);
+                //int targetPopUp=5;
 
                 if(seconds==targetPopUp){
                     //Toast.makeText(context,"A multiple question will pop up on "+firstPulse+"th Second",Toast.LENGTH_SHORT).show();

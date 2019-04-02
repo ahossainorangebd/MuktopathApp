@@ -808,7 +808,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="170dp"
-            android:layout_marginTop="7dp">
+            android:layout_marginTop="7dp"
+            >
 
 
 
@@ -886,13 +887,14 @@
             android:orientation="horizontal"
             android:background="@drawable/course5_gradient_background"
             android:gravity="left"
+            android:visibility="gone"
             android:layout_marginTop="7dp"
             >
             <TextView
                 android:id="@+id/courseName5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 5"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -908,12 +910,14 @@
             android:layout_width="wrap_content"
             android:layout_height="170dp"
             android:layout_marginTop="7dp"
+            android:visibility="gone"
             >
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
+                android:visibility="gone"
                 >
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -980,13 +984,14 @@
             android:orientation="horizontal"
             android:background="@drawable/course6_gradient_background"
             android:gravity="left"
+            android:visibility="gone"
             android:layout_marginTop="7dp"
             >
             <TextView
                 android:id="@+id/courseName6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 6"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1002,6 +1007,7 @@
             android:layout_width="wrap_content"
             android:layout_height="170dp"
             android:layout_marginTop="7dp"
+            android:visibility="gone"
             >
 
 
@@ -1011,6 +1017,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
+                android:visibility="gone"
                 >
 
 
@@ -1080,13 +1087,14 @@
             android:orientation="horizontal"
             android:background="@drawable/course7_gradient_background"
             android:gravity="left"
+            android:visibility="gone"
             android:layout_marginTop="7dp"
             >
             <TextView
                 android:id="@+id/courseName7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 7"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1102,12 +1110,14 @@
             android:layout_width="wrap_content"
             android:layout_height="170dp"
             android:layout_marginTop="7dp"
+            android:visibility="gone"
             >
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
+                android:visibility="gone"
                 >
 
 
@@ -1177,13 +1187,14 @@
             android:orientation="horizontal"
             android:background="@drawable/course8_gradient_background"
             android:gravity="left"
+            android:visibility="gone"
             android:layout_marginTop="7dp"
             >
             <TextView
                 android:id="@+id/courseName8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 8"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1198,12 +1209,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="170dp"
-            android:layout_marginTop="7dp">
+            android:layout_marginTop="7dp"
+            android:visibility="gone"
+            >
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
+                android:visibility="gone"
                 >
 
                 <LinearLayout
@@ -1270,6 +1284,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="left"
+            android:visibility="gone"
             android:background="@drawable/course9_gradient_background"
             android:layout_marginTop="7dp"
             >
@@ -1278,7 +1293,7 @@
                 android:id="@+id/courseName9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 9"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1293,7 +1308,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="170dp"
-            android:layout_marginTop="7dp">
+            android:layout_marginTop="7dp"
+            android:visibility="gone"
+            >
 
 
 
@@ -1302,6 +1319,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
+                android:visibility="gone"
                 >
 
 
@@ -1371,13 +1389,14 @@
             android:orientation="horizontal"
             android:background="@drawable/course10_gradient_background"
             android:gravity="left"
+            android:visibility="gone"
             android:layout_marginTop="7dp"
             >
             <TextView
                 android:id="@+id/courseName10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 10"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1410,6 +1429,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     >
 
                     <!--<LinearLayout

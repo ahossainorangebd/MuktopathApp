@@ -112,7 +112,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 GlobalVar.getTokenArray = detailList;
 
-                String abbb="";
+                String token = GlobalVar.getTokenArray.get(0).getmAccessToken();
+                String firstWord = GlobalVar.getTokenArray.get(0).getmTokenType();
+
+                token = firstWord + " " + token;
+
+                //GlobalVar.gReplacingTokenForRegi=token;
             }
 
             catch (Exception ex){

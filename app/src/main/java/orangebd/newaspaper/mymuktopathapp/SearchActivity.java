@@ -253,7 +253,8 @@ public class SearchActivity extends AppCompatActivity {
         spinnerArrayAdapterCCCat.setDropDownViewResource(R.layout.spinner_item);
         mSpinnerCat.setAdapter(spinnerArrayAdapterCCCat);
 
-        mSpinnerCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mSpinnerCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
