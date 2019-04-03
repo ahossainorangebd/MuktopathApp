@@ -121,7 +121,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView mGoToRegiPage;
 
+    private SessionManager sm;
+
     private int multiQKey=-1;
+
+    //private boolean isLogin;
 
     private String token="";
     String url= GlobalVar.gApiBaseUrl + "/api/login";
@@ -156,13 +160,25 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 //attemptLogin();
-                
+
+
+
                 /*finish();
                 Intent i=new Intent(mContext,WelcomeActivity.class);
                 view.getContext().startActivity(i);*/
 
                 mStrEmail=mEmailView.getText().toString();
                 mStrPwd=mEdtTxtPwd.getText().toString();
+
+                sm = new SessionManager(mContext);
+
+                GlobalVar.gIsLogin=sm.checkLogin();
+
+                if(!GlobalVar.gIsLogin) {
+
+                    sm.createLoginSession(mStrEmail, mStrPwd);
+                    sm.isLoggedIn();
+                }
 
                 map = new HashMap<String, String>();
 
@@ -282,7 +298,6 @@ public class LoginActivity extends AppCompatActivity {
                                     DetailDataModelCourses model2 = new DetailDataModelCourses();
 
                                     try {
-
                                         JSONArray object = (JSONArray) jObjectData.getJSONArray("owninstitution");
 
                                         for (int ii2=0;ii2<object.length();ii2++)
@@ -836,7 +851,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                         modelCourseContents.setCover_thumb_img(cover_thumb_img);
                                                                         modelCourseContents.setCreated_by_content(created_by_content);
                                                                         modelCourseContents.setDeleted_at_content(deleted_at_content);
-                                                                        modelCourseContents.setDescription_content(description_content);
+                                                                        modelCourseContents.setmDesc(desc);
                                                                         modelCourseContents.setFile_encode_path(file_encode_path);
                                                                         modelCourseContents.setFile_name(file_name);
                                                                         modelCourseContents.setId_content(id_content);

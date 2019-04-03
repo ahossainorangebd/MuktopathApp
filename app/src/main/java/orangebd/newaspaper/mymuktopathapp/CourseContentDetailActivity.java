@@ -110,7 +110,10 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         mUserNumber = getIntent().getExtras().getString("usernumber");
         timeStatus = getIntent().getExtras().getString("videostatus");
 
-        final String firstPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+        //TODO
+        //TODO
+        //final String firstPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+
         /*String secondPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
         String thirdPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
         String fourthPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
@@ -229,10 +232,13 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 seconds=videoView.getCurrentPosition()/1000;
 
-                int targetPopUp=Integer.parseInt(firstPulse);
+                //TODO
+                //TODO
+                /*int targetPopUp=Integer.parseInt(firstPulse);
                 //int targetPopUp=5;
 
-                if(seconds==targetPopUp){
+                if(seconds==targetPopUp)
+                {
                     //Toast.makeText(context,"A multiple question will pop up on "+firstPulse+"th Second",Toast.LENGTH_SHORT).show();
 
                     isVideoStarted=false;
@@ -259,7 +265,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
 
 
-                }
+                }*/
 
                 textView.setText(""+seconds);
                 seekbarProgress=progress;

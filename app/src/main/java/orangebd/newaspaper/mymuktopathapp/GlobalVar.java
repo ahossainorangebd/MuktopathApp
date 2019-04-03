@@ -89,4 +89,7 @@ public class GlobalVar {
 
 
     public static int gEnrolledCourseUnitSize;
+
+
+    public static boolean gIsLogin;
 }

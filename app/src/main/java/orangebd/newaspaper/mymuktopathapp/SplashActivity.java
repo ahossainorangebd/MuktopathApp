@@ -3,6 +3,7 @@ package orangebd.newaspaper.mymuktopathapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
+
+    TabsPagerAdapterForGif myAdapter;
+    SlidingTabLayout mSlidingTabLayout;
 
     private Button splashActvtyCreateAccountBtn;
     private TextView slpashActLoginTxt;
@@ -67,6 +71,12 @@ public class SplashActivity extends AppCompatActivity {
         });
 
 
+        final ViewPager vpPager = findViewById(R.id.vpagergifid);
 
+        myAdapter= new TabsPagerAdapterForGif(getSupportFragmentManager());
+        vpPager.setAdapter(myAdapter);
+
+        mSlidingTabLayout = findViewById(R.id.sliding_tabs_for_gif);
+        mSlidingTabLayout.setDistributeEvenly(true);
     }
 }

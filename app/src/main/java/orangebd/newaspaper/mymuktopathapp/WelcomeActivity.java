@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +37,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private ArrayList<DetailDataModelAll> detailList;
 
+    SessionManager sm;
+
+    //private boolean isLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +55,8 @@ public class WelcomeActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(2000);
         view2.startAnimation(mLoadAnimation);
 
+        sm= new SessionManager(mContext);
+
         map = new HashMap<String, String>();
 
         map.put("grant_type", "client_credentials");
@@ -57,17 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
         map.put("client_secret", "kb4wGS6M3TKWfRRuZOeh0ZfGtDXE8L1N7htXTDub");
 
         new getTokenInfo().execute(GlobalVar.gApiBaseUrl +"/oauth/token");
-
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(mContext, LoginActivity.class);
-                startActivity(i);
-            }
-        }, 2000);
     }
-
-
 
     public class getTokenInfo extends AsyncTask<String, Void, String> {
 
@@ -90,6 +87,7 @@ public class WelcomeActivity extends AppCompatActivity {
             String mT = tokenName;
 
             try {
+
                 JSONObject jsonObj = new JSONObject(tokenName);
 
                 detailList = new ArrayList<DetailDataModelAll>();
@@ -123,6 +121,30 @@ public class WelcomeActivity extends AppCompatActivity {
             catch (Exception ex){
                 Log.d("", "onPostExecute: ");
             }
+
+            GlobalVar.gIsLogin=sm.checkLogin();
+
+            if(GlobalVar.gIsLogin==true) {
+
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent i = new Intent(mContext, MyPageActivity.class);
+                        startActivity(i);
+                    }
+                }, 2000);
+
+            }
+            else {
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent i = new Intent(mContext, SplashActivity.class);
+                        startActivity(i);
+                    }
+                }, 2000);
+            }
+
         }
 
         @Override

@@ -17,7 +17,8 @@ class SlidingTabStrip extends LinearLayout {
 
     /*private static final int DEFAULT_SELECTED_INDICATOR_COLOR = 000;*/
 
-    private static final int DEFAULT_SELECTED_INDICATOR_COLOR = 0xFF33B5E5;
+    //private static final int DEFAULT_SELECTED_INDICATOR_COLOR = 0xFF33B5E5;
+    private static final int DEFAULT_SELECTED_INDICATOR_COLOR = 0xFFFFFFFF;
 
     private final int mBottomBorderThickness;
     private final Paint mBottomBorderPaint;

@@ -167,7 +167,6 @@ public class CreateAccountActivity extends AppCompatActivity{
                                 JSONObject jObject = new JSONObject();
 
                                 String abcd="aranya";
-
                             }
                         }, new Response.ErrorListener() {
                     @Override

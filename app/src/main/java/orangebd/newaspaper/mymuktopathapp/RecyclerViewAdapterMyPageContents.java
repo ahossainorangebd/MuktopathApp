@@ -93,7 +93,7 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
         final String titleText=dataSet.get(listPosition).getTitle_content();
-        final String descriptionText=dataSet.get(listPosition).getDescription_content();
+        final String descriptionText=dataSet.get(listPosition).getmDesc();
         final String videoCode=dataSet.get(listPosition).getFile_name();
         final String timeStatus=dataSet.get(listPosition).getStatus_content();
         final String ownerId=dataSet.get(listPosition).getOwner_id();
@@ -117,18 +117,18 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
             public void onClick(View v)
             {
 
-                GlobalVar.gThisVideoPulses=GlobalVar.thisFragmentPulses.get(listPosition);
-                GlobalVar.gThisVideoPulsesQs=GlobalVar.thisFragmentPulseQs.get(listPosition);
+                //TODO
+                //TODO
+                /*if (GlobalVar.gThisVideoPulses.size()==GlobalVar.thisFragmentContents.size()){
 
-                for(int checkKey=0; checkKey<GlobalVar.gThisVideoPulses.size(); checkKey++){
+                    GlobalVar.gThisVideoPulses=GlobalVar.thisFragmentPulses.get(listPosition);
+                    GlobalVar.gThisVideoPulsesQs=GlobalVar.thisFragmentPulseQs.get(listPosition);
 
-
-                    int aaaa=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMultiId();
-                    String accurate=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMulti();
-
-                    String aaaqqq="";
-                }
-
+                    for(int checkKey=0; checkKey<GlobalVar.gThisVideoPulses.size(); checkKey++){
+                        int aaaa=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMultiId();
+                        String accurate=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMulti();
+                    }
+                }*/
 
                 Intent i = new Intent(mContext, CourseContentDetailActivity.class);
                 i.putExtra("ttl", titleText);

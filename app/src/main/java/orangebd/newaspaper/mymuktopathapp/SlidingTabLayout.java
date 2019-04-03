@@ -27,9 +27,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
          */
         int getIndicatorColor(int position);
     }
-    private static final int TITLE_OFFSET_DIPS = 24;
-    private static final int TAB_VIEW_PADDING_DIPS = 12;
-    private static final int TAB_VIEW_TEXT_SIZE_SP = 10;
+    private static final int TITLE_OFFSET_DIPS = 54;
+    private static final int TAB_VIEW_PADDING_DIPS = 2;
+    private static final int TAB_VIEW_TEXT_SIZE_SP = 20;
     private int mTitleOffset;
     private int mTabViewLayoutId;
     private int mTabViewTextViewId;
@@ -177,17 +177,17 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if( width <=150) {
                 tabTitleView.setLayoutParams(new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
             }
 
             else {
                 tabTitleView.setLayoutParams(new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             }
 
 
 
-            tabTitleView.setTextColor(Color.WHITE);
+            tabTitleView.setTextColor(Color.BLACK);
             tabView.setOnClickListener(tabClickListener);
             String desc = mContentDescriptions.get(i, null);
             if (desc != null) {
@@ -237,6 +237,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             if(position==0) {
                 TextView selectedView=(TextView)mTabStrip.getChildAt(position);
                 selectedView.setBackgroundResource(R.drawable.rounded_selected_textview);
+                selectedView.setTextColor(Color.BLACK);
             }
             else if(position==1) {
                 TextView selectedView=(TextView)mTabStrip.getChildAt(0);
@@ -284,6 +285,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
                     TextView selectedView=(TextView)v;
                     selectedView.setBackgroundResource(R.drawable.rounded_selected_textview);
+                    selectedView.setTextColor(Color.BLACK);
                 }
                 else {
                     TextView selectedView=(TextView)v;
