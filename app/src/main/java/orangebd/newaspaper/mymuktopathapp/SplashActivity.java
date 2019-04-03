@@ -12,6 +12,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.rd.PageIndicatorView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +39,8 @@ public class SplashActivity extends AppCompatActivity {
     private Button splashActvtyCreateAccountBtn;
     private TextView slpashActLoginTxt;
 
+    //private PageIndicatorView piView;
+
     private Context mContext;
 
     @Override
@@ -47,6 +51,8 @@ public class SplashActivity extends AppCompatActivity {
         mContext=this;
 
         getSupportActionBar().hide();
+
+        //piView=findViewById(R.id.pageIndicatorView);
 
         splashActvtyCreateAccountBtn=findViewById(R.id.splashActvtyCreateAccountId);
         splashActvtyCreateAccountBtn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +81,22 @@ public class SplashActivity extends AppCompatActivity {
 
         myAdapter= new TabsPagerAdapterForGif(getSupportFragmentManager());
         vpPager.setAdapter(myAdapter);
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+               // piView.setSelection(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
 
         mSlidingTabLayout = findViewById(R.id.sliding_tabs_for_gif);
         mSlidingTabLayout.setDistributeEvenly(true);

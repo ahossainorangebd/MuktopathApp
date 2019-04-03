@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -151,6 +153,17 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent i=new Intent(mContext,CreateAccountActivity.class);
                 startActivity(i);
+            }
+        });
+
+        mEdtTxtPwd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
+
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -1143,6 +1156,21 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+
+
+
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() > 4;
     }
 }
 
