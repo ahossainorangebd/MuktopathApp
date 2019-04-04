@@ -12,7 +12,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
     <LinearLayout
@@ -20,12 +20,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
         android:layout_marginTop="110dp"
         android:background="@drawable/lin_layout_style_white_with_shadow_border"
         android:orientation="vertical"
         android:padding="22dp"
+        android:elevation="10dp"
         android:layout_marginBottom="60dp"
         >
 
@@ -35,8 +36,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_marginTop="20dp"
-            android:padding="20dp"
+            android:layout_marginTop="35dp"
+            android:padding="10dp"
             >
 
             <LinearLayout
@@ -62,7 +63,7 @@
                         android:id="@+id/contentNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:text="২২ টি"
                         android:layout_gravity="left"
@@ -83,7 +84,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/contentHour"
+                        android:id="@+id/contenthour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
@@ -120,7 +121,7 @@
                         android:id="@+id/assignmentNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:text="২২ টি"
                         android:layout_gravity="center"
@@ -184,7 +185,7 @@
                         android:id="@+id/examNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:text="২২ টি"
                         android:layout_marginTop="5dp"
@@ -223,17 +224,17 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/startMyPageBtnId"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginTop="18dp"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="8dp"
                 android:text="শুরু করুন"
                 android:textColor="@color/Colorpeace"
-                android:background="@color/colorLighterPain"
+                android:background="#4c9ee1"
                 android:elevation="20dp"
                 />
         </LinearLayout>
@@ -246,15 +247,16 @@
     <ImageView
         android:id="@+id/CourseDetailCoverImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
+        android:elevation="10dp"
         android:background="@drawable/loadingimage"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_marginLeft="35dp"
@@ -293,7 +295,7 @@
             >
 
 
-            <android.support.v4.widget.ContentLoadingProgressBar
+            <!--<android.support.v4.widget.ContentLoadingProgressBar
                 android:layout_width="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -301,7 +303,18 @@
                 android:background="@drawable/lin_layout_style_white"
                 android:layout_height="10dp"
 
+                />-->
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/progressbar_blue"
+                android:layout_height="10dp"
+                android:layout_marginBottom="18dp"
                 />
+
 
         </LinearLayout>
 

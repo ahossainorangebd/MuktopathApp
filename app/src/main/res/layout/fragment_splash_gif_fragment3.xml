@@ -3,13 +3,28 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SplashGifFragment3">
+    android:layout_height="350dp"
+    tools:context=".SplashGifFragment3"
+    android:orientation="vertical"
+    >
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@drawable/temp_gif3"
+        android:layout_gravity="center"
+        android:src="@drawable/muktogif3"
         android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="মুক্তপাঠ হোক আপনার ক্যারিয়ারের সহায়ক"
+        />
+
 
 </LinearLayout>

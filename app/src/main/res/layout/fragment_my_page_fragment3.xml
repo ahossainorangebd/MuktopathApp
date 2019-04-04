@@ -10,85 +10,91 @@
     android:layout_gravity="center"
     android:orientation="vertical">
 
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp">
+        android:layout_height="match_parent">
+
 
         <LinearLayout
             android:id="@+id/afterEnrollLayOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="110dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="60dp"
-            android:background="@drawable/lin_layout_style_white_with_shadow_border"
             android:gravity="center"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginTop="110dp"
+            android:background="@drawable/lin_layout_style_white_with_shadow_border"
             android:orientation="vertical"
-            android:padding="22dp">
+            android:padding="22dp"
+            android:elevation="10dp"
+            android:layout_marginBottom="60dp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_marginTop="35dp"
+                android:padding="10dp"
+                >
 
                 <LinearLayout
                     android:id="@+id/contentNumberSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border"
-                    android:gravity="center"
                     android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:padding="2dp"
+                    android:background="@drawable/border"
                     android:visibility="gone"
                     >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="18dp"
                         android:gravity="center"
-                        android:padding="18dp">
+                        >
 
                         <TextView
                             android:id="@+id/contentNumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:gravity="left"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
                             android:text="২২ টি"
+                            android:layout_gravity="left"
                             android:textColor="#000000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:gravity="left"
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="অনুশীলনী"
                             android:layout_gravity="center"
+                            android:textColor="#000000"
+                            android:gravity="center"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
-                            android:gravity="center"
-                            android:text="অনুশীলনী"
-                            android:textColor="#000000"
-                            android:textSize="15sp" />
+                            />
 
                         <TextView
                             android:id="@+id/contenthour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:gravity="right"
+                            android:textSize="15sp"
                             android:text="৩৯ ঘণ্টা"
+                            android:layout_gravity="right"
                             android:textColor="#000000"
-                            android:textSize="15sp" />
+                            android:gravity="right"
+                            />
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
@@ -96,55 +102,62 @@
                     android:id="@+id/assignmentSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border"
-                    android:gravity="center"
                     android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:padding="2dp"
+                    android:background="@drawable/border"
                     android:visibility="gone"
                     >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="18dp"
                         android:gravity="center"
-                        android:padding="18dp">
+                        >
 
                         <TextView
                             android:id="@+id/assignmentNumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="২২ টি"
                             android:layout_gravity="center"
                             android:layout_marginTop="5dp"
-                            android:text="২২ টি"
                             android:textColor="#000000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            />
+
+
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="40dp"
-                            android:gravity="center"
+                            android:textSize="15sp"
                             android:text="এসাইনমেন্ট"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
                             android:textColor="#000000"
-                            android:textSize="15sp" />
+                            android:gravity="center"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            />
 
                         <TextView
                             android:id="@+id/assignmentHour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
+                            android:textSize="15sp"
                             android:text="৩৯ ঘণ্টা"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
                             android:textColor="#000000"
-                            android:textSize="15sp" />
+                            android:gravity="center"
+                            />
                     </LinearLayout>
+
 
 
                 </LinearLayout>
@@ -153,54 +166,57 @@
                     android:id="@+id/mExamNumberSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border"
-                    android:gravity="center"
                     android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:padding="2dp"
+                    android:background="@drawable/border"
                     android:visibility="gone"
                     >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="18dp"
                         android:gravity="center"
-                        android:padding="18dp">
+                        >
 
                         <TextView
                             android:id="@+id/examNumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
                             android:text="২২ টি"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
                             android:textColor="#000000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="40dp"
-                            android:gravity="center"
+                            android:textSize="15sp"
                             android:text="পরীক্ষা"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
                             android:textColor="#000000"
-                            android:textSize="15sp" />
-
+                            android:gravity="center"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            />
 
                         <TextView
                             android:id="@+id/examHour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
+                            android:textSize="15sp"
                             android:text="৩৯ ঘণ্টা"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
                             android:textColor="#000000"
-                            android:textSize="15sp" />
+                            android:gravity="center"
+                            />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -208,18 +224,19 @@
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/startMyPageBtnId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:layout_marginTop="18dp"
-                    android:background="@color/colorLighterPain"
-                    android:elevation="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="8dp"
                     android:text="শুরু করুন"
-                    android:textColor="@color/Colorpeace" />
+                    android:textColor="@color/Colorpeace"
+                    android:background="#4c9ee1"
+                    android:elevation="20dp"
+                    />
             </LinearLayout>
 
 
@@ -230,15 +247,16 @@
     <ImageView
         android:id="@+id/CourseDetailCoverImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
+        android:elevation="10dp"
         android:background="@drawable/loadingimage"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_marginLeft="35dp"
@@ -277,7 +295,7 @@
             >
 
 
-            <android.support.v4.widget.ContentLoadingProgressBar
+            <!--<android.support.v4.widget.ContentLoadingProgressBar
                 android:layout_width="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -285,7 +303,18 @@
                 android:background="@drawable/lin_layout_style_white"
                 android:layout_height="10dp"
 
+                />-->
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/progressbar_blue"
+                android:layout_height="10dp"
+                android:layout_marginBottom="18dp"
                 />
+
 
         </LinearLayout>
 

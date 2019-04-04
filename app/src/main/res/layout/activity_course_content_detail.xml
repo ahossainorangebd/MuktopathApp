@@ -23,18 +23,23 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:id="@+id/Progressbar"/>
-        <TextView
-            android:id="@+id/txtView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <ImageButton
             android:id="@+id/pause_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:src="@drawable/pause_icon_mukto"
+            android:background="#ffffff"
+            android:src="@drawable/mukto_resume_icon_fresh"
             />
+
+        <TextView
+            android:id="@+id/txtView"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
 
     </LinearLayout>
 

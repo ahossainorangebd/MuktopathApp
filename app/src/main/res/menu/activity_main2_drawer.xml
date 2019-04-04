@@ -26,14 +26,6 @@
     <item
         android:id="@+id/disablePushNotification"
         android:icon="@drawable/push_notifications_icon"
-        android:title="Turn On/Off" />
-
-
-    <item
-        android:id="@+id/searchBtnId"
-        android:icon="@drawable/search_for_custom"
-        android:title="Search"
-        app:showAsAction="always"
-        />
+        android:title="Log out" />
 
 </menu>

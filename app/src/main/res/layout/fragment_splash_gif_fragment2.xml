@@ -3,13 +3,28 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SplashGifFragment2">
+    android:layout_height="350dp"
+    tools:context=".SplashGifFragment2"
+    android:orientation="vertical"
+    >
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="match_parent"
+        android:padding="15dp"
+        android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/temp_gif2"
+        android:layout_gravity="center"
+        android:src="@drawable/muktogif2"
         android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="শিখুন যখন যেখানে ইচ্ছে । রয়েছে অফলাইনে পড়ার সুবিধা"
+        />
 
 </LinearLayout>

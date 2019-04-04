@@ -132,7 +132,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                     pausePosition = videoView.getCurrentPosition();
                     videoView.pause();
-                    imgPauseView.setImageResource(R.drawable.play_icon_mukto);
+                    imgPauseView.setImageResource(R.drawable.mukto_play_icon_fresh);
                     isVideoStarted=true;
                 }
 
@@ -141,7 +141,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     videoView.start();
                     mProgressBar.setProgress(pausePosition);
                     mProgressBar.postDelayed(onEverySecond, 1000);
-                    imgPauseView.setImageResource(R.drawable.pause_icon_mukto);
+                    imgPauseView.setImageResource(R.drawable.mukto_resume_icon_fresh);
                     isVideoStarted=false;
                 }
             }

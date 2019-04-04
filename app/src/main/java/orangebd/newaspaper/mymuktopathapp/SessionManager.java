@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class SessionManager {
@@ -126,6 +127,9 @@ public class SessionManager {
         // Add new Flag to start new Activity
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+        deleteCache(_context);
+        deleteData(_context);
+
         // Staring Login Activity
         _context.startActivity(i);
     }
@@ -138,4 +142,50 @@ public class SessionManager {
 
         return pref.getBoolean(IS_LOGIN, false);
     }
+
+
+
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+
+            deleteDir(dir);
+        } catch (Exception e) {}
+    }
+    public static void deleteData(Context context) {
+        try {
+            File cacheDirectory = context.getCacheDir();
+            File applicationDirectory = new File(cacheDirectory.getParent());
+            if (applicationDirectory.exists()) {
+                String[] fileNames = applicationDirectory.list();
+                for (String fileName : fileNames) {
+                    //if (!fileName.equals("lib")) {
+                    deleteDir(new File(applicationDirectory, fileName));
+                    //}
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        }
+        else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        }
+        else {
+            return false;
+        }
+    }
+
 }

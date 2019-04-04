@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<RecyclerViewAdapterRecommended.MyViewHolder> {
+public class RecyclerViewAdapterRecomTemp extends RecyclerView.Adapter<RecyclerViewAdapterRecomTemp.MyViewHolder> {
 
     private ArrayList<DetailDataModelCourses> dataSet;
     private Context mContext;
@@ -35,10 +35,11 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
     private ArrayList<DetailDataModel> mFilteredList;
 
+    private Object[] mArrayList;
+
     //private String copyRightText;
     // private ImageView mainImage;
-    public static class MyViewHolder extends RecyclerView.ViewHolder
-    {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewName;
         TextView textViewVersion;
@@ -46,24 +47,24 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
         ImageView imageViewIcon;
         Typeface typeface;
 
-        public MyViewHolder(View itemView)
-        {
+        public MyViewHolder(View itemView) {
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.textViewName);
-            this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
-           // this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
+            //this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
+            //this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
             //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
             //textViewVersion.setTypeface(typeface);
         }
     }
 
-    public RecyclerViewAdapterRecommended(ArrayList<DetailDataModelCourses> data, Context context) {
+    public RecyclerViewAdapterRecomTemp(ArrayList<DetailDataModelCourses> data, Context context) {
         this.dataSet = data;
 
         this.mContext=context;
         stringPath = "file:///android_res/drawable/company_credit_logo.png";
         addOn = String.format("<img src=\"%s\" />", stringPath);
+
     }
 
     @Override
@@ -86,54 +87,51 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
         TextView textViewName = holder.textViewName;
 
-        TextView textViewVersion = holder.textViewVersion;
-        TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
         final String titleText=dataSet.get(listPosition).getmCourseAliasName();
+        final String paymentStatus=dataSet.get(listPosition).getmPaymentStatus();
+        final String batchId=dataSet.get(listPosition).getmId();
         final String DetailDescription=dataSet.get(listPosition).getmDetails();
+
         textViewName.setText(titleText);
 
-        //TODO
-        //TODO
-        //final String academyName = GlobalVar.gRecommendedDetailList10.get(listPosition).getInstitution_name_owner();
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final String sContentSize= Integer.toString(contentArray.size());
 
-        //final String parentCatID=dataSet.get(listPosition).getCat_id();
-        //String reporterString=dataSet.get(listPosition).getRpt();
+        String imgUrl="";
+
+        try {
+            mArrayList = contentArray.get(listPosition).toArray();
+
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
-
-        final Object[] mArrayList = contentArray.get(listPosition).toArray();
-
         DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
-        String imgUrl = imgUrlModel.getCover_code_image();
+            imgUrl = imgUrlModel.getCover_code_image();
 
-        //String imgUrl = imgUrlModel.getCover_code_image();
+        }
+        catch (Exception ex){
+            Log.d("", "onBindViewHolder: ");
+        }
+
 
         final String CoverPhoto = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + imgUrl;
-
-        //String detailString=dataSet.get(listPosition).getDtl_url();
-        //String imgCaption=dataSet.get(listPosition).getImg_caption();
-
-        /*if(reporterString.equalsIgnoreCase("")){
-            reporterString="Rtv Desk";
-        }*/
 
         try {
             Picasso.with(mContext)
                     .load(CoverPhoto)
                     .into(imageView);
         }
-        catch (Exception ex){ }
+        catch (Exception ex){}
 
             entryDate=dataSet.get(listPosition).getmCreatedAt();
             //final String returnDate=sdf.toString();
 
-        //TODO
-        //TODO
-        //textViewVersion.setText(academyName);
+       // textViewVersion.setText(entryDate);
+
+            updateDate=dataSet.get(listPosition).getmUpdatedAt();
+       // textViewVersion2.setText(entryDate);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +143,9 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
                 i.putExtra("ttl", titleText);
                 i.putExtra("img", CoverPhoto);
                 i.putExtra("detail", DetailDescription);
+                i.putExtra("batchid", batchId);
+                i.putExtra("pstatus", paymentStatus);
+                i.putExtra("scsize", sContentSize);
                 try {
                     v.getContext().startActivity(i);
                 }
@@ -182,11 +183,7 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
     @Override
     public int getItemCount() {
-        if(dataSet==null) {
-            return 0;
-        }
-        else
-            return dataSet.size();
+        return dataSet.size();
     }
 
     public String convertEngToBn(String num){

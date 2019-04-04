@@ -1,23 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:openDrawer="start"
-    tools:context=".MyPageActivity">
+    tools:context=".MyPageActivity"
+    android:background="#f0f0f0">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="আমার পাতা"
-        android:textColor="@color/AppTextColor"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         android:gravity="center"
-        />
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="আমার পাতা"
+            android:textColor="@color/AppTextColor"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginRight="8dp"
+        >
+        <ImageView
+            android:id="@+id/logOutBtnId"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:gravity="right"
+            android:text="LogOut"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/mukto_logout_btn"
+            />
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -47,163 +76,174 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/VideoSliderviewPagerId"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_height="440dp"
+        android:layout_marginTop="55dp"
         >
 
-        <WebView
-            android:id="@+id/HomePageVideosPagingWebviewId"
+        <com.itsronald.widget.ViewPagerIndicator
+            android:id="@+id/view_pager_indicator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/cardview_shadow_start_color"
-            >
-
-            <orangebd.newaspaper.mymuktopathapp.SlidingTabLayout
-                android:id="@+id/sliding_tabs_fordetailvideo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#000"
-                />
-
-        </WebView>
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center_vertical"
+            android:outlineSpotShadowColor="@color/colorPrimary"
+            app:selectedDotColor="@color/colorFadedBlack"
+            android:layout_marginTop="50dp"
+            />
 
     </android.support.v4.view.ViewPager>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/FooterBtnsColor"
+        android:orientation="vertical"
         android:layout_alignParentBottom="true"
         >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrayLight"
+            >
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="center"
             android:background="@color/FooterBtnsColor"
+
             >
 
             <LinearLayout
-                android:id="@+id/allCourseBtnId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/allCourseLogo"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/khujun2"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#bdbdbd"
-                    android:textSize="13sp"
-                    android:layout_marginTop="2dp"
-                    android:text="সকল কোর্স"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/recomendedBtnId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/recommended_icon"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#bdbdbd"
-                    android:text="রিকমেন্ডেড"
-                    android:layout_marginTop="2dp"
-                    android:layout_below="@+id/recomendedLogoId"
-                    android:textSize="13sp"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/myPageBtnId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                android:background="@color/FooterBtnsColor"
                 >
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/shokol_course_icon_blue"
-                    />
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/allCourseBtnId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:textSize="13sp"
-                    android:layout_marginTop="2dp"
-                    android:layout_gravity="center"
-                    android:text="আমার পাতা"/>
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/allCourseLogo"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/khujun2"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#bdbdbd"
+                        android:textSize="13sp"
+                        android:layout_marginTop="2dp"
+                        android:text="সকল কোর্স"/>
+                </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/downloadsBtnId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_gravity="center"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/downloadicon"/>
-                <TextView
+                <LinearLayout
+                    android:id="@+id/recomendedBtnId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#bdbdbd"
-                    android:textSize="13sp"
-                    android:layout_marginTop="2dp"
-                    android:text="ডাউনলোড"/>
-            </LinearLayout>
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/profilePageBtnId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
-                >
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/profileicon"/>
-                <TextView
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/recommended_icon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#bdbdbd"
+                        android:text="রিকমেন্ডেড"
+                        android:layout_marginTop="2dp"
+                        android:layout_below="@+id/recomendedLogoId"
+                        android:textSize="13sp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/myPageBtnId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#bdbdbd"
-                    android:textSize="13sp"
-                    android:layout_marginTop="2dp"
-                    android:text="প্রোফাইল"
-                    />
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/shokol_course_icon_blue"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:textSize="13sp"
+                        android:layout_marginTop="2dp"
+                        android:layout_gravity="center"
+                        android:text="আমার পাতা"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/downloadsBtnId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/downloadicon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#bdbdbd"
+                        android:textSize="13sp"
+                        android:layout_marginTop="2dp"
+                        android:text="ডাউনলোড"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/profilePageBtnId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    >
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/profileicon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#bdbdbd"
+                        android:textSize="13sp"
+                        android:layout_marginTop="2dp"
+                        android:text="প্রোফাইল"
+                        />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+
 
 </RelativeLayout>

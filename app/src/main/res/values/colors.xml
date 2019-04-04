@@ -15,4 +15,5 @@
 
     <color name="colorFadedBlack">#282828</color>
     <color name="colorGray">#8F8F8B</color>
+    <color name="colorGrayLight">#c3c3c3</color>
 </resources>

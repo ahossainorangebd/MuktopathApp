@@ -63,7 +63,7 @@ public class MyPageFragment1 extends Fragment {
 
         mCourseDetailCoverImage = view.findViewById(R.id.CourseDetailCoverImage);
 
-        mContentHour= view.findViewById(R.id.contentHour);
+        mContentHour= view.findViewById(R.id.contenthour);
         mExamHour=view.findViewById(R.id.examHour);
         mAssignmentHour=view.findViewById(R.id.assignmentHour);
 

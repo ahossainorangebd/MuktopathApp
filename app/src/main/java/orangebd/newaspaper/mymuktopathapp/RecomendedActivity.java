@@ -22,6 +22,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -135,6 +136,7 @@ public class RecomendedActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().hide();
         //getSupportActionBar().setCustomView(view);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -187,18 +189,24 @@ public class RecomendedActivity extends AppCompatActivity {
             }
         });
 
-
-
         recyclerViewCat = findViewById(R.id.my_recycler_view_recom_cats);
         recyclerViewCat.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewCat.setLayoutManager(layoutManager);
         recyclerViewCat.setNestedScrollingEnabled(false);
+
+        if(GlobalVar.gRecommendedCategories==null){
+            Intent i = new Intent(mContext, SelectACategoryActivity.class);
+            startActivity(i);
+
+            Toast.makeText(mContext, "Please select at least one category", Toast.LENGTH_LONG).show();
+
+            return;
+        }
+
         adapterCats=new RecyclerViewAdapterRecomCats(GlobalVar.gRecommendedCategories,mContext);
         recyclerViewCat.setAdapter(adapterCats);
         adapterCats.notifyDataSetChanged();
-
-
 
         map = new HashMap<String, String>();
         map1 = new HashMap<String, String>();
@@ -220,9 +228,6 @@ public class RecomendedActivity extends AppCompatActivity {
             Log.d("", "onCreate: ");
         }
 
-
-
-
         try {
             firstRecomCatId = GlobalVar.gRecommendedCategoriesId.get(0);
             secondRecomCatId = GlobalVar.gRecommendedCategoriesId.get(1);
@@ -235,6 +240,10 @@ public class RecomendedActivity extends AppCompatActivity {
 
 
         try {
+            if(firstRecomCatId.equalsIgnoreCase("")){
+                firstRecomCatName="11";
+            }
+
             map1.put("id", firstRecomCatId);
             map1.put("name", firstRecomCatName);
             map1.put("rating", "" );
@@ -753,7 +762,7 @@ public class RecomendedActivity extends AppCompatActivity {
         {
             super.onPostExecute(result);
 
-            adapter=new RecyclerViewAdapterCategory1(detailListMainActivityCourse,mContext);
+            adapter=new RecyclerViewAdapterRecomTemp(detailListMainActivityCourse,mContext);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -762,6 +771,12 @@ public class RecomendedActivity extends AppCompatActivity {
 
 
             if(GlobalVar.gRecommendedCategoriesId.size()>1){
+
+
+                if(firstRecomCatId.equalsIgnoreCase("")){
+                    firstRecomCatName="12";
+                }
+
                 map2.put("id", secondRecomCatId);
                 map2.put("name", secondRecomCatName);
                 map2.put("rating", "");
@@ -1235,6 +1250,10 @@ public class RecomendedActivity extends AppCompatActivity {
 
             if(GlobalVar.gRecommendedCategoriesId.size()>2) {
 
+                if(firstRecomCatId.equalsIgnoreCase("")){
+                    firstRecomCatName="13";
+                }
+
                 map3.put("id", thirdRecomCatId);
                 map3.put("name", thirdRecomCatName);
                 map3.put("rating", "");
@@ -1707,6 +1726,10 @@ public class RecomendedActivity extends AppCompatActivity {
 //            mProgressSpinner2.setVisibility(View.GONE);
 
             if(GlobalVar.gRecommendedCategoriesId.size()>2) {
+
+                if(firstRecomCatId.equalsIgnoreCase("")){
+                    firstRecomCatName="11";
+                }
 
                 map4.put("id", fourthRecomCatId);
                 map4.put("name", fourthRecomCatName);

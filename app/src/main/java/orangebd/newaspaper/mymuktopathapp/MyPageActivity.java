@@ -1,10 +1,14 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.provider.SyncStateContract;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -15,8 +19,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -141,6 +147,8 @@ public class MyPageActivity extends AppCompatActivity {
 
     private SessionManager sm;
 
+    private ImageView mLogOutBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +176,17 @@ public class MyPageActivity extends AppCompatActivity {
 
 
         sm= new SessionManager(mContext);
+
+
+        mLogOutBtn = findViewById(R.id.logOutBtnId);
+        mLogOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showPopUpImageBox();
+            }
+        });
+
 
         HashMap<String, String> mSpInfo=sm.getUserDetails();
 
@@ -1122,8 +1141,8 @@ public class MyPageActivity extends AppCompatActivity {
                         myAdapter= new TabsPagerAdapterDetail(getSupportFragmentManager());
                         vpPager.setAdapter(myAdapter);
 
-                        mSlidingTabLayout = findViewById(R.id.sliding_tabs_fordetailvideo);
-                        mSlidingTabLayout.setDistributeEvenly(true);
+                        /*mSlidingTabLayout = findViewById(R.id.sliding_tabs_fordetailvideo);
+                        mSlidingTabLayout.setDistributeEvenly(true);*/
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -1222,6 +1241,15 @@ public class MyPageActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_main2_drawer, menu);
+        //getMenuInflater().inflate(R.menu.main2, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
@@ -1233,5 +1261,31 @@ public class MyPageActivity extends AppCompatActivity {
         else if (id==R.id.nav_share)
             shareIt();
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showPopUpImageBox()
+    {
+        // custom dialog
+        final Dialog dialog = new Dialog(mContext, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforlogout);
+
+        Button mLogOutYes=dialog.findViewById(R.id.logOutYes);
+        mLogOutYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sm.logoutUser();
+            }
+        });
+
+        Button mLogOutNo=dialog.findViewById(R.id.logOutNo);
+        mLogOutNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }
