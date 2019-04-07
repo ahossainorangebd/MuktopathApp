@@ -98,16 +98,16 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         final String timeStatus=dataSet.get(listPosition).getStatus_content();
         final String ownerId=dataSet.get(listPosition).getOwner_id();
 
-        /*ArrayList<String> pulseArray = new ArrayList<>();
+        ArrayList<String> pulseArray = new ArrayList<>();
 
-        for(int pulseN=0; pulseN<GlobalVar.thisFragmentPulses.size(); pulseN++){
+        for(int pulseN=0; pulseN<GlobalVar.thisFragmentPulses.size(); pulseN++) {
 
             pulseArray.add(GlobalVar.thisFragmentPulses.get(pulseN).get(0).getmPulseOfVideoMulti());
 
             String aaaa="aaaa";
         }
 
-        Toast.makeText(mContext,"On this second a multiple pop up will appear",Toast.LENGTH_LONG).show();*/
+        //Toast.makeText(mContext,"On this second a multiple pop up will appear",Toast.LENGTH_LONG).show();
 
 
         textViewName.setText(titleText);
@@ -116,19 +116,58 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
             @Override
             public void onClick(View v)
             {
+                try {
+                    GlobalVar.gThisVideoPulses = GlobalVar.thisFragmentPulses.get(listPosition);
+                    GlobalVar.gThisVideoPulsesQs = GlobalVar.thisFragmentPulseQs.get(listPosition);
 
-                //TODO
-                //TODO
                 /*if (GlobalVar.gThisVideoPulses.size()==GlobalVar.thisFragmentContents.size()){
-
-                    GlobalVar.gThisVideoPulses=GlobalVar.thisFragmentPulses.get(listPosition);
-                    GlobalVar.gThisVideoPulsesQs=GlobalVar.thisFragmentPulseQs.get(listPosition);
 
                     for(int checkKey=0; checkKey<GlobalVar.gThisVideoPulses.size(); checkKey++){
                         int aaaa=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMultiId();
                         String accurate=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMulti();
                     }
                 }*/
+
+                try {
+                    for (int checkKey = 0; checkKey < GlobalVar.thisFragmentPulses.size(); checkKey++) {
+
+                        ArrayList <DetailDataModelCoursesDetailContents> pulseWithContentList = GlobalVar.gThisVideoPulses;
+
+
+                        try {
+                            int getPulseId = pulseWithContentList.get(checkKey).getmPulseOfVideoMultiId();
+
+                            String aaaqqwe="aq";
+                        }
+                        catch (Exception ex){
+                            Log.d("", "onClick: ");
+                        }
+
+                        String aaaqqq="";
+
+
+                        String aaaaaa="";
+                    }
+                }
+                catch (Exception ex){
+                    Log.d("", "onClick: ");
+                }
+
+
+                    /*int contentPulseid = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMultiId();
+
+                    if (listPosition == contentPulseid) {
+                        String thisPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+                    }*/
+
+
+                    String aaa = "";
+
+                }
+                catch (Exception ex){
+                    Log.d("", "onClick: ");
+                }
+
 
                 Intent i = new Intent(mContext, CourseContentDetailActivity.class);
                 i.putExtra("ttl", titleText);

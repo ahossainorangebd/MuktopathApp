@@ -132,7 +132,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         Intent i = new Intent(mContext, MyPageActivity.class);
                         startActivity(i);
                     }
-                }, 5000);
+                }, 4000);
 
             }
             else {
@@ -144,7 +144,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                         }
                     }
-                }, 5000);
+                }, 4000);
             }
 
         }

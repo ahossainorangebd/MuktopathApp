@@ -986,12 +986,14 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                                                 JSONArray jSonObjMultiQOptionsPulse = (JSONArray) jSObjectQuizElements.getJSONArray("options");
 
-                                                                                                try {
-                                                                                                    mPulseQuizOptList = new ArrayList<>();
+                                                                                                DetailDataModelCoursesDetailContents modelPulseQuizOptions;
 
-                                                                                                    for (int optionList = 0; optionList < jSonObjMultiQOptionsPulse.length(); optionList++) {
+                                                                                                mPulseQuizOptList = new ArrayList<>();
 
-                                                                                                        DetailDataModelCoursesDetailContents modelPulseQuizOptions = new DetailDataModelCoursesDetailContents();
+                                                                                                for (int optionList = 0; optionList < jSonObjMultiQOptionsPulse.length(); optionList++) {
+
+                                                                                                    try {
+                                                                                                        modelPulseQuizOptions = new DetailDataModelCoursesDetailContents();
 
                                                                                                         JSONObject jObjectQuesOpt = (JSONObject) jSonObjMultiQOptionsPulse.get(optionList);
 
@@ -1004,10 +1006,11 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                                                         mPulseQuizOptList.add(modelPulseQuizOptions);
                                                                                                     }
+                                                                                                    catch (Exception ex){
+
+                                                                                                    }
                                                                                                 }
-                                                                                                catch (Exception ex) {
-                                                                                                    Log.d("", "onResponse: ");
-                                                                                                }
+
                                                                                                 mPulseQuizList2.add(mPulseQuizOptList);
                                                                                             }
                                                                                         } catch (Exception ex) {
@@ -1027,7 +1030,8 @@ public class MyPageActivity extends AppCompatActivity {
                                                                 } catch (Exception ex) {
                                                                     Log.d("", "onResponse: ");
                                                                 }
-                                                            } else {
+                                                            }
+                                                            else {
 
                                                             }
                                                         }

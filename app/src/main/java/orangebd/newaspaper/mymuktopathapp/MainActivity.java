@@ -194,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
         mProgressSpinner9=findViewById(R.id.loadingSpinnerId9);
         mProgressSpinner10=findViewById(R.id.loadingSpinnerId10);
 
-
         //Course Category TextViews
 
         courseText1 = findViewById(R.id.courseName1);

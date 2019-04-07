@@ -276,11 +276,9 @@ public class LoginActivity extends AppCompatActivity {
                                                 detailListCourseDetailUnitQuizList = new ArrayList<>();
                                                 detailListCourseDetailUnitQuizList2 = new ArrayList<>();
 
-
                                                 detailListCourseDetailUnitQuizOptList = new ArrayList<>();
                                                 detailListCourseDetailPulseQuizOptList = new ArrayList<>();
                                                 detailListCourseDetailVideoPulseMulti = new ArrayList<>();
-
 
                                                 //for renew arraylist of units arrays
                                                 detailListCourseUnit1Data = new ArrayList<>();
@@ -294,7 +292,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                                 try {
                                                     jObjectData = response.getJSONObject("data");
-                                                } catch (Exception ex) {
+                                                }
+                                                catch (Exception ex) {
                                                     Log.d("", "onResponse: ");
                                                 }
 
@@ -628,7 +627,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                                         mUnitQuizList.add(modelQuizElements);
                                                     }*/
-
 
                                                                     //for parsing syllebus strings
 
