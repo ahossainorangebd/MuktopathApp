@@ -54,6 +54,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     PopupWindow pw;
 
+    private String getPulse;
+
     String DetailDescription;
     String title;
     private String eCode;
@@ -156,7 +158,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             int eachPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMultiId();
 
             if(eachPulse==listPositionNumber) {
-                String getPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMulti();
+                getPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMulti();
                 Toast.makeText(context,"This video has question.",Toast.LENGTH_SHORT).show();
 
                 isGotQuestion=true;
@@ -296,7 +298,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 //TODO
                 //TODO
-                /*int targetPopUp=Integer.parseInt(firstPulse);
+
+                int targetPopUp=Integer.parseInt(getPulse);
                 //int targetPopUp=5;
 
                 if(seconds==targetPopUp)
@@ -327,7 +330,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
 
 
-                }*/
+                }
 
                 textView.setText(""+seconds);
                 seekbarProgress=progress;
