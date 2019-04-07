@@ -50,10 +50,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        View view2 = findViewById(android.R.id.content);
+        /*View view2 = findViewById(android.R.id.content);
         Animation mLoadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
         mLoadAnimation.setDuration(2000);
-        view2.startAnimation(mLoadAnimation);
+        view2.startAnimation(mLoadAnimation);*/
 
         sm= new SessionManager(mContext);
 
@@ -132,17 +132,19 @@ public class WelcomeActivity extends AppCompatActivity {
                         Intent i = new Intent(mContext, MyPageActivity.class);
                         startActivity(i);
                     }
-                }, 2000);
+                }, 5000);
 
             }
             else {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(mContext, SplashActivity.class);
-                        startActivity(i);
+
+                        if(!sm.isLoggedIn()) {
+
+                        }
                     }
-                }, 2000);
+                }, 5000);
             }
 
         }

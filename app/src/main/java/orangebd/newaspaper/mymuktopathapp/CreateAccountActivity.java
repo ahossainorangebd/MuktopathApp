@@ -25,6 +25,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -115,6 +116,8 @@ public class CreateAccountActivity extends AppCompatActivity{
         mContext=this;
 
         getSupportActionBar().hide();
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         mEmailView =  findViewById(R.id.email);
         mEdtTxtPwd = findViewById(R.id.password);

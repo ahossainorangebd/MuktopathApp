@@ -221,12 +221,12 @@ public class MyPageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response)
                     {
-                        detailListCourse=new ArrayList<DetailDataModelCourses>();
+                        detailListCourse = new ArrayList<DetailDataModelCourses>();
 
-                        detailList=new ArrayList<DetailDataModelCourses>();
+                        detailList = new ArrayList<DetailDataModelCourses>();
 
-                        detailListCourseThumbnail=new ArrayList<DetailDataModelCoursesThumbnails>();
-                        detailListCourseDetailContents=new ArrayList<DetailDataModelCoursesDetailContents>();
+                        detailListCourseThumbnail = new ArrayList<DetailDataModelCoursesThumbnails>();
+                        detailListCourseDetailContents = new ArrayList<DetailDataModelCoursesDetailContents>();
                         detailList10 = new ArrayList<DetailDataModelCourses>();
 
                         detailList7 = new ArrayList<DetailDataModelCourses>();
@@ -255,15 +255,14 @@ public class MyPageActivity extends AppCompatActivity {
 
                         try {
                             jObjectData = response.getJSONObject("data");
-                        }
-                        catch (Exception ex){
+                        } catch (Exception ex) {
                             Log.d("", "onResponse: ");
                         }
 
                         // For parsing simple JSON
                         //TODO
 
-                        try{
+                        try {
                             DetailDataModelCourses modelAlter = new DetailDataModelCourses();
 
                             String id = jObjectData.getString("id");
@@ -283,9 +282,9 @@ public class MyPageActivity extends AppCompatActivity {
                             String totalEnrollment = jObjectData.getString("TotalEnrollment");
 
                             GlobalVar.gName = name;
-                            GlobalVar.gMobile=phone;
-                            GlobalVar.gEmail=email;
-                            GlobalVar.gReplacingToken= token;
+                            GlobalVar.gMobile = phone;
+                            GlobalVar.gEmail = email;
+                            GlobalVar.gReplacingToken = token;
 
                             model.setmId(id);
                             model.setmUserName(username);
@@ -306,15 +305,14 @@ public class MyPageActivity extends AppCompatActivity {
 
                             // For parsing 1st Array of info JSON
 
-                            detailList2=new ArrayList<DetailDataModelCourses>();
+                            detailList2 = new ArrayList<DetailDataModelCourses>();
 
                             DetailDataModelCourses model2 = new DetailDataModelCourses();
 
                             try {
                                 JSONArray object = (JSONArray) jObjectData.getJSONArray("owninstitution");
 
-                                for (int ii2=0;ii2<object.length();ii2++)
-                                {
+                                for (int ii2 = 0; ii2 < object.length(); ii2++) {
                                     JSONObject object2 = (JSONObject) object.get(ii2);
 
                                     String instaddress = object2.getString("address");
@@ -390,17 +388,14 @@ public class MyPageActivity extends AppCompatActivity {
                                 String usersidnumber = objectForOwnersInfo.getString("user_id");
 
                                 GlobalVar.gUsersNumber = usersidnumber;
-                            }
-                            catch (Exception ex){
+                            } catch (Exception ex) {
                                 Log.d("", "onResponse: ");
                             }
 
 
-
-
                             // For parsing 2nd Array of info JSON
 
-                            detailList3=new ArrayList<DetailDataModelCourses>();
+                            detailList3 = new ArrayList<DetailDataModelCourses>();
 
                             DetailDataModelCourses model3 = new DetailDataModelCourses();
 
@@ -408,8 +403,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                                 JSONArray objectAnother = (JSONArray) jObjectData.getJSONArray("institution");
 
-                                for (int iii=0;iii<objectAnother.length();iii++)
-                                {
+                                for (int iii = 0; iii < objectAnother.length(); iii++) {
                                     JSONObject objectAnother2 = (JSONObject) objectAnother.get(iii);
 
                                     String instaddress = objectAnother2.getString("address");
@@ -474,18 +468,17 @@ public class MyPageActivity extends AppCompatActivity {
                                     detailList3.add(model3);
                                 }
 
-                            }
-                            catch (JSONException e) {
+                            } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
                             // For parsing 3rd Array of info JSON
 
-                            detailList4=new ArrayList<DetailDataModelCourses>();
+                            detailList4 = new ArrayList<DetailDataModelCourses>();
 
-                            detailListAnoPart1=new ArrayList<DetailDataModelCourses>();
-                            detailListAnoPart2=new ArrayList<DetailDataModelCourses>();
-                            detailListAnoPart3=new ArrayList<DetailDataModelCourses>();
+                            detailListAnoPart1 = new ArrayList<DetailDataModelCourses>();
+                            detailListAnoPart2 = new ArrayList<DetailDataModelCourses>();
+                            detailListAnoPart3 = new ArrayList<DetailDataModelCourses>();
 
                             DetailDataModelCourses modelPart1 = new DetailDataModelCourses();
                             DetailDataModelCourses modelPart2 = new DetailDataModelCourses();
@@ -498,15 +491,14 @@ public class MyPageActivity extends AppCompatActivity {
                                 JSONArray objectAgainAnother = (JSONArray) jObjectData.getJSONArray("RoleInstitution");
                                 JSONArray objectEnrollCourse = (JSONArray) jObjectData.getJSONArray("EnrollCourse");
 
-                                int enrolledCourseNumbers=objectEnrollCourse.length();
+                                int enrolledCourseNumbers = objectEnrollCourse.length();
 
-                                GlobalVar.gEnrollCourseNumber=enrolledCourseNumbers;
+                                GlobalVar.gEnrollCourseNumber = enrolledCourseNumbers;
 
-                                String aaaaaa= "";
+                                String aaaaaa = "";
 
                                 try {
-                                    for (int ec = 0; ec < objectEnrollCourse.length(); ec++)
-                                    {
+                                    for (int ec = 0; ec < objectEnrollCourse.length(); ec++) {
 
                                         JSONObject jObjEnrolledCourses = objectEnrollCourse.getJSONObject(ec);
 
@@ -557,18 +549,16 @@ public class MyPageActivity extends AppCompatActivity {
 
                                         detailListAnoPart3.add(modelForLoginCourse);
 
-                                        GlobalVar.gEnrollCourseList=detailListAnoPart3;
+                                        GlobalVar.gEnrollCourseList = detailListAnoPart3;
 
-                                        try
-                                        {
+                                        try {
                                             jObject = objectCourse2.getJSONObject("syllabus");
 
                                             JSONArray objectEnrollCourseUnits = (JSONArray) jObject.getJSONArray("units");
 
                                             mUnitArrayListNew = new ArrayList<>();
 
-                                            for (int ecu=0; ecu<objectEnrollCourseUnits.length(); ecu++)
-                                            {
+                                            for (int ecu = 0; ecu < objectEnrollCourseUnits.length(); ecu++) {
                                                 DetailDataModelCoursesDetailContents modelUnitElements = new DetailDataModelCoursesDetailContents();
 
                                                 JSONObject objectUnitElements = (JSONObject) objectEnrollCourseUnits.get(ecu);
@@ -702,8 +692,7 @@ public class MyPageActivity extends AppCompatActivity {
                                             model11.setUsernameCreatedBy(usernameCreatedBy);
 
                                             // parsing from syllebus
-                                            try
-                                            {
+                                            try {
                                                 mContentArrayListNew = new ArrayList<>();
                                                 mUnit1DataArrayList = new ArrayList<>();
                                                 mUnit2DataArrayList = new ArrayList<>();
@@ -711,8 +700,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                 mVideoPulseMulti = new ArrayList<>();
 
-                                                for (int ii = 0; ii < jObject.length()-1; ii++)
-                                                {
+                                                for (int ii = 0; ii < jObject.length() - 1; ii++) {
                                                     JSONObject jSObject2 = jObject.getJSONObject("" + ii);
 
                                                     //for parsing lessons > {0} > "syllebus" > "0" > "data"
@@ -788,15 +776,11 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                             //let's add
 
-                                                            if(content_type.equalsIgnoreCase("quiz")){
+                                                            if (content_type.equalsIgnoreCase("quiz")) {
                                                                 mUnit2DataArrayList.add(modelUnitCourseContents);
-                                                            }
-
-                                                            else if(content_type.equalsIgnoreCase("assignment")){
+                                                            } else if (content_type.equalsIgnoreCase("assignment")) {
                                                                 mUnit3DataArrayList.add(modelUnitCourseContents);
-                                                            }
-
-                                                            else {
+                                                            } else {
                                                                 mUnit1DataArrayList.add(modelUnitCourseContents);
                                                             }
 
@@ -819,7 +803,7 @@ public class MyPageActivity extends AppCompatActivity {
                                                             modelFileType.setmDoc(doc);
                                                             modelFileType.setmCsv(csv);
 
-                                                            try{
+                                                            try {
                                                                 DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
                                                                 JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
@@ -873,8 +857,7 @@ public class MyPageActivity extends AppCompatActivity {
                                                                 modelCourseContents.setCreated_at_content(created_at_content);
 
                                                                 mContentArrayListNew.add(modelCourseContents);
-                                                            }
-                                                            catch (Exception ex){
+                                                            } catch (Exception ex) {
                                                                 Log.d("", "onResponse: ");
                                                             }
 
@@ -900,8 +883,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                         mUnitQuizListWithOptions = new ArrayList<>();
 
-                                                                        for(int qlist2=0; qlist2<jSonObjMultiQ2.length(); qlist2++)
-                                                                        {
+                                                                        for (int qlist2 = 0; qlist2 < jSonObjMultiQ2.length(); qlist2++) {
 
                                                                             DetailDataModelCoursesDetailContents modelUnitQuizElements2 = new DetailDataModelCoursesDetailContents();
 
@@ -911,8 +893,8 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                             String qTitle = objectAgainAnother2.getString("title");
 
-                                                                            qTitle = qTitle.replace("<p>","");
-                                                                            qTitle = qTitle.replace("</p>","");
+                                                                            qTitle = qTitle.replace("<p>", "");
+                                                                            qTitle = qTitle.replace("</p>", "");
 
                                                                             modelUnitQuizElements2.setmQuizTitle(qTitle);
                                                                             mUnitQuizList.add(modelUnitQuizElements2);
@@ -923,11 +905,11 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                             JSONArray jSonObjMultiQOptions = (JSONArray) objectAgainAnother2.getJSONArray("options");
 
-                                                                            try{
+                                                                            try {
 
                                                                                 mUnitQuizOptList = new ArrayList<>();
 
-                                                                                for(int optionList=0; optionList<jSonObjMultiQOptions.length(); optionList++){
+                                                                                for (int optionList = 0; optionList < jSonObjMultiQOptions.length(); optionList++) {
 
                                                                                     //DetailDataModelCoursesDetailContents modelUnitQuizOptions = new DetailDataModelCoursesDetailContents();
                                                                                     DetailDataModelCoursesDetailContents modelUnitQuizOptions = new DetailDataModelCoursesDetailContents();
@@ -942,8 +924,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                                     mUnitQuizOptList.add(modelUnitQuizOptions);
                                                                                 }
-                                                                            }
-                                                                            catch (Exception ex){
+                                                                            } catch (Exception ex) {
                                                                                 Log.d("", "onResponse: ");
                                                                             }
 
@@ -956,13 +937,10 @@ public class MyPageActivity extends AppCompatActivity {
                                                             }
                                                             multiQKey++;
 
-                                                            if (quizYesOrNot.equalsIgnoreCase("1"))
-                                                            {
-                                                                try
-                                                                {
-                                                                    for (int l = 0; l < jSObject3.length(); l++)
-                                                                    {
-                                                                        JSONArray jSonObjMultiQ= new JSONArray();
+                                                            if (quizYesOrNot.equalsIgnoreCase("1")) {
+                                                                try {
+                                                                    for (int l = 0; l < jSObject3.length(); l++) {
+                                                                        JSONArray jSonObjMultiQ = new JSONArray();
 
                                                                         jSonObjMultiQ = (JSONArray) jSObject3.getJSONArray("multi_ques_list");
 
@@ -1000,18 +978,18 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                                                 String mqTitle = jSObjectQuizElements.getString("title");
 
-                                                                                                mqTitle = mqTitle.replace("<p>","");
-                                                                                                mqTitle = mqTitle.replace("</p>","");
+                                                                                                mqTitle = mqTitle.replace("<p>", "");
+                                                                                                mqTitle = mqTitle.replace("</p>", "");
 
                                                                                                 // modelPulseQuizListWithOptionsMp.setMpQuizTitle(mqTitle);
                                                                                                 // mUnitQuizListWithOptionsMp.add(modelPulseQuizListWithOptionsMp);
 
                                                                                                 JSONArray jSonObjMultiQOptionsPulse = (JSONArray) jSObjectQuizElements.getJSONArray("options");
 
-                                                                                                try{
+                                                                                                try {
                                                                                                     mPulseQuizOptList = new ArrayList<>();
 
-                                                                                                    for(int optionList=0; optionList<jSonObjMultiQOptionsPulse.length(); optionList++){
+                                                                                                    for (int optionList = 0; optionList < jSonObjMultiQOptionsPulse.length(); optionList++) {
 
                                                                                                         DetailDataModelCoursesDetailContents modelPulseQuizOptions = new DetailDataModelCoursesDetailContents();
 
@@ -1027,48 +1005,40 @@ public class MyPageActivity extends AppCompatActivity {
                                                                                                         mPulseQuizOptList.add(modelPulseQuizOptions);
                                                                                                     }
                                                                                                 }
-                                                                                                catch (Exception ex){
+                                                                                                catch (Exception ex) {
                                                                                                     Log.d("", "onResponse: ");
                                                                                                 }
                                                                                                 mPulseQuizList2.add(mPulseQuizOptList);
                                                                                             }
-                                                                                        }
-                                                                                        catch (Exception ex) {
+                                                                                        } catch (Exception ex) {
                                                                                             Log.d("", "onResponse: ");
                                                                                         }
                                                                                     }
-                                                                                }
-                                                                                catch (Exception ex) {
+                                                                                } catch (Exception ex) {
                                                                                     Log.d("", "onResponse: ");
                                                                                 }
                                                                                 mContentArrayListNewPulse.add(modelVideoMultiPulse);
                                                                             }
-                                                                        }
-                                                                        catch (Exception ex){
+                                                                        } catch (Exception ex) {
                                                                             Log.d("", "onResponse: ");
                                                                         }
                                                                     }
                                                                     mVideoPulseMulti.add(mContentArrayListNewPulse);
-                                                                }
-                                                                catch (Exception ex) {
+                                                                } catch (Exception ex) {
                                                                     Log.d("", "onResponse: ");
                                                                 }
-                                                            }
-                                                            else {
+                                                            } else {
 
                                                             }
                                                         }
-                                                    }
-                                                    catch (Exception ex){
+                                                    } catch (Exception ex) {
                                                         Log.d("", "onResponse: ");
                                                     }
                                                 }
-                                            }
-                                            catch (Exception ex){
+                                            } catch (Exception ex) {
                                                 Log.d("", "onResponse: ");
                                             }
-                                        }
-                                        catch (Exception ex){
+                                        } catch (Exception ex) {
                                             Log.d("", "onResponse: ");
                                         }
 
@@ -1094,13 +1064,12 @@ public class MyPageActivity extends AppCompatActivity {
                                         detailListCourseUnit2Data.add(mUnit2DataArrayList);
                                         detailListCourseUnit3Data.add(mUnit3DataArrayList);
 
-                                        GlobalVar.gEnrolledInstitution=detailList10;
+                                        GlobalVar.gEnrolledInstitution = detailList10;
                                     }
                                 } catch (Exception ex) {
                                     Log.d("", "onResponse: ");
                                 }
-                            }
-                            catch (Exception ex){
+                            } catch (Exception ex) {
                                 Log.d("", "onResponse: ");
                             }
 
@@ -1122,17 +1091,16 @@ public class MyPageActivity extends AppCompatActivity {
 
                             detailListCourse.add(modelAlter);
 
-                                    /*ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
+                            /*ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
 
                                     mArrayList = contentArray.get(0).toArray();
 
                                     GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
 
-                            GlobalVar.courseContentDetailList=detailListCourse;
+                            GlobalVar.courseContentDetailList = detailListCourse;
 
                             //GlobalVar.gEnrollCourseQuestionList= GlobalVar.courseContentDetailList.get(i).getmArrayListCourseQuizs();
-                        }
-                        catch (Exception ex){
+                        } catch (Exception ex) {
                             Log.d("", "onResponse: ");
                         }
 
@@ -1275,6 +1243,7 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sm.logoutUser();
+
             }
         });
 

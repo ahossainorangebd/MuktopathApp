@@ -102,16 +102,16 @@ public class MyPageFragment7 extends Fragment {
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseMultiArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseVideoPulseMulti().get(6);
-        final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(7);
+        final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(6);
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
-        final ArrayList<DetailDataModelCoursesDetailContents> quizes = quizArray.get(7);
+        final ArrayList<DetailDataModelCoursesDetailContents> quizes = quizArray.get(6);
 
         //Let's count the duration of Content/Quiz/Assignment
 
         final int nthCourse= 7;
-        int mAssignmentNumbers=GlobalVar.gEnrollCourseList.get(7).getmAssignmentNumbers();
-        int mExamNumbers=GlobalVar.gEnrollCourseList.get(7).getmExamNumbers();
+        int mAssignmentNumbers=GlobalVar.gEnrollCourseList.get(6).getmAssignmentNumbers();
+        int mExamNumbers=GlobalVar.gEnrollCourseList.get(6).getmExamNumbers();
         int mContentNumbers = contents.size();
 
         // Let's count the number of Units

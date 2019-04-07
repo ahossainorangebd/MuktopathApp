@@ -1241,7 +1241,7 @@ public class RecomendedActivity extends AppCompatActivity {
         {
             super.onPostExecute(result);
 
-            adapter=new RecyclerViewAdapterCategory1(detailListMainActivityCourse,mContext);
+            adapter=new RecyclerViewAdapterRecomTemp(detailListMainActivityCourse,mContext);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -1718,7 +1718,7 @@ public class RecomendedActivity extends AppCompatActivity {
         {
             super.onPostExecute(result);
 
-            adapter=new RecyclerViewAdapterCategory1(detailListMainActivityCourse,mContext);
+            adapter=new RecyclerViewAdapterRecomTemp(detailListMainActivityCourse,mContext);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -2195,7 +2195,7 @@ public class RecomendedActivity extends AppCompatActivity {
         {
             super.onPostExecute(result);
 
-            adapter=new RecyclerViewAdapterCategory1(detailListMainActivityCourse,mContext);
+            adapter=new RecyclerViewAdapterRecomTemp(detailListMainActivityCourse,mContext);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();

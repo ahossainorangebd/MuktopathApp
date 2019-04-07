@@ -9,11 +9,13 @@
     <color name="colorVoldemort">#000000</color>
     <color name="AppBackgroundColor2">#b3bbd1</color>
     <color name="AppBackgroundColor">#f3f3f3</color>
-    <color name="FooterBtnsColor">#eeeeee</color>
+    <color name="FooterBtnsColorOld">#eeeeee</color>
+    <color name="FooterBtnsColor">#fafafa</color>
     <color name="Colorpeace">#fff</color>
     <color name="AppTextColor">#7a19aa</color>
 
     <color name="colorFadedBlack">#282828</color>
+    <color name="colorTransparent">#00303F9F</color>
     <color name="colorGray">#8F8F8B</color>
     <color name="colorGrayLight">#c3c3c3</color>
 </resources>

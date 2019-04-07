@@ -884,11 +884,27 @@
 
     </LinearLayout>
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLight"
+        >
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#fff"
+        android:background="@color/FooterBtnsColor"
         android:layout_alignParentBottom="true"
         >
         <LinearLayout
@@ -1013,6 +1029,8 @@
 
         </LinearLayout>
 
+
+    </LinearLayout>
 
     </LinearLayout>
 

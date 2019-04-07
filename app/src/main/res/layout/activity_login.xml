@@ -124,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="25dp"
+                android:elevation="10dp"
                 >
 
             <android.support.design.widget.TextInputLayout
@@ -139,6 +140,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
+                    android:focusableInTouchMode="true"
                     >
 
                     <ImageView
@@ -221,6 +223,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_gravity="center"
+                        android:focusableInTouchMode="true"
                         >
 
                         <ImageView

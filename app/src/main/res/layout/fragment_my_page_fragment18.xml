@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#eaebed"
+    android:background="@color/Colorpeace"
     android:gravity="center"
     android:layout_gravity="center"
     android:orientation="vertical">
@@ -32,12 +32,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="160dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_marginTop="35dp"
-                android:padding="10dp"
+                android:padding="8dp"
                 >
 
                 <LinearLayout
@@ -55,7 +55,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="18dp"
+                        android:padding="8dp"
                         android:gravity="center"
                         >
 
@@ -113,7 +113,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="18dp"
+                        android:padding="8dp"
                         android:gravity="center"
                         >
 
@@ -177,7 +177,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="18dp"
+                        android:padding="8dp"
                         android:gravity="center"
                         >
 

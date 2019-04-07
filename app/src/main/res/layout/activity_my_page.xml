@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:openDrawer="start"
     tools:context=".MyPageActivity"
-    android:background="#f0f0f0">
+    android:background="@color/Colorpeace">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,8 +37,8 @@
         >
         <ImageView
             android:id="@+id/logOutBtnId"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:gravity="right"
             android:text="LogOut"
             android:layout_marginTop="10dp"
@@ -88,7 +88,7 @@
             android:gravity="center_vertical"
             android:outlineSpotShadowColor="@color/colorPrimary"
             app:selectedDotColor="@color/colorFadedBlack"
-            android:layout_marginTop="50dp"
+            android:layout_marginBottom="5dp"
             />
 
     </android.support.v4.view.ViewPager>

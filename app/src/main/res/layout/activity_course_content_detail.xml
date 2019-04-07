@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,38 +8,32 @@
     tools:context=".CourseDetailActivity"
     android:background="@color/Colorpeace"
     >
+
+
     <LinearLayout
+        android:id="@+id/videoLayOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
         <VideoView
             android:id="@+id/vdVw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
+
         <SeekBar
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:id="@+id/Progressbar"/>
 
-        <ImageButton
-            android:id="@+id/pause_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#ffffff"
-            android:src="@drawable/mukto_resume_icon_fresh"
-            />
-
         <TextView
             android:id="@+id/txtView"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-
 
     </LinearLayout>
 
@@ -50,22 +44,24 @@
 
     </WebView>-->
 
-            <TextView
-                android:padding="5dp"
-                android:id="@+id/courseTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="কোর্স টাইটেল লোডিং..."
-                android:textColor="#000"
-                android:layout_gravity="center"
-                android:textSize="18sp"
-                />
+    <TextView
+        android:padding="5dp"
+        android:id="@+id/courseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="কোর্স টাইটেল লোডিং..."
+        android:textColor="#000"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:layout_below="@+id/videoLayOut"
+        android:visibility="gone"
+        />
 
     <ScrollView
         android:id="@+id/detailPageScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/detailPageCoverPhoto"
+        android:layout_below="@+id/courseTitle"
         >
 
 
@@ -80,7 +76,6 @@
             android:layout_below="@+id/detailPageCoverPhoto"
             >
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,8 +85,6 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="10dp"
                 />
-
-
 
             <LinearLayout
                 android:id="@+id/detailTextLayout"
@@ -372,4 +365,24 @@
 
     </ScrollView>
 
-</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/pause_button"
+            android:foregroundGravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTransparent"
+            android:src="@drawable/mukto_video_pause_icon"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

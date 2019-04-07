@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Handler;
 
 import java.io.File;
 import java.util.HashMap;
@@ -14,6 +15,8 @@ public class SessionManager {
 
     // Editor for Shared preferences
     Editor editor;
+
+    private Handler mHandler = new Handler();
 
     // Context
     Context _context;
@@ -68,16 +71,26 @@ public class SessionManager {
         // Check login status
         if(!this.isLoggedIn()){
             // user is not logged in redirect him to Login Activity
-            Intent i = new Intent(_context, SplashActivity.class);
 
-            // Closing all the Activities
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-            // Add new Flag to start new Activity
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
-            // Staring Login Activity
-            _context.startActivity(i);
+                    Intent i = new Intent(_context, SplashActivity.class);
+
+                    // Closing all the Activities
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    // Add new Flag to start new Activity
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    // Staring Login Activity
+                    _context.startActivity(i);
+                }
+            }, 5000);
+
+
 
             return false;
         }

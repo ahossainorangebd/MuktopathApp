@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -86,6 +90,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     private ImageView imgPauseView;
 
+    private TextView mCustomContentTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,15 +99,15 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         context=this;
 
-        final View view = LayoutInflater.from(context).inflate(R.layout.custom_logodetails, null, false);
-        getSupportActionBar().hide();
+        final View view = LayoutInflater.from(context).inflate(R.layout.custom_logodetails_course_content_title, null, false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(view);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        titleTextView=findViewById(R.id.courseTitle);
+
+        //titleTextView=findViewById(R.id.courseTitle);
         detailDescTextView=findViewById(R.id.detailDesc);
 
         DetailDescription=getIntent().getExtras().getString("detail");
@@ -109,6 +115,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         eCode = getIntent().getExtras().getString("vcode");
         mUserNumber = getIntent().getExtras().getString("usernumber");
         timeStatus = getIntent().getExtras().getString("videostatus");
+
+        mCustomContentTitle=view.findViewById(R.id.muktoCustomContentTitle);
+        mCustomContentTitle.setText(title);
 
         //TODO
         //TODO
@@ -132,7 +141,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                     pausePosition = videoView.getCurrentPosition();
                     videoView.pause();
-                    imgPauseView.setImageResource(R.drawable.mukto_play_icon_fresh);
+                    imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
                     isVideoStarted=true;
                 }
 
@@ -141,14 +150,14 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     videoView.start();
                     mProgressBar.setProgress(pausePosition);
                     mProgressBar.postDelayed(onEverySecond, 1000);
-                    imgPauseView.setImageResource(R.drawable.mukto_resume_icon_fresh);
+                    imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
                     isVideoStarted=false;
                 }
             }
         });
 
 
-        titleTextView.setText(title);
+        //titleTextView.setText(title);
 
         detailDescTextView.getSettings().setJavaScriptEnabled(true);
         detailDescTextView.getSettings().setDomStorageEnabled(true);
@@ -399,5 +408,25 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.popupwindowforimage);
 
         dialog.show();
+    }
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_web_search, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }*/
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

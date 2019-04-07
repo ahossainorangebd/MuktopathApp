@@ -13,7 +13,7 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        card_view:cardBackgroundColor="#fff"
+        card_view:cardBackgroundColor="#eeeeee"
         card_view:cardCornerRadius="4dp"
         card_view:cardElevation="10dp">
 
@@ -36,7 +36,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
-                android:background="@color/Colorpeace"
+                android:background="#eee"
                 android:orientation="vertical"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="4dp"
@@ -47,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="5dp"
+                    android:background="#eee"
                     >
 
                     <TextView
