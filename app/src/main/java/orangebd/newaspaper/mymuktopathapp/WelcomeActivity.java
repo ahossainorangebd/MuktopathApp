@@ -50,10 +50,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        /*View view2 = findViewById(android.R.id.content);
+        View view2 = findViewById(android.R.id.content);
         Animation mLoadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
-        mLoadAnimation.setDuration(2000);
-        view2.startAnimation(mLoadAnimation);*/
+        mLoadAnimation.setDuration(1000);
+        view2.startAnimation(mLoadAnimation);
 
         sm= new SessionManager(mContext);
 

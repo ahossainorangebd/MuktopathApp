@@ -5,12 +5,20 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/Colorpeace"
     tools:context=".CreateAccountActivity"
     >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        >
+
 
     <!-- Login progress -->
     <ProgressBar
@@ -54,7 +62,7 @@
 
     <ScrollView
         android:id="@+id/login_form"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -129,7 +137,7 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 android:background="@drawable/button_style_edit_text"
@@ -212,7 +220,7 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:background="@drawable/button_style_edit_text"
@@ -285,6 +293,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         >
         <FrameLayout
             android:layout_width="80dp"
@@ -321,6 +331,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         >
 
         <ImageView
@@ -343,11 +355,27 @@
     <TextView
         android:id="@+id/goToregiPage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="রেজিস্ট্রেশন করুন"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:textColor="@color/colorPain"
         />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/mukto_login_footer"
+        />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

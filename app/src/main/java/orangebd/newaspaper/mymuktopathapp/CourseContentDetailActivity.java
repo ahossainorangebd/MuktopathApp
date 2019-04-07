@@ -58,7 +58,12 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     String title;
     private String eCode;
     private String timeStatus;
+    private String mListPosition;
     private String mUserNumber;
+
+
+    private boolean isGotQuestion;
+    private boolean isNoQuestion;
 
     private TextView titleTextView;
     private WebView detailDescTextView;
@@ -116,17 +121,65 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         mUserNumber = getIntent().getExtras().getString("usernumber");
         timeStatus = getIntent().getExtras().getString("videostatus");
 
+        int listPositionNumber = Integer.parseInt(GlobalVar.gListPosition);
+
         mCustomContentTitle=view.findViewById(R.id.muktoCustomContentTitle);
         mCustomContentTitle.setText(title);
 
         //TODO
         //TODO
-        //final String firstPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
 
-        /*String secondPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+        /*String firstPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
+        String secondPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
         String thirdPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
         String fourthPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
         String fifthPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();*/
+
+        /*for(int allPulse=0; allPulse<GlobalVar.gThisVideoPulses.size(); allPulse++){
+
+            int eachPulse = GlobalVar.gThisVideoPulses.get(allPulse).getmPulseOfVideoMultiId();
+
+            if(eachPulse==listPositionNumber) {
+                String getPulse = GlobalVar.gThisVideoPulses.get(allPulse).getmPulseOfVideoMulti();
+                Toast.makeText(context,"This video has question.",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(context,"This video has no question.",Toast.LENGTH_SHORT).show();
+            }
+        }*/
+
+
+
+
+        for(int allPulse=0; allPulse<GlobalVar.thisFragmentPulses.size(); allPulse++){
+
+            int eachPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMultiId();
+
+            if(eachPulse==listPositionNumber) {
+                String getPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMulti();
+                Toast.makeText(context,"This video has question.",Toast.LENGTH_SHORT).show();
+
+                isGotQuestion=true;
+            }
+            else {
+
+                if(isNoQuestion==false){
+
+                    if(isGotQuestion==true){
+                        String nothing="Nothing";
+                    }
+                    else {
+                        Toast.makeText(context, "This video has no question.", Toast.LENGTH_SHORT).show();
+                        isNoQuestion=true;
+                    }
+                }
+                else {
+                    String mNothing="nothing";
+                }
+            }
+        }
+
+
 
         //String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode;
         //finalVideoUrl = "<video controls='controls' autoplay='1' src="+ videoUrl+ " height='220' width='350' type='video/mp4' " + "#t=" + timeStatus +  "></video>";

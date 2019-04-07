@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,7 +43,6 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
     // private ImageView mainImage;
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
-
         TextView textViewName;
         TextView textViewVersion;
         TextView textViewVersion2;
@@ -98,6 +98,8 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         final String timeStatus=dataSet.get(listPosition).getStatus_content();
         final String ownerId=dataSet.get(listPosition).getOwner_id();
 
+        final int lPosition=listPosition;
+
         ArrayList<String> pulseArray = new ArrayList<>();
 
         for(int pulseN=0; pulseN<GlobalVar.thisFragmentPulses.size(); pulseN++) {
@@ -116,58 +118,8 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
             @Override
             public void onClick(View v)
             {
-                try {
-                    GlobalVar.gThisVideoPulses = GlobalVar.thisFragmentPulses.get(listPosition);
-                    GlobalVar.gThisVideoPulsesQs = GlobalVar.thisFragmentPulseQs.get(listPosition);
-
-                /*if (GlobalVar.gThisVideoPulses.size()==GlobalVar.thisFragmentContents.size()){
-
-                    for(int checkKey=0; checkKey<GlobalVar.gThisVideoPulses.size(); checkKey++){
-                        int aaaa=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMultiId();
-                        String accurate=GlobalVar.gThisVideoPulses.get(checkKey).getmPulseOfVideoMulti();
-                    }
-                }*/
-
-                try {
-                    for (int checkKey = 0; checkKey < GlobalVar.thisFragmentPulses.size(); checkKey++) {
-
-                        ArrayList <DetailDataModelCoursesDetailContents> pulseWithContentList = GlobalVar.gThisVideoPulses;
-
-
-                        try {
-                            int getPulseId = pulseWithContentList.get(checkKey).getmPulseOfVideoMultiId();
-
-                            String aaaqqwe="aq";
-                        }
-                        catch (Exception ex){
-                            Log.d("", "onClick: ");
-                        }
-
-                        String aaaqqq="";
-
-
-                        String aaaaaa="";
-                    }
-                }
-                catch (Exception ex){
-                    Log.d("", "onClick: ");
-                }
-
-
-                    /*int contentPulseid = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMultiId();
-
-                    if (listPosition == contentPulseid) {
-                        String thisPulse = GlobalVar.gThisVideoPulses.get(0).getmPulseOfVideoMulti();
-                    }*/
-
-
-                    String aaa = "";
-
-                }
-                catch (Exception ex){
-                    Log.d("", "onClick: ");
-                }
-
+                GlobalVar.gThisVideoPulses = GlobalVar.thisFragmentPulses.get(listPosition);
+                GlobalVar.gThisVideoPulsesQs = GlobalVar.thisFragmentPulseQs.get(listPosition);
 
                 Intent i = new Intent(mContext, CourseContentDetailActivity.class);
                 i.putExtra("ttl", titleText);
@@ -176,12 +128,9 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
                 i.putExtra("vcode", videoCode);
                 i.putExtra("videostatus", timeStatus);
 
+                GlobalVar.gListPosition=Integer.toString(listPosition);
 
-
-
-
-
-
+                String aqwqw="";
 
                 //i.putExtra("img", CoverPhoto);
                 try {

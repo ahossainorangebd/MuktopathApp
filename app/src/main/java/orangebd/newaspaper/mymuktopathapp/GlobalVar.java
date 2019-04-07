@@ -9,6 +9,8 @@ public class GlobalVar {
 
     public static ArrayList<ParentMenu> gParentMenue;
 
+    public static String gListPosition;
+
 
     public static ArrayList<String> gRecommendedCategories;
     public static ArrayList<String> gRecommendedCategoriesEn;
