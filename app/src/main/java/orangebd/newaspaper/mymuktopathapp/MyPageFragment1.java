@@ -93,7 +93,9 @@ public class MyPageFragment1 extends Fragment {
         mExamNumberSection = view.findViewById(R.id.mExamNumberSection);
 
         final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(0).getmCourseAliasName();
-        final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(0).getInstitution_name_owner();
+        //TODO
+        //TODO
+        //final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(0).getInstitution_name_owner();
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
 
@@ -115,15 +117,20 @@ public class MyPageFragment1 extends Fragment {
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse);
 
+        final ArrayList<DetailDataModelCoursesDetailContents> mQuizParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(nthCourse);
+
         int unitSize = units.size();
         GlobalVar.gEnrolledCourseUnitSize=unitSize;
 
         int mAssignmentNumbers=GlobalVar.gEnrollCourseList.get(0).getmAssignmentNumbers();
         int mExamNumbers=GlobalVar.gEnrollCourseList.get(0).getmExamNumbers();
+        int mQuizNumbers=mQuizParents.size();
         int mContentNumbers = contents.size();
 
         mCourseTitle.setText(enrolledCourseTitle);
-        mCourseOwner.setText(enrolledCourseOwner);
+        //TODO
+        //TODO
+        //mCourseOwner.setText(enrolledCourseOwner);
         mExmNumberTtl.setText(Integer.toString(mAssignmentNumbers));
         mAssignmentNumberTtl.setText(Integer.toString(mExamNumbers));
         mContentNumberTtl.setText(Integer.toString(mContentNumbers));
@@ -200,7 +207,10 @@ public class MyPageFragment1 extends Fragment {
 
                 i.putExtra("ttl", enrolledCourseTitle);
                 i.putExtra("img", CoverPhoto);
-                i.putExtra("oname", enrolledCourseOwner);
+
+                //TODO
+                //TODO
+                //i.putExtra("oname", enrolledCourseOwner);
                 i.putExtra("nthcourse", nthCourse);
 
                 GlobalVar.thisFragmentContents=contents;

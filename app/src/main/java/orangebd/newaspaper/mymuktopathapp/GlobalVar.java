@@ -66,6 +66,9 @@ public class GlobalVar {
     public static String gBaseUrl="http://muktopaath.orangebd.com";
 
     public static String gApiBaseUrl="http://testapi.muktopaath.orangebd.com";
+   //TODO
+    //TODO
+    //public static String gApiBaseUrl="http://testapi.muktopaath.orangebd.com";
 
     public static int gNthCourse;
 

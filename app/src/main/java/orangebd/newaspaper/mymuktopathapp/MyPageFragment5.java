@@ -93,6 +93,8 @@ public class MyPageFragment5 extends Fragment {
         mContentNumberSection = view.findViewById(R.id.contentNumberSection);
         mExamNumberSection = view.findViewById(R.id.mExamNumberSection);
 
+        final int nthCourse= 4;
+
         final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(3).getmCourseAliasName();
         final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(3).getInstitution_name_owner();
 
@@ -104,12 +106,15 @@ public class MyPageFragment5 extends Fragment {
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
         final ArrayList<DetailDataModelCoursesDetailContents> quizes = quizArray.get(4);
 
+        final ArrayList<DetailDataModelCoursesDetailContents> mQuizParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(nthCourse);
+
         //Let's count the duration of Content/Quiz/Assignment
         
-        final int nthCourse= 4;
+
         int mAssignmentNumbers=GlobalVar.gEnrollCourseList.get(4).getmAssignmentNumbers();
         int mExamNumbers=GlobalVar.gEnrollCourseList.get(4).getmExamNumbers();
         int mContentNumbers = contents.size();
+        int mQuizNumbers=mQuizParents.size();
 
         // Let's count the number of Units
         GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse-1).size();

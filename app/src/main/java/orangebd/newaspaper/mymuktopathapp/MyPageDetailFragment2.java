@@ -79,7 +79,7 @@ public class MyPageDetailFragment2 extends Fragment {
 
         arrayParents = new ArrayList<ParentMenu>();
 
-        for (int i=0;i<mQuizParents.size();i++)
+        /*for (int i=0;i<mQuizParents.size();i++)
         {
             ParentMenu parent = new ParentMenu();
 
@@ -102,6 +102,8 @@ public class MyPageDetailFragment2 extends Fragment {
 
             for(int child=0; child<mQuizOptionChilds.size(); child++)
             {
+
+
 
                 try {
                      childID = mQuizOptionChilds.get(i).get(child).getmOptionBody();
@@ -156,7 +158,7 @@ public class MyPageDetailFragment2 extends Fragment {
 
                             String abcd="";
 
-                            /*for(int tap=0; tap<answerList.size(); tap++) {
+                            *//*for(int tap=0; tap<answerList.size(); tap++) {
                                 CharSequence checkedAns=buttonView.getText();
                                 String ans=answerList.get(tap).getCat_name();
 
@@ -164,34 +166,13 @@ public class MyPageDetailFragment2 extends Fragment {
 
 
                                 }
-                            }*/
+                            }*//*
                         }
                     }
                 }
                 );
-
-
-
             }
-
-
-
-
-
-        }
-
-
-
-
-        //TODO
-        /*mExpandableList.setAdapter(new MyCustomAdapterQuiz(context,arrayParents,mExpandableList));
-        mExpandableList.setGroupIndicator(null);
-        mExpandableList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                return true;
-            }
-        });*/
+        }*/
 
 
         /**end of expandable list for questions and options*/
@@ -222,58 +203,7 @@ public class MyPageDetailFragment2 extends Fragment {
             }
         });
 
-        //setRecyclerView();
-
         return view;
 
     }
-
-    /*private void setRecyclerView() {
-
-        recyclerView = view.findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-
-        recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.setNestedScrollingEnabled(false);
-
-        new GetCoursesContents().execute();
-    }*/
-
-    /*public class GetCoursesContents extends AsyncTask<String, Void, Void>
-    {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            //mProgressSpinner.setIndeterminate(true);
-            //mProgressSpinner.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected Void doInBackground(String... arg0) {
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            //adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
-            try {
-                adapter = new RecyclerViewAdapterMyPageQuizes(GlobalVar.thisFragmentQuizes, context);
-            }
-            catch (Exception ex){
-                Log.d("", "onPostExecute: ");
-            }
-
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-            //mProgressSpinner.setVisibility(View.GONE);
-        }
-    }*/
 }

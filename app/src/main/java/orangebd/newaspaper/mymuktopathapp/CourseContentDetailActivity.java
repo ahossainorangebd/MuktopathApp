@@ -308,11 +308,11 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                     isVideoStarted=false;
 
-                    if (!isVideoStarted) {
+                    if (!isVideoStarted){
 
                         pausePosition = videoView.getCurrentPosition();
                         videoView.pause();
-                        imgPauseView.setImageResource(R.drawable.play_icon_mukto);
+                        imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
                         isVideoStarted=true;
                     }
 
@@ -321,15 +321,11 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                         videoView.start();
                         mProgressBar.setProgress(pausePosition);
                         mProgressBar.postDelayed(onEverySecond, 1000);
-                        imgPauseView.setImageResource(R.drawable.pause_icon_mukto);
+                        imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
                         isVideoStarted=false;
                     }
 
-
                     showPopUpImageBox();
-
-
-
                 }
 
                 textView.setText(""+seconds);

@@ -1,6 +1,7 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -48,6 +49,12 @@ public class MyPageDetailFragment3 extends Fragment {
 
             unitOrderText.setText(unitOrder);
             unitTitleText.setText(unitTitle);
+
+            if(unitTitle.equalsIgnoreCase("কুইজ")) {
+                Intent i = new Intent(context, SlidingQuizActivity.class);
+                view.getContext().startActivity(i);
+            }
+
         }
         else {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();

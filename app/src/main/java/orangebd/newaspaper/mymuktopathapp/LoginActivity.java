@@ -245,7 +245,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (mStrEmail.contains("@")) {
 
 
-                            GlobalVar.gIsLogin=sm.checkLogin();
+                            //GlobalVar.gIsLogin=sm.checkLogin();
 
                             if(!GlobalVar.gIsLogin) {
 
@@ -674,20 +674,20 @@ public class LoginActivity extends AppCompatActivity {
                                                                     DetailDataModelCourses model9 = new DetailDataModelCourses();
 
                                                                     String education_statusUpdatedBy = jObjectUpdatedBy.getString("education_status");
-                                                                    String emailUpdatedBy = jObjectUpdatedBy.getString("email");
+                                                                    //String emailUpdatedBy = jObjectUpdatedBy.getString("email");
                                                                     String idUpdatedBy = jObjectUpdatedBy.getString("id");
-                                                                    String nameUpdatedBy = jObjectUpdatedBy.getString("name");
-                                                                    String phoneUpdatedBy = jObjectUpdatedBy.getString("phone");
-                                                                    String UserInfoUpdatedBy = jObjectUpdatedBy.getString("UserInfo");
-                                                                    String usernameUpdatedBy = jObjectUpdatedBy.getString("username");
+                                                                    //String nameUpdatedBy = jObjectUpdatedBy.getString("name");
+                                                                    //String phoneUpdatedBy = jObjectUpdatedBy.getString("phone");
+                                                                    //String UserInfoUpdatedBy = jObjectUpdatedBy.getString("UserInfo");
+                                                                    //String usernameUpdatedBy = jObjectUpdatedBy.getString("username");
 
                                                                     model9.setEducation_statusUpdatedBy(education_statusUpdatedBy);
-                                                                    model9.setEmailUpdatedBy(emailUpdatedBy);
+                                                                    //model9.setEmailUpdatedBy(emailUpdatedBy);
                                                                     model9.setIdUpdatedBy(idUpdatedBy);
-                                                                    model9.setNameUpdatedBy(nameUpdatedBy);
-                                                                    model9.setPhoneUpdatedBy(phoneUpdatedBy);
-                                                                    model9.setUserInfoUpdatedBy(UserInfoUpdatedBy);
-                                                                    model9.setUsernameUpdatedBy(usernameUpdatedBy);
+                                                                    //model9.setNameUpdatedBy(nameUpdatedBy);
+                                                                    //model9.setPhoneUpdatedBy(phoneUpdatedBy);
+                                                                    //model9.setUserInfoUpdatedBy(UserInfoUpdatedBy);
+                                                                    //model9.setUsernameUpdatedBy(usernameUpdatedBy);
 
                                                                     //for parsing owner strings
                                                                     JSONObject jObjectOwner = objectCourse2.getJSONObject("owner");
@@ -713,20 +713,20 @@ public class LoginActivity extends AppCompatActivity {
                                                                     DetailDataModelCourses model11 = new DetailDataModelCourses();
 
                                                                     String education_statusCreatedBy = jObjectCreatedBy.getString("education_status");
-                                                                    String emailCreatedBy = jObjectCreatedBy.getString("email");
+                                                                    //String emailCreatedBy = jObjectCreatedBy.getString("email");
                                                                     String idCreatedBy = jObjectCreatedBy.getString("id");
-                                                                    String nameCreatedBy = jObjectCreatedBy.getString("name");
-                                                                    String phoneCreatedBy = jObjectCreatedBy.getString("phone");
-                                                                    String UserInfoCreatedBy = jObjectCreatedBy.getString("UserInfo");
-                                                                    String usernameCreatedBy = jObjectCreatedBy.getString("username");
+                                                                    //String nameCreatedBy = jObjectCreatedBy.getString("name");
+                                                                    //String phoneCreatedBy = jObjectCreatedBy.getString("phone");
+                                                                    //String UserInfoCreatedBy = jObjectCreatedBy.getString("UserInfo");
+                                                                    //String usernameCreatedBy = jObjectCreatedBy.getString("username");
 
                                                                     model11.setEducation_statusUpdatedBy(education_statusCreatedBy);
-                                                                    model11.setEmailUpdatedBy(emailCreatedBy);
+                                                                    //model11.setEmailUpdatedBy(emailCreatedBy);
                                                                     model11.setIdCreatedBy(idCreatedBy);
-                                                                    model11.setNameCreatedBy(nameCreatedBy);
-                                                                    model11.setPhoneCreatedBy(phoneCreatedBy);
-                                                                    model11.setUserInfoCreatedBy(UserInfoCreatedBy);
-                                                                    model11.setUsernameCreatedBy(usernameCreatedBy);
+                                                                    //model11.setNameCreatedBy(nameCreatedBy);
+                                                                    //model11.setPhoneCreatedBy(phoneCreatedBy);
+                                                                    //model11.setUserInfoCreatedBy(UserInfoCreatedBy);
+                                                                    //model11.setUsernameCreatedBy(usernameCreatedBy);
 
                                                                     // parsing from syllebus
                                                                     try {
@@ -843,55 +843,60 @@ public class LoginActivity extends AppCompatActivity {
                                                                                     try {
                                                                                         DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
-                                                                                        JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
+                                                                                        if(choose_video_type.equalsIgnoreCase("1")){
+                                                                                            JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
 
-                                                                                        String cat_id = jObjAgainContent.getString("cat_id");
-                                                                                        String content_id = jObjAgainContent.getString("content_id");
-                                                                                        String copy_protect = jObjAgainContent.getString("copy_protect");
-                                                                                        String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
-                                                                                        String created_at_content = jObjAgainContent.getString("created_at");
-                                                                                        String created_by_content = jObjAgainContent.getString("created_by");
-                                                                                        String deleted_at_content = jObjAgainContent.getString("deleted_at");
-                                                                                        String description_content = jObjAgainContent.getString("description");
-                                                                                        String file_encode_path = jObjAgainContent.getString("file_encode_path");
-                                                                                        String file_name = jObjAgainContent.getString("file_name");
-                                                                                        String id_content = jObjAgainContent.getString("id");
-                                                                                        String license = jObjAgainContent.getString("license");
-                                                                                        String owner_id = jObjAgainContent.getString("owner_id");
-                                                                                        String paid = jObjAgainContent.getString("paid");
-                                                                                        String price = jObjAgainContent.getString("price");
-                                                                                        String shareable = jObjAgainContent.getString("shareable");
-                                                                                        String size = jObjAgainContent.getString("size");
-                                                                                        String status_content = jObjAgainContent.getString("status");
-                                                                                        String tags = jObjAgainContent.getString("tags");
-                                                                                        String title_content = jObjAgainContent.getString("title");
-                                                                                        String type_content = jObjAgainContent.getString("type");
-                                                                                        String updated_at_content = jObjAgainContent.getString("updated_at");
-                                                                                        String updated_by_content = jObjAgainContent.getString("updated_by");
+                                                                                            String cat_id = jObjAgainContent.getString("cat_id");
+                                                                                            String content_id = jObjAgainContent.getString("content_id");
+                                                                                            String copy_protect = jObjAgainContent.getString("copy_protect");
+                                                                                            String cover_thumb_img = jObjAgainContent.getString("cover_thumb_img");
+                                                                                            String created_at_content = jObjAgainContent.getString("created_at");
+                                                                                            String created_by_content = jObjAgainContent.getString("created_by");
+                                                                                            String deleted_at_content = jObjAgainContent.getString("deleted_at");
+                                                                                            String description_content = jObjAgainContent.getString("description");
+                                                                                            String file_encode_path = jObjAgainContent.getString("file_encode_path");
+                                                                                            String file_name = jObjAgainContent.getString("file_name");
+                                                                                            String id_content = jObjAgainContent.getString("id");
+                                                                                            String license = jObjAgainContent.getString("license");
+                                                                                            String owner_id = jObjAgainContent.getString("owner_id");
+                                                                                            String paid = jObjAgainContent.getString("paid");
+                                                                                            String price = jObjAgainContent.getString("price");
+                                                                                            String shareable = jObjAgainContent.getString("shareable");
+                                                                                            String size = jObjAgainContent.getString("size");
+                                                                                            String status_content = jObjAgainContent.getString("status");
+                                                                                            String tags = jObjAgainContent.getString("tags");
+                                                                                            String title_content = jObjAgainContent.getString("title");
+                                                                                            String type_content = jObjAgainContent.getString("type");
+                                                                                            String updated_at_content = jObjAgainContent.getString("updated_at");
+                                                                                            String updated_by_content = jObjAgainContent.getString("updated_by");
 
-                                                                                        modelCourseContents.setPaid(paid);
-                                                                                        modelCourseContents.setPrice(price);
-                                                                                        modelCourseContents.setShareable(shareable);
-                                                                                        modelCourseContents.setStatus_content(status_content);
-                                                                                        modelCourseContents.setSize(size);
-                                                                                        modelCourseContents.setTags(tags);
-                                                                                        modelCourseContents.setTitle_content(title_content);
-                                                                                        modelCourseContents.setType_content(type_content);
-                                                                                        modelCourseContents.setUpdated_at_content(updated_at_content);
-                                                                                        modelCourseContents.setUpdated_by_content(updated_by_content);
-                                                                                        modelCourseContents.setCat_id(cat_id);
-                                                                                        modelCourseContents.setContent_id(content_id);
-                                                                                        modelCourseContents.setCopy_protect(copy_protect);
-                                                                                        modelCourseContents.setCover_thumb_img(cover_thumb_img);
-                                                                                        modelCourseContents.setCreated_by_content(created_by_content);
-                                                                                        modelCourseContents.setDeleted_at_content(deleted_at_content);
-                                                                                        modelCourseContents.setmDesc(desc);
-                                                                                        modelCourseContents.setFile_encode_path(file_encode_path);
-                                                                                        modelCourseContents.setFile_name(file_name);
-                                                                                        modelCourseContents.setId_content(id_content);
-                                                                                        modelCourseContents.setLicense(license);
-                                                                                        modelCourseContents.setOwner_id(owner_id);
-                                                                                        modelCourseContents.setCreated_at_content(created_at_content);
+                                                                                            modelCourseContents.setPaid(paid);
+                                                                                            modelCourseContents.setPrice(price);
+                                                                                            modelCourseContents.setShareable(shareable);
+                                                                                            modelCourseContents.setStatus_content(status_content);
+                                                                                            modelCourseContents.setSize(size);
+                                                                                            modelCourseContents.setTags(tags);
+                                                                                            modelCourseContents.setTitle_content(title_content);
+                                                                                            modelCourseContents.setType_content(type_content);
+                                                                                            modelCourseContents.setUpdated_at_content(updated_at_content);
+                                                                                            modelCourseContents.setUpdated_by_content(updated_by_content);
+                                                                                            modelCourseContents.setCat_id(cat_id);
+                                                                                            modelCourseContents.setContent_id(content_id);
+                                                                                            modelCourseContents.setCopy_protect(copy_protect);
+                                                                                            modelCourseContents.setCover_thumb_img(cover_thumb_img);
+                                                                                            modelCourseContents.setCreated_by_content(created_by_content);
+                                                                                            modelCourseContents.setDeleted_at_content(deleted_at_content);
+                                                                                            modelCourseContents.setmDesc(desc);
+                                                                                            modelCourseContents.setFile_encode_path(file_encode_path);
+                                                                                            modelCourseContents.setFile_name(file_name);
+                                                                                            modelCourseContents.setId_content(id_content);
+                                                                                            modelCourseContents.setLicense(license);
+                                                                                            modelCourseContents.setOwner_id(owner_id);
+                                                                                            modelCourseContents.setCreated_at_content(created_at_content);
+                                                                                        }
+                                                                                        else {
+                                                                                            JSONArray jObjAgainContent = jSObject3.getJSONArray("content");
+                                                                                        }
 
                                                                                         mContentArrayListNew.add(modelCourseContents);
                                                                                     } catch (Exception ex) {

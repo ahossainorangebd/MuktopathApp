@@ -82,6 +82,8 @@ public class MyPageFragment21 extends Fragment {
         }
         catch (Exception ex){}
 
+        final int nthCourse= 20;
+
         mCourseTitle = view.findViewById(R.id.courseTitle);
         mCourseOwner = view.findViewById(R.id.ownerName);
         mExmNumberTtl = view.findViewById(R.id.examNumber);
@@ -103,12 +105,14 @@ public class MyPageFragment21 extends Fragment {
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
         final ArrayList<DetailDataModelCoursesDetailContents> quizes = quizArray.get(20);
 
+        final ArrayList<DetailDataModelCoursesDetailContents> mQuizParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(nthCourse);
+
         //Let's count the duration of Content/Quiz/Assignment
 
-        final int nthCourse= 9;
         int mAssignmentNumbers=GlobalVar.gEnrollCourseList.get(20).getmAssignmentNumbers();
         int mExamNumbers=GlobalVar.gEnrollCourseList.get(20).getmExamNumbers();
         int mContentNumbers = contents.size();
+        int mQuizNumbers=mQuizParents.size();
 
         // Let's count the number of Units
         GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse-1).size();
