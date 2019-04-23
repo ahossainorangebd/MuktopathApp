@@ -84,7 +84,8 @@ public class CourseDetailActivity extends AppCompatActivity {
     String urlEnrollThis = GlobalVar.gApiBaseUrl +"/api/course-enrollment";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
 
@@ -341,7 +342,7 @@ public class CourseDetailActivity extends AppCompatActivity {
                     enrollText.setText("ENROLL"+ paymentStatusFreeOrNot);
                 }
                 else if (mCheckStatus.equalsIgnoreCase("1")) {
-                    enrollText.setText("ENROLLED" + paymentStatusFreeOrNot);
+                    enrollText.setText("আপনি ইতিমধ্যে কোর্সটিতে অংশগ্রহণ করেছেন" + paymentStatusFreeOrNot);
                 }
                 else if (mCheckStatus.equalsIgnoreCase("3")) {
                     enrollText.setText("Coordinator");

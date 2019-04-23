@@ -48,7 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView mUserName;
 
-    private SessionManager sm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +56,6 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         mContext=this;
-
-        sm= new SessionManager(mContext);
-        HashMap<String, String> mSpInfo=sm.getUserDetails();
-
-        String emailFromCache = mSpInfo.get("email");
-        String passwordFromChache = mSpInfo.get("password");
 
         /*View view = LayoutInflater.from(mContext).inflate(R.layout.custom_logodetails, null, false);
 
@@ -88,15 +82,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         mUserName=findViewById(R.id.userNameId);
         mUserName.setText(GlobalVar.gName);
-
-        ImageView mLogOutBtn = findViewById(R.id.logOutBtnId);
-        mLogOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showPopUpImageBox();
-            }
-        });
 
 
         String mUserCoverPhoto = GlobalVar.gBaseUrlForProfile + "/images/profile/" + GlobalVar.courseContentDetailList.get(0).getmUserInformationArrayList().get(0).getmUserCoverPhoto();
@@ -210,34 +195,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    private void showPopUpImageBox()
-    {
-        // custom dialog
-        final Dialog dialog = new Dialog(mContext, R.style.DialogCustomTheme);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.popupwindowforlogout);
-
-        Button mLogOutYes=dialog.findViewById(R.id.logOutYes);
-        mLogOutYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sm.logoutUser();
-
-            }
-        });
-
-        Button mLogOutNo=dialog.findViewById(R.id.logOutNo);
-        mLogOutNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
     }
 
 }

@@ -627,68 +627,6 @@
                 android:orientation="vertical"
                 />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                android:text="কোর্সের বিবরণ"
-                android:textSize="18sp"
-                android:textColor="@color/colorVoldemort"
-                />
-
-            <TextView
-                android:id="@+id/courseDescId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/colorVoldemort"
-                android:textSize="16sp"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                android:text="কোর্সের উদ্দেশ্য"
-                android:textSize="18sp"
-                android:textColor="@color/colorVoldemort"
-                />
-
-            <TextView
-                android:id="@+id/courseObjectiveId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/colorVoldemort"
-                android:textSize="16sp"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                android:text="কোর্স বিবরণ"
-                android:textSize="18sp"
-                android:textColor="@color/colorVoldemort"
-                android:visibility="gone"
-                />
-
-            <TextView
-                android:id="@+id/courseMottoId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/colorVoldemort"
-                android:visibility="gone"
-                android:textSize="16sp"
-                />
-
         </LinearLayout>
 
     </ScrollView>

@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity"
+    android:orientation="vertical"
+    android:layout_marginTop="0dp"
+    android:background="@color/Colorpeace"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/settings_notification_icon"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Push Notification"
+                    android:textStyle=""
+                    android:textSize="18sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+                <Switch
+                    android:id="@+id/onOffPushNotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:switchMinWidth="56dp"
+                    android:checked="true"
+                    android:textOff="OFF"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:textOn="ON"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/settings_calender_icon"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sync calender"
+                    android:textStyle=""
+                    android:textSize="18sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+                <Switch
+                    android:id="@+id/onOffSyncCalender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:switchMinWidth="56dp"
+                    android:checked="true"
+                    android:textOff="OFF"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:textOn="ON"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border_grey_layout"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="COURSE CONTENT"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/settings_wifi_icon"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Download on wify only"
+                    android:textStyle=""
+                    android:textSize="18sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+                <Switch
+                    android:id="@+id/onOffDownloadOnWify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:switchMinWidth="56dp"
+                    android:checked="true"
+                    android:textOff="OFF"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:textOn="ON"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/delete_blue_icon"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Delete autometically"
+                    android:textStyle=""
+                    android:textSize="18sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+                <Switch
+                    android:id="@+id/onOffDeleteCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:switchMinWidth="56dp"
+                    android:checked="true"
+                    android:textOff="OFF"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginLeft="20dp"
+                    android:textOn="ON"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border_grey_layout"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="SUPPORT"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/suppoerHelp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/settings_message_icon"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Help"
+                    android:textStyle=""
+                    android:textSize="18sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/feedBackId"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/settings_message_icon"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Feedback."
+                    android:textSize="18sp"
+                    android:textStyle=""
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border_grey_layout"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="ABOUT"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/termsCondi"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/settings_information_icon"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Terms and conditions."
+                    android:textSize="18sp"
+                    android:textStyle=""
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/privacyPoli"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/settings_information_icon"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy policy."
+                    android:textSize="18sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle=""
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border_grey_layout"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="ACCOUNT SETTINGS"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/settings_change_password"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Change password"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:textStyle=""
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border_grey_layout"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="LOGOUT"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logOutBtnId"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/mukto_logout_btn"
+                    />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Log Out"
+                    android:textStyle=""
+                    android:textSize="18sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Version "
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/settingsVersionName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="loading..."
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

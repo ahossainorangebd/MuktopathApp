@@ -167,4 +167,10 @@ public class GlobalVar {
     public static String gCourseObj;
     public static String gCourseDesc;
 
+
+    //push notification
+
+    public static boolean isDownloadOnWifyOnly;
+    public static boolean isDeleteAutometically;
+
 }

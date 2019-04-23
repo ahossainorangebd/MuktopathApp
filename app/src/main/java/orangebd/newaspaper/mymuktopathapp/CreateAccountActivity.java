@@ -128,8 +128,6 @@ public class CreateAccountActivity extends AppCompatActivity{
         mEdtTxtPwdConfirm = findViewById(R.id.confirm_password);
         mSpinnerProfCat=findViewById(R.id.spnrProfessionCategory);
 
-        new GetBasicData().execute(basicInfourl);
-
         token = GlobalVar.getTokenArray.get(0).getmAccessToken();
         String firstWord = GlobalVar.getTokenArray.get(0).getmTokenType();
 
@@ -199,19 +197,6 @@ public class CreateAccountActivity extends AppCompatActivity{
             }
         });
 
-        try {
-
-            ccCat.add("পেশা");
-
-            for(int nthProfTtl=0; nthProfTtl<detailListProfessions.size(); nthProfTtl++){
-                ccCat.add(detailListProfessions.get(nthProfTtl).getmProfessionTitleBn());
-
-                String qwwret="";
-            }
-        }
-        catch (Exception ex){
-            Log.d("", "onCreate: ");
-        }
 
         ArrayAdapter<String> spinnerArrayAdapterCCCat = new ArrayAdapter<>(mContext, R.layout.spinner_item_prof_info, ccCat);
         spinnerArrayAdapterCCCat.setDropDownViewResource(R.layout.spinner_item);
@@ -242,6 +227,8 @@ public class CreateAccountActivity extends AppCompatActivity{
 
             }
         });
+
+        new GetBasicData().execute(basicInfourl);
     }
 
     public String  performPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -370,6 +357,19 @@ public class CreateAccountActivity extends AppCompatActivity{
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+
+            try {
+                ccCat.add("পেশা");
+
+                for(int nthProfTtl=0; nthProfTtl<detailListProfessions.size(); nthProfTtl++){
+                    ccCat.add(detailListProfessions.get(nthProfTtl).getmProfessionTitleBn());
+
+                    String qwwret="";
+                }
+            }
+            catch (Exception ex){
+                Log.d("", "onCreate: ");
+            }
         }
     }
 }

@@ -140,6 +140,8 @@
                 android:orientation="vertical"
                 />
 
+
+
     </LinearLayout>
 
     </LinearLayout>
@@ -165,10 +167,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="LOADING...."
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textStyle="bold"
             android:textColor="@color/Colorpeace"
             />
     </LinearLayout>

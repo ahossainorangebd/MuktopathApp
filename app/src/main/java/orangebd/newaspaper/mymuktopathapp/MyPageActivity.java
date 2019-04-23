@@ -165,6 +165,8 @@ public class MyPageActivity extends AppCompatActivity {
 
     private String totalQuizNumber;
 
+    private ImageView mSettingsBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,8 +191,18 @@ public class MyPageActivity extends AppCompatActivity {
         profileBtn = findViewById(R.id.profilePageBtnId);
         enrolledCourse = findViewById(R.id.enrolledCourseNo);
 
-        sm= new SessionManager(mContext);
 
+        mSettingsBtn=findViewById(R.id.settingsBtn);
+        mSettingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(mContext, SettingsActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        sm= new SessionManager(mContext);
 
         HashMap<String, String> mSpInfo=sm.getUserDetails();
 

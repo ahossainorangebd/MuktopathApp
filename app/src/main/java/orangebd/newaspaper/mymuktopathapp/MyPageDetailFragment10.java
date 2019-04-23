@@ -120,14 +120,6 @@ public class MyPageDetailFragment10 extends Fragment {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
         }
 
-        TextView mCDesc=view.findViewById(R.id.courseDescId);
-        TextView mCMto=view.findViewById(R.id.courseMottoId);
-        TextView mCObj=view.findViewById(R.id.courseObjectiveId);
-
-        mCDesc.setText(GlobalVar.gCourseDesc);
-        mCMto.setText(GlobalVar.gCourseMotto);
-        mCObj.setText(GlobalVar.gCourseObj);
-
         return view;
     }
 
