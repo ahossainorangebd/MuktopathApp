@@ -6,6 +6,7 @@ public class DetailDataModelCourses
 {
     private int mExamNumbers;
     private int mAssignmentNumbers;
+    private String mCourseObjective;
 
     private String mAdmissionStatus;
     private String mAverageRating;
@@ -113,10 +114,22 @@ public class DetailDataModelCourses
     private ArrayList<DetailDataModelCoursesThumbnails> mArrayListThumbnails;
 
 
+    private ArrayList<DetailDataModelCoursesMarks> mArrayListMarks;
+
+
+    private ArrayList<DetailDataModelCoursesDetailContents> mUserInformationArrayList;
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent2;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent3;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent4;
+
+
+
+
+
+
+
 
     //for parsing thumbnailImage;
 
@@ -125,7 +138,9 @@ public class DetailDataModelCourses
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseUnits;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseLesson;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizsExam;
 
     //for ques list's options
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseQuizOptions;
@@ -1232,5 +1247,76 @@ public class DetailDataModelCourses
 
     public void setmArrayListCoursePulseQuizOptions(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCoursePulseQuizOptions) {
         this.mArrayListCoursePulseQuizOptions = mArrayListCoursePulseQuizOptions;
+    }
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmUnitDataArrayListContent4() {
+        return mUnitDataArrayListContent4;
+    }
+
+    public void setmUnitDataArrayListContent4(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent4) {
+        this.mUnitDataArrayListContent4 = mUnitDataArrayListContent4;
+    }
+
+
+    public ArrayList<DetailDataModelCoursesDetailContents> getmUserInformationArrayList() {
+        return mUserInformationArrayList;
+    }
+
+    public void setmUserInformationArrayList(ArrayList<DetailDataModelCoursesDetailContents> mUserInformationArrayList) {
+        this.mUserInformationArrayList = mUserInformationArrayList;
+    }
+
+    public ArrayList<DetailDataModelCoursesMarks> getmArrayListMarks() {
+        return mArrayListMarks;
+    }
+
+    public void setmArrayListMarks(ArrayList<DetailDataModelCoursesMarks> mArrayListMarks) {
+        this.mArrayListMarks = mArrayListMarks;
+    }
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListCourseQuizsExam() {
+        return mArrayListCourseQuizsExam;
+    }
+
+    public void setmArrayListCourseQuizsExam(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizsExam) {
+        this.mArrayListCourseQuizsExam = mArrayListCourseQuizsExam;
+    }
+
+    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListCourseLesson() {
+        return mArrayListCourseLesson;
+    }
+
+    public void setmArrayListCourseLesson(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseLesson) {
+        this.mArrayListCourseLesson = mArrayListCourseLesson;
+    }
+
+
+    private ArrayList<DetailDataModelCoursesDetailContents> mCourseEnrollArrayListId;
+
+    public ArrayList<DetailDataModelCoursesDetailContents> getmCourseEnrollArrayListId() {
+        return mCourseEnrollArrayListId;
+    }
+
+    public void setmCourseEnrollArrayListId(ArrayList<DetailDataModelCoursesDetailContents> mCourseEnrollArrayListId) {
+        this.mCourseEnrollArrayListId = mCourseEnrollArrayListId;
+    }
+
+    // ec id
+    private String mEcId;
+
+    public String getmEcId() {
+        return mEcId;
+    }
+
+    public void setmEcId(String mEcId) {
+        this.mEcId = mEcId;
+    }
+
+    public String getmCourseObjective() {
+        return mCourseObjective;
+    }
+
+    public void setmCourseObjective(String mCourseObjective) {
+        this.mCourseObjective = mCourseObjective;
     }
 }

@@ -39,7 +39,7 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
     @Override
     public int getCount() {
 
-        return GlobalVar.gEnrollCourseNumber ;
+        return GlobalVar.gTotalQuizNumberThisCourse ;
         //return NUM_ITEMS;
     }
 
@@ -48,30 +48,19 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
 
-        if(GlobalVar.gEnrollCourseNumber==1){
-            switch (position) {
-
-                case 0:
-                    return new QuizFragment1();
-                default:
-                    return null;
-            }
-        }
-
-        else if(GlobalVar.gEnrollCourseNumber==2){
+        if(GlobalVar.gTotalQuizNumberThisCourse==2){
             switch (position) {
 
                 case 0:
                     return new QuizFragment1();
                 case 1:
-                    return new QuizFragment2();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==3)
-        {
+        else if(GlobalVar.gTotalQuizNumberThisCourse==3){
             switch (position) {
 
                 case 0:
@@ -79,13 +68,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 1:
                     return new QuizFragment2();
                 case 2:
-                    return new QuizFragment3();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==4)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==4)
         {
             switch (position) {
 
@@ -96,13 +85,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 2:
                     return new QuizFragment3();
                 case 3:
-                    return new QuizFragment4();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==5)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==5)
         {
             switch (position) {
 
@@ -115,13 +104,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 3:
                     return new QuizFragment4();
                 case 4:
-                    return new QuizFragment5();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==6)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==6)
         {
             switch (position) {
 
@@ -136,111 +125,142 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 4:
                     return new QuizFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==7)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==7)
         {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new QuizFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new QuizFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new QuizFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new QuizFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new QuizFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new QuizFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==8)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==8)
         {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new QuizFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new QuizFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new QuizFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new QuizFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new QuizFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new QuizFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new QuizFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==9)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==9)
         {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new QuizFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new QuizFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new QuizFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new QuizFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new QuizFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new QuizFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new QuizFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new QuizFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==10)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==10)
         {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new QuizFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new QuizFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new QuizFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new QuizFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new QuizFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new QuizFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new QuizFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new QuizFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new QuizFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new QuizFragmentSubmit();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gTotalQuizNumberThisCourse==11)
+        {
+            switch (position) {
+
+                case 0:
+                    return new QuizFragment1();
+                case 1:
+                    return new QuizFragment2();
+                case 2:
+                    return new QuizFragment3();
+                case 3:
+                    return new QuizFragment4();
+                case 4:
+                    return new QuizFragment5();
+                case 5:
+                    return new QuizFragment6();
+                case 6:
+                    return new QuizFragment7();
+                case 7:
+                    return new QuizFragment8();
+                case 8:
+                    return new QuizFragment9();
+                case 9:
+                    return new QuizFragment10();
+                case 10:
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
@@ -249,39 +269,7 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
         //from 11 to 20
 
 
-        else if(GlobalVar.gEnrollCourseNumber==11)
-        {
-            switch (position) {
-
-                case 0:
-                    return new MyPageFragment1();
-                case 1:
-                    return new MyPageFragment2();
-                case 2:
-                    return new MyPageFragment3();
-                case 3:
-                    return new MyPageFragment4();
-                case 4:
-                    return new MyPageFragment5();
-                case 5:
-                    return new MyPageFragment6();
-                case 6:
-                    return new MyPageFragment7();
-                case 7:
-                    return new MyPageFragment8();
-                case 8:
-                    return new MyPageFragment9();
-                case 9:
-                    return new MyPageFragment10();
-                case 10:
-                    return new MyPageFragment11();
-                default:
-                    return null;
-            }
-        }
-
-
-        else if(GlobalVar.gEnrollCourseNumber==12)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==12)
         {
             switch (position) {
 
@@ -308,13 +296,14 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 10:
                     return new MyPageFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==13)
+
+        else if(GlobalVar.gTotalQuizNumberThisCourse==13)
         {
             switch (position) {
 
@@ -343,13 +332,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 11:
                     return new MyPageFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==14)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==14)
         {
             switch (position) {
 
@@ -380,13 +369,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 12:
                     return new MyPageFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==15)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==15)
         {
             switch (position) {
 
@@ -408,6 +397,8 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                     return new MyPageFragment8();
                 case 8:
                     return new MyPageFragment9();
+                case 9:
+                    return new MyPageFragment10();
                 case 10:
                     return new MyPageFragment11();
                 case 11:
@@ -417,13 +408,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 13:
                     return new MyPageFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==16)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==16)
         {
             switch (position) {
 
@@ -445,8 +436,6 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                     return new MyPageFragment8();
                 case 8:
                     return new MyPageFragment9();
-                case 9:
-                    return new MyPageFragment10();
                 case 10:
                     return new MyPageFragment11();
                 case 11:
@@ -458,13 +447,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 14:
                     return new MyPageFragment15();
                 case 15:
-                    return new MyPageFragment16();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==17)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==17)
         {
             switch (position) {
 
@@ -501,13 +490,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 15:
                     return new MyPageFragment16();
                 case 16:
-                    return new MyPageFragment17();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==18)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==18)
         {
             switch (position) {
 
@@ -546,13 +535,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 16:
                     return new MyPageFragment17();
                 case 17:
-                    return new MyPageFragment18();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==19)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==19)
         {
             switch (position) {
 
@@ -593,14 +582,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 17:
                     return new MyPageFragment18();
                 case 18:
-                    return new MyPageFragment19();
-
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==20)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==20)
         {
             switch (position) {
 
@@ -643,13 +631,14 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 18:
                     return new MyPageFragment19();
                 case 19:
-                    return new MyPageFragment20();
+                    return new QuizFragmentSubmit();
+
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber==21)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==21)
         {
             switch (position) {
 
@@ -694,13 +683,13 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 19:
                     return new MyPageFragment20();
                 case 20:
-                    return new MyPageFragment21();
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
         }
 
-        else if(GlobalVar.gEnrollCourseNumber>=22)
+        else if(GlobalVar.gTotalQuizNumberThisCourse==22)
         {
             switch (position) {
 
@@ -747,7 +736,62 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
                 case 20:
                     return new MyPageFragment21();
                 case 21:
+                    return new QuizFragmentSubmit();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gTotalQuizNumberThisCourse>=23)
+        {
+            switch (position) {
+
+                case 0:
+                    return new QuizFragment1();
+                case 1:
+                    return new QuizFragment2();
+                case 2:
+                    return new QuizFragment3();
+                case 3:
+                    return new QuizFragment4();
+                case 4:
+                    return new QuizFragment5();
+                case 5:
+                    return new QuizFragment6();
+                case 6:
+                    return new QuizFragment7();
+                case 7:
+                    return new QuizFragment8();
+                case 8:
+                    return new QuizFragment9();
+                case 9:
+                    return new QuizFragment10();
+                case 10:
+                    return new MyPageFragment11();
+                case 11:
+                    return new MyPageFragment12();
+                case 12:
+                    return new MyPageFragment13();
+                case 13:
+                    return new MyPageFragment14();
+                case 14:
+                    return new MyPageFragment15();
+                case 15:
+                    return new MyPageFragment16();
+                case 16:
+                    return new MyPageFragment17();
+                case 17:
+                    return new MyPageFragment18();
+                case 18:
+                    return new MyPageFragment19();
+                case 19:
+                    return new MyPageFragment20();
+                case 20:
+                    return new MyPageFragment21();
+                case 21:
                     return new MyPageFragment22();
+                case 22:
+                    return new QuizFragmentSubmit();
                 default:
                     return null;
             }
@@ -760,64 +804,64 @@ public class TabsPagerAdapterQuiz extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
 
-        if(GlobalVar.gEnrollCourseNumber==3){
+        if(GlobalVar.gTotalQuizNumberThisCourse==3){
             return titles[position] = titles3[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==4){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==4){
             return titles[position] = titles4[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==5){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==5){
             return titles[position] = titles5[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==6){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==6){
             return titles[position] = titles6[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==7){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==7){
             return titles[position] = titles7[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==8){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==8){
             return titles[position] = titles8[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==9){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==9){
             return titles[position] = titles9[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==10){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==10){
             return titles[position] = titles10[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==11){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==11){
             return titles[position] = titles11[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==12){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==12){
             return titles[position] = titles12[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==13){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==13){
             return titles[position] = titles13[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==14){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==14){
             return titles[position] = titles14[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==15){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==15){
             return titles[position] = titles15[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==16){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==16){
             return titles[position] = titles16[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==17) {
+        else if(GlobalVar.gTotalQuizNumberThisCourse==17) {
             return titles[position] = titles17[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==18){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==18){
             return titles[position] = titles18[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==19){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==19){
             return titles[position] = titles19[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==20){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==20){
             return titles[position] = titles20[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber==21){
+        else if(GlobalVar.gTotalQuizNumberThisCourse==21){
             return titles[position] = titles21[position];
         }
-        else if(GlobalVar.gEnrollCourseNumber>=22){
+        else if(GlobalVar.gTotalQuizNumberThisCourse>=22){
             return titles[position] = titles22[position];
         }
 

@@ -2,6 +2,13 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -11,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -55,15 +63,59 @@ public class WelcomeActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
-        sm= new SessionManager(mContext);
 
-        map = new HashMap<String, String>();
+        //Let's check the version code and redirect to playstore
 
-        map.put("grant_type", "client_credentials");
-        map.put("client_id", "1");
-        map.put("client_secret", "kb4wGS6M3TKWfRRuZOeh0ZfGtDXE8L1N7htXTDub");
+        int versionCode = BuildConfig.VERSION_CODE;
+        String versionName = BuildConfig.VERSION_NAME;
+        String prevVersion="1.0";
 
-        new getTokenInfo().execute(GlobalVar.gApiBaseUrl +"/oauth/token");
+        if(versionName.equalsIgnoreCase(prevVersion)) {
+
+            String abcd="";
+
+        }
+        else {
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            }
+            catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        }
+
+
+
+
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        boolean isData = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
+        boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
+
+        if (!isData && !isWifi) {
+
+            Toast.makeText(mContext,"Your Network Connection is Off, Please check your Network Conncetion.", Toast.LENGTH_LONG).show();
+
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            }, 4000);
+
+        }
+        else {
+            sm= new SessionManager(mContext);
+
+            map = new HashMap<String, String>();
+
+            map.put("grant_type", "client_credentials");
+            map.put("client_id", "1");
+            map.put("client_secret", "kb4wGS6M3TKWfRRuZOeh0ZfGtDXE8L1N7htXTDub");
+
+            new getTokenInfo().execute(GlobalVar.gApiBaseUrl +"/oauth/token");
+        }
     }
 
     public class getTokenInfo extends AsyncTask<String, Void, String> {

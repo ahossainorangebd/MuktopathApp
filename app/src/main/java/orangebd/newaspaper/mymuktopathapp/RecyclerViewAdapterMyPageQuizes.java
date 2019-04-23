@@ -37,7 +37,6 @@ public class RecyclerViewAdapterMyPageQuizes extends RecyclerView.Adapter<Recycl
     // private ImageView mainImage;
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
-
         TextView textViewName;
         TextView textViewVersion;
         TextView textViewVersion2;

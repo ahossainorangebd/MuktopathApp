@@ -395,9 +395,6 @@ public class CourseDetailActivity extends AppCompatActivity {
         }
     }
 
-
-
-
     //Other files
 
     public String  performPostCall(String requestURL, HashMap<String, String> postDataParams) {

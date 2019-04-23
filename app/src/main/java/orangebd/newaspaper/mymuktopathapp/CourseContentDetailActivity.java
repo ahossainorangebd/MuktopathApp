@@ -2,14 +2,18 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
@@ -26,6 +30,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.PopupWindow;
@@ -58,17 +63,21 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     String DetailDescription;
     String title;
+
     private String eCode;
     private String timeStatus;
     private String mListPosition;
     private String mUserNumber;
 
+    private TextView mPulseQuesText;
+    private WebView detailDescTextView;
 
     private boolean isGotQuestion;
     private boolean isNoQuestion;
 
     private TextView titleTextView;
-    private WebView detailDescTextView;
+
+    private ViewPager vpPager;
 
     private WebView mVideoView;
 
@@ -99,6 +108,14 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     private TextView mCustomContentTitle;
 
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+
+    TabsPagerAdapterPulseQuiz myAdapter;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,16 +134,48 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         //titleTextView=findViewById(R.id.courseTitle);
         detailDescTextView=findViewById(R.id.detailDesc);
 
-        DetailDescription=getIntent().getExtras().getString("detail");
-        title = getIntent().getExtras().getString("ttl");
-        eCode = getIntent().getExtras().getString("vcode");
-        mUserNumber = getIntent().getExtras().getString("usernumber");
-        timeStatus = getIntent().getExtras().getString("videostatus");
+        if(GlobalVar.isRedirectFromContentPage){
+
+            DetailDescription=GlobalVar.gDescriptionText;
+            title = GlobalVar.gCourseDetailTitle;
+            eCode = GlobalVar.gVideoCode;
+            mUserNumber = GlobalVar.gUserNumber;
+            timeStatus = GlobalVar.gTimeStatus;
+        }
+        else {
+            DetailDescription=getIntent().getExtras().getString("detail");
+            title = getIntent().getExtras().getString("ttl");
+            eCode = getIntent().getExtras().getString("vcode");
+            mUserNumber = getIntent().getExtras().getString("usernumber");
+            timeStatus = getIntent().getExtras().getString("videostatus");
+        }
+
+
+
+
+        GlobalVar.gLastReadLessonTitle=title;
 
         int listPositionNumber = Integer.parseInt(GlobalVar.gListPosition);
 
         mCustomContentTitle=view.findViewById(R.id.muktoCustomContentTitle);
         mCustomContentTitle.setText(title);
+
+
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseMultiArray  = GlobalVar.thisFragmentPulses;
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.thisFragmentPulseQs;
+
+        try {
+            String pulseQuizTitle = pulseQuesListWithAns.get(Integer.parseInt(GlobalVar.gListPosition)).get(0).getMpQuizTitle();
+            GlobalVar.gPulseTitle=pulseQuizTitle;
+
+            ArrayList<DetailDataModelCoursesDetailContents> optionArray = pulseQuesListWithAns.get(Integer.parseInt(GlobalVar.gListPosition));
+            GlobalVar.gPulseAnswerArray=optionArray;
+        }
+        catch (Exception ex) {
+            Log.d("", "onCreate: ");
+        }
+
+        String aqwqwqw="";
 
         //TODO
         //TODO
@@ -153,7 +202,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
 
 
-        for(int allPulse=0; allPulse<GlobalVar.thisFragmentPulses.size(); allPulse++){
+        for(int allPulse=0; allPulse<GlobalVar.thisFragmentPulses.size(); allPulse++) {
 
             int eachPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMultiId();
 
@@ -181,8 +230,6 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             }
         }
 
-
-
         //String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode;
         //finalVideoUrl = "<video controls='controls' autoplay='1' src="+ videoUrl+ " height='220' width='350' type='video/mp4' " + "#t=" + timeStatus +  "></video>";
 
@@ -192,6 +239,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         imgPauseView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (!isVideoStarted) {
 
                     pausePosition = videoView.getCurrentPosition();
@@ -306,14 +354,22 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 {
                     //Toast.makeText(context,"A multiple question will pop up on "+firstPulse+"th Second",Toast.LENGTH_SHORT).show();
 
+                    String wwww="";
+
                     isVideoStarted=false;
 
-                    if (!isVideoStarted){
+                    if (!isVideoStarted) {
 
                         pausePosition = videoView.getCurrentPosition();
                         videoView.pause();
                         imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
                         isVideoStarted=true;
+
+
+                        if(GlobalVar.gPulseMultiMarkCount==0) {
+                            showPopUpQuestionBox();
+                        }
+
                     }
 
                     else{
@@ -325,7 +381,6 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                         isVideoStarted=false;
                     }
 
-                    showPopUpImageBox();
                 }
 
                 textView.setText(""+seconds);
@@ -452,14 +507,135 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         return result.toString();
     }
 
-    private void showPopUpImageBox()
-    {
-        // custom dialog
+    private void showPopUpQuestionBox() {
         final Dialog dialog = new Dialog(context, R.style.DialogCustomTheme);
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //TODO
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(true);
+        //TODO
         dialog.setContentView(R.layout.popupwindowforimage);
 
-        dialog.show();
+        // custom dialog
+
+        //TODO
+        mPulseQuesText = dialog.findViewById(R.id.pulseQuesId);
+
+        recyclerView = dialog.findViewById(R.id.quiz_options_recycler_view);
+        Button submitBtn = dialog.findViewById(R.id.pulseQuesSubmitBtnId);
+        final TextView incorrectAnsTV = dialog.findViewById(R.id.incorrectAnswerId);
+
+        mPulseQuesText.setText(GlobalVar.gPulseTitle);
+
+        final Button mPulseQuizCrossBtn = dialog.findViewById(R.id.MainAdCrossBtn);
+        mPulseQuizCrossBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                mPulseQuizCrossBtn.setVisibility(View.GONE);
+            }
+        });
+
+        /*vpPager = dialog.findViewById(R.id.QuizSliderviewPagerId);
+
+        myAdapter= new TabsPagerAdapterPulseQuiz(getSupportFragmentManager());
+        vpPager.setAdapter(myAdapter);*/
+
+
+        //dialog.show();
+
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int asqwweer=GlobalVar.gPulseMultiMarkCount;
+
+                if (GlobalVar.gPulseMultiMarkCount>0) {
+
+                    incorrectAnsTV.setVisibility(View.INVISIBLE);
+
+                    dialog.dismiss();
+
+                    videoView.seekTo(pausePosition);
+                    videoView.start();
+                    mProgressBar.setProgress(pausePosition);
+                    mProgressBar.postDelayed(onEverySecond, 1000);
+                    imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
+                    isVideoStarted=false;
+
+                }
+                else{
+                    incorrectAnsTV.setVisibility(View.VISIBLE);
+
+                    pausePosition = videoView.getCurrentPosition();
+                    videoView.pause();
+                    imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
+                    isVideoStarted=true;
+                }
+            }
+        });
+
+        if(GlobalVar.gPulseMultiMarkCount==0) {
+            setRecyclerViewAnswer();
+            dialog.show();
+        }
+
+
+        /*WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.gravity = Gravity.CENTER;
+
+        Window window = dialog.getWindow();
+        window.setAttributes(lp);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));*/
+
+
+
+    }
+
+    private void setRecyclerViewAnswer() {
+
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setNestedScrollingEnabled(false);
+
+        new GetPulseQuizOptions().execute();
+    }
+
+    public class GetPulseQuizOptions extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            //mProgressSpinner.setIndeterminate(true);
+            //mProgressSpinner.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            adapter=new RecyclerViewAdapterPulseQuizOptions(GlobalVar.gPulseAnswerArray,context);
+
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+            //mProgressSpinner.setVisibility(View.GONE);
+        }
     }
 
     /*@Override
@@ -476,7 +652,12 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            finish();
+
+            GlobalVar.isRedirectFromContentPage=true;
+
+            Intent i=new Intent(context,MyPageCourseDetail.class);
+            startActivity(i);
+
             return true;
         }
         return super.onOptionsItemSelected(item);

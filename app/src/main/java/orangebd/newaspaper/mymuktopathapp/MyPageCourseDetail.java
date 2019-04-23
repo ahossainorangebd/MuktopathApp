@@ -1,6 +1,8 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +32,13 @@ public class MyPageCourseDetail extends AppCompatActivity {
     private String ownerName;
     private int nthCourse;
 
+
+    private String mCourseMotto;
+    private String mCourseObj;
+    private String mCourseDesc;
+
+    private ImageView goBackFromThisActivity;
+
     TabsPagerAdapterMyPageDetail myAdapter;
     SlidingTabLayout mSlidingTabLayout;
 
@@ -47,6 +57,18 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         mContext=this;
 
+        goBackFromThisActivity=findViewById(R.id.goBackFromThisActivityId);
+        goBackFromThisActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(mContext,MyPageActivity.class);
+                startActivity(i);
+
+                // finish();
+            }
+        });
+
         mCourseDetailCoverImage = findViewById(R.id.CourseDetailCoverImage);
         mCourseTitle = findViewById(R.id.courseTitle);
         mCourseOwner = findViewById(R.id.ownerName);
@@ -62,10 +84,31 @@ public class MyPageCourseDetail extends AppCompatActivity {
         mSlidingTabLayout.setDistributeEvenly(true);
         mSlidingTabLayout.setViewPager(vpPager);
 
-        ImgUrl = getIntent().getExtras().getString("img");
-        title = getIntent().getExtras().getString("ttl");
-        ownerName = getIntent().getExtras().getString("oname");
-        nthCourse = getIntent().getExtras().getInt("nthcourse");
+        if(GlobalVar.isRedirectFromContentPage==true){
+            ImgUrl = GlobalVar.gCourseDetailCoverPhoto;
+            title = GlobalVar.gCourseDetailTitle;
+            ownerName = GlobalVar.gCourseDetailOwnerName;
+            nthCourse = GlobalVar.gCourseNumber;
+        }
+        else {
+            ImgUrl = getIntent().getExtras().getString("img");
+            title = getIntent().getExtras().getString("ttl");
+            ownerName = getIntent().getExtras().getString("oname");
+            nthCourse = getIntent().getExtras().getInt("nthcourse");
+            mCourseMotto = getIntent().getExtras().getString("cmto");
+            mCourseObj = getIntent().getExtras().getString("cobj");
+            mCourseDesc = getIntent().getExtras().getString("cdesc");
+        }
+
+
+        GlobalVar.gCourseDetailCoverPhoto =ImgUrl;
+        GlobalVar.gCourseDetailTitle =title;
+        GlobalVar.gCourseDetailOwnerName =ownerName;
+        GlobalVar.gCourseNumber =nthCourse;
+
+        GlobalVar.gCourseMotto =mCourseMotto;
+        GlobalVar.gCourseObj =mCourseObj;
+        GlobalVar.gCourseDesc =mCourseDesc;
 
         GlobalVar.gNthCourse=nthCourse;
 
@@ -80,9 +123,7 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         mCourseTitle.setText(title);
         mCourseOwner.setText(ownerName);
-
         //setRecyclerView();
-
     }
 
 }

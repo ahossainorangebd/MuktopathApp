@@ -2,6 +2,7 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,9 +35,11 @@ public class MyPageFragment15 extends Fragment {
     private TextView mExmNumberTtl;
     private TextView mAssignmentNumberTtl;
     private TextView mContentNumberTtl;
+    private TextView mQuizNumberTtl;
 
     private LinearLayout mAssignmentSection;
     private LinearLayout mExamNumberSection;
+    private LinearLayout mQuizNumberSection;
     private LinearLayout mContentNumberSection;
 
     private TextView mContentHour;
@@ -45,12 +48,58 @@ public class MyPageFragment15 extends Fragment {
 
     private Formatter mFormatter;
 
+    private int nthCourse= 14;
+
+    private int countQuizNumber;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_my_page_fragment15, container, false);
 
         context=getContext();
+
+        /**for getting quiz numbers
+         * */
+
+        countQuizNumber=0;
+
+        ArrayList<DetailDataModelCoursesDetailContents> unitArrs = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(GlobalVar.gNthCourse);
+
+        for(int cqn=0; cqn<unitArrs.size(); cqn++) {
+            String unitTitle = unitArrs.get(cqn).getUnitNames();
+
+            if(unitTitle.equalsIgnoreCase("কুইজ")){
+
+                countQuizNumber++;
+
+
+                String qwewrser="";
+            }
+        }
+
+
+        /**get device height and width*/
+
+        double deviceHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+        LinearLayout mTableLayout = view.findViewById(R.id.tableLayoutId);
+
+        /*int previousHeight= mTableLayout.getHeight();
+        int previousWidth = mTableLayout.getWidth();*/
+
+        double calculatedHeight = (double) 340 / 1184;
+        calculatedHeight=calculatedHeight*deviceHeight;
+        //int calculatedWidth = (previousHeight/720)*deviceWidth;
+
+        double newHeight = calculatedHeight;
+        //int newWidth = calculatedWidth;
+
+        ViewGroup.LayoutParams params = mTableLayout.getLayoutParams();
+        params.height = (int)newHeight;
+        mTableLayout.setLayoutParams(params);
+
+        /***/
 
         mCourseDetailCoverImage = view.findViewById(R.id.CourseDetailCoverImage);
 
@@ -82,20 +131,25 @@ public class MyPageFragment15 extends Fragment {
         }
         catch (Exception ex){}
 
-        final int nthCourse= 14;
-
         mCourseTitle = view.findViewById(R.id.courseTitle);
         mCourseOwner = view.findViewById(R.id.ownerName);
+
         mExmNumberTtl = view.findViewById(R.id.examNumber);
         mAssignmentNumberTtl = view.findViewById(R.id.assignmentNumber);
         mContentNumberTtl = view.findViewById(R.id.contentNumber);
+        mQuizNumberTtl = view.findViewById(R.id.quizNumber);
 
         mAssignmentSection = view.findViewById(R.id.assignmentSection);
         mContentNumberSection = view.findViewById(R.id.contentNumberSection);
         mExamNumberSection = view.findViewById(R.id.mExamNumberSection);
+        mQuizNumberSection = view.findViewById(R.id.mQuizNumberSection);
 
-        final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(3).getmCourseAliasName();
-        final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(3).getInstitution_name_owner();
+        final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(nthCourse).getmCourseAliasName();
+        final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(nthCourse).getInstitution_name_owner();
+
+        final String enrolledCourseDetails=GlobalVar.gEnrollCourseList.get(nthCourse).getmDetails();
+        final String enrolledCourseMotto=GlobalVar.gEnrollCourseList.get(nthCourse).getmCourseMotto();
+        final String enrolledCourseObjective=GlobalVar.gEnrollCourseList.get(nthCourse).getmCourseObjective();
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
 
@@ -106,26 +160,31 @@ public class MyPageFragment15 extends Fragment {
         final ArrayList<DetailDataModelCoursesDetailContents> quizes = quizArray.get(14);
 
         final ArrayList<DetailDataModelCoursesDetailContents> mQuizParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(nthCourse);
-
-        //Let's count the duration of Content/Quiz/Assignment
-
-
-        int mAssignmentNumbers=GlobalVar.gEnrollCourseList.get(14).getmAssignmentNumbers();
-        int mExamNumbers=GlobalVar.gEnrollCourseList.get(14).getmExamNumbers();
-        int mContentNumbers = contents.size();
-        int mQuizNumbers=mQuizParents.size();
-
+        final ArrayList<DetailDataModelCoursesDetailContents> mAssignment = GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent3().get(nthCourse);
+        final ArrayList<DetailDataModelCoursesDetailContents> mExam= GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent2().get(nthCourse);
+        final ArrayList<DetailDataModelCoursesDetailContents> mContent = GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(nthCourse);
 
         // Let's count the number of Units
         GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse-1).size();
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse-1);
 
+        //Let's count the duration of Content/Quiz/Assignment
+
+        int mAssignmentNumbers = mAssignment.size();
+        int mExamNumbers = mExam.size();
+        int mContentNumbers = mContent.size();
+        final int mQuizNumbers = mQuizParents.size();
+
         mCourseTitle.setText(enrolledCourseTitle);
-        mCourseOwner.setText(enrolledCourseOwner);
-        mExmNumberTtl.setText(Integer.toString(mAssignmentNumbers));
-        mAssignmentNumberTtl.setText(Integer.toString(mExamNumbers));
-        mContentNumberTtl.setText(Integer.toString(mContentNumbers));
+        //TODO
+        //TODO
+        //mCourseOwner.setText(enrolledCourseOwner);
+
+        mExmNumberTtl.setText(convertEngToBn(Integer.toString(mExamNumbers)));
+        mAssignmentNumberTtl.setText(convertEngToBn(Integer.toString(mAssignmentNumbers)));
+        mContentNumberTtl.setText(convertEngToBn(Integer.toString(mContentNumbers)));
+        mQuizNumberTtl.setText(convertEngToBn(Integer.toString(countQuizNumber)));
 
 
         if(mAssignmentNumbers>0){
@@ -195,6 +254,25 @@ public class MyPageFragment15 extends Fragment {
 
         }
 
+        if(mQuizNumbers>0){
+
+            int contentListCount=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(nthCourse).size();
+            int contentDuration=0;
+
+            for (int timeCount=0; timeCount<contentListCount ; timeCount++) {
+
+                String temptestList=GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(nthCourse).get(timeCount).getmDurationAnother();
+
+                if(!temptestList.equalsIgnoreCase("null")) {
+                    contentDuration = contentDuration + Integer.parseInt(temptestList);
+                }
+            }
+
+            String contentDurationNew= stringForTime(contentDuration);
+
+            mQuizNumberSection.setVisibility(View.VISIBLE);
+        }
+
         //setting text for hours
 
         startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);
@@ -208,11 +286,15 @@ public class MyPageFragment15 extends Fragment {
                 i.putExtra("img", CoverPhoto);
                 i.putExtra("oname", enrolledCourseOwner);
                 i.putExtra("nthcourse", nthCourse);
+                i.putExtra("cobj", enrolledCourseObjective);
+                i.putExtra("cmto", enrolledCourseMotto);
+                i.putExtra("cdesc", enrolledCourseDetails);
 
                 GlobalVar.thisFragmentContents=contents;
                 GlobalVar.thisFragmentQuizes=quizes;
 
                 GlobalVar.thisFragmentPulses=pulseMultiArray;
+                GlobalVar.gTotalQuizNumberThisCourse=mQuizNumbers+1;
 
                 try {
                     v.getContext().startActivity(i);
@@ -221,8 +303,11 @@ public class MyPageFragment15 extends Fragment {
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
                 }
+
             }
         });
+
+
 
         return view;
     }

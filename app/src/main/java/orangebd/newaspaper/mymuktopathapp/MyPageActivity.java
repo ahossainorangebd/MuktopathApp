@@ -1,6 +1,7 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -63,6 +64,7 @@ public class MyPageActivity extends AppCompatActivity {
 
     private int newsIndex;
 
+    private ProgressDialog mProgressDialog;
 
     //All ArrayLists
 
@@ -79,13 +81,18 @@ public class MyPageActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCourses> detailList10;
     private ArrayList<DetailDataModelCourses> detailList11;
 
+    ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListExam;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizListExam;
 
     private ArrayList<DetailDataModelCourses> detailListAnoPart3=new ArrayList<>();
+
+    private ArrayList<DetailDataModelCoursesDetailContents> detailListUserInformation=new ArrayList<>();
 
     private ArrayList<DetailDataModelCourses> detailListCourse;
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnits;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailLesson;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList;
 
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailUnitQuizOptList;
@@ -96,15 +103,22 @@ public class MyPageActivity extends AppCompatActivity {
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit1Data;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit2Data;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit3Data;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit4Data;
 
     //TODO
 
     private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
 
+    private ArrayList<DetailDataModelCoursesMarks> mPassPercentageArrayList;
+
     private ArrayList<DetailDataModelCourses> detailListFileType;
 
     ArrayList<DetailDataModelCoursesDetailContents> mContentArrayListNew;
+
+    ArrayList<DetailDataModelCoursesDetailContents> mEnrollCourseArrayList;
+
     ArrayList<DetailDataModelCoursesDetailContents> mUnitArrayListNew;
+    ArrayList<DetailDataModelCoursesDetailContents> mLessonArrayListNew;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListMp;
@@ -123,6 +137,7 @@ public class MyPageActivity extends AppCompatActivity {
     ArrayList<DetailDataModelCoursesDetailContents> mUnit1DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit2DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit3DataArrayList;
+    ArrayList<DetailDataModelCoursesDetailContents> mUnit4DataArrayList;
 
     private ArrayList<DetailDataModelCoursesDetailContents> detailListCourseDetailContents;
 
@@ -148,7 +163,7 @@ public class MyPageActivity extends AppCompatActivity {
 
     private SessionManager sm;
 
-    private ImageView mLogOutBtn;
+    private String totalQuizNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,7 +182,6 @@ public class MyPageActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
         myPageBtn = findViewById(R.id.myPageBtnId);
@@ -175,18 +189,7 @@ public class MyPageActivity extends AppCompatActivity {
         profileBtn = findViewById(R.id.profilePageBtnId);
         enrolledCourse = findViewById(R.id.enrolledCourseNo);
 
-
         sm= new SessionManager(mContext);
-
-
-        mLogOutBtn = findViewById(R.id.logOutBtnId);
-        mLogOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showPopUpImageBox();
-            }
-        });
 
 
         HashMap<String, String> mSpInfo=sm.getUserDetails();
@@ -214,18 +217,27 @@ public class MyPageActivity extends AppCompatActivity {
             Log.d("", "onClick: ");
         }
 
+        mProgressDialog=new ProgressDialog(mContext);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Please wait...");
+        mProgressDialog.show();
+
         RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
 
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (response != null) try {
+                        if (response != null) try
+                        {
                             detailListCourse = new ArrayList<DetailDataModelCourses>();
 
                             detailList = new ArrayList<DetailDataModelCourses>();
 
                             detailListCourseThumbnail = new ArrayList<DetailDataModelCoursesThumbnails>();
+
+                            mPassPercentageArrayList = new ArrayList<DetailDataModelCoursesMarks>();
+
                             detailListCourseDetailContents = new ArrayList<DetailDataModelCoursesDetailContents>();
                             detailList10 = new ArrayList<DetailDataModelCourses>();
 
@@ -234,6 +246,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                             detailListCourseDetailContentss = new ArrayList<>();
                             detailListCourseDetailUnits = new ArrayList<>();
+                            detailListCourseDetailLesson = new ArrayList<>();
                             detailListCourseDetailUnitQuizList = new ArrayList<>();
                             detailListCourseDetailUnitQuizList2 = new ArrayList<>();
 
@@ -241,14 +254,18 @@ public class MyPageActivity extends AppCompatActivity {
                             detailListCourseDetailPulseQuizOptList = new ArrayList<>();
                             detailListCourseDetailVideoPulseMulti = new ArrayList<>();
 
+                            detailListCourseDetailUnitQuizListExam = new ArrayList<>();
+
                             //for renew arraylist of units arrays
                             detailListCourseUnit1Data = new ArrayList<>();
                             detailListCourseUnit2Data = new ArrayList<>();
                             detailListCourseUnit3Data = new ArrayList<>();
+                            detailListCourseUnit4Data = new ArrayList<>();
 
                             DetailDataModelCourses model = new DetailDataModelCourses();
 
                             JSONObject jObject;
+                            JSONObject jObjectAllMarks;
                             JSONObject jObjectData = new JSONObject();
 
                             try {
@@ -485,10 +502,24 @@ public class MyPageActivity extends AppCompatActivity {
 
 
                                 try {
+                                    detailListUserInformation = new ArrayList<DetailDataModelCoursesDetailContents>();
+
                                     DetailDataModelCourses modelEnrollCourse = new DetailDataModelCourses();
 
-                                    JSONArray objectAgainAnother = (JSONArray) jObjectData.getJSONArray("RoleInstitution");
-                                    JSONArray objectEnrollCourse = (JSONArray) jObjectData.getJSONArray("EnrollCourse");
+                                    DetailDataModelCoursesDetailContents modelUserInformation = new DetailDataModelCoursesDetailContents();
+
+                                    JSONArray objectAgainAnother =  jObjectData.getJSONArray("RoleInstitution");
+                                    JSONArray objectEnrollCourse =  jObjectData.getJSONArray("EnrollCourse");
+
+                                    JSONObject objectUserInformation = jObjectData.getJSONObject("UserInfo");
+
+                                    String UserProfilePhoto = objectUserInformation.getString("photo_name");
+                                    String UserCoverPhoto = objectUserInformation.getString("cover_image");
+
+                                    modelUserInformation.setmUserProfilePhoto(UserProfilePhoto);
+                                    modelUserInformation.setmUserCoverPhoto(UserCoverPhoto);
+
+                                    detailListUserInformation.add(modelUserInformation);
 
                                     int enrolledCourseNumbers = objectEnrollCourse.length();
 
@@ -496,12 +527,21 @@ public class MyPageActivity extends AppCompatActivity {
 
                                     String aaaaaa = "";
 
+                                    GlobalVar.gEnrollCourseId = new ArrayList<>();
+
                                     try {
-                                        for (int ec = 0; ec < objectEnrollCourse.length(); ec++) {
+                                        for (int ec = 0; ec < objectEnrollCourse.length(); ec++)
+                                        {
+
+                                            DetailDataModelCourses enrollCourseModel = new DetailDataModelCourses();
 
                                             JSONObject jObjEnrolledCourses = objectEnrollCourse.getJSONObject(ec);
 
                                             JSONObject objectCourse2 = jObjEnrolledCourses.getJSONObject("Course");
+
+                                            String enrolCourseId= jObjEnrolledCourses.getString("id");
+
+                                            enrollCourseModel.setmEcId(enrolCourseId);
 
                                             JSONArray exams = jObjEnrolledCourses.getJSONArray("exam");
                                             JSONArray assignments = jObjEnrolledCourses.getJSONArray("assignment");
@@ -526,6 +566,13 @@ public class MyPageActivity extends AppCompatActivity {
                                             String duration = objectCourse2.getString("duration");
                                             String end_date = objectCourse2.getString("end_date");
                                             String enrolment_approval_status = objectCourse2.getString("enrolment_approval_status");
+                                            String courseObjective = objectCourse2.getString("objective");
+
+                                            courseObjective = courseObjective.replace("<p>", "");
+                                            courseObjective = courseObjective.replace("</p>", "");
+
+                                            Edetails = Edetails.replace("<p>", "");
+                                            Edetails = Edetails.replace("</p>", "");
 
                                             modelForLoginCourse.setmCertificateAliasName(certificate_alias_name);
                                             modelForLoginCourse.setmAdmissionStatus(Eadmission_status);
@@ -545,6 +592,7 @@ public class MyPageActivity extends AppCompatActivity {
                                             modelForLoginCourse.setmStatus(status);
                                             modelForLoginCourse.setmExamNumbers(examNumbers);
                                             modelForLoginCourse.setmAssignmentNumbers(assignmentsNumbers);
+                                            modelForLoginCourse.setmObjective(courseObjective);
 
                                             detailListAnoPart3.add(modelForLoginCourse);
 
@@ -552,6 +600,23 @@ public class MyPageActivity extends AppCompatActivity {
 
                                             try {
                                                 jObject = objectCourse2.getJSONObject("syllabus");
+
+                                                jObjectAllMarks = objectCourse2.getJSONObject("marks");
+
+                                                JSONObject totalMarksQuiz=jObjectAllMarks.getJSONObject("quiz");
+                                                JSONObject totalMarksExm=jObjectAllMarks.getJSONObject("exam");
+
+                                                String courseQuizPassMark = totalMarksQuiz.getString("pass_marks");
+                                                String courseExamPassMark = totalMarksExm.getString("pass_marks");
+
+                                                DetailDataModelCoursesMarks modelCoursePassMark = new DetailDataModelCoursesMarks();
+
+                                                modelCoursePassMark.setQuiz_pass_mark(courseQuizPassMark);
+                                                modelCoursePassMark.setExam_pass_mark(courseExamPassMark);
+
+                                                mPassPercentageArrayList.add(modelCoursePassMark);
+
+                                                String awqwe="";
 
                                                 JSONArray objectEnrollCourseUnits = (JSONArray) jObject.getJSONArray("units");
 
@@ -564,9 +629,11 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                     String orderEcu = objectUnitElements.getString("order");
                                                     String nameEcu = objectUnitElements.getString("name");
+                                                    String idEcu = objectUnitElements.getString("id");
 
                                                     modelUnitElements.setUnitOrders(orderEcu);
                                                     modelUnitElements.setUnitNames(nameEcu);
+                                                    modelUnitElements.setUnitID(idEcu);
 
                                                     mUnitArrayListNew.add(modelUnitElements);
                                                 }
@@ -695,13 +762,13 @@ public class MyPageActivity extends AppCompatActivity {
                                                     mUnit1DataArrayList = new ArrayList<>();
                                                     mUnit2DataArrayList = new ArrayList<>();
                                                     mUnit3DataArrayList = new ArrayList<>();
+                                                    mUnit4DataArrayList = new ArrayList<>();
 
                                                     mVideoPulseMulti = new ArrayList<>();
 
                                                     for (int ii = 0; ii < jObject.length() - 1; ii++) {
                                                         JSONObject jSObject2 = jObject.getJSONObject("" + ii);
 
-                                                        //for parsing lessons > {0} > "syllebus" > "0" > "data"
                                                         detailList6 = new ArrayList<DetailDataModelCourses>();
 
                                                         DetailDataModelCourses model6 = new DetailDataModelCourses();
@@ -709,7 +776,12 @@ public class MyPageActivity extends AppCompatActivity {
                                                         JSONArray jSonLessons = (JSONArray) jSObject2.getJSONArray("lessons");
 
                                                         try {
+
+                                                            mLessonArrayListNew = new ArrayList<>();
+
                                                             for (int m = 0; m < jSonLessons.length(); m++) {
+
+                                                                DetailDataModelCoursesDetailContents modelLessonElements = new DetailDataModelCoursesDetailContents();
 
                                                                 JSONObject objectAgainAnotherLesson = (JSONObject) jSonLessons.get(m);
 
@@ -718,10 +790,12 @@ public class MyPageActivity extends AppCompatActivity {
                                                                 String orderLesson = objectAgainAnotherLesson.getString("order");
                                                                 String fixedLesson = objectAgainAnotherLesson.getString("fixed");
 
-                                                                model6.setIdLesson(idLesson);
-                                                                model6.setNameLesson(nameLesson);
-                                                                model6.setOrderLessom(orderLesson);
-                                                                model6.setFixedLesson(fixedLesson);
+                                                                modelLessonElements.setIdLesson(idLesson);
+                                                                modelLessonElements.setNameLesson(nameLesson);
+                                                                modelLessonElements.setOrderLessom(orderLesson);
+                                                                modelLessonElements.setFixedLesson(fixedLesson);
+
+                                                                mLessonArrayListNew.add(modelLessonElements);
                                                             }
                                                         } catch (Exception ex) {
                                                             Log.d("", "onResponse: ");
@@ -774,11 +848,30 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                 //let's add
 
-                                                                if (content_type.equalsIgnoreCase("quiz")) {
+                                                                if (content_type.equalsIgnoreCase("exam")) {
+
+                                                                    String mExamMakrs = jObjAgain.getString("marks");
+                                                                    String mExamTime = jObjAgain.getString("time");
+
+                                                                    modelUnitCourseContents.setmExamMarks(mExamMakrs);
+                                                                    modelUnitCourseContents.setmExamTime(mExamTime);
+
                                                                     mUnit2DataArrayList.add(modelUnitCourseContents);
-                                                                } else if (content_type.equalsIgnoreCase("assignment")) {
+                                                                }
+                                                                else if (content_type.equalsIgnoreCase("assignment")) {
                                                                     mUnit3DataArrayList.add(modelUnitCourseContents);
-                                                                } else {
+                                                                }
+                                                                else if (content_type.equalsIgnoreCase("quiz")) {
+
+                                                                    String mQuizMakrs = jObjAgain.getString("marks");
+                                                                    String mQuizTime = jObjAgain.getString("time");
+
+                                                                    modelUnitCourseContents.setmQuizMarks(mQuizMakrs);
+                                                                    modelUnitCourseContents.setmQuizTime(mQuizTime);
+
+                                                                    mUnit4DataArrayList.add(modelUnitCourseContents);
+                                                                }
+                                                                else {
                                                                     mUnit1DataArrayList.add(modelUnitCourseContents);
                                                                 }
 
@@ -874,7 +967,8 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                 DetailDataModelCourses model5 = new DetailDataModelCourses();
 
-                                                                if (content_type.equalsIgnoreCase("quiz")) {
+                                                                if (content_type.equalsIgnoreCase("quiz"))
+                                                                {
                                                                     try {
                                                                         for (int ctq = 0; ctq < jSObject3.length(); ctq++) {
 
@@ -882,6 +976,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                             mUnitQuizList = new ArrayList<>();
                                                                             mUnitQuizList2 = new ArrayList<>();
+
 
                                                                             mUnitQuizListWithOptions = new ArrayList<>();
 
@@ -894,11 +989,18 @@ public class MyPageActivity extends AppCompatActivity {
                                                                                 JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ2.get(qlist2);
 
                                                                                 String qTitle = objectAgainAnother2.getString("title");
+                                                                                String qDesc = objectAgainAnother2.getString("description");
+                                                                                String qIdQuiz = objectAgainAnother2.getString("id");
 
                                                                                 qTitle = qTitle.replace("<p>", "");
                                                                                 qTitle = qTitle.replace("</p>", "");
 
+                                                                                qDesc = qDesc.replace("<p>", "");
+                                                                                qDesc = qDesc.replace("</p>", "");
+
                                                                                 modelUnitQuizElements2.setmQuizTitle(qTitle);
+                                                                                modelUnitQuizElements2.setmSummeryDesc(qDesc);
+                                                                                modelUnitQuizElements2.setmQuizId(qIdQuiz);
                                                                                 mUnitQuizList.add(modelUnitQuizElements2);
 
                                                                                 modelUnitQuizListWithOptions.setmQuizTitle(qTitle);
@@ -931,6 +1033,39 @@ public class MyPageActivity extends AppCompatActivity {
                                                                                 }
 
                                                                                 mUnitQuizList2.add(mUnitQuizOptList);
+                                                                            }
+                                                                        }
+                                                                    } catch (Exception ex) {
+                                                                        Log.d("", "onResponse: ");
+                                                                    }
+                                                                }
+
+                                                                else if (content_type.equalsIgnoreCase("exam"))
+                                                                {
+                                                                    try {
+                                                                        for (int ctqexam = 0; ctqexam < jSObject3.length(); ctqexam++) {
+
+                                                                            JSONArray jSonObjMultiQ2exam = (JSONArray) jSObject3.getJSONArray("ques_list");
+
+                                                                            mUnitQuizListExam = new ArrayList<>();
+
+                                                                            for (int qlist2 = 0; qlist2 < jSonObjMultiQ2exam.length(); qlist2++) {
+
+                                                                                DetailDataModelCoursesDetailContents modelUnitQuizElements2 = new DetailDataModelCoursesDetailContents();
+
+                                                                                JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ2exam.get(qlist2);
+
+                                                                                String qTitle = objectAgainAnother2.getString("title");
+                                                                                String qId = objectAgainAnother2.getString("id");
+
+                                                                                qTitle = qTitle.replace("<p>", "");
+                                                                                qTitle = qTitle.replace("</p>", "");
+
+                                                                                modelUnitQuizElements2.setmQuizTitle(qTitle);
+                                                                                modelUnitQuizElements2.setmQuizId(qId);
+                                                                                modelUnitQuizElements2.setmQuesList(jSonObjMultiQ2exam);
+
+                                                                                mUnitQuizListExam.add(modelUnitQuizElements2);
                                                                             }
                                                                         }
                                                                     } catch (Exception ex) {
@@ -1053,7 +1188,11 @@ public class MyPageActivity extends AppCompatActivity {
                                             //detailListVideoPulse.add(mContentArrayListNewPulse);
 
                                             detailListCourseDetailUnits.add(mUnitArrayListNew);
+
+                                            detailListCourseDetailLesson.add(mLessonArrayListNew);
+
                                             detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+                                            detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
 
                                             //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
 
@@ -1064,8 +1203,14 @@ public class MyPageActivity extends AppCompatActivity {
                                             detailListCourseUnit1Data.add(mUnit1DataArrayList);
                                             detailListCourseUnit2Data.add(mUnit2DataArrayList);
                                             detailListCourseUnit3Data.add(mUnit3DataArrayList);
+                                            detailListCourseUnit4Data.add(mUnit4DataArrayList);
 
                                             GlobalVar.gEnrolledInstitution = detailList10;
+
+
+                                            GlobalVar.gEnrollCourseId.add(enrollCourseModel);
+
+                                            String stp="";
                                         }
                                     } catch (Exception ex) {
                                         Log.d("", "onResponse: ");
@@ -1077,12 +1222,21 @@ public class MyPageActivity extends AppCompatActivity {
                                 modelAlter.setmUnitDataArrayListContent(detailListCourseUnit1Data);
                                 modelAlter.setmUnitDataArrayListContent2(detailListCourseUnit2Data);
                                 modelAlter.setmUnitDataArrayListContent3(detailListCourseUnit3Data);
+                                modelAlter.setmUnitDataArrayListContent4(detailListCourseUnit4Data);
+
+                                modelAlter.setmUserInformationArrayList(detailListUserInformation);
+
+
 
                                 modelAlter.setmArrayListThumbnails(detailListCourseThumbnail);
+                                modelAlter.setmArrayListMarks(mPassPercentageArrayList);
                                 modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
 
                                 modelAlter.setmArrayListCourseUnits(detailListCourseDetailUnits);
+                                modelAlter.setmArrayListCourseLesson(detailListCourseDetailLesson);
+
                                 modelAlter.setmArrayListCourseQuizs(detailListCourseDetailUnitQuizList);
+                                modelAlter.setmArrayListCourseQuizsExam(detailListCourseDetailUnitQuizListExam);
 
                                 //for option list of quest list
                                 modelAlter.setmArrayListCourseQuizOptions(detailListCourseDetailUnitQuizOptList);
@@ -1092,24 +1246,31 @@ public class MyPageActivity extends AppCompatActivity {
 
                                 detailListCourse.add(modelAlter);
 
-                                    /*ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
+                                /*ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
 
-                                    mArrayList = contentArray.get(0).toArray();
+                                mArrayList = contentArray.get(0).toArray();
 
-                                    GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
+                                GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
 
                                 GlobalVar.courseContentDetailList = detailListCourse;
 
                                 //GlobalVar.gEnrollCourseQuestionList= GlobalVar.courseContentDetailList.get(i).getmArrayListCourseQuizs();
+
+                                String stepover="";
                             } catch (Exception ex) {
                                 Log.d("", "onResponse: ");
                             }
+
+                            mProgressDialog.dismiss();
+
                         } catch (Exception ex) {
                             Log.e("tag", "Couldn't get json from server.");
                         }
                         else {
                             Toast.makeText(mContext, "You must fill the email field.", Toast.LENGTH_LONG).show();
                         }
+
+
 
                         final ViewPager vpPager = findViewById(R.id.VideoSliderviewPagerId);
 
@@ -1122,7 +1283,9 @@ public class MyPageActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("TAG", error.getMessage(), error);
             }
-        }) { //no semicolon or coma
+        })
+
+        { //no semicolon or coma
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

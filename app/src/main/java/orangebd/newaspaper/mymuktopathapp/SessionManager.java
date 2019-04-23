@@ -67,6 +67,7 @@ public class SessionManager {
      * If false it will redirect user to login page
      * Else won't do anything
      * */
+
     public boolean checkLogin(){
         // Check login status
         if(!this.isLoggedIn()){
@@ -121,7 +122,7 @@ public class SessionManager {
     /**
      * Clear session details
      * */
-    public void logoutUser(){
+    public void logoutUser() {
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();

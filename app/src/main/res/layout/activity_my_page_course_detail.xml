@@ -20,8 +20,30 @@
         android:id="@+id/upperPart"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:background="#88000000"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="20dp"
+            >
+
+            <ImageView
+                android:id="@+id/goBackFromThisActivityId"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/left_arrow"
+                />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         >
 
         <TextView
@@ -48,6 +70,8 @@
             android:textColor="@color/Colorpeace"
             />
 
+    </LinearLayout>
+
 
 
     </LinearLayout>
@@ -63,6 +87,7 @@
         android:layout_marginTop="6dp"
         android:background="#ffffff"
         android:layout_below="@+id/upperPart"
+        android:gravity="center"
         >
 
         <LinearLayout
@@ -130,23 +155,28 @@
 
         </LinearLayout>
 
+        <orangebd.newaspaper.mymuktopathapp.SlidingTabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/MasterMenuHeader"
+            android:layout_gravity="center"
+            android:gravity="center"
             >
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpagerNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
-
-            <orangebd.newaspaper.mymuktopathapp.SlidingTabLayout
-                android:id="@+id/sliding_tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
                 />
 
         </RelativeLayout>

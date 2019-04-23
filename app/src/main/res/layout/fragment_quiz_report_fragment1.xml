@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/quizfragment1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyPageDetailFragment3"
+    android:orientation="vertical"
+    android:background="@color/Colorpeace"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:id="@+id/summeryDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Summery"
+        android:textSize="25sp"
+        android:textColor="@color/colorVoldemort"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+</LinearLayout>

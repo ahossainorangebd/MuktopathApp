@@ -68,8 +68,6 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class CreateAccountActivity extends AppCompatActivity{
 
-
-
     private static final int REQUEST_READ_CONTACTS = 0;
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
@@ -108,6 +106,9 @@ public class CreateAccountActivity extends AppCompatActivity{
 
     private String token="";
 
+    private List<String> ccCat=new ArrayList<String>();
+    private Spinner mSpinnerProfCat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,9 +126,7 @@ public class CreateAccountActivity extends AppCompatActivity{
         mEdtGender = findViewById(R.id.gender);
         mEdtTxtFullName = findViewById(R.id.fullname);
         mEdtTxtPwdConfirm = findViewById(R.id.confirm_password);
-        final Spinner mSpinnerProfCat=findViewById(R.id.spnrProfessionCategory);
-
-        mContext=this;
+        mSpinnerProfCat=findViewById(R.id.spnrProfessionCategory);
 
         new GetBasicData().execute(basicInfourl);
 
@@ -139,12 +138,11 @@ public class CreateAccountActivity extends AppCompatActivity{
         Button mEmailSignInButton = findViewById(R.id.regiPageSignUpId);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 mStrEmail=mEmailView.getText().toString();
                 mStrPwd=mEdtTxtPwd.getText().toString();
                 mStrPwdConfirm=mEdtTxtPwd.getText().toString();
-                mStrProfession=mEdtTxtProfession.getText().toString();
+                //mStrProfession=mEdtTxtProfession.getText().toString();
                 mStrGender=mEdtGender.getText().toString();
                 mStrFullName=mEdtTxtFullName.getText().toString();
 
@@ -157,6 +155,7 @@ public class CreateAccountActivity extends AppCompatActivity{
                     object.put("name", mStrFullName);
                     object.put("gender", mStrGender);
                     object.put("profession", IdOfSelectedItem);
+                    //object.put("type", "registration");
                 }
                 catch (Exception ex){ }
 
@@ -169,7 +168,16 @@ public class CreateAccountActivity extends AppCompatActivity{
                             {
                                 JSONObject jObject = new JSONObject();
 
-                                String abcd="aranya";
+                                /*if(){
+
+                                }
+                                else {
+
+                                }
+                                Toast.makeText(mContext, "Account created successfully", Toast.LENGTH_LONG).show();*/
+
+                                Intent i=new Intent(mContext,LoginActivity.class);
+                                startActivity(i);
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -188,34 +196,18 @@ public class CreateAccountActivity extends AppCompatActivity{
                     }
                 };
                 mQueue.add(jsonObjectRequest);
-
-                /*Intent i=new Intent(mContext,LoginActivity.class);
-                startActivity(i);*/
             }
         });
 
-        final List<String> ccCat=new ArrayList<String>();
-
         try {
+
             ccCat.add("পেশা");
-            ccCat.add(detailListProfessions.get(0).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(1).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(2).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(3).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(4).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(5).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(6).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(7).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(8).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(9).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(10).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(11).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(12).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(13).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(14).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(15).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(16).getmProfessionTitleBn());
-            ccCat.add(detailListProfessions.get(17).getmProfessionTitleBn());
+
+            for(int nthProfTtl=0; nthProfTtl<detailListProfessions.size(); nthProfTtl++){
+                ccCat.add(detailListProfessions.get(nthProfTtl).getmProfessionTitleBn());
+
+                String qwwret="";
+            }
         }
         catch (Exception ex){
             Log.d("", "onCreate: ");
@@ -242,7 +234,6 @@ public class CreateAccountActivity extends AppCompatActivity{
                         IdOfSelectedItem=idNameOfSelectedItem.getmProfessionId();
                     }
                 }
-                String breakpoint="gradle";
             }
 
             @Override
@@ -251,7 +242,6 @@ public class CreateAccountActivity extends AppCompatActivity{
 
             }
         });
-
     }
 
     public String  performPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -382,7 +372,5 @@ public class CreateAccountActivity extends AppCompatActivity{
             super.onPostExecute(result);
         }
     }
-
-
 }
 

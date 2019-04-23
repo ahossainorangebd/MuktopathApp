@@ -1003,7 +1003,7 @@
                     android:textColor="#bdbdbd"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
-                    android:text="ডাউনলোড"/>
+                    android:text="অফলাইন"/>
             </LinearLayout>
 
             <LinearLayout

@@ -96,7 +96,7 @@
                 android:id="@+id/courseName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 1"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -393,7 +393,7 @@
                             android:id="@+id/courseName2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Course 2"
+                            android:text=""
                             android:textColor="@color/Colorpeace"
                             android:textStyle="bold"
                             android:textSize="18sp"
@@ -696,7 +696,7 @@
                 android:id="@+id/courseName3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 3"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -796,7 +796,7 @@
                 android:id="@+id/courseName4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course 4"
+                android:text=""
                 android:textColor="@color/Colorpeace"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -1617,7 +1617,7 @@
                         android:textColor="#bdbdbd"
                         android:textSize="13sp"
                         android:layout_marginTop="2dp"
-                        android:text="ডাউনলোড"/>
+                        android:text="অফলাইন"/>
                 </LinearLayout>
 
                 <LinearLayout

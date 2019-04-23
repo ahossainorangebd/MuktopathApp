@@ -1,5 +1,6 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,21 +14,29 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private Context mContext;
 
     // Button Layout of footer
+
+    private ImageView mUserProfileImage;
+    private ImageView mUserCoverImage;
 
     private LinearLayout allCourseBtn;
     private LinearLayout recomendedBtn;
@@ -39,12 +48,20 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView mUserName;
 
+    private SessionManager sm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         mContext=this;
+
+        sm= new SessionManager(mContext);
+        HashMap<String, String> mSpInfo=sm.getUserDetails();
+
+        String emailFromCache = mSpInfo.get("email");
+        String passwordFromChache = mSpInfo.get("password");
 
         /*View view = LayoutInflater.from(mContext).inflate(R.layout.custom_logodetails, null, false);
 
@@ -60,6 +77,9 @@ public class ProfileActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
+        mUserCoverImage=findViewById(R.id.userCoverPhotoId);
+        mUserProfileImage=findViewById(R.id.userProfileImageId);
+
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
         myPageBtn = findViewById(R.id.myPageBtnId);
@@ -68,6 +88,33 @@ public class ProfileActivity extends AppCompatActivity {
 
         mUserName=findViewById(R.id.userNameId);
         mUserName.setText(GlobalVar.gName);
+
+        ImageView mLogOutBtn = findViewById(R.id.logOutBtnId);
+        mLogOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showPopUpImageBox();
+            }
+        });
+
+
+        String mUserCoverPhoto = GlobalVar.gBaseUrlForProfile + "/images/profile/" + GlobalVar.courseContentDetailList.get(0).getmUserInformationArrayList().get(0).getmUserCoverPhoto();
+        String mUserProfilePhoto = GlobalVar.gBaseUrlForProfile + "/images/profile/" + GlobalVar.courseContentDetailList.get(0).getmUserInformationArrayList().get(0).getmUserProfilePhoto();
+
+        try {
+            Picasso.with(mContext).load(mUserCoverPhoto).into(mUserCoverImage);
+        }
+        catch (Exception ex){}
+
+        try {
+            Picasso.with(mContext).load(mUserProfilePhoto).into(mUserProfileImage);
+        }
+        catch (Exception ex){}
+
+
+
+
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,4 +211,33 @@ public class ProfileActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private void showPopUpImageBox()
+    {
+        // custom dialog
+        final Dialog dialog = new Dialog(mContext, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforlogout);
+
+        Button mLogOutYes=dialog.findViewById(R.id.logOutYes);
+        mLogOutYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sm.logoutUser();
+
+            }
+        });
+
+        Button mLogOutNo=dialog.findViewById(R.id.logOutNo);
+        mLogOutNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
 }

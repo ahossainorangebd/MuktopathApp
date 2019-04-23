@@ -1,5 +1,6 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
+
+    private ProgressDialog mProgressDialog;
 
     private Context mContext;
 
@@ -82,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCoursesDetailContents> detailListVideoPulse;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnits;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizListExam;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList2;
 
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailUnitQuizOptList;
@@ -92,10 +97,13 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit1Data;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit2Data;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit3Data;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseUnit4Data;
 
     //TODO
 
     private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
+
+    private ArrayList<DetailDataModelCoursesMarks> mPassPercentageArrayList;
 
     private ArrayList<DetailDataModelCourses> detailListFileType;
 
@@ -103,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<DetailDataModelCoursesDetailContents> mUnitArrayListNew;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizList;
+    ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListExam;
     ArrayList<DetailDataModelCoursesDetailContents> mUnitQuizListMp;
     ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitQuizList2;
     ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mPulseQuizList2;
@@ -122,6 +131,9 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<DetailDataModelCoursesDetailContents> mUnit1DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit2DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit3DataArrayList;
+    ArrayList<DetailDataModelCoursesDetailContents> mUnit4DataArrayList;
+
+    private ArrayList<DetailDataModelCoursesDetailContents> detailListUserInformation=new ArrayList<>();
 
     private TextView mGoToRegiPage;
 
@@ -147,6 +159,7 @@ public class LoginActivity extends AppCompatActivity {
         mEdtTxtPwd = findViewById(R.id.password);
 
         mContext=this;
+
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -187,8 +200,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 //attemptLogin();
-
-
 
                 /*finish();
                 Intent i=new Intent(mContext,WelcomeActivity.class);
@@ -253,18 +264,26 @@ public class LoginActivity extends AppCompatActivity {
                                 sm.isLoggedIn();
                             }
 
+
+                            mProgressDialog=new ProgressDialog(mContext);
+                            mProgressDialog.setIndeterminate(true);
+                            mProgressDialog.setMessage("Please wait...");
+                            mProgressDialog.show();
+
                             RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
 
                             final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
                                     new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
-                                            if (response != null) try {
+                                            if (response != null) try
+                                            {
                                                 detailListCourse = new ArrayList<DetailDataModelCourses>();
 
                                                 detailList = new ArrayList<DetailDataModelCourses>();
 
                                                 detailListCourseThumbnail = new ArrayList<DetailDataModelCoursesThumbnails>();
+                                                mPassPercentageArrayList = new ArrayList<DetailDataModelCoursesMarks>();
                                                 detailListCourseDetailContents = new ArrayList<DetailDataModelCoursesDetailContents>();
                                                 detailList10 = new ArrayList<DetailDataModelCourses>();
 
@@ -274,6 +293,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 detailListCourseDetailContentss = new ArrayList<>();
                                                 detailListCourseDetailUnits = new ArrayList<>();
                                                 detailListCourseDetailUnitQuizList = new ArrayList<>();
+                                                detailListCourseDetailUnitQuizListExam = new ArrayList<>();
                                                 detailListCourseDetailUnitQuizList2 = new ArrayList<>();
 
                                                 detailListCourseDetailUnitQuizOptList = new ArrayList<>();
@@ -284,10 +304,12 @@ public class LoginActivity extends AppCompatActivity {
                                                 detailListCourseUnit1Data = new ArrayList<>();
                                                 detailListCourseUnit2Data = new ArrayList<>();
                                                 detailListCourseUnit3Data = new ArrayList<>();
+                                                detailListCourseUnit4Data = new ArrayList<>();
 
                                                 DetailDataModelCourses model = new DetailDataModelCourses();
 
                                                 JSONObject jObject;
+                                                JSONObject jObjectAllMarks;
                                                 JSONObject jObjectData = new JSONObject();
 
                                                 try {
@@ -524,10 +546,24 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                                     try {
+                                                        detailListUserInformation = new ArrayList<DetailDataModelCoursesDetailContents>();
+
                                                         DetailDataModelCourses modelEnrollCourse = new DetailDataModelCourses();
 
-                                                        JSONArray objectAgainAnother = (JSONArray) jObjectData.getJSONArray("RoleInstitution");
-                                                        JSONArray objectEnrollCourse = (JSONArray) jObjectData.getJSONArray("EnrollCourse");
+                                                        DetailDataModelCoursesDetailContents modelUserInformation = new DetailDataModelCoursesDetailContents();
+
+                                                        JSONArray objectAgainAnother =  jObjectData.getJSONArray("RoleInstitution");
+                                                        JSONArray objectEnrollCourse =  jObjectData.getJSONArray("EnrollCourse");
+
+                                                        JSONObject objectUserInformation = jObjectData.getJSONObject("UserInfo");
+
+                                                        String UserProfilePhoto = objectUserInformation.getString("photo_name");
+                                                        String UserCoverPhoto = objectUserInformation.getString("cover_image");
+
+                                                        modelUserInformation.setmUserProfilePhoto(UserProfilePhoto);
+                                                        modelUserInformation.setmUserCoverPhoto(UserCoverPhoto);
+
+                                                        detailListUserInformation.add(modelUserInformation);
 
                                                         int enrolledCourseNumbers = objectEnrollCourse.length();
 
@@ -592,6 +628,22 @@ public class LoginActivity extends AppCompatActivity {
                                                                 try {
                                                                     jObject = objectCourse2.getJSONObject("syllabus");
 
+                                                                    jObjectAllMarks = objectCourse2.getJSONObject("marks");
+
+                                                                    JSONObject totalMarks=jObjectAllMarks.getJSONObject("quiz");
+
+                                                                    String courseQuizPassMark = totalMarks.getString("pass_marks");
+
+                                                                    DetailDataModelCoursesMarks modelCoursePassMark = new DetailDataModelCoursesMarks();
+
+                                                                    modelCoursePassMark.setQuiz_pass_mark(courseQuizPassMark);
+
+                                                                    mPassPercentageArrayList.add(modelCoursePassMark);
+
+
+                                                                    String awqwe="";
+
+
                                                                     JSONArray objectEnrollCourseUnits = (JSONArray) jObject.getJSONArray("units");
 
                                                                     mUnitArrayListNew = new ArrayList<>();
@@ -603,9 +655,11 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                         String orderEcu = objectUnitElements.getString("order");
                                                                         String nameEcu = objectUnitElements.getString("name");
+                                                                        String idEcu = objectUnitElements.getString("id");
 
                                                                         modelUnitElements.setUnitOrders(orderEcu);
                                                                         modelUnitElements.setUnitNames(nameEcu);
+                                                                        modelUnitElements.setUnitID(idEcu);
 
                                                                         mUnitArrayListNew.add(modelUnitElements);
                                                                     }
@@ -734,13 +788,13 @@ public class LoginActivity extends AppCompatActivity {
                                                                         mUnit1DataArrayList = new ArrayList<>();
                                                                         mUnit2DataArrayList = new ArrayList<>();
                                                                         mUnit3DataArrayList = new ArrayList<>();
+                                                                        mUnit4DataArrayList = new ArrayList<>();
 
                                                                         mVideoPulseMulti = new ArrayList<>();
 
                                                                         for (int ii = 0; ii < jObject.length() - 1; ii++) {
                                                                             JSONObject jSObject2 = jObject.getJSONObject("" + ii);
 
-                                                                            //for parsing lessons > {0} > "syllebus" > "0" > "data"
                                                                             detailList6 = new ArrayList<DetailDataModelCourses>();
 
                                                                             DetailDataModelCourses model6 = new DetailDataModelCourses();
@@ -813,11 +867,23 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                                     //let's add
 
-                                                                                    if (content_type.equalsIgnoreCase("quiz")) {
+                                                                                    if (content_type.equalsIgnoreCase("exam")) {
                                                                                         mUnit2DataArrayList.add(modelUnitCourseContents);
-                                                                                    } else if (content_type.equalsIgnoreCase("assignment")) {
+                                                                                    }
+                                                                                    else if (content_type.equalsIgnoreCase("assignment")) {
                                                                                         mUnit3DataArrayList.add(modelUnitCourseContents);
-                                                                                    } else {
+                                                                                    }
+                                                                                    else if (content_type.equalsIgnoreCase("quiz")) {
+
+                                                                                        String mQuizMakrs = jObjAgain.getString("marks");
+                                                                                        String mQuizTime = jObjAgain.getString("time");
+
+                                                                                        modelUnitCourseContents.setmQuizMarks(mQuizMakrs);
+                                                                                        modelUnitCourseContents.setmQuizTime(mQuizTime);
+
+                                                                                        mUnit4DataArrayList.add(modelUnitCourseContents);
+                                                                                    }
+                                                                                    else {
                                                                                         mUnit1DataArrayList.add(modelUnitCourseContents);
                                                                                     }
 
@@ -934,11 +1000,16 @@ public class LoginActivity extends AppCompatActivity {
                                                                                                     JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ2.get(qlist2);
 
                                                                                                     String qTitle = objectAgainAnother2.getString("title");
+                                                                                                    String qDesc = objectAgainAnother2.getString("description");
 
                                                                                                     qTitle = qTitle.replace("<p>", "");
                                                                                                     qTitle = qTitle.replace("</p>", "");
 
+                                                                                                    qDesc = qDesc.replace("<p>", "");
+                                                                                                    qDesc = qDesc.replace("</p>", "");
+
                                                                                                     modelUnitQuizElements2.setmQuizTitle(qTitle);
+                                                                                                    modelUnitQuizElements2.setmSummeryDesc(qDesc);
                                                                                                     mUnitQuizList.add(modelUnitQuizElements2);
 
                                                                                                     modelUnitQuizListWithOptions.setmQuizTitle(qTitle);
@@ -971,6 +1042,33 @@ public class LoginActivity extends AppCompatActivity {
                                                                                                     }
 
                                                                                                     mUnitQuizList2.add(mUnitQuizOptList);
+                                                                                                }
+                                                                                            }
+                                                                                        } catch (Exception ex) {
+                                                                                            Log.d("", "onResponse: ");
+                                                                                        }
+                                                                                    }
+                                                                                    else if (content_type.equalsIgnoreCase("exam")) {
+                                                                                        try {
+                                                                                            for (int ctqexam = 0; ctqexam < jSObject3.length(); ctqexam++) {
+
+                                                                                                JSONArray jSonObjMultiQ2exam = (JSONArray) jSObject3.getJSONArray("ques_list");
+
+                                                                                                mUnitQuizListExam = new ArrayList<>();
+
+                                                                                                for (int qlist2 = 0; qlist2 < jSonObjMultiQ2exam.length(); qlist2++) {
+
+                                                                                                    DetailDataModelCoursesDetailContents modelUnitQuizElements2 = new DetailDataModelCoursesDetailContents();
+
+                                                                                                    JSONObject objectAgainAnother2 = (JSONObject) jSonObjMultiQ2exam.get(qlist2);
+
+                                                                                                    String qTitle = objectAgainAnother2.getString("title");
+
+                                                                                                    qTitle = qTitle.replace("<p>", "");
+                                                                                                    qTitle = qTitle.replace("</p>", "");
+
+                                                                                                    modelUnitQuizElements2.setmQuizTitle(qTitle);
+                                                                                                    mUnitQuizListExam.add(modelUnitQuizElements2);
                                                                                                 }
                                                                                             }
                                                                                         } catch (Exception ex) {
@@ -1094,6 +1192,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                 detailListCourseDetailUnits.add(mUnitArrayListNew);
                                                                 detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+                                                                detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
 
                                                                 //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
 
@@ -1104,6 +1203,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                 detailListCourseUnit1Data.add(mUnit1DataArrayList);
                                                                 detailListCourseUnit2Data.add(mUnit2DataArrayList);
                                                                 detailListCourseUnit3Data.add(mUnit3DataArrayList);
+                                                                detailListCourseUnit4Data.add(mUnit4DataArrayList);
 
                                                                 GlobalVar.gEnrolledInstitution = detailList10;
                                                             }
@@ -1117,12 +1217,19 @@ public class LoginActivity extends AppCompatActivity {
                                                     modelAlter.setmUnitDataArrayListContent(detailListCourseUnit1Data);
                                                     modelAlter.setmUnitDataArrayListContent2(detailListCourseUnit2Data);
                                                     modelAlter.setmUnitDataArrayListContent3(detailListCourseUnit3Data);
+                                                    modelAlter.setmUnitDataArrayListContent4(detailListCourseUnit4Data);
+
+                                                    modelAlter.setmUserInformationArrayList(detailListUserInformation);
+
+
 
                                                     modelAlter.setmArrayListThumbnails(detailListCourseThumbnail);
+                                                    modelAlter.setmArrayListMarks(mPassPercentageArrayList);
                                                     modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
 
                                                     modelAlter.setmArrayListCourseUnits(detailListCourseDetailUnits);
                                                     modelAlter.setmArrayListCourseQuizs(detailListCourseDetailUnitQuizList);
+                                                    modelAlter.setmArrayListCourseQuizsExam(detailListCourseDetailUnitQuizListExam);
 
                                                     //for option list of quest list
                                                     modelAlter.setmArrayListCourseQuizOptions(detailListCourseDetailUnitQuizOptList);
@@ -1132,11 +1239,11 @@ public class LoginActivity extends AppCompatActivity {
 
                                                     detailListCourse.add(modelAlter);
 
-                                    /*ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
+                                                    /*ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = detailListCourse.get(0).getmArrayListContentDetails();
 
-                                    mArrayList = contentArray.get(0).toArray();
+                                                    mArrayList = contentArray.get(0).toArray();
 
-                                    GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
+                                                    GlobalVar.gChildArrayOfContentMyPage=mArrayList;*/
 
                                                     GlobalVar.courseContentDetailList = detailListCourse;
 
@@ -1145,11 +1252,16 @@ public class LoginActivity extends AppCompatActivity {
                                                     Log.d("", "onResponse: ");
                                                 }
 
+                                                mProgressDialog.dismiss();
+
                                                 Intent i = new Intent(mContext, SelectACategoryActivity.class);
                                                 startActivity(i);
-                                            } catch (Exception ex) {
+                                            }
+
+                                            catch (Exception ex) {
                                                 Log.e("tag", "Couldn't get json from server.");
                                             }
+
                                             else {
                                                 Toast.makeText(mContext, "You must fill the email field.", Toast.LENGTH_LONG).show();
                                             }
@@ -1158,9 +1270,16 @@ public class LoginActivity extends AppCompatActivity {
                                     }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
+
                                     Log.e("TAG", error.getMessage(), error);
+
+                                    mEmailView.requestFocus();
+                                    mEmailView.setError("Invalid email.");
+                                    mEdtTxtPwd.requestFocus();
+                                    mEdtTxtPwd.setError("Invalid password.");
                                 }
-                            }) { //no semicolon or coma
+                            })
+                            { //no semicolon or coma
                                 @Override
                                 public Map<String, String> getHeaders() throws AuthFailureError {
                                     Map<String, String> params = new HashMap<String, String>();
@@ -1170,7 +1289,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             };
                             mQueue.add(jsonObjectRequest);
-
                         }
                     }
                     else {

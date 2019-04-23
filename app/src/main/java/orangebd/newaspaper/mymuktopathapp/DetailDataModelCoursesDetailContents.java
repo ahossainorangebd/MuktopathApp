@@ -1,11 +1,32 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class DetailDataModelCoursesDetailContents
 {
 
+    private JSONArray mQuesList;
+
+    //Lesson elements
+
+
+    private String IdLesson;
+    private String NameLesson;
+    private String OrderLessom;
+    private String FixedLesson;
+
+    //user info
+
+    private String mUserProfilePhoto;
+    private String mUserCoverPhoto;
+
+
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
+
+
+    private ArrayList<DetailDataModelCoursesDetailContents> mArrayListEnrolledCourseId;
 
     //TODO
     // For parsing the "data" of last object inside
@@ -27,9 +48,18 @@ public class DetailDataModelCoursesDetailContents
     private String mTimeUnit;
     private String mTitleAnother;
 
+
+    private String mQuizMarks;
+    private String mQuizTime;
+
+    private String mExamMarks;
+    private String mExamTime;
+
     // For model of Quizes
 
     private String mQuizTitle;
+    private String mQuizId;
+    private String mSummeryDesc;
 
     // For model of pulse Quizes
 
@@ -79,6 +109,7 @@ public class DetailDataModelCoursesDetailContents
 
     private String unitNames;
     private String unitOrders;
+    private String unitID;
 
     public String getUnitNames() {
         return unitNames;
@@ -503,11 +534,135 @@ public class DetailDataModelCoursesDetailContents
         this.mPulseOfVideoMultiId = mPulseOfVideoMultiId;
     }
 
+    public String getmQuizMarks() {
+        return mQuizMarks;
+    }
+
+    public void setmQuizMarks(String mQuizMarks) {
+        this.mQuizMarks = mQuizMarks;
+    }
+
+    public String getmQuizTime() {
+        return mQuizTime;
+    }
+
+    public void setmQuizTime(String mQuizTime) {
+        this.mQuizTime = mQuizTime;
+    }
+
+
+
+    public String getmUserProfilePhoto() {
+        return mUserProfilePhoto;
+    }
+
+    public void setmUserProfilePhoto(String mUserProfilePhoto) {
+        this.mUserProfilePhoto = mUserProfilePhoto;
+    }
+
+    public String getmUserCoverPhoto() {
+        return mUserCoverPhoto;
+    }
+
+    public void setmUserCoverPhoto(String mUserCoverPhoto) {
+        this.mUserCoverPhoto = mUserCoverPhoto;
+    }
+
+    public String getmSummeryDesc() {
+        return mSummeryDesc;
+    }
+
+    public void setmSummeryDesc(String mSummeryDesc) {
+        this.mSummeryDesc = mSummeryDesc;
+    }
+
+    public String getmExamMarks() {
+        return mExamMarks;
+    }
+
+    public void setmExamMarks(String mExamMarks) {
+        this.mExamMarks = mExamMarks;
+    }
+
+    public String getmExamTime() {
+        return mExamTime;
+    }
+
+    public void setmExamTime(String mExamTime) {
+        this.mExamTime = mExamTime;
+    }
+
+    public String getUnitID() {
+        return unitID;
+    }
+
+    public void setUnitID(String unitID) {
+        this.unitID = unitID;
+    }
+
+    public String getIdLesson() {
+        return IdLesson;
+    }
+
+    public void setIdLesson(String idLesson) {
+        IdLesson = idLesson;
+    }
+
+    public String getNameLesson() {
+        return NameLesson;
+    }
+
+    public void setNameLesson(String nameLesson) {
+        NameLesson = nameLesson;
+    }
+
+    public String getOrderLessom() {
+        return OrderLessom;
+    }
+
+    public void setOrderLessom(String orderLessom) {
+        OrderLessom = orderLessom;
+    }
+
+    public String getFixedLesson() {
+        return FixedLesson;
+    }
+
+    public void setFixedLesson(String fixedLesson) {
+        FixedLesson = fixedLesson;
+    }
+
+    public JSONArray getmQuesList() {
+        return mQuesList;
+    }
+
+    public void setmQuesList(JSONArray mQuesList) {
+        this.mQuesList = mQuesList;
+    }
+
+    public String getmQuizId() {
+        return mQuizId;
+    }
+
+    public void setmQuizId(String mQuizId) {
+        this.mQuizId = mQuizId;
+    }
+
+
+
+
     /*public String getmOptionBody() {
         return mOptionBody;
     }
 
+
+
+
+
     public void setmOptionBody(String mOptionBody) {
         this.mOptionBody = mOptionBody;
     }*/
+
+
+
 }

@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.CheckBox;
 
 import org.w3c.dom.Text;
 
@@ -34,6 +35,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private int mTitleOffset;
     private int mTabViewLayoutId;
     private int mTabViewTextViewId;
+    private int mTabViewCheckboxId;
     private boolean mDistributeEvenly;
     private ViewPager mViewPager;
     private SparseArray<String> mContentDescriptions = new SparseArray<String>();
@@ -86,6 +88,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
      */
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
         mViewPagerPageChangeListener = listener;
+
+        String aaaa="";
     }
     /**
      * Set the custom layout to be inflated for the tab views.
@@ -93,9 +97,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * @param layoutResId Layout id to be inflated
      * @param textViewId id of the {@link TextView} in the inflated view
      */
-    public void setCustomTabView(int layoutResId, int textViewId) {
+    public void setCustomTabView(int layoutResId, int textViewId, int checkboxid) {
         mTabViewLayoutId = layoutResId;
         mTabViewTextViewId = textViewId;
+        mTabViewCheckboxId = checkboxid;
     }
     /**
      * Sets the associated view pager. Note that the assumption here is that the pager content
@@ -111,10 +116,11 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
     /**
      * Create a default view to be used for tabs. This is called if a custom tab view is not set via
-     * {@link #setCustomTabView(int, int)}.
+     * {@link #(int, int)}.
      */
     protected TextView createDefaultTabView(Context context) {
         TextView textView = new TextView(context);
+        CheckBox mcheckbox = new CheckBox(context);
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
 
@@ -125,8 +131,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         CharSequence text = textView.getText();
         float width = textView.getPaint().measureText(text, 0, text.length());
 
-        textView.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
                 outValue, true);
@@ -145,20 +150,26 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private void populateTabStrip() {
         final PagerAdapter adapter = mViewPager.getAdapter();
         final View.OnClickListener tabClickListener = new TabClickListener();
+
         for (int i = 0; i < adapter.getCount(); i++) {
             View tabView = null;
             TextView tabTitleView = null;
+            CheckBox mCheckBoxView = null;
             if (mTabViewLayoutId != 0) {
                 // If there is a custom tab view layout id set, try and inflate it
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
                         false);
                 tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+                mCheckBoxView = (CheckBox) tabView.findViewById(mTabViewCheckboxId);
             }
             if (tabView == null) {
                 tabView = createDefaultTabView(getContext());
             }
             if (tabTitleView == null && TextView.class.isInstance(tabView)) {
                 tabTitleView = (TextView) tabView;
+
+                //TODO
+                //mCheckBoxView = (CheckBox) tabView;
             }
             if (mDistributeEvenly) {
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
@@ -174,6 +185,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
 //           tabTitleView.setWidth((int)width+20);
 
 
+            //TODO
+           // mCheckBoxView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
 
             if( width <=150) {
                 tabTitleView.setLayoutParams(new LinearLayout.LayoutParams(
@@ -188,6 +202,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
 
             tabTitleView.setTextColor(Color.BLACK);
+
+            //TODO
+            //mCheckBoxView.setBackgroundColor(Color.BLACK);
+
             tabView.setOnClickListener(tabClickListener);
             String desc = mContentDescriptions.get(i, null);
             if (desc != null) {
@@ -236,12 +254,19 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if(position==0) {
                 TextView selectedView=(TextView)mTabStrip.getChildAt(position);
+
+
                 selectedView.setBackgroundResource(R.drawable.rounded_selected_textview);
-                selectedView.setTextColor(Color.BLACK);
+                selectedView.setTextColor(Color.WHITE);
+
+                //CheckBox mCheckbox=(CheckBox) mTabStrip.getChildAt(position);
             }
             else if(position==1) {
                 TextView selectedView=(TextView)mTabStrip.getChildAt(0);
                 selectedView.setBackgroundResource(R.drawable.rounded_textview);
+                selectedView.setTextColor(Color.BLACK);
+
+                //CheckBox mCheckbox=(CheckBox)mTabStrip.getChildAt(position);
             }
 
             if ((tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
@@ -285,11 +310,20 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
                     TextView selectedView=(TextView)v;
                     selectedView.setBackgroundResource(R.drawable.rounded_selected_textview);
-                    selectedView.setTextColor(Color.BLACK);
+
+                    selectedView.setTextColor(Color.WHITE);
+
+
+                    //TODO
+                    //CheckBox mCheckbox=(CheckBox)v;
                 }
                 else {
                     TextView selectedView=(TextView)v;
                     selectedView.setBackgroundResource(R.drawable.rounded_textview);
+                    selectedView.setTextColor(Color.BLACK);
+
+                    //TODO
+                    //CheckBox mCheckbox=(CheckBox)v;
                 }
 
             }
@@ -319,14 +353,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
                      * */
                     //TODO
 //                    v.setBackgroundColor(Color.parseColor("#a3a3a3"));
-
-                    /**
-                     * These global variables did'nt work
-                     * */
-                    /*GlobalVar.gSearchBtn.setVisibility(VISIBLE);
-                    GlobalVar.gRtvHeadLogoCustom.setVisibility(VISIBLE);
-                    GlobalVar.gSearchCrossBtn.setVisibility(INVISIBLE);
-                    GlobalVar.gSearchView.setVisibility(INVISIBLE);*/
 
                     mViewPager.setCurrentItem(i);
 

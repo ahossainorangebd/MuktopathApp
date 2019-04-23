@@ -112,14 +112,19 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
         //Toast.makeText(mContext,"On this second a multiple pop up will appear",Toast.LENGTH_LONG).show();
 
 
-        textViewName.setText(titleText);
+        if(titleText==null){
+            textViewName.setText(". . . . .");
+        }
+        else {
+            textViewName.setText(titleText);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                GlobalVar.gThisVideoPulses = GlobalVar.thisFragmentPulses.get(listPosition);
-                GlobalVar.gThisVideoPulsesQs = GlobalVar.thisFragmentPulseQs.get(listPosition);
+                //GlobalVar.gThisVideoPulses = GlobalVar.thisFragmentPulses.get(listPosition);
+                //GlobalVar.gThisVideoPulsesQs = GlobalVar.thisFragmentPulseQs.get(listPosition);
 
                 Intent i = new Intent(mContext, CourseContentDetailActivity.class);
                 i.putExtra("ttl", titleText);
@@ -129,6 +134,13 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
                 i.putExtra("videostatus", timeStatus);
 
                 GlobalVar.gListPosition=Integer.toString(listPosition);
+
+                //For History data
+
+                GlobalVar.gDescriptionText=descriptionText;
+                GlobalVar.gUserNumber=ownerId;
+                GlobalVar.gVideoCode=videoCode;
+                GlobalVar.gTimeStatus=timeStatus;
 
                 String aqwqw="";
 

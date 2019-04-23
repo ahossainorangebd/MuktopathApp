@@ -108,7 +108,9 @@ public class TabsPagerAdapterMyPageDetail extends FragmentPagerAdapter {
                     return null;
             }
         }
-        else if(GlobalVar.gEnrolledCourseUnitSize>=4)
+
+
+        else if(GlobalVar.gEnrolledCourseUnitSize==5)
         {
             switch (position) {
 
@@ -122,6 +124,132 @@ public class TabsPagerAdapterMyPageDetail extends FragmentPagerAdapter {
                     return new MyPageDetailFragment4();
                 case 4:
                     return new MyPageDetailFragment5();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrolledCourseUnitSize==6)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageDetailFragment1();
+                case 1:
+                    return new MyPageDetailFragment2();
+                case 2:
+                    return new MyPageDetailFragment3();
+                case 3:
+                    return new MyPageDetailFragment4();
+                case 4:
+                    return new MyPageDetailFragment5();
+                case 5:
+                    return new MyPageDetailFragment6();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrolledCourseUnitSize==7)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageDetailFragment1();
+                case 1:
+                    return new MyPageDetailFragment2();
+                case 2:
+                    return new MyPageDetailFragment3();
+                case 3:
+                    return new MyPageDetailFragment4();
+                case 4:
+                    return new MyPageDetailFragment5();
+                case 5:
+                    return new MyPageDetailFragment6();
+                case 6:
+                    return new MyPageDetailFragment7();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrolledCourseUnitSize==8)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageDetailFragment1();
+                case 1:
+                    return new MyPageDetailFragment2();
+                case 2:
+                    return new MyPageDetailFragment3();
+                case 3:
+                    return new MyPageDetailFragment4();
+                case 4:
+                    return new MyPageDetailFragment5();
+                case 5:
+                    return new MyPageDetailFragment6();
+                case 6:
+                    return new MyPageDetailFragment7();
+                case 7:
+                    return new MyPageDetailFragment8();
+                default:
+                    return null;
+            }
+        }
+
+
+        else if(GlobalVar.gEnrolledCourseUnitSize==9)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageDetailFragment1();
+                case 1:
+                    return new MyPageDetailFragment2();
+                case 2:
+                    return new MyPageDetailFragment3();
+                case 3:
+                    return new MyPageDetailFragment4();
+                case 4:
+                    return new MyPageDetailFragment5();
+                case 5:
+                    return new MyPageDetailFragment6();
+                case 6:
+                    return new MyPageDetailFragment7();
+                case 7:
+                    return new MyPageDetailFragment8();
+                case 8:
+                    return new MyPageDetailFragment9();
+                default:
+                    return null;
+            }
+        }
+
+        else if(GlobalVar.gEnrolledCourseUnitSize>=10)
+        {
+            switch (position) {
+
+                case 0:
+                    return new MyPageDetailFragment1();
+                case 1:
+                    return new MyPageDetailFragment2();
+                case 2:
+                    return new MyPageDetailFragment3();
+                case 3:
+                    return new MyPageDetailFragment4();
+                case 4:
+                    return new MyPageDetailFragment5();
+                case 5:
+                    return new MyPageDetailFragment6();
+                case 6:
+                    return new MyPageDetailFragment7();
+                case 7:
+                    return new MyPageDetailFragment8();
+                case 8:
+                    return new MyPageDetailFragment9();
+                case 9:
+                    return new MyPageDetailFragment10();
                 default:
                     return null;
             }

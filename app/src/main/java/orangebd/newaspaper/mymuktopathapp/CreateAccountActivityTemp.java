@@ -117,10 +117,6 @@ public class CreateAccountActivityTemp extends AppCompatActivity{
                 map.put("profession", mStrProfession);
 
                 new CreateAccount().execute(url);
-
-
-
-
             }
         });
     }

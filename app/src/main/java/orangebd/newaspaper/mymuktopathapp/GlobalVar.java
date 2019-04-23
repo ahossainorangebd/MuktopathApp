@@ -1,11 +1,22 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class GlobalVar {
 
     public static String getParentName;
+
+    public static String gLastReadLessonTitle;
+
+    public static String gPulseTitle;
+
+    public static ArrayList<DetailDataModelCoursesDetailContents> gPulseAnswerArray;
+
+    public static int gTotalQuizNumberThisCourse;
+    public static int gTotalExamNumberThisCourse;
 
     public static ArrayList<ParentMenu> gParentMenue;
 
@@ -64,6 +75,7 @@ public class GlobalVar {
     public static String gUserType;
 
     public static String gBaseUrl="http://muktopaath.orangebd.com";
+    public static String gBaseUrlForProfile="http://testadmin.muktopaath.orangebd.com";
 
     public static String gApiBaseUrl="http://testapi.muktopaath.orangebd.com";
    //TODO
@@ -97,4 +109,62 @@ public class GlobalVar {
 
 
     public static boolean gIsLogin;
+
+
+    public static int gMultiMarkCount=0;
+    public static int gPulseMultiMarkCount;
+
+
+
+    public static String gPassMark;
+    public static String gTotalGainedMark;
+
+    public static String gEPassMark;
+    public static String gETotalGainedMark;
+
+
+
+    ///Course Detail Page Put Extra Info into GlobalVar
+
+    public static String gCourseDetailCoverPhoto;
+    public static String gCourseDetailTitle;
+    public static String gCourseDetailOwnerName;
+    public static int gCourseNumber;
+    public static boolean isRedirectFromContentPage;
+
+    //Course Content Detail page put extra info into GlobalVar
+
+    public static String gDescriptionText;
+    public static String gUserNumber;
+    public static String gVideoCode;
+    public static String gTimeStatus;
+
+    // Unit & Lesson info
+    public static String gUnitId;
+    public static String gLessonId;
+
+
+    // Ques List for exam
+
+    public static ArrayList<String> answerArray;
+    public static ArrayList<String> attendedQArray;
+
+    // Ques List for quiz
+
+    public static ArrayList<String> answerArrayQuiz;
+    public static ArrayList<String> attendedQArrayQuiz;
+    public static int gNthQuiz;
+    public static boolean isRedirectFromQuizFragment1;
+
+    //enroll course Id
+
+    public static ArrayList<DetailDataModelCourses> gEnrollCourseId;
+
+
+    // Course motto and objective
+
+    public static String gCourseMotto;
+    public static String gCourseObj;
+    public static String gCourseDesc;
+
 }
