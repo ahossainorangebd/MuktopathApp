@@ -127,6 +127,11 @@ public class DetailDataModelCourses
 
 
 
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mUnitAllArrayList;
+
+
+
+
 
 
 
@@ -1301,8 +1306,9 @@ public class DetailDataModelCourses
         this.mCourseEnrollArrayListId = mCourseEnrollArrayListId;
     }
 
-    // ec id
+    // ec id & compltness
     private String mEcId;
+    private String mEcCompleteness;
 
     public String getmEcId() {
         return mEcId;
@@ -1318,5 +1324,21 @@ public class DetailDataModelCourses
 
     public void setmCourseObjective(String mCourseObjective) {
         this.mCourseObjective = mCourseObjective;
+    }
+
+    public String getmEcCompleteness() {
+        return mEcCompleteness;
+    }
+
+    public void setmEcCompleteness(String mEcCompleteness) {
+        this.mEcCompleteness = mEcCompleteness;
+    }
+
+    public ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> getmUnitAllArrayList() {
+        return mUnitAllArrayList;
+    }
+
+    public void setmUnitAllArrayList(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mUnitAllArrayList) {
+        this.mUnitAllArrayList = mUnitAllArrayList;
     }
 }

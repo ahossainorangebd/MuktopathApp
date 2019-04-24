@@ -20,6 +20,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -70,6 +71,24 @@ public class ProfileActivity extends AppCompatActivity {
         Animation mLoadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
+
+
+        /** Progress of progressBar
+         * */
+
+        String enrollCourseCompltness=GlobalVar.gProfileCompleteness;
+
+        try {
+            int index = enrollCourseCompltness.indexOf(".");
+            enrollCourseCompltness = enrollCourseCompltness.substring(0,index);
+        }
+        catch (Exception ex){
+            Log.d("", "onCreateView: ");
+        }
+
+        ProgressBar mProgBar=findViewById(R.id.determinateBar);
+        mProgBar.getIndeterminateDrawable().setColorFilter(0xFF009109,android.graphics.PorterDuff.Mode.MULTIPLY);
+        mProgBar.setProgress(Integer.parseInt(enrollCourseCompltness));
 
         mUserCoverImage=findViewById(R.id.userCoverPhotoId);
         mUserProfileImage=findViewById(R.id.userProfileImageId);

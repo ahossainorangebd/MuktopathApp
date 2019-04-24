@@ -84,7 +84,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private String videoUrl;
     private String finalVideoUrl;
 
-    private String BASE_URL = "http://muktopaath.orangebd.com";
+    //private String BASE_URL = "http://muktopaath.orangebd.com";
+    private String BASE_URL = "http://testadmin.muktopaath.orangebd.com";
 
     private VideoView vView;
     Uri videoUri;
@@ -347,7 +348,14 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 //TODO
                 //TODO
 
-                int targetPopUp=Integer.parseInt(getPulse);
+                int targetPopUp=0;
+
+                try {
+                    targetPopUp = Integer.parseInt(getPulse);
+                }
+                catch (Exception ex){
+                    Log.d("", "onProgressChanged: ");
+                }
                 //int targetPopUp=5;
 
                 if(seconds==targetPopUp)

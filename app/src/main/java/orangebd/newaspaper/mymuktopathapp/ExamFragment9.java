@@ -50,7 +50,7 @@ public class ExamFragment9 extends Fragment {
         examPaperField=view.findViewById(R.id.examPaperField);
 
         /** For question and option expandable list*/
-        final ArrayList<DetailDataModelCoursesDetailContents> mExamParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
+        final ArrayList<DetailDataModelCoursesDetailContents> mExamParents = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizsExam().get(GlobalVar.gNthCourse);
 
 
         String examTitle = mExamParents.get(nthExam).getmQuizTitle();

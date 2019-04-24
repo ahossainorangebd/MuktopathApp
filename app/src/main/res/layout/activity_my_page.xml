@@ -43,7 +43,7 @@
             android:layout_height="30dp"
             android:gravity="right"
             android:text="Settings"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="2dp"
             android:src="@drawable/mukto_settings_btn"
             />
@@ -62,24 +62,12 @@
         android:visibility="gone"
         />
 
-    <TextView
-        android:id="@+id/enrolledCourseNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Number"
-        android:textColor="@color/AppTextColor"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="70dp"
-        android:gravity="center"
-        android:visibility="gone"
-        />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/VideoSliderviewPagerId"
         android:layout_width="match_parent"
         android:layout_height="440dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="60dp"
         >
 
         <com.itsronald.widget.ViewPagerIndicator

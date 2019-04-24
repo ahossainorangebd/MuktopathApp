@@ -70,6 +70,9 @@ public class GlobalVar {
     public static String gName;
     public static String gMobile;
     public static String gEmail;
+    public static String gProfileCompleteness;
+
+
     public static String gReplacingToken;
     public static String gReplacingTokenForAllCategories;
     public static String gUserType;

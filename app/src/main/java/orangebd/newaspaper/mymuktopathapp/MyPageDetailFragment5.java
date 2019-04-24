@@ -57,6 +57,8 @@ public class MyPageDetailFragment5 extends Fragment {
 
     private String examPassMarks;
 
+    ArrayList<DetailDataModelCoursesDetailContents> contentTypeArray;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,6 +66,9 @@ public class MyPageDetailFragment5 extends Fragment {
         view= inflater.inflate(R.layout.fragment_my_page_detail_fragment5, container, false);
 
         context=getContext();
+
+        //for content type array
+        contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
 
         examPassMarksTextView=view.findViewById(R.id.passMarkId);
         mLastReadLesson=view.findViewById(R.id.lastReadLessonId);
@@ -124,19 +129,20 @@ public class MyPageDetailFragment5 extends Fragment {
             unitOrderText.setText(convertEngToBn(unitOrder));
             unitTitleText.setText(unitTitle);
 
-            if(unitTitle.equalsIgnoreCase("কুইজ")) {
+            /*if(unitTitle.equalsIgnoreCase("কুইজ")) {
                 setQuiz();
             }
-            else if(unitTitle.equalsIgnoreCase("এসাইনমেন্ট")){
+            else if(unitTitle.equalsIgnoreCase("এসাইনমেন্ট")) {
                 Toast.makeText(context,"Unit Assignment", Toast.LENGTH_LONG).show();
             }
             else if(unitTitle.equalsIgnoreCase("পরীক্ষা")){
-
                 setExam();
             }
             else {
-                setRecyclerViewContent();
-            }
+
+            }*/
+
+            setRecyclerViewContent();
         }
         else {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
@@ -251,7 +257,8 @@ public class MyPageDetailFragment5 extends Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
+            //adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
+            adapter=new RecyclerViewAdapterMyPageContentTypes(GlobalVar.thisFragmentContents,contentTypeArray,context);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();

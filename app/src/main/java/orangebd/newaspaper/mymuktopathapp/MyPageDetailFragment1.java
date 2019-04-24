@@ -44,6 +44,10 @@ public class MyPageDetailFragment1 extends Fragment {
 
     private int thisFragmentUniNumber=0;
 
+    private ArrayList<String> contentTypeArr;
+
+    ArrayList<DetailDataModelCoursesDetailContents> contentTypeArray;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +55,10 @@ public class MyPageDetailFragment1 extends Fragment {
         view = inflater.inflate(R.layout.fragment_my_page_detail_fragment1, container, false);
 
         context=getContext();
+
+        //for content type array
+        contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
+
 
         mLastReadLesson=view.findViewById(R.id.lastReadLessonId);
         startMyQuiz=view.findViewById(R.id.startMyQuizId);
@@ -109,7 +117,7 @@ public class MyPageDetailFragment1 extends Fragment {
             unitOrderText.setText(convertEngToBn(unitOrder));
             unitTitleText.setText(unitTitle);
 
-            if(unitTitle.equalsIgnoreCase("কুইজ")) {
+            /*if(unitTitle.equalsIgnoreCase("কুইজ")) {
                 setQuiz();
             }
             else if(unitTitle.equalsIgnoreCase("এসাইনমেন্ট")) {
@@ -119,8 +127,10 @@ public class MyPageDetailFragment1 extends Fragment {
                 setExam();
             }
             else {
-                setRecyclerViewContent();
-            }
+
+            }*/
+
+            setRecyclerViewContent();
         }
         else {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
@@ -156,83 +166,6 @@ public class MyPageDetailFragment1 extends Fragment {
             String abtqtq = "";
         }
 
-    }
-
-    private void setRecyclerViewContent() {
-
-        recyclerView = view.findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-
-        recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.setNestedScrollingEnabled(false);
-
-        new GetCoursesContents().execute();
-    }
-
-    public class GetCoursesContents extends AsyncTask<String, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            //mProgressSpinner.setIndeterminate(true);
-            //mProgressSpinner.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected Void doInBackground(String... arg0) {
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
-
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-            //mProgressSpinner.setVisibility(View.GONE);
-        }
-    }
-
-    public String convertEngToBn(String num) {
-
-        num = num.replace("0","০");
-        num = num.replace("1","১");
-        num = num.replace("2","২");
-        num = num.replace("3","৩");
-        num = num.replace("4","৪");
-        num = num.replace("5","৫");
-        num = num.replace("6","৬");
-        num = num.replace("7","৭");
-        num = num.replace("8","৮");
-        num = num.replace("9","৯");
-
-        return num;
-    }
-
-    private String stringForTime(int timeMs) {
-
-        Formatter mFormatter= new Formatter();
-
-        //int seconds = timeMs % 60;
-        int minutes = (timeMs / 60) % 60;
-        int hours = timeMs / 3600;
-
-        String mintBn = convertEngToBn(Integer.toString(minutes));
-        String hrsBn = convertEngToBn(Integer.toString(hours));
-
-        if (hours > 0) {
-            return mFormatter.format("%s ঘণ্টা %s মিনিট", hrsBn, mintBn).toString();
-        }
-        else {
-            return mFormatter.format("%s মিনিট", mintBn).toString();
-        }
     }
 
     private void setExam(){
@@ -280,6 +213,84 @@ public class MyPageDetailFragment1 extends Fragment {
                 startActivity(i);
             }
         });
+    }
+
+    private void setRecyclerViewContent() {
+
+        recyclerView = view.findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setNestedScrollingEnabled(false);
+
+        new GetCoursesContents().execute();
+    }
+
+    public class GetCoursesContents extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            //mProgressSpinner.setIndeterminate(true);
+            //mProgressSpinner.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(String... arg0) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            //adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
+            adapter=new RecyclerViewAdapterMyPageContentTypes(GlobalVar.thisFragmentContents,contentTypeArray,context);
+
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+            //mProgressSpinner.setVisibility(View.GONE);
+        }
+    }
+
+    public String convertEngToBn(String num) {
+
+        num = num.replace("0","০");
+        num = num.replace("1","১");
+        num = num.replace("2","২");
+        num = num.replace("3","৩");
+        num = num.replace("4","৪");
+        num = num.replace("5","৫");
+        num = num.replace("6","৬");
+        num = num.replace("7","৭");
+        num = num.replace("8","৮");
+        num = num.replace("9","৯");
+
+        return num;
+    }
+
+    private String stringForTime(int timeMs) {
+
+        Formatter mFormatter= new Formatter();
+
+        //int seconds = timeMs % 60;
+        int minutes = (timeMs / 60) % 60;
+        int hours = timeMs / 3600;
+
+        String mintBn = convertEngToBn(Integer.toString(minutes));
+        String hrsBn = convertEngToBn(Integer.toString(hours));
+
+        if (hours > 0) {
+            return mFormatter.format("%s ঘণ্টা %s মিনিট", hrsBn, mintBn).toString();
+        }
+        else {
+            return mFormatter.format("%s মিনিট", mintBn).toString();
+        }
     }
 
 }

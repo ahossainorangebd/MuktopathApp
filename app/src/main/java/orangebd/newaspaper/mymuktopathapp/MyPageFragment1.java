@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +70,21 @@ public class MyPageFragment1 extends Fragment {
 
         context=getContext();
 
+        /** Progress of progressBar
+         * */
 
+        String enrollCourseCompltness=GlobalVar.gEnrollCourseId.get(nthCourse).getmEcCompleteness();
+
+        try {
+            int index = enrollCourseCompltness.indexOf(".");
+            enrollCourseCompltness = enrollCourseCompltness.substring(0,index);
+        }
+        catch (Exception ex){
+            Log.d("", "onCreateView: ");
+        }
+
+        ProgressBar mProgBar=view.findViewById(R.id.determinateBar);
+        mProgBar.setProgress(Integer.parseInt(enrollCourseCompltness));
 
         /**for getting quiz numbers
          * */
