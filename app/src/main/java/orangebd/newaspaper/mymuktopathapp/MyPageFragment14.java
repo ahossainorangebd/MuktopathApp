@@ -77,6 +77,10 @@ public class MyPageFragment14 extends Fragment {
         ProgressBar mProgBar=view.findViewById(R.id.determinateBar);
         mProgBar.setProgress(Integer.parseInt(enrollCourseCompltness));
 
+        TextView mProCompleteness=view.findViewById(R.id.proCompleteness);
+        mProCompleteness.setText(convertEngToBn(enrollCourseCompltness));
+
+
 
         /**for getting quiz numbers
          * */

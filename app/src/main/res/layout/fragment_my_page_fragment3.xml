@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/Colorpeace"
+    android:background="@color/colorTransparent"
     android:gravity="center"
     android:layout_gravity="center"
     android:orientation="vertical">
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -373,9 +372,6 @@
             android:textSize="24sp"
             />
 
-
-
-
         <TextView
             android:id="@+id/ownerName"
             android:layout_width="wrap_content"
@@ -390,7 +386,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="35dp"
+            android:orientation="vertical"
             >
 
 
@@ -403,6 +400,40 @@
                 android:layout_height="10dp"
 
                 />-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="প্রোফাইল সম্পূর্ণতা "
+                    android:textSize="14sp"
+                    android:textColor="@color/Colorpeace"
+                    />
+
+                <TextView
+                    android:id="@+id/proCompleteness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="n "
+                    android:textSize="14sp"
+                    android:textColor="@color/Colorpeace"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:textSize="14sp"
+                    android:textColor="@color/Colorpeace"
+                    />
+
+
+            </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/determinateBar"
@@ -416,6 +447,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 </RelativeLayout>

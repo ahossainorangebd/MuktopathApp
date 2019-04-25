@@ -49,6 +49,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView mUserName;
 
+    private TextView mProCompletenessTv;
+
+    private String enrollCourseCompltness;
 
 
     @Override
@@ -72,6 +75,13 @@ public class ProfileActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
+        /** Checking a user's profile completed or not
+         * */
+
+        for(int dynamicCourseNo=0; GlobalVar.gEnrollCourseId.size()>dynamicCourseNo; dynamicCourseNo++) {
+
+            enrollCourseCompltness=GlobalVar.gEnrollCourseId.get(dynamicCourseNo).getmEcCompleteness();
+        }
 
         /** Progress of progressBar
          * */
@@ -89,6 +99,11 @@ public class ProfileActivity extends AppCompatActivity {
         ProgressBar mProgBar=findViewById(R.id.determinateBar);
         mProgBar.getIndeterminateDrawable().setColorFilter(0xFF009109,android.graphics.PorterDuff.Mode.MULTIPLY);
         mProgBar.setProgress(Integer.parseInt(enrollCourseCompltness));
+
+
+        mProCompletenessTv=findViewById(R.id.proCompleteness);
+        mProCompletenessTv.setText(convertEngToBn(GlobalVar.gProfileCompleteness));
+
 
         mUserCoverImage=findViewById(R.id.userCoverPhotoId);
         mUserProfileImage=findViewById(R.id.userProfileImageId);
@@ -214,6 +229,22 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String convertEngToBn(String num){
+
+        num = num.replace("0","০");
+        num = num.replace("1","১");
+        num = num.replace("2","২");
+        num = num.replace("3","৩");
+        num = num.replace("4","৪");
+        num = num.replace("5","৫");
+        num = num.replace("6","৬");
+        num = num.replace("7","৭");
+        num = num.replace("8","৮");
+        num = num.replace("9","৯");
+
+        return num;
     }
 
 }

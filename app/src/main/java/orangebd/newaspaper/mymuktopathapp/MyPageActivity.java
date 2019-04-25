@@ -184,9 +184,6 @@ public class MyPageActivity extends AppCompatActivity {
 
     private ImageView mSettingsBtn;
 
-
-
-
     // for uni wise arrays
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnit1;

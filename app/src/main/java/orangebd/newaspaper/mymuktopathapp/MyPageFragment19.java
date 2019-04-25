@@ -95,6 +95,10 @@ public class MyPageFragment19 extends Fragment {
             }
         }
 
+        TextView mProCompleteness=view.findViewById(R.id.proCompleteness);
+        mProCompleteness.setText(convertEngToBn(enrollCourseCompltness));
+
+
 
         /**get device height and width*/
 

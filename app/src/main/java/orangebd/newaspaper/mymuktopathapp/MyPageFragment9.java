@@ -79,6 +79,10 @@ public class MyPageFragment9 extends Fragment {
         mProgBar.getIndeterminateDrawable().setColorFilter(0xFF009109,android.graphics.PorterDuff.Mode.MULTIPLY);
         mProgBar.setProgress(Integer.parseInt(enrollCourseCompltness));
 
+        TextView mProCompleteness=view.findViewById(R.id.proCompleteness);
+        mProCompleteness.setText(convertEngToBn(enrollCourseCompltness));
+
+
 
         /**for getting quiz numbers
          * */
@@ -358,7 +362,7 @@ public class MyPageFragment9 extends Fragment {
         num = num.replace("5","৫");
         num = num.replace("6","৬");
         num = num.replace("7","৭");
-        num = num.replace("nthCourse","৮");
+        num = num.replace("8","৮");
         num = num.replace("9","৯");
 
         return num;

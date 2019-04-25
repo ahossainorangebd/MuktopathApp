@@ -63,7 +63,6 @@ public class MyPageFragment2 extends Fragment {
 
         context=getContext();
 
-
         /** Progress of progressBar
          * */
 
@@ -80,6 +79,9 @@ public class MyPageFragment2 extends Fragment {
         ProgressBar mProgBar=view.findViewById(R.id.determinateBar);
         mProgBar.getIndeterminateDrawable().setColorFilter(0xFF009109,android.graphics.PorterDuff.Mode.MULTIPLY);
         mProgBar.setProgress(Integer.parseInt(enrollCourseCompltness));
+
+        TextView mProCompleteness=view.findViewById(R.id.proCompleteness);
+        mProCompleteness.setText(convertEngToBn(enrollCourseCompltness));
 
         /**for getting quiz numbers
          * */
