@@ -346,7 +346,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     GlobalVar.gEmail = email;
                                                     GlobalVar.gReplacingToken = token;
 
-                                                    model.setmId(id);
+                                                    /*model.setmId(id);
                                                     model.setmUserName(username);
                                                     model.setmName(name);
                                                     model.setmUserEmail(email);
@@ -359,7 +359,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     model.setmToken(token);
                                                     model.setmStatus(status);
                                                     model.setmLoginStatus(login_status);
-                                                    model.setmUserPhone(phone);
+                                                    model.setmUserPhone(phone);*/
 
                                                     detailList.add(model);
 

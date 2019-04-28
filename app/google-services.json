@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "788819275805",
+    "firebase_url": "https://muktopaath-91b8a.firebaseio.com",
+    "project_id": "muktopaath-91b8a",
+    "storage_bucket": "muktopaath-91b8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788819275805:android:b8fa8d14578eb889",
+        "android_client_info": {
+          "package_name": "orangebd.newaspaper.mymuktopathapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788819275805-lr44r18vbrutohbnske3kcv2f7ag5isp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQFgCCqJ8UVzsH86TGm3yeCii7l4z75bg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788819275805-lr44r18vbrutohbnske3kcv2f7ag5isp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

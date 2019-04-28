@@ -29,9 +29,6 @@ public class StartExamActivity extends AppCompatActivity {
 
     private void setExam(){
 
-        String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(0).getIdLesson();
-        GlobalVar.gLessonId=lessonId;
-
         Button startMyExam=findViewById(R.id.startMyExamId);
         TextView totalEQ=findViewById(R.id.totalEQid);
         TextView totalETime=findViewById(R.id.timeEDurationId);

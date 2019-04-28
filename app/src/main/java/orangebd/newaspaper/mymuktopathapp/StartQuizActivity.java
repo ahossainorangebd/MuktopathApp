@@ -28,7 +28,6 @@ public class StartQuizActivity extends AppCompatActivity {
 
         context=this;
 
-
         totalQ=findViewById(R.id.totalQid);
         totalTime=findViewById(R.id.timeDurationId);
         totalMarks=findViewById(R.id.totalMarksId);
@@ -49,9 +48,6 @@ public class StartQuizActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(0).getIdLesson();
-        GlobalVar.gLessonId=lessonId;
 
         totalQ=findViewById(R.id.totalQid);
         totalTime=findViewById(R.id.timeDurationId);

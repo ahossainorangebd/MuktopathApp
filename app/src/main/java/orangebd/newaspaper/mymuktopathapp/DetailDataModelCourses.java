@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class DetailDataModelCourses
 {
+    private String mStatus;
+
+
     private int mExamNumbers;
     private int mAssignmentNumbers;
     private String mCourseObjective;
@@ -37,7 +40,7 @@ public class DetailDataModelCourses
     private String mRegEndDate;
     private String mRequirement;
     private String mStartDate;
-    private String mStatus;
+
     private String mTitle;
     private String mTotalEnroll;
     private String mUpdatedAt;
@@ -117,6 +120,9 @@ public class DetailDataModelCourses
     private ArrayList<DetailDataModelCoursesMarks> mArrayListMarks;
 
 
+    private ArrayList<DetailDataModelCoursesDetailContents> mArraylistProfileInfo;
+
+
     private ArrayList<DetailDataModelCoursesDetailContents> mUserInformationArrayList;
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mUnitDataArrayListContent;
@@ -143,7 +149,7 @@ public class DetailDataModelCourses
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseUnits;
-    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseLesson;
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseLesson;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizsExam;
 
@@ -378,13 +384,7 @@ public class DetailDataModelCourses
         this.mStartDate = mStartDate;
     }
 
-    public String getmStatus() {
-        return mStatus;
-    }
 
-    public void setmStatus(String mStatus) {
-        this.mStatus = mStatus;
-    }
 
     public String getmTitle() {
         return mTitle;
@@ -743,21 +743,15 @@ public class DetailDataModelCourses
     private String mUserDataId;
     private String mName;
 
-    private String mUserName;
-    private String mUserPhone;
-    private String mUserEmail;
+
+
+
     private String mUserDataStatus;
     private String mUserPassword;
 
     private String mLoginTime;
-    private String mLoginIpAddress;
-    private String mLoginStatus;
-    private String mCompletenesss;
-    private String mTotalEnrollment;
-    private String mCourseCompleted;
-    private String mLastLoginTime;
-    private String mLastLoginIpAddress;
-    private String mToken;
+
+
 
     // for own institution
 
@@ -829,29 +823,7 @@ public class DetailDataModelCourses
         this.mName = mName;
     }
 
-    public String getmUserName() {
-        return mUserName;
-    }
 
-    public void setmUserName(String mUserName) {
-        this.mUserName = mUserName;
-    }
-
-    public String getmUserPhone() {
-        return mUserPhone;
-    }
-
-    public void setmUserPhone(String mUserPhone) {
-        this.mUserPhone = mUserPhone;
-    }
-
-    public String getmUserEmail() {
-        return mUserEmail;
-    }
-
-    public void setmUserEmail(String mUserEmail) {
-        this.mUserEmail = mUserEmail;
-    }
 
     public String getmUserPassword() {
         return mUserPassword;
@@ -869,69 +841,13 @@ public class DetailDataModelCourses
         this.mLoginTime = mLoginTime;
     }
 
-    public String getmLoginIpAddress() {
-        return mLoginIpAddress;
-    }
 
-    public void setmLoginIpAddress(String mLoginIpAddress) {
-        this.mLoginIpAddress = mLoginIpAddress;
-    }
 
-    public String getmLoginStatus() {
-        return mLoginStatus;
-    }
 
-    public void setmLoginStatus(String mLoginStatus) {
-        this.mLoginStatus = mLoginStatus;
-    }
 
-    public String getmCompletenesss() {
-        return mCompletenesss;
-    }
 
-    public void setmCompletenesss(String mCompletenesss) {
-        this.mCompletenesss = mCompletenesss;
-    }
 
-    public String getmTotalEnrollment() {
-        return mTotalEnrollment;
-    }
 
-    public void setmTotalEnrollment(String mTotalEnrollment) {
-        this.mTotalEnrollment = mTotalEnrollment;
-    }
-
-    public String getmCourseCompleted() {
-        return mCourseCompleted;
-    }
-
-    public void setmCourseCompleted(String mCourseCompleted) {
-        this.mCourseCompleted = mCourseCompleted;
-    }
-
-    public String getmLastLoginIpAddress() {
-        return mLastLoginIpAddress;
-    }
-
-    public void setmLastLoginIpAddress(String mLastLoginIpAddress) {
-        this.mLastLoginIpAddress = mLastLoginIpAddress;
-    }
-
-    public String getmLastLoginTime() {
-        return mLastLoginTime;
-    }
-
-    public void setmLastLoginTime(String mLastLoginTime) {
-        this.mLastLoginTime = mLastLoginTime;
-    }
-
-    public String getmToken() {
-        return mToken;
-    }
-
-    public void setmToken(String mToken) {
-        this.mToken = mToken;
-    }
 
     public String getmInstId() {
         return mInstId;
@@ -1287,11 +1203,11 @@ public class DetailDataModelCourses
         this.mArrayListCourseQuizsExam = mArrayListCourseQuizsExam;
     }
 
-    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListCourseLesson() {
+    public ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> getmArrayListCourseLesson() {
         return mArrayListCourseLesson;
     }
 
-    public void setmArrayListCourseLesson(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseLesson) {
+    public void setmArrayListCourseLesson(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseLesson) {
         this.mArrayListCourseLesson = mArrayListCourseLesson;
     }
 
@@ -1340,5 +1256,21 @@ public class DetailDataModelCourses
 
     public void setmUnitAllArrayList(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mUnitAllArrayList) {
         this.mUnitAllArrayList = mUnitAllArrayList;
+    }
+
+    public String getmStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(String mStatus) {
+        this.mStatus = mStatus;
+    }
+
+    public ArrayList<DetailDataModelCoursesDetailContents> getmArraylistProfileInfo() {
+        return mArraylistProfileInfo;
+    }
+
+    public void setmArraylistProfileInfo(ArrayList<DetailDataModelCoursesDetailContents> mArraylistProfileInfo) {
+        this.mArraylistProfileInfo = mArraylistProfileInfo;
     }
 }

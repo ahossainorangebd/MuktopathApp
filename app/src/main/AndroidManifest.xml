@@ -11,6 +11,11 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/muktopath_logo"
@@ -19,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StartExamActivity"></activity>
+        <activity android:name=".DiscussionActivity"></activity>
+        <activity android:name=".StartExamActivity" />
         <activity android:name=".StartQuizActivity" />
         <activity android:name=".CourseContentActivity" />
         <activity android:name=".SettingsActivity" />

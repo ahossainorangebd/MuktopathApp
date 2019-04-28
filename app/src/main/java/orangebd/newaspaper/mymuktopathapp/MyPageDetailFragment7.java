@@ -1,6 +1,7 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,8 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +58,14 @@ public class MyPageDetailFragment7 extends Fragment {
 
         context=getContext();
 
+        //handling the global dynamic unit numbers
+        if(GlobalVar.gEnrolledCourseUnitSize==7){
+            GlobalVar.gUnitNumber=thisFragmentUniNumber;
+        }
+        else {
+            GlobalVar.gUnitNumber=thisFragmentUniNumber-1;
+        }
+
         //for content type array
         contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
 
@@ -88,7 +99,7 @@ public class MyPageDetailFragment7 extends Fragment {
 
             String unitTitle = units.get(thisFragmentUniNumber).getUnitNames();
             String unitOrder = units.get(thisFragmentUniNumber).getUnitOrders();
-            String unitId = units.get(thisFragmentUniNumber).getUnitID();
+            String unitId = units.get(thisFragmentUniNumber-1).getUnitID();
 
             GlobalVar.gUnitId=unitId;
 
@@ -130,14 +141,19 @@ public class MyPageDetailFragment7 extends Fragment {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
         }
 
+
+        String enrollCourseCompltness=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcCompleteness();
+
+        if(enrollCourseCompltness.equalsIgnoreCase("100")){
+           // showPopUpImageBox();
+        }
+
+
         return view;
 
     }
 
     private void setQuiz(){
-
-        String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(0).getIdLesson();
-        GlobalVar.gLessonId=lessonId;
 
         totalQ=view.findViewById(R.id.totalQid);
         totalTime=view.findViewById(R.id.timeDurationId);
@@ -240,9 +256,6 @@ public class MyPageDetailFragment7 extends Fragment {
 
     private void setExam(){
 
-        String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(0).getIdLesson();
-        GlobalVar.gLessonId=lessonId;
-
         Button startMyExam=view.findViewById(R.id.startMyExamId);
         TextView totalEQ=view.findViewById(R.id.totalEQid);
         TextView totalETime=view.findViewById(R.id.timeEDurationId);
@@ -284,6 +297,30 @@ public class MyPageDetailFragment7 extends Fragment {
                 startActivity(i);
             }
         });
+    }
+
+    private void showPopUpImageBox()
+    {
+        // custom dialog
+        final Dialog dialog = new Dialog(context, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforrating);
+
+        RatingBar ratingBar=dialog.findViewById(R.id.ratingBar);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+                String abcd="";
+
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Colorpeace"
+    >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/Colorpeace"
+                    >
+
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:numStars="5"
+                            android:layout_gravity="center"
+                            android:progress="0"
+                            android:clickable="false"
+                            android:focusableInTouchMode="false"
+                            android:focusable="false"
+
+                            />
+
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/feedBackField"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/colorVoldemort"
+                            android:orientation="vertical"
+                            android:background="@drawable/border"
+                            />
+
+                        <Button
+                            android:id="@+id/sendReport"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Submit"
+                            android:elevation="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            />
+
+                </LinearLayout>
+
+        </ScrollView>
+
+</LinearLayout>

@@ -100,7 +100,6 @@ public class MyPageCourseDetail extends AppCompatActivity {
             mCourseDesc = getIntent().getExtras().getString("cdesc");
         }
 
-
         GlobalVar.gCourseDetailCoverPhoto =ImgUrl;
         GlobalVar.gCourseDetailTitle =title;
         GlobalVar.gCourseDetailOwnerName =ownerName;

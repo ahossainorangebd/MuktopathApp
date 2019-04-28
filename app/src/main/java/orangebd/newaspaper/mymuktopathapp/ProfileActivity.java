@@ -28,6 +28,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -52,6 +53,11 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView mProCompletenessTv;
 
     private String enrollCourseCompltness;
+
+    private LinearLayout mNotCompleteCourseProfile;
+    private LinearLayout mYesCompleteCourseProfile;
+
+    private TextView mNumberOfCompletedCourse;
 
 
     @Override
@@ -78,10 +84,44 @@ public class ProfileActivity extends AppCompatActivity {
         /** Checking a user's profile completed or not
          * */
 
-        for(int dynamicCourseNo=0; GlobalVar.gEnrollCourseId.size()>dynamicCourseNo; dynamicCourseNo++) {
+        ArrayList<DetailDataModelCoursesDetailContents> mProfileInfoArrayList = GlobalVar.courseContentDetailList.get(0).getmArraylistProfileInfo();
+
+
+        String totalEnrolledCourse = mProfileInfoArrayList.get(0).getmTotalEnrollment();
+        String getmCourseCompleted = mProfileInfoArrayList.get(0).getmCourseCompleted();
+
+        int totalIncompletedCourseInt = Integer.parseInt(totalEnrolledCourse) - Integer.parseInt(getmCourseCompleted);
+        //String totalIncompletedCourse =  totalIncompletedCourseInt;
+        String totalWishListCourse =  "0";
+
+        for (int dynamicCourseNo=0; dynamicCourseNo < GlobalVar.gEnrollCourseId.size(); dynamicCourseNo++) {
 
             enrollCourseCompltness=GlobalVar.gEnrollCourseId.get(dynamicCourseNo).getmEcCompleteness();
+
+            if(enrollCourseCompltness.equalsIgnoreCase("100")) {
+
+                GlobalVar.isCompletedCourseActivity=true;
+            }
         }
+
+        mNotCompleteCourseProfile=findViewById(R.id.notCompleteCourseProfile);
+        mYesCompleteCourseProfile=findViewById(R.id.yesCourseCompleteLayout);
+        mNumberOfCompletedCourse=findViewById(R.id.numberOfCompletedCourse);
+
+        if(Integer.parseInt(getmCourseCompleted)>0){
+            mYesCompleteCourseProfile.setVisibility(View.VISIBLE);
+            mNumberOfCompletedCourse.setText(convertEngToBn(getmCourseCompleted));
+
+
+        }
+        else {
+            mNotCompleteCourseProfile.setVisibility(View.VISIBLE);
+        }
+
+
+
+
+
 
         /** Progress of progressBar
          * */

@@ -31,9 +31,9 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:elevation="10dp"
-            android:layout_marginTop="10dp"
             android:gravity="center"
             />
+
 
     </LinearLayout>
 
@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:padding="2dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="8dp"
         >
 
@@ -50,11 +51,14 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:gravity="right"
+            android:foregroundGravity="right"
             android:text="Settings"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="1dp"
-            android:src="@drawable/mukto_settings_grey"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="right"
+            android:src="@drawable/mukto_settings_icon"
             />
+
 
     </RelativeLayout>
 

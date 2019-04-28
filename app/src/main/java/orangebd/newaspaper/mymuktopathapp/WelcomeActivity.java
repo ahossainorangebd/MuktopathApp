@@ -1,6 +1,8 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -12,6 +14,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,10 +50,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
     SessionManager sm;
 
+    private Dialog alertbox;
+
     //private boolean isLogin;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
@@ -116,6 +122,28 @@ public class WelcomeActivity extends AppCompatActivity {
 
             new getTokenInfo().execute(GlobalVar.gApiBaseUrl +"/oauth/token");
         }
+
+
+        Intent startIntent = getIntent();
+
+        if (startIntent.hasExtra("content"))
+        {
+
+
+            GlobalVar.isNotificationSent = true;
+
+            String msg = startIntent.getExtras().getString("content");
+
+            GlobalVar.gData = msg;
+
+            if (alertbox == null) {
+                ShowPushNotification();
+            }
+            else {
+                GlobalVar.isNotificationSent = false;
+            }
+        }
+
     }
 
     public class getTokenInfo extends AsyncTask<String, Void, String> {
@@ -273,6 +301,36 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         return result.toString();
+    }
+
+    private void ShowPushNotification() {
+
+        final AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+
+        builder1.setTitle("মাত্র পাওয়া");
+        builder1.setMessage(GlobalVar.gData);
+        builder1.setCancelable(true);
+        builder1.setPositiveButton(
+
+                "ওকে",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        GlobalVar.isNotificationSent=false;
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+
+        try{
+            alert11.show();
+        }
+        catch (Exception e){
+            Log.d("", "Something is : ");
+        }
     }
 
 

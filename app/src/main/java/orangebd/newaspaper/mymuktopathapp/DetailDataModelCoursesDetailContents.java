@@ -7,6 +7,137 @@ import java.util.ArrayList;
 public class DetailDataModelCoursesDetailContents
 {
 
+    //replies and comments
+
+    private String mCommenterNames;
+    private String mCommentBody;
+
+    private String mReplierNames;
+    private String mReplyBody;
+
+    //profile info arraylist
+
+    private String mCourseCompleted;
+    private String mId;
+    private String mUserName;
+    private String mUserEmail;
+    private String mCompletenesss;
+    private String mUserPhone;
+    private String mLoginStatus;
+    private String mStatus;
+    private String mToken;
+    private String mLoginIpAddress;
+    private String mLastLoginTime;
+    private String mLastLoginIpAddress;
+    private String mTotalEnrollment;
+    private String mName;
+
+
+
+
+    public String getmUserName() {
+        return mUserName;
+    }
+
+    public void setmUserName(String mUserName) {
+        this.mUserName = mUserName;
+    }
+
+    public String getmUserPhone() {
+        return mUserPhone;
+    }
+
+    public void setmUserPhone(String mUserPhone) {
+        this.mUserPhone = mUserPhone;
+    }
+
+    public String getmUserEmail() {
+        return mUserEmail;
+    }
+
+    public void setmUserEmail(String mUserEmail) {
+        this.mUserEmail = mUserEmail;
+    }
+
+    public String getmLoginStatus() {
+        return mLoginStatus;
+    }
+
+    public void setmLoginStatus(String mLoginStatus) {
+        this.mLoginStatus = mLoginStatus;
+    }
+
+    public String getmCompletenesss() {
+        return mCompletenesss;
+    }
+
+    public void setmCompletenesss(String mCompletenesss) {
+        this.mCompletenesss = mCompletenesss;
+    }
+
+    public String getmTotalEnrollment() {
+        return mTotalEnrollment;
+    }
+
+    public void setmTotalEnrollment(String mTotalEnrollment) {
+        this.mTotalEnrollment = mTotalEnrollment;
+    }
+
+    public String getmLastLoginIpAddress() {
+        return mLastLoginIpAddress;
+    }
+
+    public void setmLastLoginIpAddress(String mLastLoginIpAddress) {
+        this.mLastLoginIpAddress = mLastLoginIpAddress;
+    }
+
+    public String getmLastLoginTime() {
+        return mLastLoginTime;
+    }
+
+    public void setmLastLoginTime(String mLastLoginTime) {
+        this.mLastLoginTime = mLastLoginTime;
+    }
+
+    public String getmToken() {
+        return mToken;
+    }
+
+    public void setmToken(String mToken) {
+        this.mToken = mToken;
+    }
+
+    public String getmLoginIpAddress() {
+        return mLoginIpAddress;
+    }
+
+    public void setmLoginIpAddress(String mLoginIpAddress) {
+        this.mLoginIpAddress = mLoginIpAddress;
+    }
+
+
+    public String getmStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(String mStatus) {
+        this.mStatus = mStatus;
+    }
+
+    public String getmCourseCompleted() {
+        return mCourseCompleted;
+    }
+    public void setmCourseCompleted(String mCourseCompleted) {
+        this.mCourseCompleted = mCourseCompleted;
+    }
+    public String getmId() {
+        return mId;
+    }
+
+    public void setmId(String mId) {
+        this.mId = mId;
+    }
+
     private JSONArray mQuesList;
 
     //Lesson elements
@@ -646,6 +777,46 @@ public class DetailDataModelCoursesDetailContents
 
     public void setmQuizId(String mQuizId) {
         this.mQuizId = mQuizId;
+    }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public String getmReplierNames() {
+        return mReplierNames;
+    }
+
+    public void setmReplierNames(String mReplierNames) {
+        this.mReplierNames = mReplierNames;
+    }
+
+    public String getmCommenterNames() {
+        return mCommenterNames;
+    }
+
+    public void setmCommenterNames(String mCommenterNames) {
+        this.mCommenterNames = mCommenterNames;
+    }
+
+    public String getmCommentBody() {
+        return mCommentBody;
+    }
+
+    public void setmCommentBody(String mCommentBody) {
+        this.mCommentBody = mCommentBody;
+    }
+
+    public String getmReplyBody() {
+        return mReplyBody;
+    }
+
+    public void setmReplyBody(String mReplyBody) {
+        this.mReplyBody = mReplyBody;
     }
 
 

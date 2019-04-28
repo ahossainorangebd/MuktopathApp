@@ -144,7 +144,10 @@ public class GlobalVar {
 
     // Unit & Lesson info
     public static String gUnitId;
+
     public static String gLessonId;
+
+    public static int gUnitNumber;
 
 
     // Ques List for exam
@@ -176,4 +179,18 @@ public class GlobalVar {
     public static boolean isDownloadOnWifyOnly;
     public static boolean isDeleteAutometically;
 
+    //for identifying my page activity of completed course activity
+
+    public static boolean isCompletedCourseActivity;
+
+    // pushnotification
+    public static boolean isNotificationSent;
+    public static boolean isNotification;
+    public static String gData;
+
+    //flag report
+    public static String gFlagReportStr;
+
+    //video url
+    public static String gEcode;
 }

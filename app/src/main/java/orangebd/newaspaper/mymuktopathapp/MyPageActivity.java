@@ -70,7 +70,7 @@ public class MyPageActivity extends AppCompatActivity {
 
     //All ArrayLists
 
-    private ArrayList<DetailDataModelCourses> detailList=new ArrayList<>();
+    private ArrayList<DetailDataModelCoursesDetailContents> detailList;
     private ArrayList<DetailDataModelCourses> detailList2=new ArrayList<>();
     private ArrayList<DetailDataModelCourses> detailList3=new ArrayList<>();
 
@@ -94,7 +94,7 @@ public class MyPageActivity extends AppCompatActivity {
 
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailContentss;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnits;
-    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailLesson;
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailLesson;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnitQuizList;
 
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> detailListCourseDetailUnitQuizOptList;
@@ -144,15 +144,11 @@ public class MyPageActivity extends AppCompatActivity {
     ArrayList<DetailDataModelCoursesDetailContents> mUnit3DataArrayList;
     ArrayList<DetailDataModelCoursesDetailContents> mUnit4DataArrayList;
 
-
-
     ArrayList<DetailDataModelCoursesDetailContents> detailUnitNumbers;
-
 
     ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailUnitArrayNumbers;
 
-
-
+    ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> lessonsIntoIndexs;
 
     ArrayList<DetailDataModelCoursesDetailContents> mUnitAllArrayList;
 
@@ -224,6 +220,7 @@ public class MyPageActivity extends AppCompatActivity {
         int previousWidth = mTableLayout.getWidth();*/
 
         double calculatedHeight = (double) 840 / 1184;
+        //double calculatedHeight = (double) 940 / 1184;
         calculatedHeight=calculatedHeight*deviceHeight;
         //int calculatedWidth = (previousHeight/720)*deviceWidth;
 
@@ -290,7 +287,7 @@ public class MyPageActivity extends AppCompatActivity {
                         {
                             detailListCourse = new ArrayList<DetailDataModelCourses>();
 
-                            detailList = new ArrayList<DetailDataModelCourses>();
+                            detailList = new ArrayList<DetailDataModelCoursesDetailContents>();
 
                             detailListCourseThumbnail = new ArrayList<DetailDataModelCoursesThumbnails>();
 
@@ -323,7 +320,8 @@ public class MyPageActivity extends AppCompatActivity {
 
                             detailListCourseUnitAllData = new ArrayList<>();
 
-                            DetailDataModelCourses model = new DetailDataModelCourses();
+                           // DetailDataModelCourses model = new DetailDataModelCourses();
+                            DetailDataModelCoursesDetailContents model = new DetailDataModelCoursesDetailContents();
 
                             JSONObject jObject;
                             JSONObject jObjectAllMarks;
@@ -369,7 +367,6 @@ public class MyPageActivity extends AppCompatActivity {
                                 model.setmUserName(username);
                                 model.setmName(name);
                                 model.setmUserEmail(email);
-                                //model.setmUserPassword(password);
                                 model.setmCompletenesss(Completeness);
                                 model.setmCourseCompleted(coursecompleted);
                                 model.setmTotalEnrollment(totalEnrollment);
@@ -831,6 +828,7 @@ public class MyPageActivity extends AppCompatActivity {
 
 
                                                     detailUnitArrayNumbers = new ArrayList<>();
+                                                    lessonsIntoIndexs = new ArrayList<>();
 
 
                                                     mUnitAllArrayList = new ArrayList<>();
@@ -870,6 +868,9 @@ public class MyPageActivity extends AppCompatActivity {
                                                                 modelLessonElements.setFixedLesson(fixedLesson);
 
                                                                 mLessonArrayListNew.add(modelLessonElements);
+
+
+                                                                String testing1w212="";
                                                             }
                                                         } catch (Exception ex) {
                                                             Log.d("", "onResponse: ");
@@ -1028,11 +1029,13 @@ public class MyPageActivity extends AppCompatActivity {
                                                                         modelCourseContents.setCreated_by_content(created_by_content);
                                                                         modelCourseContents.setDeleted_at_content(deleted_at_content);
                                                                         modelCourseContents.setmDesc(desc);
+                                                                        modelCourseContents.setmDesc(desc);
                                                                         modelCourseContents.setFile_encode_path(file_encode_path);
                                                                         modelCourseContents.setFile_name(file_name);
                                                                         modelCourseContents.setId_content(id_content);
                                                                         modelCourseContents.setLicense(license);
                                                                         modelCourseContents.setOwner_id(owner_id);
+                                                                        modelCourseContents.setTitle_content(mTitle);
                                                                         modelCourseContents.setCreated_at_content(created_at_content);
                                                                         modelCourseContents.setmContentType(content_type);
                                                                     }
@@ -1040,6 +1043,7 @@ public class MyPageActivity extends AppCompatActivity {
                                                                         JSONArray jObjAgainContent = jSObject3.getJSONArray("content");
                                                                     }
 
+                                                                    //TODOabcd
                                                                     mContentArrayListNew.add(modelCourseContents);
                                                                 } catch (Exception ex) {
                                                                     Log.d("", "onResponse: ");
@@ -1271,6 +1275,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                         detailUnitArrayNumbers.add(detailUnitNumbers);
 
+                                                        lessonsIntoIndexs.add(mLessonArrayListNew);
                                                     }
 
                                                 } catch (Exception ex) {
@@ -1285,20 +1290,24 @@ public class MyPageActivity extends AppCompatActivity {
 
                                             detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
 
+                                            //TODO
                                             detailListCourseDetailContentss.add(mContentArrayListNew);
+                                            //detailListCourseDetailLesson.add(mLessonArrayListNew);
+
+                                            //TODO
 
                                             //detailListVideoPulse.add(mContentArrayListNewPulse);
 
                                             detailListCourseDetailUnits.add(mUnitArrayListNew);
 
-                                            detailListCourseDetailLesson.add(mLessonArrayListNew);
+
 
                                             detailListCourseDetailUnitQuizList.add(mUnitQuizList);
                                             detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
 
                                             //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
 
-                                            //TODO
+
                                             //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
 
                                             // for unit arrays
@@ -1309,6 +1318,7 @@ public class MyPageActivity extends AppCompatActivity {
 
 
                                             detailListCourseUnitAllData.add(detailUnitArrayNumbers);
+                                            detailListCourseDetailLesson.add(lessonsIntoIndexs);
 
                                             GlobalVar.gEnrolledInstitution = detailList10;
 
@@ -1338,10 +1348,15 @@ public class MyPageActivity extends AppCompatActivity {
 
                                 modelAlter.setmArrayListThumbnails(detailListCourseThumbnail);
                                 modelAlter.setmArrayListMarks(mPassPercentageArrayList);
+
+
+                                //TODO
                                 modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
+                                modelAlter.setmArrayListCourseLesson(detailListCourseDetailLesson);
+                                //TODO
 
                                 modelAlter.setmArrayListCourseUnits(detailListCourseDetailUnits);
-                                modelAlter.setmArrayListCourseLesson(detailListCourseDetailLesson);
+
 
                                 modelAlter.setmArrayListCourseQuizs(detailListCourseDetailUnitQuizList);
                                 modelAlter.setmArrayListCourseQuizsExam(detailListCourseDetailUnitQuizListExam);
@@ -1351,6 +1366,8 @@ public class MyPageActivity extends AppCompatActivity {
                                 modelAlter.setmArrayListCoursePulseQuizOptions(detailListCourseDetailPulseQuizOptList);
 
                                 modelAlter.setmArrayListCourseVideoPulseMulti(detailListCourseDetailVideoPulseMulti);
+
+                                modelAlter.setmArraylistProfileInfo(detailList);
 
                                 detailListCourse.add(modelAlter);
 
@@ -1443,6 +1460,7 @@ public class MyPageActivity extends AppCompatActivity {
         });
 
         imageLogo=view.findViewById(R.id.rtvheadlogo);
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -40,8 +42,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -52,6 +61,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CourseContentDetailActivity extends AppCompatActivity {
 
@@ -116,9 +126,44 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     TabsPagerAdapterPulseQuiz myAdapter;
 
 
+    DBHelper dbHelper;
+
+    private int targetPopUp;
+
+    private HashMap<String,String> mapHit;
+
+    private ImageView mHitLikeBtn;
+    private ImageView mHitDislikeBtn;
+    private ImageView mHitFlagBtn;
+
+    private ImageView mDownloadBtn;
+
+    private String hitLikeUrl = GlobalVar.gApiBaseUrl + "/api/content/feedback/";
+
+    private String getLikeUnlikeDetailUrl = GlobalVar.gApiBaseUrl + "/api/content/feedback/";
+
+    private String thisCourseId;
+
+
+
+    private String mTotal_dislikes;
+    private String mTotal_flags;
+    private String mTotal_likes;
+
+    private String mDisliked;
+    private String mFlagged;
+    private String mLiked;
+
+
+    private TextView mLikeNumberTv;
+    private TextView mDislikeNumberTv;
+    private TextView mFlagNumberTv;
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_content_detail);
 
@@ -130,6 +175,11 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(view);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        mLikeNumberTv=findViewById(R.id.likeNumber);
+        mDislikeNumberTv=findViewById(R.id.dislikeNumber);
+        mFlagNumberTv=findViewById(R.id.flagNumber);
 
 
         //titleTextView=findViewById(R.id.courseTitle);
@@ -234,7 +284,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         //String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode;
         //finalVideoUrl = "<video controls='controls' autoplay='1' src="+ videoUrl+ " height='220' width='350' type='video/mp4' " + "#t=" + timeStatus +  "></video>";
 
-        String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode+"#t=" + timeStatus;
+        videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode+"#t=" + timeStatus;
+
+        GlobalVar.gEcode=eCode;
 
         imgPauseView=findViewById(R.id.pause_button);
         imgPauseView.setOnClickListener(new View.OnClickListener() {
@@ -348,14 +400,11 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 //TODO
                 //TODO
 
-                int targetPopUp=0;
 
-                try {
+                if(getPulse!=null) {
                     targetPopUp = Integer.parseInt(getPulse);
                 }
-                catch (Exception ex){
-                    Log.d("", "onProgressChanged: ");
-                }
+
                 //int targetPopUp=5;
 
                 if(seconds==targetPopUp)
@@ -408,6 +457,100 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
             }
         });
+
+        thisCourseId=GlobalVar.gEnrollCourseList.get(GlobalVar.gNthCourse).getmId();
+
+
+        new GetLykUnlykHistory().execute(getLikeUnlikeDetailUrl+ thisCourseId + "/" + GlobalVar.gUnitId + "/" + GlobalVar.gLessonId);
+
+
+        mHitLikeBtn=findViewById(R.id.hitlikebtn);
+        mHitLikeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mapHit =  new HashMap<>();
+
+                if(mLiked.equalsIgnoreCase("1")){
+                    mapHit.put("action_type", "like");
+                    mapHit.put("liked", "0");
+                    mapHit.put("disliked", "0");
+                    mapHit.put("unit_id", GlobalVar.gUnitId);
+                    mapHit.put("lesson_id", GlobalVar.gLessonId);
+
+
+                    mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon);
+                }
+                else {
+                    mapHit.put("action_type", "like");
+                    mapHit.put("liked", "1");
+                    mapHit.put("disliked", "0");
+                    mapHit.put("unit_id", GlobalVar.gUnitId);
+                    mapHit.put("lesson_id", GlobalVar.gLessonId);
+
+                    mHitLikeBtn.setImageResource(R.drawable.mukto_like_purple_icon);
+                }
+
+                new HitLikeOrUnlike().execute(hitLikeUrl+ thisCourseId);
+            }
+        });
+
+
+
+        mHitDislikeBtn=findViewById(R.id.hitDislikebtn);
+        mHitDislikeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapHit =  new HashMap<>();
+
+                if(mDisliked.equalsIgnoreCase("1")){
+                    mapHit.put("action_type", "dislike");
+                    mapHit.put("liked", "0");
+                    mapHit.put("disliked", "0");
+                    mapHit.put("unit_id", GlobalVar.gUnitId);
+                    mapHit.put("lesson_id", GlobalVar.gLessonId);
+
+                    mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_icon);
+                }
+                else {
+                    mapHit.put("action_type", "dislike");
+                    mapHit.put("liked", "0");
+                    mapHit.put("disliked", "1");
+                    mapHit.put("unit_id", GlobalVar.gUnitId);
+                    mapHit.put("lesson_id", GlobalVar.gLessonId);
+
+                    mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_purple_icon);
+                }
+
+                new HitLikeOrUnlike().execute(hitLikeUrl+ thisCourseId);
+            }
+        });
+
+
+        mHitFlagBtn=findViewById(R.id.hitFlagbtn);
+        mHitFlagBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                showPopUpMessageBox();
+
+            }
+        });
+
+
+        mDownloadBtn=findViewById(R.id.downloadBtn);
+        mDownloadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                downloadFile();
+
+                //new DownloadFileAsync();
+            }
+        });
+
+
     }
 
     private Runnable onEverySecond=new Runnable() {
@@ -494,6 +637,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         return response;
     }
+
 
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
@@ -669,5 +813,281 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /*public void downloadFile() {
+        String DownloadUrl = videoUrl;
+        DownloadManager.Request request1 = new DownloadManager.Request(Uri.parse(DownloadUrl));
+        request1.setDescription("Downloading...");
+        request1.setTitle("Muktopaath Video");
+        request1.setVisibleInDownloadsUi(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            request1.allowScanningByMediaScanner();
+            request1.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+        }
+        //mFilePath=getApplicationContext()+"/muktopaath";
+        request1.setDestinationInExternalFilesDir(getApplicationContext(), "/muktopaath", eCode);
+
+        try {
+            DownloadManager manager1 = (DownloadManager) getSystemService(this.DOWNLOAD_SERVICE);
+            Objects.requireNonNull(manager1).enqueue(request1);
+        }
+        catch (Exception ex){
+            Log.d("",ex.getMessage());
+        }
+        if (DownloadManager.STATUS_SUCCESSFUL == 8) {
+            //DownloadSuccess();
+        }
+    }*/
+
+    public void downloadFile() {
+        String DownloadUrl = videoUrl;
+        DownloadManager.Request request1 = new DownloadManager.Request(Uri.parse(DownloadUrl));
+        request1.setDescription("Downloading...");   //appears the same in Notification bar while downloading
+        request1.setTitle(eCode);
+        request1.setVisibleInDownloadsUi(false);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            request1.allowScanningByMediaScanner();
+            request1.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+        }
+        request1.setDestinationInExternalFilesDir(getApplicationContext(), "/muktopaath", eCode);
+
+        DownloadManager manager1 = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        Objects.requireNonNull(manager1).enqueue(request1);
+        if (DownloadManager.STATUS_SUCCESSFUL == 8) {
+            //DownloadSuccess();
+        }
+    }
+
+
+    public class DownloadFileAsync extends AsyncTask<Void, Void, Void>
+    {
+        String strURL=videoUrl;
+        File outFile=getFilesDir();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            downloadFile();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            super.onPostExecute(result);
+            //DBHelper dbHelper=new DBHelper(getApplicationContext());
+            dbHelper.addVideo("mFilePath",1,1);
+
+        }
+    }
+
+    public class GetLykUnlykHistory extends AsyncTask<String, Void, String>
+    {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            String response = null;
+
+            try {
+                HttpURLConnection c = (HttpURLConnection) new URL(arg0[0]).openConnection();
+                c.setRequestMethod("GET");
+                c.setUseCaches(false);
+                c.setRequestProperty ("Authorization", "Bearer "+GlobalVar.gReplacingToken);
+                c.connect();
+
+                InputStream in = new BufferedInputStream(c.getInputStream());
+                response = convertStreamToString(in);
+                c.disconnect();
+            }
+            catch (Exception ex){
+                Log.d("",ex.getMessage());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+
+                JSONObject jObject = new JSONObject(result);
+
+                mTotal_dislikes = jObject.getString("total_dislikes");
+                mTotal_flags = jObject.getString("total_flags");
+                mTotal_likes = jObject.getString("total_likes");
+
+                mDisliked = jObject.getString("disliked");
+                mFlagged = jObject.getString("flagged");
+                mLiked = jObject.getString("liked");
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
+
+
+
+            mLikeNumberTv.setText(mTotal_likes);
+            mDislikeNumberTv.setText(mTotal_dislikes);
+            mFlagNumberTv.setText(mTotal_flags);
+        }
+    }
+
+
+    public class HitLikeOrUnlike extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String data = performPostCall(params[0], mapHit);
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+
+        }
+    }
+
+
+    private String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sb.toString();
+    }
+
+
+    private void showPopUpMessageBox()
+    {
+        // custom dialog
+        final Dialog dialog = new Dialog(context, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforflagtextlist);
+
+        ArrayList<String> flagList = new ArrayList<>();
+
+        flagList.add("Problem in Content");
+        flagList.add("Sexual content");
+        flagList.add("Violent or repulsive content");
+        flagList.add("Hateful or abusive content");
+        flagList.add("Harmful dangerous acts");
+        flagList.add("Child abuse");
+        flagList.add("Promotes terrorism");
+        flagList.add("Spam or misleading");
+        flagList.add("Infringes my rights");
+        flagList.add("Captions issue");
+
+        recyclerView = dialog.findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setNestedScrollingEnabled(false);
+
+        adapter=new RecyclerViewAdapterFlagList(flagList,context);
+
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
+
+
+        Button mSendReport=dialog.findViewById(R.id.sendReport);
+        mSendReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(mFlagged.equalsIgnoreCase("1")){
+
+                    GlobalVar.gFlagReportStr="";
+
+                    mapHit =  new HashMap<>();
+
+                    mapHit.put("action_type", "flag");
+                    mapHit.put("liked", mLiked);
+                    mapHit.put("flagged", "0");
+                    mapHit.put("disliked", mDisliked);
+                    mapHit.put("unit_id", GlobalVar.gUnitId);
+                    mapHit.put("lesson_id", GlobalVar.gLessonId);
+                    mapHit.put("flag_report", GlobalVar.gFlagReportStr);
+
+                    mHitFlagBtn.setImageResource(R.drawable.mukto_flag_icon);
+
+                }
+                else {
+                    mapHit =  new HashMap<>();
+
+                    mapHit.put("action_type", "flag");
+                    mapHit.put("liked", mLiked);
+                    mapHit.put("flagged", "1");
+                    mapHit.put("disliked", mDisliked);
+                    mapHit.put("unit_id", GlobalVar.gUnitId);
+                    mapHit.put("lesson_id", GlobalVar.gLessonId);
+                    mapHit.put("flag_report", GlobalVar.gFlagReportStr);
+
+                    mHitFlagBtn.setImageResource(R.drawable.mukto_flag_purple_icon);
+                }
+
+
+                new HitLikeOrUnlike().execute(hitLikeUrl+ thisCourseId);
+
+
+
+                Toast.makeText(context,"Your flag report has been sent.",Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
+
+
+
+        dialog.show();
     }
 }

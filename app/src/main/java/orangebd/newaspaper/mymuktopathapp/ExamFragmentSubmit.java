@@ -297,7 +297,7 @@ public class ExamFragmentSubmit extends Fragment {
             conn.setReadTimeout(15000);
             conn.setConnectTimeout(15000);
             conn.setRequestMethod("POST");
-            conn.setRequestProperty ("Authorization", "Bearer "+GlobalVar.gReplacingTokenForAllCategories);
+            conn.setRequestProperty ("Authorization", "Bearer "+GlobalVar.gReplacingToken);
             conn.setDoInput(true);
             conn.setDoOutput(true);
 

@@ -1,24 +1,38 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.HashMap;
 
 
 public class MyPageDetailFragment5 extends Fragment {
@@ -59,6 +73,13 @@ public class MyPageDetailFragment5 extends Fragment {
 
     ArrayList<DetailDataModelCoursesDetailContents> contentTypeArray;
 
+
+    private String ratingPointStr;
+
+    private String sendratingUrl = GlobalVar.gApiBaseUrl + "/api/rating/";
+    private HashMap<String,String> mapHit;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,6 +87,14 @@ public class MyPageDetailFragment5 extends Fragment {
         view= inflater.inflate(R.layout.fragment_my_page_detail_fragment5, container, false);
 
         context=getContext();
+
+        //handling the global dynamic unit numbers
+        if(GlobalVar.gEnrolledCourseUnitSize==5){
+            GlobalVar.gUnitNumber=thisFragmentUniNumber;
+        }
+        else {
+            GlobalVar.gUnitNumber=thisFragmentUniNumber-1;
+        }
 
         //for content type array
         contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
@@ -103,7 +132,7 @@ public class MyPageDetailFragment5 extends Fragment {
 
             String unitTitle = units.get(thisFragmentUniNumber).getUnitNames();
             String unitOrder = units.get(thisFragmentUniNumber).getUnitOrders();
-            String unitId = units.get(thisFragmentUniNumber).getUnitID();
+            String unitId = units.get(thisFragmentUniNumber-1).getUnitID();
 
             GlobalVar.gUnitId=unitId;
 
@@ -148,13 +177,18 @@ public class MyPageDetailFragment5 extends Fragment {
             Toast.makeText(context,"No more data to show", Toast.LENGTH_LONG).show();
         }
 
+
+        String enrollCourseCompltness=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcCompleteness();
+
+        if(enrollCourseCompltness.equalsIgnoreCase("100")){
+            showPopUpImageBox();
+        }
+
+
         return view;
     }
 
     private void setQuiz(){
-
-        String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(0).getIdLesson();
-        GlobalVar.gLessonId=lessonId;
 
         totalQ=view.findViewById(R.id.totalQid);
         totalTime=view.findViewById(R.id.timeDurationId);
@@ -178,9 +212,6 @@ public class MyPageDetailFragment5 extends Fragment {
     }
 
     private void setExam(){
-
-        String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(0).getIdLesson();
-        GlobalVar.gLessonId=lessonId;
 
         startMyExam=view.findViewById(R.id.startMyExamId);
         totalEQ=view.findViewById(R.id.totalEQid);
@@ -300,5 +331,121 @@ public class MyPageDetailFragment5 extends Fragment {
         else {
             return mFormatter.format("%s মিনিট", mintBn).toString();
         }
+    }
+
+
+    private void showPopUpImageBox()
+    {
+        // custom dialog
+        final Dialog dialog = new Dialog(context, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforrating);
+
+        RatingBar ratingBar=dialog.findViewById(R.id.ratingBar);
+
+        final TextInputEditText mFeedBackField = dialog.findViewById(R.id.feedBackField);
+        Button sendRatingBtn = dialog.findViewById(R.id.sendReport);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+                int ratingInt =  (int)rating;
+
+                ratingBar.setRating(rating);
+
+                ratingPointStr = Float.toString(rating);
+            }
+        });
+
+
+        sendRatingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String feedBackStr=mFeedBackField.getText().toString();
+
+                String enrollId=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcId();
+
+                mapHit =  new HashMap<>();
+
+                mapHit.put("rating_point", ratingPointStr);
+                mapHit.put("feedback_comments", feedBackStr);
+
+                new SendRating().execute(sendratingUrl+ enrollId);
+
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+    }
+
+    public class SendRating extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            String response = null;
+
+            try {
+                HttpURLConnection c = (HttpURLConnection) new URL(arg0[0]).openConnection();
+                c.setRequestMethod("POST");
+                c.setUseCaches(false);
+                c.setRequestProperty ("Authorization", "Bearer "+GlobalVar.gReplacingToken);
+                c.connect();
+
+                InputStream in = new BufferedInputStream(c.getInputStream());
+                response = convertStreamToString(in);
+                c.disconnect();
+            }
+            catch (Exception ex){
+                Log.d("",ex.getMessage());
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+
+                JSONObject jObject = new JSONObject(result);
+
+                String abcd="";
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
+        }
+    }
+
+
+    private String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sb.toString();
     }
 }

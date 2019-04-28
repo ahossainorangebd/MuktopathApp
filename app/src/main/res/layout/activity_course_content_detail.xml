@@ -36,12 +36,8 @@
 
     </LinearLayout>
 
-    <!--<WebView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </WebView>-->
+
 
     <TextView
         android:padding="5dp"
@@ -74,6 +70,149 @@
             android:layout_below="@+id/detailPageCoverPhoto"
             >
 
+
+            <LinearLayout
+                android:id="@+id/btnsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="2dp"
+                android:orientation="horizontal"
+                android:layout_marginRight="8dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:id="@+id/likeNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:layout_marginLeft="7dp"
+                            android:text="n"
+                            />
+
+                        <ImageView
+                            android:id="@+id/hitlikebtn"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:gravity="right"
+                            android:foregroundGravity="right"
+                            android:text="Settings"
+                            android:layout_marginRight="1dp"
+                            android:layout_gravity="right"
+                            android:src="@drawable/mukto_like_icon"
+                            />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="15dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/dislikeNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:layout_marginLeft="3dp"
+                            android:text="n"
+                            />
+
+
+                    <ImageView
+                        android:id="@+id/hitDislikebtn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:foregroundGravity="right"
+                        android:text="Settings"
+                        android:layout_gravity="right"
+                        android:padding="2dp"
+                        android:src="@drawable/mukto_dislike_icon"
+                        />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="15dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/flagNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:layout_marginLeft="15dp"
+                            android:text="n"
+                            />
+                    <ImageView
+                        android:padding="3dp"
+                        android:id="@+id/hitFlagbtn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:foregroundGravity="right"
+                        android:text="Settings"
+                        android:layout_gravity="right"
+                        android:src="@drawable/mukto_flag_icon"
+                        />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="15dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:text="n"
+                            android:layout_marginLeft="15dp"
+                            android:textColor="@color/Colorpeace"
+                            />
+
+                    <ImageView
+                        android:id="@+id/downloadBtn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="right"
+                        android:foregroundGravity="right"
+                        android:text="Settings"
+                        android:layout_gravity="right"
+                        android:src="@drawable/content_download_icon"
+                        />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,7 +244,8 @@
                 <WebView
                     android:id="@+id/detailDesc"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                 </WebView>
 
@@ -359,6 +499,9 @@
                 </LinearLayout>-->
             </LinearLayout>
 
+
+
+
         </LinearLayout>
 
     </ScrollView>
@@ -381,6 +524,7 @@
             android:src="@drawable/mukto_video_pause_icon"
             />
     </LinearLayout>
+
 
 
 </RelativeLayout>

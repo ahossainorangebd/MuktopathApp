@@ -1,6 +1,7 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -157,6 +160,9 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                 String titleText=textViewName.getText().toString();
 
 
+                String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(GlobalVar.gUnitNumber).get(listPosition).getIdLesson();
+                GlobalVar.gLessonId=lessonId;
+
                 if(titleText==null){
 
                 }
@@ -175,16 +181,29 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         v.getContext().startActivity(i);
                     }
                     else if(titleText.equalsIgnoreCase("Assignment")){
-
+                        showPopUpMessageBox();
                     }
                     else if(titleText.equalsIgnoreCase("Discussion")){
-
+                        Intent i = new Intent(mContext, DiscussionActivity.class);
+                        v.getContext().startActivity(i);
                     }
                 }
             }
         });
 
     }
+
+
+    private void showPopUpMessageBox()
+    {
+        // custom dialog
+        final Dialog dialog = new Dialog(mContext, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforassignmentmsg);
+
+        dialog.show();
+    }
+
     private String convertEnglishDateToBengali(String englishDate) throws ParseException {
         // Initial date time in String forma†
         //String timeOrg = "Mon Apr 18 22:56:10 GMT+05:30 2016";
