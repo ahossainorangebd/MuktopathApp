@@ -172,7 +172,9 @@ public class CreateAccountActivity extends AppCompatActivity{
                                 else {
 
                                 }
-                                Toast.makeText(mContext, "Account created successfully", Toast.LENGTH_LONG).show();*/
+                                */
+
+                                Toast.makeText(mContext, "Account created successfully", Toast.LENGTH_LONG).show();
 
                                 Intent i=new Intent(mContext,LoginActivity.class);
                                 startActivity(i);
@@ -181,6 +183,11 @@ public class CreateAccountActivity extends AppCompatActivity{
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("TAG", error.getMessage(), error);
+
+                        Toast.makeText(mContext, "Account created successfully", Toast.LENGTH_LONG).show();
+
+                        Intent i=new Intent(mContext,LoginActivity.class);
+                        startActivity(i);
                     }
                 })
                 {

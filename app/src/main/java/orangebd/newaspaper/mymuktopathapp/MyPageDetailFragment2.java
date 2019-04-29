@@ -72,18 +72,22 @@ public class MyPageDetailFragment2 extends Fragment {
 
         context=getContext();
 
-        if(GlobalVar.gEnrolledCourseUnitSize==2){
-            GlobalVar.gUnitNumber=thisFragmentUniNumber-1;
-        }
-        else {
-            GlobalVar.gUnitNumber=thisFragmentUniNumber-1;
+
+
+        if(GlobalVar.gUnitGoingDirection!=null) {
+            if (GlobalVar.gUnitGoingDirection.equalsIgnoreCase("right")) {
+                GlobalVar.gUnitNumber = thisFragmentUniNumber - 1;
+            }
+            else {
+                GlobalVar.gUnitNumber = thisFragmentUniNumber + 1;
+            }
         }
 
 
 
 
         //for content type array
-        contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
+        contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber-1);
 
         mLastReadLesson=view.findViewById(R.id.lastReadLessonId);
         startMyQuiz=view.findViewById(R.id.startMyQuizId);
@@ -116,7 +120,6 @@ public class MyPageDetailFragment2 extends Fragment {
             String unitId = units.get(thisFragmentUniNumber-1).getUnitID();
 
             GlobalVar.gUnitId=unitId;
-
 
             if(unitTitle.equalsIgnoreCase("Quiz")){
 

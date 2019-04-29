@@ -193,4 +193,14 @@ public class GlobalVar {
 
     //video url
     public static String gEcode;
+
+
+    // enroll course tabspager adapter global position
+    public static int gTabspagerPosition;
+
+
+    // detecting direction
+
+    public static String gGoingDirection;
+    public static String gUnitGoingDirection;
 }

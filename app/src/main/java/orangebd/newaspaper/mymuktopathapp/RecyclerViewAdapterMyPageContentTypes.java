@@ -43,6 +43,19 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
     //private String copyRightText;
     // private ImageView mainImage;
+
+
+
+
+    private String mtitleText;
+    private String descriptionText;
+    private String videoCode;
+    private String timeStatus;
+    private String ownerId;
+
+
+
+
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView textViewName;
@@ -100,10 +113,18 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         titleText=dataSet2.get(listPosition).getmContentType();
 
 
-        /*final String descriptionText=dataSet.get(listPosition).getmDesc();
-        final String videoCode=dataSet.get(listPosition).getFile_name();
-        final String timeStatus=dataSet.get(listPosition).getStatus_content();
-        final String ownerId=dataSet.get(listPosition).getOwner_id();*/
+        //This section is for getting content array List
+
+
+
+        for(int customListPosition=0; customListPosition<GlobalVar.thisFragmentContents.size(); customListPosition++) {
+            mtitleText = GlobalVar.thisFragmentContents.get(customListPosition).getTitle_content();
+            descriptionText = GlobalVar.thisFragmentContents.get(customListPosition).getmDesc();
+            videoCode = GlobalVar.thisFragmentContents.get(customListPosition).getFile_name();
+            timeStatus = GlobalVar.thisFragmentContents.get(customListPosition).getStatus_content();
+            ownerId = GlobalVar.thisFragmentContents.get(customListPosition).getOwner_id();
+        }
+
 
         final int lPosition=listPosition;
 
@@ -113,7 +134,16 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         }
         else {
             if(titleText.equalsIgnoreCase("video")){
-                titleText="Lessons";
+                //titleText="Lessons";
+                String lessonName=dataSet2.get(listPosition).getTitle_content();
+
+                if(lessonName==null){
+                    titleText=". . . . .";
+                }
+                else {
+                    titleText=lessonName;
+                }
+
 
                 imageView.setImageResource(R.drawable.play_button_round);
             }
@@ -167,12 +197,8 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
                 }
                 else {
-                    if(titleText.equalsIgnoreCase("Lessons")){
 
-                        Intent i = new Intent(mContext, CourseContentActivity.class);
-                        v.getContext().startActivity(i);
-                    }
-                    else if(titleText.equalsIgnoreCase("Exam")){
+                    if(titleText.equalsIgnoreCase("Exam")){
                         Intent i = new Intent(mContext, StartExamActivity.class);
                         v.getContext().startActivity(i);
                     }
@@ -186,6 +212,40 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                     else if(titleText.equalsIgnoreCase("Discussion")){
                         Intent i = new Intent(mContext, DiscussionActivity.class);
                         v.getContext().startActivity(i);
+                    }
+
+                    else{
+
+                        /*Intent i = new Intent(mContext, CourseContentActivity.class);
+                        v.getContext().startActivity(i);*/
+
+
+                        Intent i = new Intent(mContext, CourseContentDetailActivity.class);
+                        i.putExtra("ttl", titleText);
+                        i.putExtra("detail", descriptionText);
+                        i.putExtra("usernumber", ownerId);
+                        i.putExtra("vcode", videoCode);
+                        i.putExtra("videostatus", timeStatus);
+
+                        GlobalVar.gListPosition=Integer.toString(listPosition);
+
+                        //For History data
+
+                        GlobalVar.gDescriptionText=descriptionText;
+                        GlobalVar.gUserNumber=ownerId;
+                        GlobalVar.gVideoCode=videoCode;
+                        GlobalVar.gTimeStatus=timeStatus;
+
+                        String aqwqw="";
+
+                        //i.putExtra("img", CoverPhoto);
+                        try {
+                            v.getContext().startActivity(i);
+                        }
+                        catch (Exception ex){
+                            String msg=ex.getMessage();
+                            Log.d("msg",msg);
+                        }
                     }
                 }
             }

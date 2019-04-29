@@ -49,7 +49,12 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
 
         if(GlobalVar.gEnrollCourseNumber==1){
+
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
+
+
 
                 case 0:
                     return new MyPageFragment1();
@@ -59,6 +64,9 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
         }
 
         else if(GlobalVar.gEnrollCourseNumber==2){
+
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -72,6 +80,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==3)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -87,6 +97,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==4)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -104,6 +116,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==5)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -123,6 +137,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==6)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -144,6 +160,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==7)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -167,6 +185,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==8)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -192,6 +212,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==9)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -219,6 +241,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==10)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -251,6 +275,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==11)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -283,6 +309,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==12)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -316,6 +344,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==13)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -351,6 +381,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==14)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -388,6 +420,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==15)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -425,6 +459,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==16)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -466,6 +502,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==17)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -509,6 +547,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==18)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -554,6 +594,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==19)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -602,6 +644,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==20)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -651,6 +695,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber==21)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:
@@ -702,6 +748,8 @@ public class TabsPagerAdapterDetail extends FragmentPagerAdapter {
 
         else if(GlobalVar.gEnrollCourseNumber>=22)
         {
+            GlobalVar.gTabspagerPosition=position;
+
             switch (position) {
 
                 case 0:

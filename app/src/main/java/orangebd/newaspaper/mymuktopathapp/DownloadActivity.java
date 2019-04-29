@@ -11,6 +11,8 @@ import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,8 +28,14 @@ import android.widget.VideoView;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class DownloadActivity extends AppCompatActivity {
+
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+
 
     private Context mContext;
 
@@ -42,6 +50,12 @@ public class DownloadActivity extends AppCompatActivity {
     private Button mSplashActvtySearchSomething;
 
     private VideoView videoView;
+
+
+    private ArrayList<String> myList;
+    private ArrayList<String> filePathList;
+
+    private LinearLayout mNoDownloadLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +79,59 @@ public class DownloadActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
+
+        mNoDownloadLayout=findViewById(R.id.noDownloadLayout);
+
+        // File
+
+        myList= new ArrayList<>();
+        filePathList= new ArrayList<>();
+
+        /***/
+
+        File mPath=this.getExternalFilesDir(Environment.getExternalStorageDirectory().toString());
+        String subPath=mPath.toString();
+        subPath=subPath.substring(0,subPath.lastIndexOf("/storage"));
+        subPath=subPath+"/muktopaath";
+
+        recyclerView=findViewById(R.id.recyclerviewdownloadedvideolist);
+
+        File file=new File(subPath);
+        File[] files=file.listFiles();
+
+        if(files==null){
+            mNoDownloadLayout.setVisibility(View.VISIBLE);
+        }
+        else {
+            for( int i=0; i< files.length; i++)
+            {
+                myList.add(files[i].getName());
+                filePathList.add(files[i].getAbsolutePath());
+            }
+
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(layoutManager);
+
+            adapter=new RecyclerViewAdapterDownloadList(myList,filePathList,this);
+            recyclerView.setAdapter(adapter);
+        }
+
+
+
+
+
+        /***/
+
+
+
+
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
         myPageBtn = findViewById(R.id.myPageBtnId);
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
+
+
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override

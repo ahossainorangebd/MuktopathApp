@@ -345,8 +345,12 @@ public class CourseDetailActivity extends AppCompatActivity {
                     enrollText.setText("আপনি ইতিমধ্যে কোর্সটিতে অংশগ্রহণ করেছেন" + paymentStatusFreeOrNot);
                 }
                 else if (mCheckStatus.equalsIgnoreCase("3")) {
-                    enrollText.setText("Coordinator");
+                    enrollText.setText("ENROLL"+ paymentStatusFreeOrNot);
                 }
+
+                /*else if (mCheckStatus.equalsIgnoreCase("3")) {
+                    enrollText.setText("Coordinator");
+                }*/
 
             }
             catch (Exception ex){

@@ -57,12 +57,18 @@ public class MyPageDetailFragment6 extends Fragment {
         context=getContext();
 
         //handling the global dynamic unit numbers
-        if(GlobalVar.gEnrolledCourseUnitSize==6){
-            GlobalVar.gUnitNumber=thisFragmentUniNumber;
+
+
+
+        if(GlobalVar.gUnitGoingDirection!=null) {
+            if (GlobalVar.gUnitGoingDirection.equalsIgnoreCase("right")) {
+                GlobalVar.gUnitNumber = thisFragmentUniNumber - 1;
+            }
+            else {
+                GlobalVar.gUnitNumber = thisFragmentUniNumber + 1;
+            }
         }
-        else {
-            GlobalVar.gUnitNumber=thisFragmentUniNumber-1;
-        }
+
 
         //for content type array
         contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);

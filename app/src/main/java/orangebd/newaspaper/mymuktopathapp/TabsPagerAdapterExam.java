@@ -39,7 +39,12 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
     @Override
     public int getCount() {
 
-        return GlobalVar.gTotalExamNumberThisCourse ;
+        if(GlobalVar.gTotalExamNumberThisCourse<10) {
+            return GlobalVar.gTotalExamNumberThisCourse;
+        }
+        else {
+            return 10;
+        }
         //return NUM_ITEMS;
     }
 
@@ -48,7 +53,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
 
-        if(GlobalVar.gTotalExamNumberThisCourse==2){
+        if(GlobalVar.gTotalExamNumberThisCourse==1){
             switch (position) {
 
                 case 0:
@@ -60,7 +65,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==3){
+        else if(GlobalVar.gTotalExamNumberThisCourse==2){
             switch (position) {
 
                 case 0:
@@ -74,7 +79,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==4)
+        else if(GlobalVar.gTotalExamNumberThisCourse==3)
         {
             switch (position) {
 
@@ -91,7 +96,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==5)
+        else if(GlobalVar.gTotalExamNumberThisCourse==4)
         {
             switch (position) {
 
@@ -110,7 +115,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==6)
+        else if(GlobalVar.gTotalExamNumberThisCourse==5)
         {
             switch (position) {
 
@@ -131,7 +136,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==7)
+        else if(GlobalVar.gTotalExamNumberThisCourse==6)
         {
             switch (position) {
 
@@ -154,7 +159,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==8)
+        else if(GlobalVar.gTotalExamNumberThisCourse==7)
         {
             switch (position) {
 
@@ -179,7 +184,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==9)
+        else if(GlobalVar.gTotalExamNumberThisCourse==8)
         {
             switch (position) {
 
@@ -206,7 +211,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==10)
+        else if(GlobalVar.gTotalExamNumberThisCourse==9)
         {
             switch (position) {
 
@@ -235,7 +240,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==11)
+        else if(GlobalVar.gTotalExamNumberThisCourse==10)
         {
             switch (position) {
 
@@ -269,7 +274,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
         //from 11 to 20
 
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==12)
+        else if(GlobalVar.gTotalExamNumberThisCourse==11)
         {
             switch (position) {
 
@@ -303,7 +308,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
         }
 
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==13)
+        else if(GlobalVar.gTotalExamNumberThisCourse==12)
         {
             switch (position) {
 
@@ -338,7 +343,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==14)
+        else if(GlobalVar.gTotalExamNumberThisCourse==13)
         {
             switch (position) {
 
@@ -375,7 +380,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==15)
+        else if(GlobalVar.gTotalExamNumberThisCourse==14)
         {
             switch (position) {
 
@@ -414,7 +419,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==16)
+        else if(GlobalVar.gTotalExamNumberThisCourse==15)
         {
             switch (position) {
 
@@ -453,7 +458,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==17)
+        else if(GlobalVar.gTotalExamNumberThisCourse==16)
         {
             switch (position) {
 
@@ -496,7 +501,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==18)
+        else if(GlobalVar.gTotalExamNumberThisCourse==17)
         {
             switch (position) {
 
@@ -541,7 +546,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==19)
+        else if(GlobalVar.gTotalExamNumberThisCourse==18)
         {
             switch (position) {
 
@@ -588,7 +593,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==20)
+        else if(GlobalVar.gTotalExamNumberThisCourse==19)
         {
             switch (position) {
 
@@ -638,7 +643,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==21)
+        else if(GlobalVar.gTotalExamNumberThisCourse==20)
         {
             switch (position) {
 
@@ -689,7 +694,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse==22)
+        else if(GlobalVar.gTotalExamNumberThisCourse==21)
         {
             switch (position) {
 
@@ -742,7 +747,7 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             }
         }
 
-        else if(GlobalVar.gTotalExamNumberThisCourse>=23)
+        else if(GlobalVar.gTotalExamNumberThisCourse>=22)
         {
             switch (position) {
 

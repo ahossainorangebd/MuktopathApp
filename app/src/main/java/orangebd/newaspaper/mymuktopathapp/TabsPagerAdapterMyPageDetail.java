@@ -39,11 +39,11 @@ public class TabsPagerAdapterMyPageDetail extends FragmentPagerAdapter {
     @Override
     public int getCount() {
 
-        if(GlobalVar.gEnrolledCourseUnitSize<5) {
+        if(GlobalVar.gEnrolledCourseUnitSize<10) {
             return GlobalVar.gEnrolledCourseUnitSize;
         }
         else {
-            return 5;
+            return 10;
         }
         //return  NUM_ITEMS ;
     }

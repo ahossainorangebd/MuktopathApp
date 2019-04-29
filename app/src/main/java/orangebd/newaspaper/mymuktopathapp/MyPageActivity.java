@@ -186,6 +186,10 @@ public class MyPageActivity extends AppCompatActivity {
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnit2;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> detailListCourseDetailUnit3;
 
+    private static final float thresholdOffset = 0.5f;
+    private static final int thresholdOffsetPixels = 1;
+    private boolean scrollStarted, checkDirection;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,6 +234,38 @@ public class MyPageActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params = vpPager.getLayoutParams();
         params.height = (int)newHeight;
         vpPager.setLayoutParams(params);
+        vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (checkDirection) {
+                    if (thresholdOffset > positionOffset) {
+
+
+                        GlobalVar.gGoingDirection="right";
+                    }
+                    else {
+
+                        GlobalVar.gGoingDirection="left";
+                    }
+                    checkDirection = false;
+                }
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (!scrollStarted && state == ViewPager.SCROLL_STATE_DRAGGING) {
+                    scrollStarted = true;
+                    checkDirection = true;
+                } else {
+                    scrollStarted = false;
+                }
+            }
+        });
 
 
         /***/
@@ -1262,8 +1298,6 @@ public class MyPageActivity extends AppCompatActivity {
                                                                 else {
 
                                                                 }
-
-                                                                //detailUnitNumbers.add(modelUnitCourseContents);
 
                                                             }
 

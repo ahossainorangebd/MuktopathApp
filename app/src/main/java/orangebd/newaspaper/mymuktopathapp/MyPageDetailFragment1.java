@@ -87,11 +87,14 @@ public class MyPageDetailFragment1 extends Fragment {
         context=getContext();
 
         //handling the global dynamic unit numbers
-        if(GlobalVar.gEnrolledCourseUnitSize==1){
-            GlobalVar.gUnitNumber=thisFragmentUniNumber;
-        }
-        else {
-            GlobalVar.gUnitNumber=thisFragmentUniNumber;
+
+
+        GlobalVar.gUnitNumber = 0;
+
+        if(GlobalVar.gUnitGoingDirection!=null) {
+            if (GlobalVar.gUnitGoingDirection.equalsIgnoreCase("left")) {
+                GlobalVar.gUnitNumber = thisFragmentUniNumber + 1;
+            }
         }
 
         //for content type array

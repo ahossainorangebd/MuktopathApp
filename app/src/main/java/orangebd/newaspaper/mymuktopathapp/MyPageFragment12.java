@@ -130,15 +130,6 @@ public class MyPageFragment12 extends Fragment {
         mExamHour=view.findViewById(R.id.examHour);
         mAssignmentHour=view.findViewById(R.id.assignmentHour);
 
-        startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);
-        startMyPageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, MyPageCourseDetail.class);
-                v.getContext().startActivity(i);
-            }
-        });
-
         ArrayList<DetailDataModelCoursesThumbnails> imgArray= GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails();
 
         DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(nthCourse);
@@ -189,7 +180,15 @@ public class MyPageFragment12 extends Fragment {
 
 
         // Let's count the number of Units
-        GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse-1).size();
+        if(GlobalVar.gGoingDirection.equalsIgnoreCase("right")) {
+            GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse - 1).size();
+        }
+        else {
+            GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse+1).size();
+        }
+        if(GlobalVar.gEnrollCourseNumber==12){
+            GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();
+        }
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse-1);
 
@@ -303,6 +302,9 @@ public class MyPageFragment12 extends Fragment {
         startMyPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                GlobalVar.isRedirectFromContentPage=false;
 
                 Intent i = new Intent(context, MyPageCourseDetail.class);
 

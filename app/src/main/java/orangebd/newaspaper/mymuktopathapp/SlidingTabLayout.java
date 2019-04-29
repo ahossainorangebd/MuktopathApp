@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -247,8 +248,14 @@ public class SlidingTabLayout extends HorizontalScrollView {
     {
         private int mScrollState;
 
+
+
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+
+
+
 
             int tabStripChildCount = mTabStrip.getChildCount();
 
@@ -291,6 +298,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
             if (mViewPagerPageChangeListener != null) {
                 mViewPagerPageChangeListener.onPageScrollStateChanged(state);
             }
+
+
         }
 
         @Override
@@ -300,6 +309,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 mTabStrip.onViewPagerPageChanged(position, 0f);
                 scrollToTab(position, 0);
             }
+
+
 
             for (int i = 0; i < mTabStrip.getChildCount(); i++) {
                 //mTabStrip.getChildAt(i).setSelected(position == i);
@@ -369,4 +380,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
         }
     }
+
+
 }

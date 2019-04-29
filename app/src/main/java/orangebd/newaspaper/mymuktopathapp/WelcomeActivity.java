@@ -1,5 +1,6 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,7 +13,9 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +57,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
     //private boolean isLogin;
 
+    public final String[] EXTERNAL_PERMS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
+    };
+
+    public final int EXTERNAL_REQUEST = 138;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -91,9 +99,6 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         }
 
-
-
-
         ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
         boolean isData = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
@@ -106,9 +111,15 @@ public class WelcomeActivity extends AppCompatActivity {
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    finish();
+                    //finish();
+
+                    Intent i = new Intent(mContext, DownloadActivity.class);
+                    startActivity(i);
                 }
             }, 4000);
+
+
+
 
         }
         else {
@@ -143,6 +154,10 @@ public class WelcomeActivity extends AppCompatActivity {
                 GlobalVar.isNotificationSent = false;
             }
         }
+
+
+
+        requestForPermission();
 
     }
 
@@ -331,6 +346,30 @@ public class WelcomeActivity extends AppCompatActivity {
         catch (Exception e){
             Log.d("", "Something is : ");
         }
+    }
+
+
+    public boolean requestForPermission() {
+
+        boolean isPermissionOn = true;
+        final int version = Build.VERSION.SDK_INT;
+        if (version >= 23) {
+            if (!canAccessExternalSd()) {
+                isPermissionOn = false;
+                requestPermissions(EXTERNAL_PERMS, EXTERNAL_REQUEST);
+            }
+        }
+
+        return isPermissionOn;
+    }
+
+    public boolean canAccessExternalSd() {
+        return (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE));
+    }
+
+    private boolean hasPermission(String perm) {
+        return (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, perm));
+
     }
 
 

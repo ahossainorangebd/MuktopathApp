@@ -159,8 +159,6 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private TextView mDislikeNumberTv;
     private TextView mFlagNumberTv;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -198,6 +196,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             title = getIntent().getExtras().getString("ttl");
             eCode = getIntent().getExtras().getString("vcode");
             mUserNumber = getIntent().getExtras().getString("usernumber");
+            timeStatus = getIntent().getExtras().getString("videostatus");
             timeStatus = getIntent().getExtras().getString("videostatus");
         }
 
@@ -403,6 +402,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 if(getPulse!=null) {
                     targetPopUp = Integer.parseInt(getPulse);
+                }
+                else {
+                    targetPopUp = -1;
                 }
 
                 //int targetPopUp=5;
@@ -805,12 +807,18 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         if (id == android.R.id.home) {
 
+            //TODO
             GlobalVar.isRedirectFromContentPage=true;
 
             Intent i=new Intent(context,MyPageCourseDetail.class);
             startActivity(i);
 
             return true;
+
+
+            /*finish();
+            return true;*/
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -845,14 +853,14 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         String DownloadUrl = videoUrl;
         DownloadManager.Request request1 = new DownloadManager.Request(Uri.parse(DownloadUrl));
         request1.setDescription("Downloading...");   //appears the same in Notification bar while downloading
-        request1.setTitle(eCode);
+        request1.setTitle(title);
         request1.setVisibleInDownloadsUi(false);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             request1.allowScanningByMediaScanner();
             request1.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         }
-        request1.setDestinationInExternalFilesDir(getApplicationContext(), "/muktopaath", eCode);
+        request1.setDestinationInExternalFilesDir(getApplicationContext(), "/muktopaath", title);
 
         DownloadManager manager1 = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         Objects.requireNonNull(manager1).enqueue(request1);

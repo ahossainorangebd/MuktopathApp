@@ -173,7 +173,7 @@ public class MyPageFragment1 extends Fragment {
 
         final String enrolledCourseTitle=GlobalVar.gEnrollCourseList.get(0).getmCourseAliasName();
 
-
+        final String enrolledCourseOwner=GlobalVar.gEnrolledInstitution.get(nthCourse).getInstitution_name_owner();
         final String enrolledCourseMotto=GlobalVar.gEnrollCourseList.get(nthCourse).getmCourseMotto();
         final String enrolledCourseObjective=GlobalVar.gEnrollCourseList.get(nthCourse).getmObjective();
         final String enrolledCourseDetails=GlobalVar.gEnrollCourseList.get(nthCourse).getmDetails();
@@ -198,6 +198,7 @@ public class MyPageFragment1 extends Fragment {
         //int mExamNumbers=GlobalVar.gEnrolledInstitution.get(0).getmExamNumbers();
 
         // Let's count the number of Units
+
         final ArrayList<DetailDataModelCoursesDetailContents> units = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse);
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse);
@@ -209,6 +210,13 @@ public class MyPageFragment1 extends Fragment {
 
         int unitSize = units.size();
         GlobalVar.gEnrolledCourseUnitSize=unitSize;
+
+
+        if(GlobalVar.gGoingDirection!=null) {
+            if (GlobalVar.gGoingDirection.equalsIgnoreCase("left")) {
+                GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse+1).size();
+            }
+        }
 
         int mAssignmentNumbers = mAssignment.size();
         int mExamNumbers = mExam.size();
@@ -316,29 +324,22 @@ public class MyPageFragment1 extends Fragment {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromContentPage=false;
+
                 Intent i = new Intent(context, MyPageCourseDetail.class);
 
                 i.putExtra("ttl", enrolledCourseTitle);
-                i.putExtra("cobj", enrolledCourseObjective);
-                i.putExtra("cdesc", enrolledCourseDetails);
-                i.putExtra("cmto", enrolledCourseMotto);
                 i.putExtra("img", CoverPhoto);
-
-
-                //TODO
-                //TODO
-                //i.putExtra("oname", enrolledCourseOwner);
+                i.putExtra("oname", enrolledCourseOwner);
                 i.putExtra("nthcourse", nthCourse);
-
-                GlobalVar.gTotalQuizNumberThisCourse=mQuizNumbers+1;
+                i.putExtra("cobj", enrolledCourseObjective);
+                i.putExtra("cmto", enrolledCourseMotto);
+                i.putExtra("cdesc", enrolledCourseDetails);
 
                 GlobalVar.thisFragmentContents=contents;
                 GlobalVar.thisFragmentQuizes=quizes;
-
                 GlobalVar.thisFragmentPulses=pulseMultiArray;
-                GlobalVar.thisFragmentPulseQs=pulseQuesListWithAns;
-
-                String apapa="";
+                GlobalVar.gTotalQuizNumberThisCourse=mQuizNumbers+1;
 
                 try {
                     v.getContext().startActivity(i);

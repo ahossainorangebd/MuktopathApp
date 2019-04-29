@@ -8,39 +8,16 @@
     android:background="@color/Colorpeace"
     >
 
-    <LinearLayout
-        android:id="@+id/videoLayOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
 
-        <VideoView
-            android:id="@+id/vdVw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-
-        <SeekBar
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:id="@+id/Progressbar"/>
-
-        <TextView
-            android:id="@+id/txtView"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/noDownloadLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="30dp"
+        android:visibility="gone"
         >
 
         <ImageView
@@ -77,11 +54,21 @@
 
     </LinearLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerviewdownloadedvideolist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
+
         >
 
         <FrameLayout

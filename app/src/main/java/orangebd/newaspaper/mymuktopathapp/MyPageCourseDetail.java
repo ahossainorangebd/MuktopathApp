@@ -47,6 +47,12 @@ public class MyPageCourseDetail extends AppCompatActivity {
     private TextView mCourseTitle;
     private TextView mCourseOwner;
 
+
+    //
+    private static final float thresholdOffset = 0.5f;
+    private static final int thresholdOffsetPixels = 1;
+    private boolean scrollStarted, checkDirection;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,12 +63,14 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         mContext=this;
 
+
         goBackFromThisActivity=findViewById(R.id.goBackFromThisActivityId);
         goBackFromThisActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent i=new Intent(mContext,MyPageActivity.class);
+
                 startActivity(i);
 
                 // finish();
@@ -76,6 +84,38 @@ public class MyPageCourseDetail extends AppCompatActivity {
         final ViewPager vpPager = findViewById(R.id.viewpagerNews);
         myAdapter = new TabsPagerAdapterMyPageDetail(getSupportFragmentManager());
         vpPager.setAdapter(myAdapter);
+        vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (checkDirection) {
+                    if (thresholdOffset > positionOffset) {
+
+
+                        GlobalVar.gUnitGoingDirection="right";
+                    }
+                    else {
+
+                        GlobalVar.gUnitGoingDirection="left";
+                    }
+                    checkDirection = false;
+                }
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (!scrollStarted && state == ViewPager.SCROLL_STATE_DRAGGING) {
+                    scrollStarted = true;
+                    checkDirection = true;
+                } else {
+                    scrollStarted = false;
+                }
+            }
+        });
 
         //Toast.makeText(VideoActivity.this,"Onclicklistner",Toast.LENGTH_LONG).show();
 

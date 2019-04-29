@@ -131,14 +131,6 @@ public class MyPageFragment10 extends Fragment {
         mExamHour=view.findViewById(R.id.examHour);
         mAssignmentHour=view.findViewById(R.id.assignmentHour);
 
-        startMyPageBtn=view.findViewById(R.id.startMyPageBtnId);
-        startMyPageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, MyPageCourseDetail.class);
-                v.getContext().startActivity(i);
-            }
-        });
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray= GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails();
 
@@ -190,7 +182,15 @@ public class MyPageFragment10 extends Fragment {
         final ArrayList<DetailDataModelCoursesDetailContents> mContent = GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(nthCourse);
 
         // Let's count the number of Units
-        GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse-1).size();
+        if(GlobalVar.gGoingDirection.equalsIgnoreCase("right")) {
+            GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse - 1).size();
+        }
+        else {
+            GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse+1).size();
+        }
+        if(GlobalVar.gEnrollCourseNumber==10){
+            GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();
+        }
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse-1);
 
@@ -305,6 +305,8 @@ public class MyPageFragment10 extends Fragment {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromContentPage=false;
+
                 Intent i = new Intent(context, MyPageCourseDetail.class);
 
                 i.putExtra("ttl", enrolledCourseTitle);
@@ -317,7 +319,6 @@ public class MyPageFragment10 extends Fragment {
 
                 GlobalVar.thisFragmentContents=contents;
                 GlobalVar.thisFragmentQuizes=quizes;
-
                 GlobalVar.thisFragmentPulses=pulseMultiArray;
                 GlobalVar.gTotalQuizNumberThisCourse=mQuizNumbers+1;
 
