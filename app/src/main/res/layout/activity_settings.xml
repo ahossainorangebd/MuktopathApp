@@ -137,7 +137,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/settings_wifi_icon"
                     />
 
@@ -180,7 +180,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/delete_blue_icon"
                     />
 
@@ -245,7 +245,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/settings_message_icon"
                     />
 
@@ -275,7 +275,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/settings_message_icon"
                     />
 
@@ -327,7 +327,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/settings_information_icon"
                     />
 
@@ -358,7 +358,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/settings_information_icon"
                     />
 
@@ -409,7 +409,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/settings_change_password"
                     />
 

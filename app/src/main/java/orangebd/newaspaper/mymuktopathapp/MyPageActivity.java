@@ -36,8 +36,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -285,8 +290,9 @@ public class MyPageActivity extends AppCompatActivity {
 
         HashMap<String, String> mSpInfo=sm.getUserDetails();
 
-        String emailFromCache = mSpInfo.get("email");
+        final String emailFromCache = mSpInfo.get("email");
         String passwordFromChache = mSpInfo.get("password");
+        final String phoneFromChache = mSpInfo.get("phone");
 
         map = new HashMap<String, String>();
 
@@ -297,12 +303,22 @@ public class MyPageActivity extends AppCompatActivity {
 
         GlobalVar.gReplacingTokenForAllCategories=token;
 
-        final JSONObject object=new JSONObject();
+        JSONObject object=new JSONObject();
 
         try {
-            object.put("email", emailFromCache);
-            object.put("password", passwordFromChache);
-            object.put("type", "1");
+
+
+            if(emailFromCache!=null) {
+                object.put("email", emailFromCache);
+                object.put("password", passwordFromChache);
+                object.put("type", "1");
+            }
+            else{
+                object.put("phone", phoneFromChache);
+                object.put("password", passwordFromChache);
+                object.put("type", "2");
+            }
+
         }
         catch (Exception ex){
             Log.d("", "onClick: ");
@@ -1422,14 +1438,13 @@ public class MyPageActivity extends AppCompatActivity {
 
                             mProgressDialog.dismiss();
 
-                        } catch (Exception ex) {
+                        }
+                        catch (Exception ex) {
                             Log.e("tag", "Couldn't get json from server.");
                         }
                         else {
                             Toast.makeText(mContext, "You must fill the email field.", Toast.LENGTH_LONG).show();
                         }
-
-
 
                         final ViewPager vpPager = findViewById(R.id.VideoSliderviewPagerId);
 
@@ -1440,13 +1455,51 @@ public class MyPageActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                String abcd="";
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Toast.makeText(mContext,
+                            mContext.getString(R.string.error_field_required),
+                            Toast.LENGTH_LONG).show();
+                }
+                else if (error instanceof AuthFailureError) {
+
+                }
+                else if (error instanceof ServerError) {
+
+                }
+                else if (error instanceof NetworkError) {
+
+                }
+                else if (error instanceof ParseError) {
+
+                }
+
+
+
+                if(emailFromCache!=null) {
+
+                    Intent i = new Intent(mContext, EmailRegiCompleteActivity.class);
+                    startActivity(i);
+                }
+                else{
+
+                    Intent i = new Intent(mContext, VerifyAccountActivity.class);
+                    i.putExtra("phn", phoneFromChache);
+                    startActivity(i);
+                }
+
+
+
                 Log.e("TAG", error.getMessage(), error);
             }
         })
 
-        { //no semicolon or coma
+        {
+            //no semicolon or coma
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", "application/json");
                 params.put("Authorization", token);

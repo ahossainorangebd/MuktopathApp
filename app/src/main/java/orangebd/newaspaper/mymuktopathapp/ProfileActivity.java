@@ -126,6 +126,12 @@ public class ProfileActivity extends AppCompatActivity {
         /** Progress of progressBar
          * */
 
+        String abcdpp="";
+
+        if(GlobalVar.gProfileCompleteness==null){
+            GlobalVar.gProfileCompleteness="0";
+        }
+
         String enrollCourseCompltness=GlobalVar.gProfileCompleteness;
 
         try {

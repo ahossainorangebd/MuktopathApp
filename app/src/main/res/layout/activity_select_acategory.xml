@@ -9,7 +9,6 @@
     android:orientation="vertical"
     >
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -25,7 +24,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="আপনার পছন্দের যেকোন তিনটি ক্যাটেগরি নির্বাচন করুন"
+                android:text="আপনার পছন্দের ক্যাটেগরি গুলো নির্বাচন করুন"
                 android:textSize="26sp"
                 android:gravity="center"
                 android:textColor="#000"
@@ -152,7 +151,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:elevation="5dp"
-        android:layout_marginBottom="20dp"
+
         >
 
         <CheckBox
@@ -180,7 +179,7 @@
 
     </RelativeLayout>
 
-    <!--<RelativeLayout
+    <RelativeLayout
         android:id="@+id/chooseCategory5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -190,6 +189,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:elevation="5dp"
+        android:visibility="gone"
         >
 
         <CheckBox
@@ -197,7 +197,6 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:gravity="center"
-            android:layout_marginLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
             />
@@ -214,6 +213,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:elevation="5dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
         >
 
         <CheckBox
@@ -221,11 +222,10 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:gravity="center"
-            android:layout_marginLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
             />
-    </RelativeLayout>-->
+    </RelativeLayout>
 
         </LinearLayout>
 

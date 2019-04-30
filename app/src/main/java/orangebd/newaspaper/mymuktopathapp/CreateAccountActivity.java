@@ -1,29 +1,14 @@
 package orangebd.newaspaper.mymuktopathapp;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -33,17 +18,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -55,13 +36,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
@@ -78,6 +56,7 @@ public class CreateAccountActivity extends AppCompatActivity{
     private Button mRegiPageSignUpBtn;
 
     private ArrayList<DetailDataModelBasicInfo> detailListProfessions =new ArrayList<>();
+    private ArrayList<DetailDataModelBasicInfo> detailListGender =new ArrayList<>();
 
     private EditText mEmailView;
     private String mStrEmail;
@@ -98,7 +77,9 @@ public class CreateAccountActivity extends AppCompatActivity{
     private String mStrFullName;
 
     private String selectedItem;
+    private String selectedItemG;
     private String IdOfSelectedItem="";
+    private String IdOfSelectedItemG="";
 
     String url= GlobalVar.gApiBaseUrl + "/api/registration?type=registration";
 
@@ -107,7 +88,11 @@ public class CreateAccountActivity extends AppCompatActivity{
     private String token="";
 
     private List<String> ccCat=new ArrayList<String>();
+    private List<String> ccCat2=new ArrayList<String>();
     private Spinner mSpinnerProfCat;
+    private Spinner mSpinnerGendCat;
+
+    private TextView mReturnMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,16 +107,19 @@ public class CreateAccountActivity extends AppCompatActivity{
 
         mEmailView =  findViewById(R.id.email);
         mEdtTxtPwd = findViewById(R.id.password);
-        //mEdtTxtProfession = findViewById(R.id.profession);
-        mEdtGender = findViewById(R.id.gender);
         mEdtTxtFullName = findViewById(R.id.fullname);
         mEdtTxtPwdConfirm = findViewById(R.id.confirm_password);
-        mSpinnerProfCat=findViewById(R.id.spnrProfessionCategory);
+
+
 
         token = GlobalVar.getTokenArray.get(0).getmAccessToken();
         String firstWord = GlobalVar.getTokenArray.get(0).getmTokenType();
 
         token = firstWord + " " + token;
+
+
+
+        new GetBasicData().execute(basicInfourl);
 
         Button mEmailSignInButton = findViewById(R.id.regiPageSignUpId);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -141,18 +129,33 @@ public class CreateAccountActivity extends AppCompatActivity{
                 mStrPwd=mEdtTxtPwd.getText().toString();
                 mStrPwdConfirm=mEdtTxtPwd.getText().toString();
                 //mStrProfession=mEdtTxtProfession.getText().toString();
-                mStrGender=mEdtGender.getText().toString();
                 mStrFullName=mEdtTxtFullName.getText().toString();
+
+                /*if(mStrPwdConfirm.)*/
 
                 JSONObject object=new JSONObject();
 
                 try {
-                    object.put("email", mStrEmail);
-                    object.put("password", mStrPwd);
-                    object.put("confirm_password", mStrPwdConfirm);
-                    object.put("name", mStrFullName);
-                    object.put("gender", mStrGender);
-                    object.put("profession", IdOfSelectedItem);
+
+                    if(mStrEmail.contains("@")) {
+                        object.put("email", mStrEmail);
+                        object.put("password", mStrPwd);
+                        object.put("confirm_password", mStrPwdConfirm);
+                        object.put("name", mStrFullName);
+                        object.put("gender", mStrGender);
+                        object.put("profession", IdOfSelectedItem);
+                    }
+                    else {
+                        object.put("phone", mStrEmail);
+                        object.put("password", mStrPwd);
+                        object.put("confirm_password", mStrPwdConfirm);
+                        object.put("name", mStrFullName);
+                        object.put("gender", mStrGender);
+                        object.put("profession", IdOfSelectedItem);
+                    }
+
+
+
                     //object.put("type", "registration");
                 }
                 catch (Exception ex){ }
@@ -164,20 +167,39 @@ public class CreateAccountActivity extends AppCompatActivity{
                             @Override
                             public void onResponse(JSONObject response)
                             {
-                                JSONObject jObject = new JSONObject();
+                                String message="";
+                                String type="";
 
-                                /*if(){
+                                try {
+                                    JSONObject jObjectData = response.getJSONObject("success");
 
+                                     message=jObjectData.getString("message");
+                                     type=jObjectData.getString("type");
+                                }
+                                catch (Exception ex) {
+                                    Log.d("", "onResponse: ");
+                                }
+
+                                Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+
+                                if(type.equalsIgnoreCase("2")){
+                                    Intent i=new Intent(mContext,VerifyAccountActivity.class);
+
+
+                                    i.putExtra("msg", message);
+                                    i.putExtra("phn", mStrEmail);
+
+                                    startActivity(i);
                                 }
                                 else {
+                                    Intent i=new Intent(mContext,EmailRegiCompleteActivity.class);
 
+                                    i.putExtra("msg", message);
+
+                                    startActivity(i);
                                 }
-                                */
 
-                                Toast.makeText(mContext, "Account created successfully", Toast.LENGTH_LONG).show();
 
-                                Intent i=new Intent(mContext,LoginActivity.class);
-                                startActivity(i);
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -204,38 +226,9 @@ public class CreateAccountActivity extends AppCompatActivity{
             }
         });
 
+        mSpinnerProfCat=findViewById(R.id.spnrProfessionCategory);
+        mSpinnerGendCat=findViewById(R.id.spnrGenderCategory);
 
-        ArrayAdapter<String> spinnerArrayAdapterCCCat = new ArrayAdapter<>(mContext, R.layout.spinner_item_prof_info, ccCat);
-        spinnerArrayAdapterCCCat.setDropDownViewResource(R.layout.spinner_item);
-        mSpinnerProfCat.setAdapter(spinnerArrayAdapterCCCat);
-
-        mSpinnerProfCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                int item=position;
-                selectedItem  =ccCat.get(item);
-
-                for(int si=0; si<detailListProfessions.size(); si++) {
-
-                    DetailDataModelBasicInfo idNameOfSelectedItem = detailListProfessions.get(si);
-                    String matchName=idNameOfSelectedItem.getmProfessionTitleBn();
-
-                    if (selectedItem.equalsIgnoreCase(matchName)){
-                        IdOfSelectedItem=idNameOfSelectedItem.getmProfessionId();
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
-
-            }
-        });
-
-        new GetBasicData().execute(basicInfourl);
     }
 
     public String  performPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -377,6 +370,74 @@ public class CreateAccountActivity extends AppCompatActivity{
             catch (Exception ex){
                 Log.d("", "onCreate: ");
             }
+
+
+            ArrayAdapter<String> spinnerArrayAdapterCCCat = new ArrayAdapter<>(mContext, R.layout.spinner_item_prof_info, ccCat);
+            spinnerArrayAdapterCCCat.setDropDownViewResource(R.layout.spinner_item);
+            mSpinnerProfCat.setAdapter(spinnerArrayAdapterCCCat);
+
+            mSpinnerProfCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    int item=position;
+                    selectedItem  =ccCat.get(item);
+
+                    for(int si=0; si<detailListProfessions.size(); si++) {
+
+                        DetailDataModelBasicInfo idNameOfSelectedItem = detailListProfessions.get(si);
+                        String matchName=idNameOfSelectedItem.getmProfessionTitleBn();
+
+                        if (selectedItem.equalsIgnoreCase(matchName)){
+                            IdOfSelectedItem=idNameOfSelectedItem.getmProfessionId();
+                        }
+                    }
+
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
+            ccCat2.add("লিঙ্গ নির্ধারণ");
+            ccCat2.add("পুরুষ");
+            ccCat2.add("মহিলা");
+            ccCat2.add("অন্যান্য");
+
+            ArrayAdapter<String> spinnerArrayAdapterCCCat2 = new ArrayAdapter<>(mContext, R.layout.spinner_item_prof_info, ccCat2);
+            spinnerArrayAdapterCCCat2.setDropDownViewResource(R.layout.spinner_item);
+            mSpinnerGendCat.setAdapter(spinnerArrayAdapterCCCat2);
+
+            mSpinnerGendCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    int item=position;
+                    selectedItemG  =ccCat2.get(item);
+
+
+                    if(selectedItemG.equalsIgnoreCase("পুরুষ")){
+                        mStrGender="1";
+                    }
+                    else if(selectedItemG.equalsIgnoreCase("মহিলা")){
+                        mStrGender="2";
+                    }
+                    else {
+                        mStrGender="3";
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
         }
     }
 }

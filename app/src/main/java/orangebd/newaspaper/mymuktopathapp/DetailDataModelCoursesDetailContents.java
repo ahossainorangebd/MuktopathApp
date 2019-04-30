@@ -33,8 +33,6 @@ public class DetailDataModelCoursesDetailContents
     private String mName;
 
 
-
-
     public String getmUserName() {
         return mUserName;
     }

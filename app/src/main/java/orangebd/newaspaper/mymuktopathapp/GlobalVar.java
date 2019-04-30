@@ -149,7 +149,6 @@ public class GlobalVar {
 
     public static int gUnitNumber;
 
-
     // Ques List for exam
 
     public static ArrayList<String> answerArray;

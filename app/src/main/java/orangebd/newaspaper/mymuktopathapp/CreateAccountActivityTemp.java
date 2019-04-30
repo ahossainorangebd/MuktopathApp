@@ -84,7 +84,6 @@ public class CreateAccountActivityTemp extends AppCompatActivity{
         mEmailView =  findViewById(R.id.email);
         mEdtTxtPwd = findViewById(R.id.password);
         //mEdtTxtProfession = findViewById(R.id.profession);
-        mEdtGender = findViewById(R.id.gender);
         mEdtTxtFullName = findViewById(R.id.fullname);
         mEdtTxtPwdConfirm = findViewById(R.id.confirm_password);
 

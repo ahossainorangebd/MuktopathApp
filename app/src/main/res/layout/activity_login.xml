@@ -166,7 +166,7 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="ব্যবহারকারীর নাম"
+                        android:hint="ইমেইল অথবা ফোন"
                         android:background="#fff"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="12dp"

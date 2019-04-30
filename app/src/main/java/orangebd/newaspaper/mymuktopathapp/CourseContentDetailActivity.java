@@ -159,6 +159,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private TextView mDislikeNumberTv;
     private TextView mFlagNumberTv;
 
+
+    private int forwardable=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -258,6 +261,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
             if(eachPulse==listPositionNumber) {
                 getPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMulti();
+
+                //TODO
                 Toast.makeText(context,"This video has question.",Toast.LENGTH_SHORT).show();
 
                 isGotQuestion=true;
@@ -270,7 +275,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                         String nothing="Nothing";
                     }
                     else {
-                        Toast.makeText(context, "This video has no question.", Toast.LENGTH_SHORT).show();
+                        //TODO
+                        //Toast.makeText(context, "This video has no question.", Toast.LENGTH_SHORT).show();
                         isNoQuestion=true;
                     }
                 }
@@ -337,7 +343,11 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         });
         //mProgressBar.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_progress));
         //mProgressBar.setThumb(getResources().getDrawable(R.drawable.seekbar_thumb));
-        mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
+
+        mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -356,9 +366,28 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 else {
                     videoView.seekTo(vprog);
                     //mProgressBar.setSecondaryProgress(seekbarProgress);
-
                 }
+
+
+                if (forwardable !=1)
+                {
+                    if (prog < vprog) {
+                        videoView.seekTo(seekbarProgress);
+                        mProgressBar.setSecondaryProgress(vprog);
+                    } else {
+                        videoView.seekTo(vprog);
+                        //mProgressBar.setSecondaryProgress(seekbarProgress);
+                    }
+                }
+                else {
+                    int seekbarProgress=seekBar.getProgress();
+                    videoView.seekTo(seekbarProgress);
+                }
+
+
                 mProgressBar.postDelayed(onEverySecond, 1000);
+
+
 
             }
 
@@ -546,9 +575,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                downloadFile();
+                //downloadFile();
 
-                //new DownloadFileAsync();
+                new DownloadFileAsync();
             }
         });
 
@@ -877,12 +906,13 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //Toast.makeText(MainActivity.this,"Detail data is downloading...",Toast.LENGTH_LONG).show();
+
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
             downloadFile();
+
             return null;
         }
 
@@ -890,8 +920,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         protected void onPostExecute(Void result)
         {
             super.onPostExecute(result);
-            //DBHelper dbHelper=new DBHelper(getApplicationContext());
-            dbHelper.addVideo("mFilePath",1,1);
+
 
         }
     }
@@ -945,6 +974,15 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             }
 
 
+            if(mTotal_likes==null){
+                mTotal_likes="0";
+            }
+            if(mTotal_dislikes==null){
+                mTotal_dislikes="0";
+            }
+            if(mTotal_flags==null){
+                mTotal_flags="0";
+            }
 
             mLikeNumberTv.setText(mTotal_likes);
             mDislikeNumberTv.setText(mTotal_dislikes);

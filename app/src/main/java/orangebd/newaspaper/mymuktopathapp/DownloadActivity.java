@@ -2,6 +2,7 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -57,6 +59,10 @@ public class DownloadActivity extends AppCompatActivity {
 
     private LinearLayout mNoDownloadLayout;
 
+    private DBHelper myDb;
+
+    private String crsid="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +85,8 @@ public class DownloadActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
+
+        myDb = new DBHelper(this);
 
         mNoDownloadLayout=findViewById(R.id.noDownloadLayout);
 
@@ -103,6 +111,25 @@ public class DownloadActivity extends AppCompatActivity {
             mNoDownloadLayout.setVisibility(View.VISIBLE);
         }
         else {
+
+            Cursor mCursom= myDb.getAllData();
+
+            mCursom.moveToFirst();
+
+            int ii=0;
+
+            while (mCursom.moveToNext()) {
+                Cursor cursor2= myDb.GetDataFromDB(GlobalVar.gEnrollCourseId.get(ii).getmEcId());
+                ii++;
+
+
+
+
+            }
+
+
+
+
             for( int i=0; i< files.length; i++)
             {
                 myList.add(files[i].getName());
@@ -240,4 +267,95 @@ public class DownloadActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    //TODO
+    //TODO
+    /*public void DeleteData() {
+        btnDelete.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Integer deletedRows = myDb.deleteData(editTextId.getText().toString());
+                        if(deletedRows > 0)
+                            Toast.makeText(mContext,"Data Deleted",Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(mContext,"Data not Deleted",Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+    public void UpdateData() {
+        btnviewUpdate.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean isUpdate = myDb.updateData(editTextId.getText().toString(),
+                                editName.getText().toString(),
+                                editSurname.getText().toString(),editMarks.getText().toString());
+                        if(isUpdate == true)
+                            Toast.makeText(mContext,"Data Update",Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(mContext,"Data not Updated",Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+    public void AddData() {
+        btnAddData.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean isInserted = myDb.insertData(Integer.parseInt(editName.getText().toString()),
+                                Integer.parseInt(editSurname.getText().toString()),
+                                editMarks.getText().toString());
+                        if(isInserted == true)
+                            Toast.makeText(mContext,"Data Inserted",Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(mContext,"Data not Inserted",Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+
+    public void viewAll() {
+        btnviewAll.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor res = myDb.getAllData();
+                        if(res.getCount() == 0) {
+                            // show message
+                            showMessage("Error","Nothing found");
+                            return;
+                        }
+
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append("Id :"+ res.getString(0)+"\n");
+                            buffer.append("User Id :"+ res.getString(1)+"\n");
+                            buffer.append("Course Id :"+ res.getString(2)+"\n");
+                            buffer.append("Content :"+ res.getString(3)+"\n\n");
+                        }
+                        // Show all data
+                        showMessage("Data",buffer.toString());
+                    }
+                }
+        );
+    }*/
+
+    public void showMessage(String title,String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+    }
+
 }
+
+
+
+
+

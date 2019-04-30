@@ -119,13 +119,16 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
                         GlobalVar.answerArrayQuiz.add(selectedAnswer);
 
                         if (something.equals("true")) {
-                            Toast.makeText(mContext,"Correct Answer",Toast.LENGTH_SHORT).show();
+                            //TODO
+                            //Toast.makeText(mContext,"Correct Answer",Toast.LENGTH_SHORT).show();
 
                             GlobalVar.gMultiMarkCount++;
 
                         }
                         else{
-                            Toast.makeText(mContext,"Incorrect Answer",Toast.LENGTH_SHORT).show();
+
+                            //TODO
+                            //Toast.makeText(mContext,"Incorrect Answer",Toast.LENGTH_SHORT).show();
                         }
 
                         String abcd = something.toString();

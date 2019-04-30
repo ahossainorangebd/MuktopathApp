@@ -222,9 +222,19 @@ public class LoginActivity extends AppCompatActivity {
                 final JSONObject object=new JSONObject();
 
                 try {
-                    object.put("email", mStrEmail);
-                    object.put("password", mStrPwd);
-                    object.put("type", "1");
+
+                    if(mStrEmail.contains("@")){
+                        object.put("email", mStrEmail);
+                        object.put("password", mStrPwd);
+                        object.put("type", "1");
+                    }
+                    else {
+                        object.put("phone", mStrEmail);
+                        object.put("password", mStrPwd);
+                        object.put("type", "2");
+                    }
+
+
                 }
                 catch (Exception ex){
                     Log.d("", "onClick: ");
@@ -253,9 +263,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     else if(mStrPwd.equalsIgnoreCase(mStrPwd)) {
 
-                        if (mStrEmail.contains("@")) {
-
-
+                        if (mStrEmail.contains("@"))
+                        {
                             //GlobalVar.gIsLogin=sm.checkLogin();
 
                             if(!GlobalVar.gIsLogin) {
@@ -263,7 +272,6 @@ public class LoginActivity extends AppCompatActivity {
                                 sm.createLoginSession(mStrEmail, mStrPwd);
                                 sm.isLoggedIn();
                             }
-
 
                             mProgressDialog=new ProgressDialog(mContext);
                             mProgressDialog.setIndeterminate(true);
@@ -1289,6 +1297,17 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             };
                             mQueue.add(jsonObjectRequest);
+                        }
+                        else {
+
+                            if(!GlobalVar.gIsLogin) {
+
+                                sm.createLoginSessionForPhone(mStrEmail, mStrPwd);
+                                sm.isLoggedIn();
+                            }
+
+                            Intent i = new Intent(mContext, SelectACategoryActivity.class);
+                            startActivity(i);
                         }
                     }
                     else {

@@ -2,9 +2,15 @@ package orangebd.newaspaper.mymuktopathapp;
 
 
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,16 +19,22 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<RecyclerViewAdapterMyPageContentTypes.MyViewHolder> {
+
+    private String BASE_URL = "http://testadmin.muktopaath.orangebd.com";
 
     private ArrayList<DetailDataModelCoursesDetailContents> dataSet;
     private ArrayList<DetailDataModelCoursesDetailContents> dataSet2;
@@ -44,24 +56,28 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     //private String copyRightText;
     // private ImageView mainImage;
 
-
-
-
     private String mtitleText;
     private String descriptionText;
     private String videoCode;
     private String timeStatus;
     private String ownerId;
 
+    private Button downloadBtn;
+
+    private DBHelper myDb;
 
 
+    private String videoUrl;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView textViewName;
         TextView textViewVersion;
         TextView textViewVersion2;
+
         ImageView imageViewIcon;
+        ImageView imageViewDownload;
+
         Typeface typeface;
 
         public MyViewHolder(View itemView)
@@ -71,6 +87,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
            // this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.contentTypeIcons);
+            this.imageViewDownload = itemView.findViewById(R.id.cloudDownloadBtn);
             //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
             //textViewVersion.setTypeface(typeface);
         }
@@ -108,6 +125,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         TextView textViewVersion = holder.textViewVersion;
         TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
+        ImageView imageViewdown = holder.imageViewDownload;
 
 
         titleText=dataSet2.get(listPosition).getmContentType();
@@ -182,6 +200,22 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             imageView.setImageDrawable(R.id.mukto_ques_icon);*/
         }
 
+
+        myDb = new DBHelper(mContext);
+
+
+        imageViewdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + ownerId + "/"+ videoCode +"#t=" + timeStatus;
+
+                new DownloadFileAsync().execute();
+            }
+        });
+
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -254,6 +288,40 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     }
 
 
+    /*public void AddData() {
+        btnAddData.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                }
+        );
+    }*/
+
+    public void downloadFile() {
+
+
+
+        String DownloadUrl = videoUrl;
+        DownloadManager.Request request1 = new DownloadManager.Request(Uri.parse(DownloadUrl));
+        request1.setDescription("Downloading...");   //appears the same in Notification bar while downloading
+        request1.setTitle(titleText);
+        request1.setVisibleInDownloadsUi(false);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            request1.allowScanningByMediaScanner();
+            request1.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+        }
+        request1.setDestinationInExternalFilesDir(mContext, "/muktopaath", titleText);
+
+        DownloadManager manager1 = (DownloadManager)mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+        Objects.requireNonNull(manager1).enqueue(request1);
+        if (DownloadManager.STATUS_SUCCESSFUL == 8) {
+            //DownloadSuccess();
+        }
+    }
+
     private void showPopUpMessageBox()
     {
         // custom dialog
@@ -312,4 +380,55 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
         return num;
     }
+
+
+    public class DownloadFileAsync extends AsyncTask<Void, Void, Void>
+    {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            downloadFile();
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            super.onPostExecute(result);
+
+            // Get Course id
+            String courseId=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcId();
+
+
+            File mPath=mContext.getExternalFilesDir(Environment.getExternalStorageDirectory().toString());
+            String subPath=mPath.toString();
+            subPath=subPath.substring(0,subPath.lastIndexOf("/storage"));
+            subPath=subPath+"/muktopaath";
+
+
+            Toast.makeText(mContext,"No downloadable file found.",Toast.LENGTH_LONG).show();
+
+            boolean isInserted = myDb.insertData(courseId, GlobalVar.gUnitId, subPath,titleText, descriptionText);
+
+            Cursor mCursor =  myDb.getAllData();
+
+            int mInt =mCursor.getCount();
+
+
+
+            if(isInserted == true)
+                Toast.makeText(mContext,"Data Inserted",Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(mContext,"Data not Inserted",Toast.LENGTH_LONG).show();
+
+        }
+    }
+
 }

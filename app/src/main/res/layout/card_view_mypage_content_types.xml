@@ -68,6 +68,7 @@
                         />
 
                     <ImageView
+                        android:id="@+id/cloudDownloadBtn"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
@@ -75,7 +76,6 @@
                         android:foregroundGravity="right"
                         android:layout_marginLeft="20dp"
                         />
-
 
                 </LinearLayout>
 
