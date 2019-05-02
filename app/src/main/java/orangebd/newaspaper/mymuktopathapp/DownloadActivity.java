@@ -121,14 +121,7 @@ public class DownloadActivity extends AppCompatActivity {
             while (mCursom.moveToNext()) {
                 Cursor cursor2= myDb.GetDataFromDB(GlobalVar.gEnrollCourseId.get(ii).getmEcId());
                 ii++;
-
-
-
-
             }
-
-
-
 
             for( int i=0; i< files.length; i++)
             {
@@ -144,21 +137,13 @@ public class DownloadActivity extends AppCompatActivity {
         }
 
 
-
-
-
         /***/
-
-
-
 
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
         myPageBtn = findViewById(R.id.myPageBtnId);
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
-
-
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override

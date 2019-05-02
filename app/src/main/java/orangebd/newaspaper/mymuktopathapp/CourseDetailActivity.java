@@ -197,6 +197,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     }
 
     public static void deleteCache(Context context) {
+
         try {
             File dir = context.getCacheDir();
             deleteDir(dir);
@@ -385,6 +386,10 @@ public class CourseDetailActivity extends AppCompatActivity {
 
                 Toast.makeText(context,returnMessage,Toast.LENGTH_LONG).show();
 
+
+                deleteCache(context);
+
+
                 Intent i=new Intent(context,MyPageActivity.class);
                 startActivity(i);
             }
@@ -491,5 +496,4 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         return result.toString();
     }
-
 }

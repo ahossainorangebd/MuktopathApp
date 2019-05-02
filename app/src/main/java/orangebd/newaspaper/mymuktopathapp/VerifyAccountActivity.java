@@ -60,7 +60,7 @@ public class VerifyAccountActivity extends AppCompatActivity {
         /*getMsg = getIntent().getExtras().getString("msg");
         getPhn = getIntent().getExtras().getString("phn");*/
 
-        getMsg = "আপনার  ফোন ভেরিফাইড না প্লিজ প্রথমে ফোন ভেরিফাই করুন";
+        getMsg = getIntent().getExtras().getString("msg");
         getPhn = getIntent().getExtras().getString("phn");
 
         mReturnMessage.setText(getMsg);
@@ -109,8 +109,11 @@ public class VerifyAccountActivity extends AppCompatActivity {
 
                 Toast.makeText(context,result,Toast.LENGTH_LONG).show();
 
-                Intent i=new Intent(context,LoginActivity.class);
-                startActivity(i);
+                if(result!=null){
+                    Intent i=new Intent(context,LoginActivity.class);
+                    startActivity(i);
+                }
+
             }
             catch (Exception ex){
                 Log.d("", "onPostExecute: ");

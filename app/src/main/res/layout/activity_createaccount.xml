@@ -120,10 +120,11 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:orientation="horizontal"
                     android:background="@drawable/button_style_edit_text"
+                    android:padding="5dp"
                     >
 
                     <LinearLayout
@@ -138,7 +139,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="সম্পূর্ণ নাম"
-                            android:layout_marginTop="5dp"
                             android:background="#fff"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="8dp"
@@ -271,10 +271,11 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:orientation="horizontal"
                     android:background="@drawable/button_style_edit_text"
+                    android:padding="5dp"
                     >
 
                     <LinearLayout
@@ -287,11 +288,10 @@
                         <EditText
                             android:id="@+id/password"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:hint="পাসওয়ার্ড"
                             android:background="#fff"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"

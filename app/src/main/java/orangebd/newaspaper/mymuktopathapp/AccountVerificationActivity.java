@@ -9,5 +9,9 @@ public class AccountVerificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_verification);
+
+
+        //01670841576
+        //1-8
     }
 }

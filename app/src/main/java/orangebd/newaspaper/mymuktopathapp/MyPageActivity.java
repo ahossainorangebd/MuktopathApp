@@ -12,6 +12,7 @@ import android.media.Image;
 import android.os.AsyncTask;
 import android.provider.Settings;
 import android.provider.SyncStateContract;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -195,6 +197,10 @@ public class MyPageActivity extends AppCompatActivity {
     private static final int thresholdOffsetPixels = 1;
     private boolean scrollStarted, checkDirection;
 
+
+    private RelativeLayout mRelativeBackground;
+    private LinearLayout mNoEnroledCourseFound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -217,6 +223,10 @@ public class MyPageActivity extends AppCompatActivity {
         myPageBtn = findViewById(R.id.myPageBtnId);
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
+
+
+        mRelativeBackground=findViewById(R.id.drawerLayout);
+        mNoEnroledCourseFound=findViewById(R.id.noEnroledCourseFound);
 
 
         /**get device height and width*/
@@ -291,7 +301,7 @@ public class MyPageActivity extends AppCompatActivity {
         HashMap<String, String> mSpInfo=sm.getUserDetails();
 
         final String emailFromCache = mSpInfo.get("email");
-        String passwordFromChache = mSpInfo.get("password");
+        final String passwordFromChache = mSpInfo.get("password");
         final String phoneFromChache = mSpInfo.get("phone");
 
         map = new HashMap<String, String>();
@@ -1350,8 +1360,6 @@ public class MyPageActivity extends AppCompatActivity {
 
                                             detailListCourseDetailUnits.add(mUnitArrayListNew);
 
-
-
                                             detailListCourseDetailUnitQuizList.add(mUnitQuizList);
                                             detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
 
@@ -1446,6 +1454,14 @@ public class MyPageActivity extends AppCompatActivity {
                             Toast.makeText(mContext, "You must fill the email field.", Toast.LENGTH_LONG).show();
                         }
 
+
+                        if(GlobalVar.gEnrollCourseNumber>0){
+                            mRelativeBackground.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.mukto_mypage_background_img_sharp));
+                        }
+                        else {
+                            mNoEnroledCourseFound.setVisibility(View.VISIBLE);
+                        }
+
                         final ViewPager vpPager = findViewById(R.id.VideoSliderviewPagerId);
 
                         myAdapter= new TabsPagerAdapterDetail(getSupportFragmentManager());
@@ -1459,9 +1475,7 @@ public class MyPageActivity extends AppCompatActivity {
                 String abcd="";
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    Toast.makeText(mContext,
-                            mContext.getString(R.string.error_field_required),
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, mContext.getString(R.string.error_field_required), Toast.LENGTH_LONG).show();
                 }
                 else if (error instanceof AuthFailureError) {
 
@@ -1474,20 +1488,6 @@ public class MyPageActivity extends AppCompatActivity {
                 }
                 else if (error instanceof ParseError) {
 
-                }
-
-
-
-                if(emailFromCache!=null) {
-
-                    Intent i = new Intent(mContext, EmailRegiCompleteActivity.class);
-                    startActivity(i);
-                }
-                else{
-
-                    Intent i = new Intent(mContext, VerifyAccountActivity.class);
-                    i.putExtra("phn", phoneFromChache);
-                    startActivity(i);
                 }
 
 
@@ -1582,7 +1582,7 @@ public class MyPageActivity extends AppCompatActivity {
     private void shareIt() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Bangladesh Journal");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Muktopaath");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, ShareURL);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }

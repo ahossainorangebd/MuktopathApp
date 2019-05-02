@@ -5,16 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "muktopaath.db";
-    public static final String TABLE_NAME = "course_table";
+    public static final String DATABASE_NAME = "newmuktopaath.db";
+    public static final String TABLE_NAME = "download_table";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "COURSEID";
     public static final String COL_3 = "UNITID";
-    public static final String COL_4 = "PATH";
-    public static final String COL_5 = "TITLE";
+    public static final String COL_4 = "FILEPATH";
+    public static final String COL_5 = "LESSONNAME";
     public static final String COL_6 = "DETAIL";
 
     public DBHelper(Context context) {
@@ -40,7 +41,16 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL_4,filepath);
         contentValues.put(COL_5,lessonTitle);
         contentValues.put(COL_6,detail);
-        long result = db.insert(TABLE_NAME,null ,contentValues);
+
+
+        long result=0;
+
+        try {
+            result = db.insert(TABLE_NAME, null, contentValues);
+        }
+        catch (Exception ex){
+            Log.d("", "insertData: ");
+        }
         if(result == -1)
             return false;
         else

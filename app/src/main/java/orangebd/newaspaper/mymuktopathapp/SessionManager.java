@@ -176,6 +176,7 @@ public class SessionManager {
             deleteDir(dir);
         } catch (Exception e) {}
     }
+
     public static void deleteData(Context context) {
         try {
             File cacheDirectory = context.getCacheDir();

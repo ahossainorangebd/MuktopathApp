@@ -1,6 +1,7 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -94,6 +95,9 @@ public class CreateAccountActivity extends AppCompatActivity{
 
     private TextView mReturnMessage;
 
+
+    private HashMap<String,String> mapRegi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,98 +135,38 @@ public class CreateAccountActivity extends AppCompatActivity{
                 //mStrProfession=mEdtTxtProfession.getText().toString();
                 mStrFullName=mEdtTxtFullName.getText().toString();
 
-                /*if(mStrPwdConfirm.)*/
-
-                JSONObject object=new JSONObject();
-
-                try {
-
-                    if(mStrEmail.contains("@")) {
-                        object.put("email", mStrEmail);
-                        object.put("password", mStrPwd);
-                        object.put("confirm_password", mStrPwdConfirm);
-                        object.put("name", mStrFullName);
-                        object.put("gender", mStrGender);
-                        object.put("profession", IdOfSelectedItem);
-                    }
-                    else {
-                        object.put("phone", mStrEmail);
-                        object.put("password", mStrPwd);
-                        object.put("confirm_password", mStrPwdConfirm);
-                        object.put("name", mStrFullName);
-                        object.put("gender", mStrGender);
-                        object.put("profession", IdOfSelectedItem);
-                    }
-
-
-
-                    //object.put("type", "registration");
+                if(mStrPwd.length() < 8) {
+                    mEdtTxtPwd.setError("Password length must be at least 8");
                 }
-                catch (Exception ex){ }
+                else{
 
-                RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
+                    mapRegi =  new HashMap<>();
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, object,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response)
-                            {
-                                String message="";
-                                String type="";
+                    try {
 
-                                try {
-                                    JSONObject jObjectData = response.getJSONObject("success");
+                        if(mStrEmail.contains("@")) {
+                            mapRegi.put("email", mStrEmail);
+                            mapRegi.put("password", mStrPwd);
+                            mapRegi.put("confirm_password", mStrPwdConfirm);
+                            mapRegi.put("name", mStrFullName);
+                            mapRegi.put("gender", mStrGender);
+                            mapRegi.put("profession", IdOfSelectedItem);
+                        }
+                        else {
+                            mapRegi.put("phone", mStrEmail);
+                            mapRegi.put("password", mStrPwd);
+                            mapRegi.put("confirm_password", mStrPwdConfirm);
+                            mapRegi.put("name", mStrFullName);
+                            mapRegi.put("gender", mStrGender);
+                            mapRegi.put("profession", IdOfSelectedItem);
+                        }
 
-                                     message=jObjectData.getString("message");
-                                     type=jObjectData.getString("type");
-                                }
-                                catch (Exception ex) {
-                                    Log.d("", "onResponse: ");
-                                }
-
-                                Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
-
-                                if(type.equalsIgnoreCase("2")){
-                                    Intent i=new Intent(mContext,VerifyAccountActivity.class);
-
-
-                                    i.putExtra("msg", message);
-                                    i.putExtra("phn", mStrEmail);
-
-                                    startActivity(i);
-                                }
-                                else {
-                                    Intent i=new Intent(mContext,EmailRegiCompleteActivity.class);
-
-                                    i.putExtra("msg", message);
-
-                                    startActivity(i);
-                                }
-
-
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("TAG", error.getMessage(), error);
-
-                        Toast.makeText(mContext, "Account created successfully", Toast.LENGTH_LONG).show();
-
-                        Intent i=new Intent(mContext,LoginActivity.class);
-                        startActivity(i);
+                        new StartRegi().execute(url);
                     }
-                })
-                {
-                    //no semicolon or coma
-                    @Override
-                    public Map<String, String> getHeaders() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("Content-Type", "application/json");
-                        params.put("Authorization", token);
-                        return params;
-                    }
-                };
-                mQueue.add(jsonObjectRequest);
+                    catch (Exception ex){ }
+
+
+                }
             }
         });
 
@@ -440,5 +384,179 @@ public class CreateAccountActivity extends AppCompatActivity{
 
         }
     }
+
+
+    public class StartRegi extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String data = performPostCallPost(params[0], mapRegi);
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+
+            if(result!=""){
+
+                try {
+                    JSONObject jObject = new JSONObject(result);
+
+
+                    if(mStrEmail.contains("@")){
+                        String message="আপনার ই-মেইল চেক করুন এবং অ্যাকাউন্ট সক্রিয় করুন।";
+
+                        Intent i=new Intent(mContext,EmailRegiCompleteActivity.class);
+
+                        i.putExtra("msg", message);
+
+                        startActivity(i);
+                    }
+                    else{
+                        String message="আপনার ফোন চেক করুন এবং অ্যাকাউন্ট সক্রিয় করুন।";
+
+                        Intent i=new Intent(mContext,VerifyAccountActivity.class);
+
+                        i.putExtra("msg", message);
+                        i.putExtra("phn", mStrEmail);
+
+                        startActivity(i);
+                    }
+
+                }
+                catch (Exception ex){
+                    Log.d("", "onPostExecute: ");
+                }
+            }
+            else {
+                mEdtTxtPwd.setError("Wrong email or password");
+            }
+
+
+        }
+        @Override
+        protected void onCancelled() {
+
+        }
+    }
+
+    public String  performPostCallPost(String requestURL, HashMap<String, String> postDataParams) {
+
+        URL url;
+        String response = "";
+
+        try {
+            url = new URL(requestURL);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty ("Authorization", token);
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getPostDataString(postDataParams));
+
+            writer.flush();
+            writer.close();
+            os.close();
+            int responseCode=conn.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line=br.readLine()) != null) {
+                    response+=line;
+                }
+
+
+
+            }
+
+            else {
+
+                if(responseCode==400){
+
+                    if(mStrEmail.contains("@")){
+                        String message="আপনার ই-মেইল চেক করুন এবং অ্যাকাউন্ট সক্রিয় করুন।";
+
+                        Intent i=new Intent(mContext,EmailRegiCompleteActivity.class);
+
+                        i.putExtra("msg", message);
+
+                        startActivity(i);
+                    }
+                    else{
+                        String message="আপনার ফোন চেক করুন এবং অ্যাকাউন্ট সক্রিয় করুন।";
+
+                        Intent i=new Intent(mContext,VerifyAccountActivity.class);
+
+                        i.putExtra("msg", message);
+
+                        startActivity(i);
+                    }
+
+
+                }
+            }
+
+        }
+        catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return response;
+    }
 }
+
+
+
+    /*String message="";
+    String type="";
+
+                                    try {
+                                            JSONObject jObjectData = response.getJSONObject("success");
+
+                                            message=jObjectData.getString("message");
+                                            type=jObjectData.getString("type");
+                                            }
+                                            catch (Exception ex) {
+                                            Log.d("", "onResponse: ");
+                                            }
+
+                                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+
+                                            if(type.equalsIgnoreCase("2")){
+                                            Intent i=new Intent(mContext,VerifyAccountActivity.class);
+
+
+        i.putExtra("msg", message);
+        i.putExtra("phn", mStrEmail);
+
+        startActivity(i);
+        }
+        else {
+        Intent i=new Intent(mContext,EmailRegiCompleteActivity.class);
+
+        i.putExtra("msg", message);
+
+        startActivity(i);
+        }*/
 
