@@ -9,7 +9,7 @@ import android.util.Log;
 
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "newmuktopaath.db";
+    public static final String DATABASE_NAME = "newmuktopaathfinal.db";
     public static final String TABLE_NAME = "download_table";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "COURSEID";
@@ -17,6 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_4 = "FILEPATH";
     public static final String COL_5 = "LESSONNAME";
     public static final String COL_6 = "DETAIL";
+    public static final String COL_7 = "COURSENAME";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -24,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,COURSEID TEXT, UNITID TEXT, FILEPATH TEXT, LESSONNAME TEXT, DETAIL TEXT)");
+        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,COURSEID TEXT, UNITID TEXT, FILEPATH TEXT, LESSONNAME TEXT, DETAIL TEXT, COURSENAME TEXT)");
     }
 
     @Override
@@ -33,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String courseid, String unitid, String filepath,String lessonTitle,String detail) {
+    public boolean insertData(String courseid, String unitid, String filepath,String lessonTitle,String detail, String courseTitle) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2,courseid);
@@ -41,6 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL_4,filepath);
         contentValues.put(COL_5,lessonTitle);
         contentValues.put(COL_6,detail);
+        contentValues.put(COL_7,courseTitle);
 
 
         long result=0;
@@ -79,6 +81,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME, "ID = ?",new String[] {id});
     }
 
+    public void deleteData () {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String sqlStr="delete from " +TABLE_NAME;
+        db.execSQL(sqlStr);
+    }
+
 
     public Cursor GetDataFromDB(String courseId){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -86,4 +95,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+
+
+
 }

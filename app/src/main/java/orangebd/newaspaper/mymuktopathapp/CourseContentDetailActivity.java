@@ -263,7 +263,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 getPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMulti();
 
                 //TODO
-                Toast.makeText(context,"This video has question.",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"This video has question.",Toast.LENGTH_SHORT).show();
 
                 isGotQuestion=true;
             }
@@ -575,9 +575,10 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //downloadFile();
+                downloadFile();
 
-                new DownloadFileAsync();
+
+                //new DownloadFileAsync().execute();
             }
         });
 
@@ -601,6 +602,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         }
     };
+
 
 
 
@@ -889,7 +891,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             request1.allowScanningByMediaScanner();
             request1.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         }
-        request1.setDestinationInExternalFilesDir(getApplicationContext(), "/muktopaath", title);
+        request1.setDestinationInExternalFilesDir(getApplicationContext(), "/muktopaath", title+".mp4");
 
         DownloadManager manager1 = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         Objects.requireNonNull(manager1).enqueue(request1);

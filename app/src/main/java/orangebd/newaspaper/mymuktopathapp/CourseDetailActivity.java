@@ -144,8 +144,6 @@ public class CourseDetailActivity extends AppCompatActivity {
                     jObj.put(start, 0);
                     jObj.put(completeness, 0);
 
-
-
                 for(int jStatusCount=0; jStatusCount<scSizeConv; jStatusCount++){
 
                     jArray.put(jObj);
@@ -340,13 +338,13 @@ public class CourseDetailActivity extends AppCompatActivity {
                 String mCheckEnrollmentId = jObject.getString("EnrollmentId");
 
                 if(mCheckStatus.equalsIgnoreCase("2")) {
-                    enrollText.setText("ENROLL"+ paymentStatusFreeOrNot);
+                    enrollText.setText("োর্স শুরু করুন"+ paymentStatusFreeOrNot);
                 }
                 else if (mCheckStatus.equalsIgnoreCase("1")) {
                     enrollText.setText("আপনি ইতিমধ্যে কোর্সটিতে অংশগ্রহণ করেছেন" + paymentStatusFreeOrNot);
                 }
                 else if (mCheckStatus.equalsIgnoreCase("3")) {
-                    enrollText.setText("ENROLL"+ paymentStatusFreeOrNot);
+                    enrollText.setText("কোর্স শুরু করুন"+ paymentStatusFreeOrNot);
                 }
 
                 /*else if (mCheckStatus.equalsIgnoreCase("3")) {

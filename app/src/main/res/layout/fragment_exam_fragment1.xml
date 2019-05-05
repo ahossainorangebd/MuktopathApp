@@ -60,18 +60,6 @@
         >
 
         <Button
-            android:id="@+id/prevButtonId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Previous"
-            android:textStyle="bold"
-            android:background="@color/Colorpeace"
-            android:layout_marginRight="20dp"
-            android:elevation="20dp"
-            android:layout_gravity="center"
-            />
-
-        <Button
             android:id="@+id/nextButtonId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

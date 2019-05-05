@@ -105,8 +105,9 @@
 
                         <ImageView
                             android:id="@+id/hitlikebtn"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:padding="1dp"
                             android:gravity="right"
                             android:foregroundGravity="right"
                             android:text="Settings"

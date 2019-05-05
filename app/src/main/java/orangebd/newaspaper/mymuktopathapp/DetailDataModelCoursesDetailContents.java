@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class DetailDataModelCoursesDetailContents
 {
+    // journey and start status of lessons
+
+    private String LessonStartsStatus;
+    private String LessonCompletenessStatus;
+
 
     //replies and comments
 
@@ -815,6 +820,22 @@ public class DetailDataModelCoursesDetailContents
 
     public void setmReplyBody(String mReplyBody) {
         this.mReplyBody = mReplyBody;
+    }
+
+    public String getLessonStartsStatus() {
+        return LessonStartsStatus;
+    }
+
+    public void setLessonStartsStatus(String lessonStartsStatus) {
+        LessonStartsStatus = lessonStartsStatus;
+    }
+
+    public String getLessonCompletenessStatus() {
+        return LessonCompletenessStatus;
+    }
+
+    public void setLessonCompletenessStatus(String lessonCompletenessStatus) {
+        LessonCompletenessStatus = lessonCompletenessStatus;
     }
 
 

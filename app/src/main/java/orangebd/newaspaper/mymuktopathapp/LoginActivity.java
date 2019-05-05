@@ -332,7 +332,10 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-
+            mProgressDialog=new ProgressDialog(mContext);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setMessage("Please wait...");
+            mProgressDialog.show();
         }
 
         @Override
@@ -349,11 +352,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
             if(result!=""){
-                mProgressDialog=new ProgressDialog(mContext);
-                mProgressDialog.setIndeterminate(true);
-                mProgressDialog.setMessage("Please wait...");
-                mProgressDialog.show();
-
 
                 try {
                     JSONObject jObject = new JSONObject(result);

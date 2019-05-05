@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -24,6 +25,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -62,6 +66,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public final int EXTERNAL_REQUEST = 138;
 
+    private LinearLayout logoLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -77,6 +83,20 @@ public class WelcomeActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
+        /*ImageView imageViewLogo = findViewById(R.id.muktoLogo);
+        TextView mTextView = findViewById(R.id.slogantextview);*/
+
+        logoLayout = findViewById(R.id.logoLayout);
+
+        Animation animZoomin = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in);
+
+        logoLayout.startAnimation(animZoomin);
+
+
+        /*DBHelper myDb = new DBHelper(mContext);
+        myDb.deleteData();
+        Cursor mCurse = myDb.getAllData();
+        int xount= mCurse.getCount();*/
 
         //Let's check the version code and redirect to playstore
 

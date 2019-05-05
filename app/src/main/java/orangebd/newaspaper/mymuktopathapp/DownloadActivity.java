@@ -55,6 +55,7 @@ public class DownloadActivity extends AppCompatActivity {
 
 
     private ArrayList<String> myList;
+
     private ArrayList<String> filePathList;
 
     private LinearLayout mNoDownloadLayout;
@@ -62,6 +63,17 @@ public class DownloadActivity extends AppCompatActivity {
     private DBHelper myDb;
 
     private String crsid="";
+
+
+    private ArrayList<String> mArrayLisCourseId;
+    private ArrayList<String> mArrayLisUnitId;
+    private ArrayList<String> mArrayLisFilePath;
+    private ArrayList<String> mArrayLisLessonName;
+    private ArrayList<String> mArrayLisLessonDetail;
+    private ArrayList<String> mArrayCourseName;
+
+
+    private ArrayList<ArrayList<String>> mArrayLisWholeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +105,8 @@ public class DownloadActivity extends AppCompatActivity {
         // File
 
         myList= new ArrayList<>();
-        filePathList= new ArrayList<>();
+
+        //filePathList= new ArrayList<>();
 
         /***/
 
@@ -111,29 +124,17 @@ public class DownloadActivity extends AppCompatActivity {
             mNoDownloadLayout.setVisibility(View.VISIBLE);
         }
         else {
+            GetDownloadedData();
 
-            Cursor mCursom= myDb.getAllData();
-
-            mCursom.moveToFirst();
-
-            int ii=0;
-
-            while (mCursom.moveToNext()) {
-                Cursor cursor2= myDb.GetDataFromDB(GlobalVar.gEnrollCourseId.get(ii).getmEcId());
-                ii++;
-            }
-
-            for( int i=0; i< files.length; i++)
-            {
-                myList.add(files[i].getName());
-                filePathList.add(files[i].getAbsolutePath());
-            }
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
 
-            adapter=new RecyclerViewAdapterDownloadList(myList,filePathList,this);
+//            adapter=new RecyclerViewAdapterDownloadList(myList,filePathList,this);
+            adapter=new RecyclerViewAdapterDownloadList(mArrayLisWholeData,this);
+
             recyclerView.setAdapter(adapter);
+
         }
 
 
@@ -336,6 +337,49 @@ public class DownloadActivity extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(Message);
         builder.show();
+    }
+
+    public void GetDownloadedData() {
+
+        Cursor mCursor = myDb.getAllData();
+
+        mArrayLisWholeData = new ArrayList<>();
+
+        mArrayLisCourseId = new ArrayList<>();
+        mArrayLisUnitId = new ArrayList<>();
+        mArrayLisFilePath = new ArrayList<>();
+        mArrayLisLessonName = new ArrayList<>();
+        mArrayLisLessonDetail = new ArrayList<>();
+        mArrayCourseName = new ArrayList<>();
+
+
+        StringBuffer buffer = new StringBuffer();
+        while (mCursor.moveToNext()) {
+            //buffer.append("Id :" + mCursor.getString(3) + "\n");
+
+            mArrayLisCourseId.add(mCursor.getString(1));
+            mArrayLisUnitId.add(mCursor.getString(2));
+            mArrayLisFilePath.add(mCursor.getString(3));
+            mArrayLisLessonName.add(mCursor.getString(4));
+            mArrayLisLessonDetail.add(mCursor.getString(5));
+            mArrayCourseName.add(mCursor.getString(6));
+
+
+
+
+            String abcd="";
+
+        }
+
+        mArrayLisWholeData.add(mArrayLisCourseId);
+        mArrayLisWholeData.add(mArrayLisUnitId);
+        mArrayLisWholeData.add(mArrayLisFilePath);
+        mArrayLisWholeData.add(mArrayLisLessonName);
+        mArrayLisWholeData.add(mArrayLisLessonDetail);
+        mArrayLisWholeData.add(mArrayCourseName);
+
+        String abcd2="";
+
     }
 
 }

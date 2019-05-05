@@ -242,7 +242,7 @@
             android:id="@+id/nextBtnId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:text="পরবর্তী পাতা"
             android:textColor="#fff"
             android:textStyle="bold"
             android:background="@drawable/gradient_background"

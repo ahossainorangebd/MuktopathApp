@@ -41,6 +41,18 @@
         android:layout_height="wrap_content"
         android:text="contentTitle"
         android:textSize="26sp"
+        android:textColor="@color/colorVoldemort"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/contentDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="contentTitle"
+        android:textSize="16sp"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
         />

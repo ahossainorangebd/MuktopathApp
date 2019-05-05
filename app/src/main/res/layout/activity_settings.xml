@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Push Notification"
+                    android:text="নোটিফিকেশন"
                     android:textStyle=""
                     android:textSize="18sp"
                     android:textColor="@color/colorVoldemort"
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Sync calender"
+                    android:text="ক্যালেন্ডারে আপডেট"
                     android:textStyle=""
                     android:textSize="18sp"
                     android:textColor="@color/colorVoldemort"
@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="COURSE CONTENT"
+                    android:text="কোর্স সম্পর্কিত"
                     android:textSize="18sp"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
@@ -127,9 +127,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/border"
-                android:padding="2dp"
+                android:padding="8dp"
                 android:orientation="horizontal"
                 >
 
@@ -144,7 +144,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Download on wify only"
+                    android:text="শুধুমাত্র ওয়াইফাইয়ে ডাউনলোড"
                     android:textStyle=""
                     android:textSize="18sp"
                     android:textColor="@color/colorVoldemort"
@@ -170,9 +170,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/border"
-                android:padding="2dp"
+                android:padding="8dp"
+                android:layout_marginBottom="2dp"
                 android:orientation="horizontal"
                 >
 
@@ -187,7 +188,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Delete autometically"
+                    android:text="পড়া শেষে স্বয়ংক্রিয়ভাবে মুছে ফেলুন"
                     android:textStyle=""
                     android:textSize="18sp"
                     android:textColor="@color/colorVoldemort"
@@ -222,7 +223,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="SUPPORT"
+                    android:text="সহযোগিতা"
                     android:textSize="18sp"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
@@ -252,7 +253,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Help"
+                    android:text="সচরাচর জিজ্ঞাসা"
                     android:textStyle=""
                     android:textSize="18sp"
                     android:textColor="@color/colorVoldemort"
@@ -282,7 +283,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Feedback."
+                    android:text="মতামত"
                     android:textSize="18sp"
                     android:textStyle=""
                     android:textColor="@color/colorVoldemort"
@@ -305,7 +306,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="ABOUT"
+                    android:text="মুক্তপাঠ সম্পর্কিত"
                     android:textSize="18sp"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
@@ -334,7 +335,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Terms and conditions."
+                    android:text="ব্যবহারের শর্তাবলী"
                     android:textSize="18sp"
                     android:textStyle=""
                     android:textColor="@color/colorVoldemort"
@@ -365,7 +366,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Privacy policy."
+                    android:text="গোপনীয়তার নীতিমালা"
                     android:textSize="18sp"
                     android:textColor="@color/colorVoldemort"
                     android:layout_marginLeft="10dp"
@@ -388,7 +389,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="ACCOUNT SETTINGS"
+                    android:text="সেটিংস"
                     android:textSize="18sp"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
@@ -416,7 +417,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Change password"
+                    android:text="পাসওয়ার্ড পরিবর্তন"
                     android:textSize="18sp"
                     android:textColor="@color/colorVoldemort"
                     android:layout_marginLeft="10dp"
@@ -467,7 +468,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Log Out"
+                    android:text="লগ আউট"
                     android:textStyle=""
                     android:textSize="18sp"
                     android:textColor="@color/colorVoldemort"

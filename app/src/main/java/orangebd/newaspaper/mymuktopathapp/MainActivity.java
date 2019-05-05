@@ -222,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
         mProgressSpinner10=findViewById(R.id.loadingSpinnerId10);
 
 
-
         //All course name Bar
 
         mCourseNameBar1=findViewById(R.id.courseNameBar1);

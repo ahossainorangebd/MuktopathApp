@@ -22,6 +22,11 @@ import java.util.ArrayList;
 
 public class QuizFragment1 extends Fragment {
 
+    private int nextExam=1;
+
+    private Button nextButton;
+    private Button prevButton;
+
     private TextView mQuizTitle;
 
     private View view;
@@ -32,7 +37,7 @@ public class QuizFragment1 extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
-    private Button nextButton;
+    //private Button prevButton;
 
     ArrayList<DetailDataModelCoursesDetailContents> optionTItles = new ArrayList<>();
 
@@ -65,6 +70,7 @@ public class QuizFragment1 extends Fragment {
         setRecyclerView();
 
         nextButton =view.findViewById(R.id.nextButtonId);
+        prevButton =view.findViewById(R.id.prevButtonId);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +85,7 @@ public class QuizFragment1 extends Fragment {
                 GlobalVar.attendedQArrayQuiz.add(getAttendedQArray);
 
 
+                GlobalVar.gQuizViewPager.setCurrentItem(nextExam);
             }
         });
 

@@ -18,6 +18,10 @@ import java.util.ArrayList;
 
 public class ExamFragment9 extends Fragment {
 
+    private int prevExam=7;
+    private int nextExam=9;
+    private Button nextButton;
+    private Button prevButton;
 
     private TextView mExamTitle;
 
@@ -29,7 +33,7 @@ public class ExamFragment9 extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
-    private Button nextButton;
+
 
     ArrayList<DetailDataModelCoursesDetailContents> optionTItles = new ArrayList<>();
 
@@ -57,6 +61,7 @@ public class ExamFragment9 extends Fragment {
         mExamTitle.setText(examTitle);
 
         nextButton =view.findViewById(R.id.nextButtonId);
+        prevButton =view.findViewById(R.id.prevButtonId);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +81,18 @@ public class ExamFragment9 extends Fragment {
                 else {
 
                 }
+
+
+                GlobalVar.gExamViewPager.setCurrentItem(nextExam);
+
+
+            }
+        });
+
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalVar.gExamViewPager.setCurrentItem(prevExam);
             }
         });
 

@@ -1,6 +1,8 @@
 package orangebd.newaspaper.mymuktopathapp;
 
 
+import android.support.v4.view.ViewPager;
+
 import org.json.JSONArray;
 
 import java.util.ArrayList;
@@ -202,4 +204,9 @@ public class GlobalVar {
 
     public static String gGoingDirection;
     public static String gUnitGoingDirection;
+
+
+    // Global ViewPager for Exam
+    public static ViewPager gExamViewPager;
+    public static ViewPager gQuizViewPager;
 }

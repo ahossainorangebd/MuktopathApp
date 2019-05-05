@@ -33,6 +33,11 @@ public class QuizFragment9 extends Fragment {
     private String answers;
     private int trueCount;
 
+    private int prevExam=7;
+    private int nextExam=9;
+    private Button nextButton;
+    private Button prevButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,7 +63,8 @@ public class QuizFragment9 extends Fragment {
 
         setRecyclerView();
 
-        Button nextButton =view.findViewById(R.id.nextButtonId);
+        nextButton =view.findViewById(R.id.nextButtonId);
+        prevButton =view.findViewById(R.id.prevButtonId);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +75,17 @@ public class QuizFragment9 extends Fragment {
                 String getAttendedQArray=mQListForId.get(nthQuiz).getmQuizId();
 
                 GlobalVar.attendedQArrayQuiz.add(getAttendedQArray);
+
+                GlobalVar.gQuizViewPager.setCurrentItem(nextExam);
             }
         });
 
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalVar.gQuizViewPager.setCurrentItem(prevExam);
+            }
+        });
 
         return view;
     }

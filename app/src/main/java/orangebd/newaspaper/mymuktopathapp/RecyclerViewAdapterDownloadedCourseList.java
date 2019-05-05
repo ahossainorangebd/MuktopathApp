@@ -3,7 +3,6 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapterDownloadList extends RecyclerView.Adapter<RecyclerViewAdapterDownloadList.MyViewHolder> {
+public class RecyclerViewAdapterDownloadedCourseList extends RecyclerView.Adapter<RecyclerViewAdapterDownloadedCourseList.MyViewHolder> {
 
     private ArrayList<ArrayList<String>> dataSet;
 
@@ -32,7 +31,7 @@ public class RecyclerViewAdapterDownloadList extends RecyclerView.Adapter<Recycl
         }
     }
 
-    public RecyclerViewAdapterDownloadList(ArrayList<ArrayList<String>> data, Context context) {
+    public RecyclerViewAdapterDownloadedCourseList(ArrayList<ArrayList<String>> data, Context context) {
         this.dataSet = data;
 
         this.mContext=context;
@@ -44,7 +43,7 @@ public class RecyclerViewAdapterDownloadList extends RecyclerView.Adapter<Recycl
         view= new View(mContext);
 
         try {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout_downloaded_list, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout_downloaded_unit_list, parent, false);
         }
         catch (Exception ex){
             Log.d("", ex.getMessage());
@@ -58,38 +57,26 @@ public class RecyclerViewAdapterDownloadList extends RecyclerView.Adapter<Recycl
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition)
     {
-        final ArrayList<String> mArrayLisCourseId=dataSet.get(0);
+        final TextView textViewName = holder.reportextView;
 
-        final ArrayList<String> mArrayLisUnitId=dataSet.get(1);
-        final ArrayList<String> filePathList=dataSet.get(2);
-        final ArrayList<String> mArrayLisLessonName=dataSet.get(3);
-        final ArrayList<String> mArrayLisLessonDetail=dataSet.get(4);
-        final ArrayList<String> mArrayLisCourseName=dataSet.get(5);
+        final ArrayList<String> mArrayLisUnitId=dataSet.get(0);
+        final ArrayList<String> filePathList=dataSet.get(1);
+        final ArrayList<String> mArrayLisLessonName=dataSet.get(2);
+        final ArrayList<String> mArrayLisLessonDetail=dataSet.get(3);
 
+        final String unitName=mArrayLisUnitId.get(listPosition);
 
-        //final String courseIds = mArrayLisCourseId.get(listPosition);
-        final String courseNames = mArrayLisCourseName.get(listPosition);
-
-
-        //final String videoname=dataSet.get(listPosition);
-
-        holder.reportextView.setText(courseNames);
+        textViewName.setText(unitName);
 
         holder.reportextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //String action;
-                Intent i=new Intent(mContext, DownloadUnitActivity.class);
+                Intent i=new Intent(mContext, DownloadLessonActivity.class);
 
-                i.putExtra("courseid",courseNames);
-
-                i.putExtra("unitidlist",mArrayLisUnitId);
                 i.putExtra("pathlist",filePathList);
                 i.putExtra("lessonlist",mArrayLisLessonName);
                 i.putExtra("lessondetaillist",mArrayLisLessonDetail);
-                i.putExtra("coursename",mArrayLisCourseName);
-
-
 
                 v.getContext().startActivity(i);
             }

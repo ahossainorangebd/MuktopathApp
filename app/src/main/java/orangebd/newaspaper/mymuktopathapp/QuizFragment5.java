@@ -33,6 +33,11 @@ public class QuizFragment5 extends Fragment {
 
     ArrayList<DetailDataModelCoursesDetailContents> optionTItles = new ArrayList<>();
 
+
+    private int prevExam=3;
+    private int nextExam=5;
+    private Button nextButton;
+    private Button prevButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,7 +64,8 @@ public class QuizFragment5 extends Fragment {
         setRecyclerView();
 
 
-        Button nextButton =view.findViewById(R.id.nextButtonId);
+        nextButton =view.findViewById(R.id.nextButtonId);
+        prevButton =view.findViewById(R.id.prevButtonId);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +76,15 @@ public class QuizFragment5 extends Fragment {
                 String getAttendedQArray=mQListForId.get(nthQuiz).getmQuizId();
 
                 GlobalVar.attendedQArrayQuiz.add(getAttendedQArray);
+
+                GlobalVar.gQuizViewPager.setCurrentItem(nextExam);
+            }
+        });
+
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalVar.gQuizViewPager.setCurrentItem(prevExam);
             }
         });
 

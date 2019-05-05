@@ -120,6 +120,11 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
+
+
+        //ArrayList <DetailDataModelCoursesDetailContents> lessonNames = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseCompletenes().get(GlobalVar.gNthCourse).get(GlobalVar.gUnitNumber);
+
+
         final TextView textViewName = holder.textViewName;
 
         TextView textViewVersion = holder.textViewVersion;
@@ -208,7 +213,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             @Override
             public void onClick(View v) {
 
-                videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + ownerId + "/"+ videoCode +"#t=" + timeStatus;
+                videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + ownerId + "/"+ videoCode;
 
                 new DownloadFileAsync().execute();
             }
@@ -313,7 +318,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             request1.allowScanningByMediaScanner();
             request1.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         }
-        request1.setDestinationInExternalFilesDir(mContext, "/muktopaath", titleText);
+        request1.setDestinationInExternalFilesDir(mContext, "/muktopaath", titleText+".mp4");
 
         DownloadManager manager1 = (DownloadManager)mContext.getSystemService(Context.DOWNLOAD_SERVICE);
         Objects.requireNonNull(manager1).enqueue(request1);
@@ -405,6 +410,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
             // Get Course id
             String courseId=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcId();
+            String courseName=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmCourseAliasName();
 
 
             File mPath=mContext.getExternalFilesDir(Environment.getExternalStorageDirectory().toString());
@@ -412,10 +418,11 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             subPath=subPath.substring(0,subPath.lastIndexOf("/storage"));
             subPath=subPath+"/muktopaath";
 
+            subPath=subPath+"/"+ titleText+".mp4";
 
-            Toast.makeText(mContext,"No downloadable file found.",Toast.LENGTH_LONG).show();
+            //Toast.makeText(mContext,"No downloadable file found.",Toast.LENGTH_LONG).show();
 
-            boolean isInserted = myDb.insertData(courseId, GlobalVar.gUnitId, subPath,titleText, descriptionText);
+            boolean isInserted = myDb.insertData(courseId, GlobalVar.gUnitId, subPath,titleText, descriptionText, courseName);
 
             Cursor mCursor =  myDb.getAllData();
 

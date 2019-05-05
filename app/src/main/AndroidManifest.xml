@@ -23,7 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EmailRegiCompleteActivity"></activity>
+        <activity android:name=".DownloadLessonActivity"></activity>
+        <activity android:name=".DownloadUnitActivity" />
+        <activity android:name=".EmailRegiCompleteActivity" />
         <activity android:name=".VerifyAccountActivity" />
         <activity android:name=".DownloadedContentActivity" />
         <activity android:name=".DiscussionActivity" />

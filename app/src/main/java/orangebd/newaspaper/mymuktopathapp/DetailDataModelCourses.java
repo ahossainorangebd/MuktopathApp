@@ -7,6 +7,9 @@ public class DetailDataModelCourses
     private String mStatus;
 
 
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseCompletenes;
+
+
     private int mExamNumbers;
     private int mAssignmentNumbers;
     private String mCourseObjective;
@@ -1272,5 +1275,13 @@ public class DetailDataModelCourses
 
     public void setmArraylistProfileInfo(ArrayList<DetailDataModelCoursesDetailContents> mArraylistProfileInfo) {
         this.mArraylistProfileInfo = mArraylistProfileInfo;
+    }
+
+    public ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> getmArrayListCourseCompletenes() {
+        return mArrayListCourseCompletenes;
+    }
+
+    public void setmArrayListCourseCompletenes(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseCompletenes) {
+        this.mArrayListCourseCompletenes = mArrayListCourseCompletenes;
     }
 }

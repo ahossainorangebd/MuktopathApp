@@ -2,23 +2,17 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
-import android.os.AsyncTask;
-import android.provider.Settings;
+import android.os.Bundle;
 import android.provider.SyncStateContract;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,12 +21,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,7 +49,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyPageActivity extends AppCompatActivity {
+public class MyPageActivityTemp extends AppCompatActivity {
 
     TabsPagerAdapterDetail myAdapter;
     SlidingTabLayout mSlidingTabLayout;
@@ -122,6 +113,12 @@ public class MyPageActivity extends AppCompatActivity {
     private ArrayList<DetailDataModelCoursesThumbnails> detailListCourseThumbnail;
 
     private ArrayList<DetailDataModelCoursesMarks> mPassPercentageArrayList;
+
+
+    //Lesson journey status list
+    private ArrayList<DetailDataModelCoursesDetailContents> lessonJourneyStatusList;
+    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitJourneyStatusList;
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> courseJourneyStatusList;
 
     private ArrayList<DetailDataModelCourses> detailListFileType;
 
@@ -200,12 +197,6 @@ public class MyPageActivity extends AppCompatActivity {
 
     private RelativeLayout mRelativeBackground;
     private LinearLayout mNoEnroledCourseFound;
-
-
-    //Lesson journey status list
-    private ArrayList<DetailDataModelCoursesDetailContents> lessonJourneyStatusList;
-    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitJourneyStatusList;
-    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> courseJourneyStatusList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -629,9 +620,6 @@ public class MyPageActivity extends AppCompatActivity {
                                 DetailDataModelCourses modelPart3 = new DetailDataModelCourses();
 
 
-                                courseJourneyStatusList = new ArrayList<>();
-
-
                                 try {
                                     detailListUserInformation = new ArrayList<DetailDataModelCoursesDetailContents>();
 
@@ -660,6 +648,8 @@ public class MyPageActivity extends AppCompatActivity {
 
                                     GlobalVar.gEnrollCourseId = new ArrayList<>();
 
+                                    String course_alias_name="";
+
                                     try {
                                         for (int ec = 0; ec < objectEnrollCourse.length(); ec++)
                                         {
@@ -669,6 +659,10 @@ public class MyPageActivity extends AppCompatActivity {
                                             JSONObject jObjEnrolledCourses = objectEnrollCourse.getJSONObject(ec);
 
                                             JSONObject objectCourse2 = jObjEnrolledCourses.getJSONObject("Course");
+                                            JSONArray journeyStatusArr = jObjEnrolledCourses.getJSONArray("journey_status");
+
+
+
 
 
                                             String enrolCourseId= jObjEnrolledCourses.getString("id");
@@ -693,7 +687,7 @@ public class MyPageActivity extends AppCompatActivity {
                                             String clone_status = objectCourse2.getString("clone_status");
                                             String code = objectCourse2.getString("code");
                                             String courses_for_status = objectCourse2.getString("courses_for_status");
-                                            String course_alias_name = objectCourse2.getString("course_alias_name");
+                                            course_alias_name = objectCourse2.getString("course_alias_name");
                                             String course_motto = objectCourse2.getString("course_motto");
                                             String created_at = objectCourse2.getString("created_at");
                                             String duration = objectCourse2.getString("duration");
@@ -1056,7 +1050,7 @@ public class MyPageActivity extends AppCompatActivity {
                                                                 try {
                                                                     DetailDataModelCoursesDetailContents modelCourseContents = new DetailDataModelCoursesDetailContents();
 
-                                                                    if(content_type.equalsIgnoreCase("video")){
+                                                                    if(choose_video_type.equalsIgnoreCase("1")){
                                                                         JSONObject jObjAgainContent = jSObject3.getJSONObject("content");
 
                                                                         String cat_id = jObjAgainContent.getString("cat_id");
@@ -1357,57 +1351,45 @@ public class MyPageActivity extends AppCompatActivity {
 
 
                                             try {
-                                                JSONArray journeyStatusArr = jObjEnrolledCourses.getJSONArray("journey_status");
 
-                                                try {
+                                                for (int jStatusUnitNumber = 0; jStatusUnitNumber < journeyStatusArr.length(); jStatusUnitNumber++) {
 
+                                                    JSONArray journeyStatusUnitNumbers = (JSONArray) journeyStatusArr.getJSONArray(jStatusUnitNumber);
 
-                                                    for (int jStatusUnitNumber = 0; jStatusUnitNumber < journeyStatusArr.length(); jStatusUnitNumber++) {
-
-                                                        JSONArray journeyStatusUnitNumbers = (JSONArray) journeyStatusArr.getJSONArray(jStatusUnitNumber);
-
-                                                        try {
+                                                    try {
 
 
-                                                            unitJourneyStatusList = new ArrayList<>();
+                                                        unitJourneyStatusList = new ArrayList<>();
 
-                                                            for (int jStatusLessonNumber = 0; jStatusLessonNumber < journeyStatusUnitNumbers.length(); jStatusLessonNumber++) {
-                                                                JSONArray journeyStatusLessonNumbers =  journeyStatusArr.getJSONArray(jStatusUnitNumber);
-
-                                                                lessonJourneyStatusList = new ArrayList<>();
-
-                                                                try {
-                                                                    for (int lessonNumbersAgain = 0; lessonNumbersAgain < journeyStatusLessonNumbers.length(); lessonNumbersAgain++) {
-
-                                                                        DetailDataModelCoursesDetailContents modelJourneyStatus = new DetailDataModelCoursesDetailContents();
-
-                                                                        JSONObject journeyStatusLessonNumbersAgain = journeyStatusLessonNumbers.getJSONObject(lessonNumbersAgain);
-
-                                                                        String mLessonStartStatus = journeyStatusLessonNumbersAgain.getString("start");
-                                                                        String mLessonCompletenessStatus = journeyStatusLessonNumbersAgain.getString("completeness");
+                                                        for (int jStatusLessonNumber = 0; jStatusLessonNumber < journeyStatusUnitNumbers.length(); jStatusLessonNumber++) {
+                                                            JSONArray journeyStatusLessonNumbers =  journeyStatusArr.getJSONArray(jStatusUnitNumber);
 
 
-                                                                        modelJourneyStatus.setLessonStartsStatus(mLessonStartStatus);
-                                                                        modelJourneyStatus.setLessonCompletenessStatus(mLessonCompletenessStatus);
+                                                            lessonJourneyStatusList = new ArrayList<>();
 
-                                                                        lessonJourneyStatusList.add(modelJourneyStatus);
-                                                                    }
-                                                                }
-                                                                catch (Exception ex){
-                                                                    Log.d("", "onResponse: ");
-                                                                }
+                                                            for(int lessonNumbersAgain =0; lessonNumbersAgain<journeyStatusLessonNumbers.length(); lessonNumbersAgain++){
 
-                                                                unitJourneyStatusList.add(lessonJourneyStatusList);
+                                                                DetailDataModelCoursesDetailContents modelJourneyStatus = new DetailDataModelCoursesDetailContents();
 
+                                                                JSONObject journeyStatusLessonNumbersAgain = journeyStatusLessonNumbers.getJSONObject(lessonNumbersAgain);
+
+                                                                String mLessonStartStatus = journeyStatusLessonNumbersAgain.getString("start");
+                                                                String mLessonCompletenessStatus = journeyStatusLessonNumbersAgain.getString("completeness");
+
+                                                                modelJourneyStatus.setLessonStartsStatus(mLessonStartStatus);
+                                                                modelJourneyStatus.setLessonCompletenessStatus(mLessonCompletenessStatus);
+
+                                                                lessonJourneyStatusList.add(modelJourneyStatus);
                                                             }
-                                                        }
-                                                        catch (Exception ex){
-                                                            Log.d("", "onResponse: ");
+
+
+                                                            unitJourneyStatusList.add(lessonJourneyStatusList);
+
                                                         }
                                                     }
-                                                }
-                                                catch (Exception ex){
-                                                    Log.d("", "onResponse: ");
+                                                    catch (Exception ex){
+                                                        Log.d("", "onResponse: ");
+                                                    }
                                                 }
                                             }
                                             catch (Exception ex){
@@ -1415,14 +1397,12 @@ public class MyPageActivity extends AppCompatActivity {
                                             }
 
 
-
-
-
                                             enrollCourseModel.setmEcId(enrolCourseId);
                                             enrollCourseModel.setmEcCompleteness(enrolCourseProgress);
                                             enrollCourseModel.setmCourseAliasName(course_alias_name);
 
                                             courseJourneyStatusList.add(unitJourneyStatusList);
+
 
 
                                             detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
@@ -1472,9 +1452,6 @@ public class MyPageActivity extends AppCompatActivity {
                                     Log.d("", "onResponse: ");
                                 }
 
-
-                                modelAlter.setmArrayListCourseCompletenes(courseJourneyStatusList);
-
                                 modelAlter.setmUnitDataArrayListContent(detailListCourseUnit1Data);
                                 modelAlter.setmUnitDataArrayListContent2(detailListCourseUnit2Data);
                                 modelAlter.setmUnitDataArrayListContent3(detailListCourseUnit3Data);
@@ -1504,6 +1481,11 @@ public class MyPageActivity extends AppCompatActivity {
 
                                 //for option list of quest list
                                 modelAlter.setmArrayListCourseQuizOptions(detailListCourseDetailUnitQuizOptList);
+
+
+                                modelAlter.setmArrayListCourseCompletenes(courseJourneyStatusList);
+
+
                                 modelAlter.setmArrayListCoursePulseQuizOptions(detailListCourseDetailPulseQuizOptList);
 
                                 modelAlter.setmArrayListCourseVideoPulseMulti(detailListCourseDetailVideoPulseMulti);
@@ -1663,10 +1645,10 @@ public class MyPageActivity extends AppCompatActivity {
     }
 
     private void shareIt() {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Muktopaath");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, ShareURL);
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Muktopaath");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, ShareURL);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 

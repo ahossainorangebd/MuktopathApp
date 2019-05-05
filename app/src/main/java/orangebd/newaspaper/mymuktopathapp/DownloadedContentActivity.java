@@ -27,21 +27,31 @@ public class DownloadedContentActivity extends AppCompatActivity {
     private int seekbarProgress;
     private int seekbarStartPosition;
     private boolean isStartTrackingTouch;
+
     private TextView contentTitle;
+    private TextView contentDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloaded_content);
 
-        String vPath=this.getIntent().getExtras().getString("path");
-        String cTitle=this.getIntent().getExtras().getString("ctitle");
+        String vPath=this.getIntent().getExtras().getString("contentpath");
+        String cTitle=this.getIntent().getExtras().getString("lessonname");
+        String cDetail=this.getIntent().getExtras().getString("lessondetail");
+
+        cDetail = cDetail.replace("<p>", "");
+        cDetail = cDetail.replace("</p>", "");
 
         videoView = findViewById(R.id.vdVw);
         mProgressBar = findViewById(R.id.Progressbar);
 
         contentTitle = findViewById(R.id.contentTitle);
         contentTitle.setText(cTitle);
+
+        contentDetail = findViewById(R.id.contentDetail);
+        contentDetail.setText(cDetail);
+
 
         //mBackProgressBar=findViewById(R.id.Progressbar1);
         textView=findViewById(R.id.txtView);

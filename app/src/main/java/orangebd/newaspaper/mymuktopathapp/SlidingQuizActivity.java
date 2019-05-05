@@ -23,6 +23,9 @@ public class SlidingQuizActivity extends AppCompatActivity {
         myAdapter= new TabsPagerAdapterQuiz(getSupportFragmentManager());
         vpPager.setAdapter(myAdapter);
 
+
+        GlobalVar.gQuizViewPager=vpPager;
+
         //TODO
 
         GlobalVar.answerArrayQuiz= new ArrayList<>();

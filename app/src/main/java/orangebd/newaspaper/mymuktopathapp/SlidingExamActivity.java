@@ -26,6 +26,8 @@ public class SlidingExamActivity extends AppCompatActivity {
         myAdapter= new TabsPagerAdapterExam(getSupportFragmentManager());
         vpPager.setAdapter(myAdapter);
 
+        GlobalVar.gExamViewPager=vpPager;
+
         GlobalVar.answerArray= new ArrayList<>();
         GlobalVar.attendedQArray= new ArrayList<>();
     }
