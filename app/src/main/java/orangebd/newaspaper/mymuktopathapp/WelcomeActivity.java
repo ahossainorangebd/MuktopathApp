@@ -61,10 +61,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     //private boolean isLogin;
 
-    public final String[] EXTERNAL_PERMS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
-    };
 
-    public final int EXTERNAL_REQUEST = 138;
 
     private LinearLayout logoLayout;
 
@@ -174,10 +171,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 GlobalVar.isNotificationSent = false;
             }
         }
-
-
-
-        requestForPermission();
 
     }
 
@@ -369,28 +362,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
 
-    public boolean requestForPermission() {
 
-        boolean isPermissionOn = true;
-        final int version = Build.VERSION.SDK_INT;
-        if (version >= 23) {
-            if (!canAccessExternalSd()) {
-                isPermissionOn = false;
-                requestPermissions(EXTERNAL_PERMS, EXTERNAL_REQUEST);
-            }
-        }
-
-        return isPermissionOn;
-    }
-
-    public boolean canAccessExternalSd() {
-        return (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE));
-    }
-
-    private boolean hasPermission(String perm) {
-        return (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, perm));
-
-    }
 
 
 }

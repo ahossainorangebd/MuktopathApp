@@ -68,7 +68,7 @@ public class RecyclerViewAdapterDownloadedCourseList extends RecyclerView.Adapte
 
         textViewName.setText(unitName);
 
-        holder.reportextView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //String action;

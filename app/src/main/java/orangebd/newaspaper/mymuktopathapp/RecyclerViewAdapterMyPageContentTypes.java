@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -35,6 +37,10 @@ import java.util.TimeZone;
 public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<RecyclerViewAdapterMyPageContentTypes.MyViewHolder> {
 
     private String BASE_URL = "http://testadmin.muktopaath.orangebd.com";
+
+    private int unitNumberSet;
+    private String unitNumberSetStr;
+    private String unitTitle;
 
     private ArrayList<DetailDataModelCoursesDetailContents> dataSet;
     private ArrayList<DetailDataModelCoursesDetailContents> dataSet2;
@@ -72,11 +78,18 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView textViewName;
+        TextView completedTextview;
+
         TextView textViewVersion;
+
+        ImageView mCheckBox;
+
         TextView textViewVersion2;
 
         ImageView imageViewIcon;
         ImageView imageViewDownload;
+
+        ImageView imageViewdotIconId;
 
         Typeface typeface;
 
@@ -84,18 +97,26 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         {
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.textViewName);
+            this.completedTextview = itemView.findViewById(R.id.completedTextviewId);
+            this.mCheckBox = itemView.findViewById(R.id.completedChecked);
             this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
            // this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
             this.imageViewIcon = itemView.findViewById(R.id.contentTypeIcons);
             this.imageViewDownload = itemView.findViewById(R.id.cloudDownloadBtn);
+
+
+            this.imageViewdotIconId = itemView.findViewById(R.id.dotIconId);
             //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
             //textViewVersion.setTypeface(typeface);
         }
     }
 
-    public RecyclerViewAdapterMyPageContentTypes(ArrayList<DetailDataModelCoursesDetailContents> data, ArrayList<DetailDataModelCoursesDetailContents> data2, Context context) {
+    public RecyclerViewAdapterMyPageContentTypes(String unitName, int unitNumber, ArrayList<DetailDataModelCoursesDetailContents> data, ArrayList<DetailDataModelCoursesDetailContents> data2, Context context) {
         this.dataSet = data;
         this.dataSet2 = data2;
+
+        this.unitNumberSet= unitNumber;
+        this.unitTitle= unitName;
 
         this.mContext=context;
         stringPath = "file:///android_res/drawable/company_credit_logo.png";
@@ -121,16 +142,36 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
-
-        //ArrayList <DetailDataModelCoursesDetailContents> lessonNames = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseCompletenes().get(GlobalVar.gNthCourse).get(GlobalVar.gUnitNumber);
-
-
         final TextView textViewName = holder.textViewName;
+        final TextView mCompletedTextview = holder.completedTextview;
 
         TextView textViewVersion = holder.textViewVersion;
         TextView textViewVersion2 = holder.textViewVersion2;
         ImageView imageView = holder.imageViewIcon;
         ImageView imageViewdown = holder.imageViewDownload;
+        ImageView imageViewdot = holder.imageViewdotIconId;
+
+
+
+
+        String thisLessonCompleteness = dataSet.get(listPosition).getLessonCompletenessStatus();
+
+        ImageView completedCheckbox = holder.mCheckBox;
+
+        if(thisLessonCompleteness.equalsIgnoreCase("100")){
+            completedCheckbox.setVisibility(View.VISIBLE);
+
+            completedCheckbox.setImageResource(R.drawable.completed_checked_icon);
+
+            mCompletedTextview.setVisibility(View.VISIBLE);
+        }
+        else{
+            imageViewdot.setVisibility(View.INVISIBLE);
+        }
+
+
+
+
 
 
         titleText=dataSet2.get(listPosition).getmContentType();
@@ -213,6 +254,11 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             @Override
             public void onClick(View v) {
 
+                videoCode = GlobalVar.thisFragmentContents.get(listPosition).getFile_name();
+                titleText = dataSet2.get(listPosition).getTitle_content();
+
+                descriptionText = dataSet2.get(listPosition).getmDesc();
+
                 videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + ownerId + "/"+ videoCode;
 
                 new DownloadFileAsync().execute();
@@ -229,7 +275,8 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                 String titleText=textViewName.getText().toString();
 
 
-                String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(GlobalVar.gUnitNumber).get(listPosition).getIdLesson();
+                String lessonId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseLesson().get(GlobalVar.gNthCourse).get(unitNumberSet).get(listPosition).getIdLesson();
+
                 GlobalVar.gLessonId=lessonId;
 
                 if(titleText==null){
@@ -422,7 +469,10 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
             //Toast.makeText(mContext,"No downloadable file found.",Toast.LENGTH_LONG).show();
 
-            boolean isInserted = myDb.insertData(courseId, GlobalVar.gUnitId, subPath,titleText, descriptionText, courseName);
+            unitNumberSetStr = String.valueOf(unitNumberSet+1);
+
+
+            boolean isInserted = myDb.insertData(courseId, unitNumberSetStr, subPath,titleText, descriptionText, courseName, unitTitle);
 
             Cursor mCursor =  myDb.getAllData();
 
@@ -431,9 +481,9 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
 
             if(isInserted == true)
-                Toast.makeText(mContext,"Data Inserted",Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext,"Lesson Downloaded",Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(mContext,"Data not Inserted",Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext,"Lesson Download Failed",Toast.LENGTH_LONG).show();
 
         }
     }

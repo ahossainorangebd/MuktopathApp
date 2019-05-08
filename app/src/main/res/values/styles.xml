@@ -13,6 +13,10 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 
+    <style name="AppThemeCheck" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
     <!--<style name="ThemeOverlay.MySwitch" parent="">
         <item name="android:colorSwitchThumbNormal">@color/colorPain</item>
         <item name="android:colorForeground">#42221f1f</item>

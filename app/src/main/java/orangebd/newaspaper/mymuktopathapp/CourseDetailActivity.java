@@ -64,6 +64,8 @@ public class CourseDetailActivity extends AppCompatActivity {
     String batchId;
     String scSize;
 
+    int sUnitSize;
+
     private TextView titleTextView;
     private WebView detailDescTextView;
     private ImageView CoverPhoto;
@@ -118,6 +120,8 @@ public class CourseDetailActivity extends AppCompatActivity {
         batchId = getIntent().getExtras().getString("batchid");
 
         scSize = getIntent().getExtras().getString("scsize");
+        sUnitSize = getIntent().getExtras().getInt("usize");
+
         final int scSizeConv = Integer.parseInt(scSize);
 
         titleTextView.setText(title);
@@ -156,9 +160,17 @@ public class CourseDetailActivity extends AppCompatActivity {
 
                 JSONArray jArray2= new JSONArray();
 
-                jArray2.put(jArray);
 
-                String strForReplacing=jArray2.toString();
+                JSONArray jArray3= new JSONArray();
+
+                for(int jUnitCount=0; jUnitCount<sUnitSize; jUnitCount++){
+
+                    jArray3.put(jArray);
+                }
+
+                //jArray3.put(jArray);
+
+                String strForReplacing=jArray3.toString();
                 strForReplacing.replace("","");
                 strForReplacing.toCharArray();
 
@@ -171,7 +183,7 @@ public class CourseDetailActivity extends AppCompatActivity {
 
                 String jStatusInJsonFormat= fBrac + something + lBrac;*/
 
-                String jObjStr=jArray2.toString();
+                String jObjStr=jArray3.toString();
 
                 mapEnroll =  new HashMap<>();
                 mapEnroll.put("batches[]", batchId);

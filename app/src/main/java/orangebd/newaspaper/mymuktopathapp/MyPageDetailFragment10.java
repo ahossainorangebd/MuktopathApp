@@ -49,6 +49,8 @@ public class MyPageDetailFragment10 extends Fragment {
 
     ArrayList<DetailDataModelCoursesDetailContents> contentTypeArray;
 
+    private String unitTitle;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -57,22 +59,6 @@ public class MyPageDetailFragment10 extends Fragment {
         view= inflater.inflate(R.layout.fragment_my_page_detail_fragment10, container, false);
 
         context=getContext();
-
-        //handling the global dynamic unit numbers
-
-
-
-        if(GlobalVar.gUnitGoingDirection!=null) {
-            if (GlobalVar.gUnitGoingDirection.equalsIgnoreCase("right")) {
-                GlobalVar.gUnitNumber = thisFragmentUniNumber - 1;
-            }
-            else {
-                GlobalVar.gUnitNumber = thisFragmentUniNumber + 1;
-            }
-        }
-
-        //for content type array
-        contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
 
         mLastReadLesson=view.findViewById(R.id.lastReadLessonId);
         startMyQuiz=view.findViewById(R.id.startMyQuizId);
@@ -100,7 +86,7 @@ public class MyPageDetailFragment10 extends Fragment {
 
         if(units.size()>thisFragmentUniNumber) {
 
-            String unitTitle = units.get(thisFragmentUniNumber).getUnitNames();
+            unitTitle = units.get(thisFragmentUniNumber).getUnitNames();
             String unitOrder = units.get(thisFragmentUniNumber).getUnitOrders();
             String unitId = units.get(thisFragmentUniNumber-1).getUnitID();
 
@@ -212,8 +198,27 @@ public class MyPageDetailFragment10 extends Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
+
+            //getting completeness
+            ArrayList <DetailDataModelCoursesDetailContents> lessonNamesCompleteness = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseCompletenes().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
+
+
+            //handling the global dynamic unit numbers
+
+            if(GlobalVar.gUnitGoingDirection!=null) {
+                if (GlobalVar.gUnitGoingDirection.equalsIgnoreCase("right")) {
+                    GlobalVar.gUnitNumber = thisFragmentUniNumber - 1;
+                }
+                else {
+                    GlobalVar.gUnitNumber = thisFragmentUniNumber + 1;
+                }
+            }
+
+            //for content type array
+            contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
+
             //adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
-            adapter=new RecyclerViewAdapterMyPageContentTypes(GlobalVar.thisFragmentContents,contentTypeArray,context);
+            adapter=new RecyclerViewAdapterMyPageContentTypes(unitTitle, thisFragmentUniNumber,lessonNamesCompleteness,contentTypeArray,context);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();

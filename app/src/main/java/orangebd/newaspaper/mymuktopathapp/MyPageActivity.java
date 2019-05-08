@@ -663,18 +663,14 @@ public class MyPageActivity extends AppCompatActivity {
                                     try {
                                         for (int ec = 0; ec < objectEnrollCourse.length(); ec++)
                                         {
-
                                             DetailDataModelCourses enrollCourseModel = new DetailDataModelCourses();
 
                                             JSONObject jObjEnrolledCourses = objectEnrollCourse.getJSONObject(ec);
 
                                             JSONObject objectCourse2 = jObjEnrolledCourses.getJSONObject("Course");
 
-
                                             String enrolCourseId= jObjEnrolledCourses.getString("id");
                                             String enrolCourseProgress= jObjEnrolledCourses.getString("course_completeness");
-
-
 
                                             JSONArray exams = jObjEnrolledCourses.getJSONArray("exam");
                                             JSONArray assignments = jObjEnrolledCourses.getJSONArray("assignment");
@@ -1361,49 +1357,51 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                 try {
 
+                                                    unitJourneyStatusList = new ArrayList<>();
 
-                                                    for (int jStatusUnitNumber = 0; jStatusUnitNumber < journeyStatusArr.length(); jStatusUnitNumber++) {
+
+                                                    for (int jStatusUnitNumber = 0; jStatusUnitNumber < journeyStatusArr.length(); jStatusUnitNumber++)
+                                                    {
 
                                                         JSONArray journeyStatusUnitNumbers = (JSONArray) journeyStatusArr.getJSONArray(jStatusUnitNumber);
 
                                                         try {
 
 
-                                                            unitJourneyStatusList = new ArrayList<>();
+                                                            lessonJourneyStatusList = new ArrayList<>();
+                                                            //unitJourneyStatusList = new ArrayList<>();
 
-                                                            for (int jStatusLessonNumber = 0; jStatusLessonNumber < journeyStatusUnitNumbers.length(); jStatusLessonNumber++) {
-                                                                JSONArray journeyStatusLessonNumbers =  journeyStatusArr.getJSONArray(jStatusUnitNumber);
+                                                            for (int jStatusLessonNumber = 0; jStatusLessonNumber < journeyStatusUnitNumbers.length(); jStatusLessonNumber++)
+                                                            {
+                                                                //JSONArray journeyStatusLessonNumbers =  journeyStatusUnitNumbers.getJSONArray(jStatusUnitNumber);
 
-                                                                lessonJourneyStatusList = new ArrayList<>();
+                                                                //
 
-                                                                try {
-                                                                    for (int lessonNumbersAgain = 0; lessonNumbersAgain < journeyStatusLessonNumbers.length(); lessonNumbersAgain++) {
+                                                                DetailDataModelCoursesDetailContents modelJourneyStatus = new DetailDataModelCoursesDetailContents();
 
-                                                                        DetailDataModelCoursesDetailContents modelJourneyStatus = new DetailDataModelCoursesDetailContents();
+                                                                JSONObject journeyStatusLessonNumbersAgain = journeyStatusUnitNumbers.getJSONObject(jStatusLessonNumber);
 
-                                                                        JSONObject journeyStatusLessonNumbersAgain = journeyStatusLessonNumbers.getJSONObject(lessonNumbersAgain);
-
-                                                                        String mLessonStartStatus = journeyStatusLessonNumbersAgain.getString("start");
-                                                                        String mLessonCompletenessStatus = journeyStatusLessonNumbersAgain.getString("completeness");
+                                                                String mLessonStartStatus = journeyStatusLessonNumbersAgain.getString("start");
+                                                                String mLessonCompletenessStatus = journeyStatusLessonNumbersAgain.getString("completeness");
 
 
-                                                                        modelJourneyStatus.setLessonStartsStatus(mLessonStartStatus);
-                                                                        modelJourneyStatus.setLessonCompletenessStatus(mLessonCompletenessStatus);
+                                                                modelJourneyStatus.setLessonStartsStatus(mLessonStartStatus);
+                                                                modelJourneyStatus.setLessonCompletenessStatus(mLessonCompletenessStatus);
 
-                                                                        lessonJourneyStatusList.add(modelJourneyStatus);
-                                                                    }
-                                                                }
-                                                                catch (Exception ex){
-                                                                    Log.d("", "onResponse: ");
-                                                                }
+                                                                lessonJourneyStatusList.add(modelJourneyStatus);
 
-                                                                unitJourneyStatusList.add(lessonJourneyStatusList);
+                                                                //unitJourneyStatusList.add(lessonJourneyStatusList);
 
                                                             }
+
+
+
                                                         }
                                                         catch (Exception ex){
                                                             Log.d("", "onResponse: ");
                                                         }
+
+                                                        unitJourneyStatusList.add(lessonJourneyStatusList);
                                                     }
                                                 }
                                                 catch (Exception ex){
@@ -1413,10 +1411,6 @@ public class MyPageActivity extends AppCompatActivity {
                                             catch (Exception ex){
                                                 Log.d("", "onResponse: ");
                                             }
-
-
-
-
 
                                             enrollCourseModel.setmEcId(enrolCourseId);
                                             enrollCourseModel.setmEcCompleteness(enrolCourseProgress);
@@ -1554,26 +1548,6 @@ public class MyPageActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                String abcd="";
-
-                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    Toast.makeText(mContext, mContext.getString(R.string.error_field_required), Toast.LENGTH_LONG).show();
-                }
-                else if (error instanceof AuthFailureError) {
-
-                }
-                else if (error instanceof ServerError) {
-
-                }
-                else if (error instanceof NetworkError) {
-
-                }
-                else if (error instanceof ParseError) {
-
-                }
-
-
 
                 Log.e("TAG", error.getMessage(), error);
             }

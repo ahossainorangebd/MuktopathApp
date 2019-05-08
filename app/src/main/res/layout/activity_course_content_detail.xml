@@ -86,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     >
 
                     <LinearLayout
@@ -99,15 +100,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20sp"
-                            android:layout_marginLeft="7dp"
+                            android:layout_gravity="center"
                             android:text="n"
                             />
 
                         <ImageView
                             android:id="@+id/hitlikebtn"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="1dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:gravity="right"
                             android:foregroundGravity="right"
                             android:text="Settings"
@@ -131,20 +131,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20sp"
-                            android:layout_marginLeft="3dp"
+                            android:layout_gravity="center"
                             android:text="n"
                             />
 
 
                     <ImageView
                         android:id="@+id/hitDislikebtn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:gravity="right"
                         android:foregroundGravity="right"
                         android:text="Settings"
                         android:layout_gravity="right"
-                        android:padding="2dp"
                         android:src="@drawable/mukto_dislike_icon_fade"
                         />
 
@@ -163,16 +162,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20sp"
-                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center"
                             android:text="n"
                             />
                     <ImageView
-                        android:padding="3dp"
                         android:id="@+id/hitFlagbtn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:gravity="right"
-                        android:foregroundGravity="right"
                         android:text="Settings"
                         android:layout_gravity="right"
                         android:src="@drawable/mukto_flag_btn_fade"
@@ -181,7 +178,7 @@
                     </LinearLayout>
 
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -207,7 +204,8 @@
                         android:layout_gravity="right"
                         android:src="@drawable/content_download_icon"
                         />
-                    </LinearLayout>
+
+                    </LinearLayout>-->
 
                 </LinearLayout>
 

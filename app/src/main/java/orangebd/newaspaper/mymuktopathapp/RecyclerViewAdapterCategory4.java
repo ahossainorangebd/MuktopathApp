@@ -102,6 +102,10 @@ public class RecyclerViewAdapterCategory4 extends RecyclerView.Adapter<RecyclerV
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+
+        final int sUnitSize= dataSet.get(listPosition).getmArrayListCourseUnits().size();
+
+
         final String sContentSize= Integer.toString(contentArray.size());
         final Object[] mArrayList = contentArray.get(listPosition).toArray();
 
@@ -147,6 +151,8 @@ public class RecyclerViewAdapterCategory4 extends RecyclerView.Adapter<RecyclerV
                 i.putExtra("batchid", batchId);
                 i.putExtra("pstatus", paymentStatus);
                 i.putExtra("scsize", sContentSize);
+                i.putExtra("usize", sUnitSize);
+
                 try {
                     v.getContext().startActivity(i);
                 }

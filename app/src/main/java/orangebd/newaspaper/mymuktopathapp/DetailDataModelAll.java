@@ -12,6 +12,7 @@ public class DetailDataModelAll
     private String mCourseCategoryNameEn;
     private String mCourseCategoryNameBn;
     private String mCourseCategoryId;
+    private String mCourseCategoryLogo;
 
     public String getmAccessToken() {
         return mAccessToken;
@@ -60,5 +61,13 @@ public class DetailDataModelAll
 
     public void setmCourseCategoryId(String mCourseCategoryId) {
         this.mCourseCategoryId = mCourseCategoryId;
+    }
+
+    public String getmCourseCategoryLogo() {
+        return mCourseCategoryLogo;
+    }
+
+    public void setmCourseCategoryLogo(String mCourseCategoryLogo) {
+        this.mCourseCategoryLogo = mCourseCategoryLogo;
     }
 }

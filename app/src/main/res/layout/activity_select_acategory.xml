@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SelectACategoryActivity"
-    android:background="#e0e0e0"
+    android:background="@color/Colorpeace"
     android:orientation="vertical"
     >
+
+    <!--android:background="#e0e0e0"-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,202 +32,586 @@
                 android:textColor="#000"
                 />
 
-    <RelativeLayout
-        android:id="@+id/chooseCategory1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff"
-        android:gravity="center"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:elevation="5dp"
-        >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
 
-        <CheckBox
-            android:id="@+id/firstCatCheckBoxId"
+                <LinearLayout
+                    android:id="@+id/chooseCategory1"
+                    android:layout_width="160dp"
+                    android:layout_height="130dp"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:elevation="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/courseCatLogo1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/firstCatTextViewId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnId1"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnIdId1"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/chooseCategory2"
+                    android:layout_width="160dp"
+                    android:layout_height="130dp"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:elevation="10dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/courseCatLogo2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/SecondCatTextViewId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnId2"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnIdId2"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"
-            />
+            >
 
-        <TextView
-            android:id="@+id/CourseHiddenEnId1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textColor="#ffffff" />
+            <LinearLayout
+                android:id="@+id/chooseCategory3"
+                android:layout_width="160dp"
+                android:layout_height="130dp"
+                android:background="#fff"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:elevation="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                >
 
-        <TextView
-            android:id="@+id/CourseHiddenEnIdId1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textColor="#ffffff" />
+                <ImageView
+                    android:id="@+id/courseCatLogo3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    />
 
-    </RelativeLayout>
-            
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/ThirdCatTextViewId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        />
 
-    <RelativeLayout
-        android:id="@+id/chooseCategory2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff"
-        android:gravity="center"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:elevation="5dp"
-        >
+                    <TextView
+                        android:id="@+id/CourseHiddenEnId3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:textColor="#ffffff"
+                        />
 
-        <CheckBox
-            android:id="@+id/SecondCatCheckBoxId"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:layout_marginRight="10dp"
-            android:textStyle="bold"
-            />
+                    <TextView
+                        android:id="@+id/CourseHiddenEnIdId3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:textColor="#ffffff" />
 
-        <TextView
-            android:id="@+id/CourseHiddenEnId2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textColor="#ffffff"
-            />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/CourseHiddenEnIdId2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textColor="#ffffff" />
 
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/chooseCategory3"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff"
-        android:gravity="center"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:elevation="5dp"
-        >
+            </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/ThirdCatCheckBoxId"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:layout_marginRight="10dp"
-            android:textStyle="bold"
-            />
+            <LinearLayout
+                android:id="@+id/chooseCategory4"
+                android:layout_width="160dp"
+                android:layout_height="130dp"
+                android:background="#fff"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:elevation="10dp"
+                android:layout_marginLeft="15dp"
 
-        <TextView
-            android:id="@+id/CourseHiddenEnId3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textColor="#ffffff"
-            />
+                >
 
-        <TextView
-            android:id="@+id/CourseHiddenEnIdId3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textColor="#ffffff" />
+                <ImageView
+                    android:id="@+id/courseCatLogo4"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    />
 
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/fourthCatTextViewId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        />
 
-    <RelativeLayout
-        android:id="@+id/chooseCategory4"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff"
-        android:gravity="center"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:elevation="5dp"
+                    <TextView
+                        android:id="@+id/CourseHiddenEnId4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:textColor="#ffffff"
+                        />
 
-        >
+                    <TextView
+                        android:id="@+id/CourseHiddenEnIdId4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:textColor="#ffffff" />
 
-        <CheckBox
-            android:id="@+id/fourthCatCheckBoxId"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:layout_marginRight="10dp"
-            android:textStyle="bold"
-            />
 
-        <TextView
-            android:id="@+id/CourseHiddenEnId4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textColor="#ffffff"
-            />
 
-        <TextView
-            android:id="@+id/CourseHiddenEnIdId4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textColor="#ffffff" />
+                </LinearLayout>
 
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/chooseCategory5"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff"
-        android:gravity="center"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:elevation="5dp"
-        android:visibility="gone"
-        >
 
-        <CheckBox
-            android:id="@+id/fifthCatCheckBoxId"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            />
+            </LinearLayout>
 
-    </RelativeLayout>
+        </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/chooseCategory6"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff"
-        android:gravity="center"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:elevation="5dp"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone"
-        >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
 
-        <CheckBox
-            android:id="@+id/SixthCatCheckBoxId"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            />
-    </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/chooseCategory5"
+                    android:layout_width="160dp"
+                    android:layout_height="130dp"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:elevation="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/courseCatLogo5"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+                        <TextView
+                            android:id="@+id/fifthCatTextViewId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnId5"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnIdId5"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chooseCategory6"
+                    android:layout_width="160dp"
+                    android:layout_height="130dp"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:elevation="10dp"
+                    android:layout_marginLeft="15dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/courseCatLogo6"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+                        <TextView
+                            android:id="@+id/sixthCatTextViewId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnId6"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnIdId6"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+
+                <LinearLayout
+                    android:id="@+id/chooseCategory7"
+                    android:layout_width="160dp"
+                    android:layout_height="130dp"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:elevation="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/courseCatLogo7"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+                        <TextView
+                            android:id="@+id/seventhCatTextViewId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnId7"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnIdId7"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chooseCategory8"
+                    android:layout_width="160dp"
+                    android:layout_height="130dp"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:elevation="10dp"
+                    android:layout_marginLeft="15dp"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/courseCatLogo8"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+                        <TextView
+                            android:id="@+id/eightCatTextViewId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnId8"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnIdId8"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+
+                <LinearLayout
+                    android:id="@+id/chooseCategory9"
+                    android:layout_width="160dp"
+                    android:layout_height="130dp"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:elevation="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/courseCatLogo9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+                        <TextView
+                            android:id="@+id/ninthCatTextViewId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnId9"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnIdId9"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chooseCategory10"
+                    android:layout_width="160dp"
+                    android:layout_height="130dp"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:elevation="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/courseCatLogo10"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+                        <TextView
+                            android:id="@+id/tenthCatTextViewId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnId10"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff"
+                            />
+
+                        <TextView
+                            android:id="@+id/CourseHiddenEnIdId10"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 

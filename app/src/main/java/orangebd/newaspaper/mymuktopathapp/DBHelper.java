@@ -9,8 +9,8 @@ import android.util.Log;
 
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "newmuktopaathfinal.db";
-    public static final String TABLE_NAME = "download_table";
+    public static final String DATABASE_NAME = "newmuktopaathfinal2.db";
+    public static final String TABLE_NAME = "download_table_final";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "COURSEID";
     public static final String COL_3 = "UNITID";
@@ -18,6 +18,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_5 = "LESSONNAME";
     public static final String COL_6 = "DETAIL";
     public static final String COL_7 = "COURSENAME";
+    public static final String COL_8 = "UNITNAME";
+
+    private String[] strColumnName={COL_1, COL_2 ,COL_3 ,COL_4 ,COL_5 ,COL_6 ,COL_7, COL_8};
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -25,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,COURSEID TEXT, UNITID TEXT, FILEPATH TEXT, LESSONNAME TEXT, DETAIL TEXT, COURSENAME TEXT)");
+        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,COURSEID TEXT, UNITID TEXT, FILEPATH TEXT, LESSONNAME TEXT, DETAIL TEXT, COURSENAME TEXT, UNITNAME TEXT)");
     }
 
     @Override
@@ -34,15 +37,19 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String courseid, String unitid, String filepath,String lessonTitle,String detail, String courseTitle) {
+    public boolean insertData(String courseid, String unitid, String filepath,String lessonTitle,String detail, String courseTitle, String unitTitle) {
+
         SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues contentValues = new ContentValues();
+
         contentValues.put(COL_2,courseid);
         contentValues.put(COL_3,unitid);
         contentValues.put(COL_4,filepath);
         contentValues.put(COL_5,lessonTitle);
         contentValues.put(COL_6,detail);
         contentValues.put(COL_7,courseTitle);
+        contentValues.put(COL_8,unitTitle);
 
 
         long result=0;
@@ -65,7 +72,36 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateData(String id,String name,String surname,String marks) {
+    public Cursor getGroupDataForCName() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res1=db.query(TABLE_NAME, strColumnName,null,null, DBHelper.COL_7,null,null);
+        return res1;
+    }
+
+    public Cursor getGroupDataForUName() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res2=db.query(TABLE_NAME, strColumnName,null,null, DBHelper.COL_8,null,null);
+        return res2;
+    }
+
+    public Cursor getGroupDataForUID() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res2=db.query(TABLE_NAME, strColumnName,null,null, DBHelper.COL_3,null,null);
+        return res2;
+    }
+
+
+
+
+
+    public void deleteData () {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String sqlStr="delete from " +TABLE_NAME;
+        db.execSQL(sqlStr);
+    }
+
+    /*public boolean updateData(String id,String name,String surname,String marks) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1,id);
@@ -81,20 +117,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME, "ID = ?",new String[] {id});
     }
 
-    public void deleteData () {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        String sqlStr="delete from " +TABLE_NAME;
-        db.execSQL(sqlStr);
-    }
-
-
     public Cursor GetDataFromDB(String courseId){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor =  db.rawQuery("select * from " + TABLE_NAME + " where " + COL_2 + "='" + courseId + "'" , null);
 
         return cursor;
-    }
+    }*/
 
 
 

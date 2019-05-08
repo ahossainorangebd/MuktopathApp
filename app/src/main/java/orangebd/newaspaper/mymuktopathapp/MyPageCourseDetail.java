@@ -84,6 +84,7 @@ public class MyPageCourseDetail extends AppCompatActivity {
         final ViewPager vpPager = findViewById(R.id.viewpagerNews);
         myAdapter = new TabsPagerAdapterMyPageDetail(getSupportFragmentManager());
         vpPager.setAdapter(myAdapter);
+
         vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

@@ -185,6 +185,9 @@ public class MyPageFragment2 extends Fragment {
                 GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse+1).size();
             }
         }
+        else{
+            GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();
+        }
 
         if(GlobalVar.gEnrollCourseNumber==2){
             GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();

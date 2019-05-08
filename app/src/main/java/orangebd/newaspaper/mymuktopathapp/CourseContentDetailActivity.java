@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -34,6 +35,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
@@ -162,6 +164,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     private int forwardable=1;
 
+
+    private LinearLayout mVideoLayOut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -182,6 +187,30 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         mDislikeNumberTv=findViewById(R.id.dislikeNumber);
         mFlagNumberTv=findViewById(R.id.flagNumber);
 
+        mVideoLayOut=findViewById(R.id.videoLayOut);
+        mVideoLayOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgPauseView.setVisibility(View.VISIBLE);
+
+                final Handler handler3 = new Handler();
+                handler3.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imgPauseView.setVisibility(View.GONE);
+                    }
+                }, 2000);
+            }
+        });
+
+        final Handler handler2 = new Handler();
+        handler2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                imgPauseView.setVisibility(View.GONE);
+            }
+        }, 2000);
+
 
         //titleTextView=findViewById(R.id.courseTitle);
         detailDescTextView=findViewById(R.id.detailDesc);
@@ -200,7 +229,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             eCode = getIntent().getExtras().getString("vcode");
             mUserNumber = getIntent().getExtras().getString("usernumber");
             timeStatus = getIntent().getExtras().getString("videostatus");
-            timeStatus = getIntent().getExtras().getString("videostatus");
+            //timeStatus = getIntent().getExtras().getString("videostatus");
         }
 
 
@@ -313,6 +342,15 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     mProgressBar.postDelayed(onEverySecond, 1000);
                     imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
                     isVideoStarted=false;
+
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            imgPauseView.setVisibility(View.GONE);
+                        }
+                    }, 2000);
                 }
             }
         });
@@ -509,8 +547,15 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     mapHit.put("unit_id", GlobalVar.gUnitId);
                     mapHit.put("lesson_id", GlobalVar.gLessonId);
 
+                    mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon_fade);
 
-                    mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon);
+
+                    int totalLikeInt = Integer.parseInt(mTotal_likes);
+
+                    mLikeNumberTv.setText(String.valueOf(totalLikeInt-1));
+
+                    //mLiked="0";
+
                 }
                 else {
                     mapHit.put("action_type", "like");
@@ -519,7 +564,15 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     mapHit.put("unit_id", GlobalVar.gUnitId);
                     mapHit.put("lesson_id", GlobalVar.gLessonId);
 
-                    mHitLikeBtn.setImageResource(R.drawable.mukto_like_purple_icon);
+                    mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon_tap);
+                    mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_icon_fade);
+
+
+                    int totalLikeInt = Integer.parseInt(mTotal_likes);
+
+                    mLikeNumberTv.setText(String.valueOf(totalLikeInt));
+
+                    //mLiked="1";
                 }
 
                 new HitLikeOrUnlike().execute(hitLikeUrl+ thisCourseId);
@@ -541,7 +594,13 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     mapHit.put("unit_id", GlobalVar.gUnitId);
                     mapHit.put("lesson_id", GlobalVar.gLessonId);
 
-                    mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_icon);
+                    mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_icon_fade);
+
+                    int totalDislikeInt = Integer.parseInt(mTotal_dislikes);
+
+                    mDislikeNumberTv.setText(String.valueOf(totalDislikeInt));
+
+                    //mDisliked="0";
                 }
                 else {
                     mapHit.put("action_type", "dislike");
@@ -550,7 +609,14 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     mapHit.put("unit_id", GlobalVar.gUnitId);
                     mapHit.put("lesson_id", GlobalVar.gLessonId);
 
-                    mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_purple_icon);
+                    mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_icon_tap);
+                    mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon_fade);
+
+                    int totalDislikeInt = Integer.parseInt(mTotal_dislikes);
+
+                    mDislikeNumberTv.setText(String.valueOf(totalDislikeInt+1));
+
+                    //mDisliked="1";
                 }
 
                 new HitLikeOrUnlike().execute(hitLikeUrl+ thisCourseId);
@@ -570,7 +636,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         });
 
 
-        mDownloadBtn=findViewById(R.id.downloadBtn);
+        /*mDownloadBtn=findViewById(R.id.downloadBtn);
         mDownloadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -580,7 +646,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 //new DownloadFileAsync().execute();
             }
-        });
+        });*/
 
 
     }
@@ -976,6 +1042,35 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             }
 
 
+            String adasasas="";
+
+            // this section is for this user's like, dislike, values
+
+            if(mLiked.equalsIgnoreCase("1")){
+                mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon_tap);
+            }
+            else {
+                mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon_fade);
+            }
+
+            if(mDisliked.equalsIgnoreCase("1")){
+                mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_icon_tap);
+            }
+            else{
+                mHitDislikeBtn.setImageResource(R.drawable.mukto_dislike_icon_fade);
+            }
+
+            if(mFlagged.equalsIgnoreCase("1")){
+                mHitFlagBtn.setImageResource(R.drawable.mukto_flag_icon_tap);
+            }
+            else{
+                mHitFlagBtn.setImageResource(R.drawable.mukto_flag_btn_fade);
+            }
+
+
+            // This section is for ignoring null values
+            String abcd="";
+
             if(mTotal_likes==null){
                 mTotal_likes="0";
             }
@@ -983,6 +1078,17 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 mTotal_dislikes="0";
             }
             if(mTotal_flags==null){
+                mTotal_flags="0";
+            }
+
+
+            if(mTotal_likes.equalsIgnoreCase("null")){
+                mTotal_likes="0";
+            }
+            if(mTotal_dislikes.equalsIgnoreCase("null")){
+                mTotal_dislikes="0";
+            }
+            if(mTotal_flags.equalsIgnoreCase("null")){
                 mTotal_flags="0";
             }
 

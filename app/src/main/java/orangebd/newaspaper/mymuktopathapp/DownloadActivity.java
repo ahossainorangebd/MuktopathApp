@@ -67,6 +67,7 @@ public class DownloadActivity extends AppCompatActivity {
 
     private ArrayList<String> mArrayLisCourseId;
     private ArrayList<String> mArrayLisUnitId;
+    private ArrayList<String> mArrayLisUnitName;
     private ArrayList<String> mArrayLisFilePath;
     private ArrayList<String> mArrayLisLessonName;
     private ArrayList<String> mArrayLisLessonDetail;
@@ -119,11 +120,9 @@ public class DownloadActivity extends AppCompatActivity {
 
         File file=new File(subPath);
         File[] files=file.listFiles();
+        int filesLength =files.length;
 
-        if(files==null){
-            mNoDownloadLayout.setVisibility(View.VISIBLE);
-        }
-        else {
+        if(filesLength>0){
             GetDownloadedData();
 
 
@@ -135,6 +134,9 @@ public class DownloadActivity extends AppCompatActivity {
 
             recyclerView.setAdapter(adapter);
 
+        }
+        else {
+            mNoDownloadLayout.setVisibility(View.VISIBLE);
         }
 
 
@@ -341,12 +343,20 @@ public class DownloadActivity extends AppCompatActivity {
 
     public void GetDownloadedData() {
 
+        Cursor mCursorForCourseName = myDb.getGroupDataForCName();
+
+        Cursor mCursorForUnitNumber = myDb.getGroupDataForUID();
+        Cursor mCursorForUnitName = myDb.getGroupDataForUName();
+
         Cursor mCursor = myDb.getAllData();
+
+        //Cursor mCursor = myDb.getAllData();
 
         mArrayLisWholeData = new ArrayList<>();
 
         mArrayLisCourseId = new ArrayList<>();
         mArrayLisUnitId = new ArrayList<>();
+        mArrayLisUnitName = new ArrayList<>();
         mArrayLisFilePath = new ArrayList<>();
         mArrayLisLessonName = new ArrayList<>();
         mArrayLisLessonDetail = new ArrayList<>();
@@ -355,28 +365,41 @@ public class DownloadActivity extends AppCompatActivity {
 
         StringBuffer buffer = new StringBuffer();
         while (mCursor.moveToNext()) {
+
             //buffer.append("Id :" + mCursor.getString(3) + "\n");
 
-            mArrayLisCourseId.add(mCursor.getString(1));
-            mArrayLisUnitId.add(mCursor.getString(2));
             mArrayLisFilePath.add(mCursor.getString(3));
             mArrayLisLessonName.add(mCursor.getString(4));
             mArrayLisLessonDetail.add(mCursor.getString(5));
-            mArrayCourseName.add(mCursor.getString(6));
 
+        }
 
+        while (mCursorForCourseName.moveToNext()) {
 
+            mArrayLisCourseId.add(mCursorForCourseName.getString(1));
+            mArrayCourseName.add(mCursorForCourseName.getString(6));
 
-            String abcd="";
+        }
+
+        while (mCursorForUnitNumber.moveToNext()) {
+
+            mArrayLisUnitId.add(mCursorForUnitNumber.getString(2));
+           //mArrayLisUnitName.add(mCursorForUnitName.getString(7));
 
         }
 
         mArrayLisWholeData.add(mArrayLisCourseId);
+        mArrayLisWholeData.add(mArrayCourseName);
+
         mArrayLisWholeData.add(mArrayLisUnitId);
+        //mArrayLisWholeData.add(mArrayLisUnitName);
+
         mArrayLisWholeData.add(mArrayLisFilePath);
+
         mArrayLisWholeData.add(mArrayLisLessonName);
         mArrayLisWholeData.add(mArrayLisLessonDetail);
-        mArrayLisWholeData.add(mArrayCourseName);
+
+
 
         String abcd2="";
 
