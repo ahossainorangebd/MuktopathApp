@@ -62,6 +62,9 @@ public class MyPageFragment9 extends Fragment {
         context=getContext();
 
 
+
+
+
         /** Progress of progressBar
          * */
 
@@ -182,6 +185,7 @@ public class MyPageFragment9 extends Fragment {
 
         // Let's count the number of Units
         if(GlobalVar.gGoingDirection.equalsIgnoreCase("right")) {
+
             GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse - 1).size();
         }
         else {
@@ -325,6 +329,8 @@ public class MyPageFragment9 extends Fragment {
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
                 }
+
+                GlobalVar.nNumberCourseBack=nthCourse;
             }
         });
 

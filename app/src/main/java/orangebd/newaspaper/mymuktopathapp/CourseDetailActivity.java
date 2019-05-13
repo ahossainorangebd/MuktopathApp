@@ -66,6 +66,11 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     int sUnitSize;
 
+    private String sCatId;
+    private String sCatName;
+
+    private int courseIndex;
+
     private TextView titleTextView;
     private WebView detailDescTextView;
     private ImageView CoverPhoto;
@@ -84,6 +89,13 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     String urlCheckEnrolledOrNot = GlobalVar.gApiBaseUrl +"/api/enrolled/check";
     String urlEnrollThis = GlobalVar.gApiBaseUrl +"/api/course-enrollment";
+
+    String urlGetCourses = GlobalVar.gApiBaseUrl + "/api/course/search";
+
+
+    private HashMap<String,String> mapThisCat;
+
+    private String jObjStrComStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -121,6 +133,10 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         scSize = getIntent().getExtras().getString("scsize");
         sUnitSize = getIntent().getExtras().getInt("usize");
+        sCatId = getIntent().getExtras().getString("catid");
+        sCatName = getIntent().getExtras().getString("catname");
+
+        courseIndex = getIntent().getExtras().getInt("lposition");
 
         final int scSizeConv = Integer.parseInt(scSize);
 
@@ -132,63 +148,32 @@ public class CourseDetailActivity extends AppCompatActivity {
         detailDescTextView.loadDataWithBaseURL("",DetailDescription, "text/html", "utf-8", "");
 
 
+        //Making start and completeness loops
+
+        mapThisCat = new HashMap<String, String>();
+
+
+        mapThisCat.put("id", sCatId);
+        mapThisCat.put("name", sCatName);
+        mapThisCat.put("rating", "");
+
+        new ThisCategoryCourses().execute(urlGetCourses);
+
+
+
+
+
+
+
         enrollThisSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                JSONArray jArray = new JSONArray();
-
-                StringBuilder sb= new StringBuilder();
-
-                String start = "start";
-                String completeness = "completeness";
-
-                try {
-                    JSONObject jObj = new JSONObject();
-                    jObj.put(start, 0);
-                    jObj.put(completeness, 0);
-
-                for(int jStatusCount=0; jStatusCount<scSizeConv; jStatusCount++){
-
-                    jArray.put(jObj);
-                }
-
-                }
-                catch (Exception ex){
-                    Log.d("", "onClick: ");
-                }
-
-                JSONArray jArray2= new JSONArray();
-
-
-                JSONArray jArray3= new JSONArray();
-
-                for(int jUnitCount=0; jUnitCount<sUnitSize; jUnitCount++){
-
-                    jArray3.put(jArray);
-                }
-
-                //jArray3.put(jArray);
-
-                String strForReplacing=jArray3.toString();
-                strForReplacing.replace("","");
-                strForReplacing.toCharArray();
-
-                //int firstNumber=sb.length();
-
-                //String something =sb.substring(0,firstNumber-1);
-
-                /*String fBrac="[[";
-                String lBrac="]]";
-
-                String jStatusInJsonFormat= fBrac + something + lBrac;*/
-
-                String jObjStr=jArray3.toString();
 
                 mapEnroll =  new HashMap<>();
                 mapEnroll.put("batches[]", batchId);
                 mapEnroll.put("amount", "0");
-                mapEnroll.put("journey_status", jObjStr);
+                mapEnroll.put("journey_status", jObjStrComStart);
 
                 new StartEnroll().execute(urlEnrollThis);
             }
@@ -505,5 +490,108 @@ public class CourseDetailActivity extends AppCompatActivity {
         }
 
         return result.toString();
+    }
+
+
+
+
+
+
+    public class ThisCategoryCourses extends AsyncTask<String, Void, String>
+    {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String data = performPostCall(params[0], mapThisCat);
+
+            try{
+
+                JSONObject jObjectMain = new JSONObject(data);
+                JSONObject jObject;
+
+                JSONArray objectCourse = (JSONArray) jObjectMain.getJSONArray("data");
+
+                DetailDataModelCourses modelAlterMainActivity = new DetailDataModelCourses();
+
+                JSONObject jObjEnrolledCourses = objectCourse.getJSONObject(courseIndex);
+
+                // Making start and completeness
+
+                StringBuilder sb= new StringBuilder();
+
+                String start = "start";
+                String completeness = "completeness";
+
+
+                try
+                {
+                    JSONArray jArray2= new JSONArray();
+
+                    jObject = jObjEnrolledCourses.getJSONObject("syllabus");
+
+                    int jOnjectLength= jObject.length()-2;
+
+                    for(int unitNumbers=0; unitNumbers< jOnjectLength; unitNumbers++)
+                    {
+
+                        JSONArray jArray = new JSONArray();
+
+                        JSONObject jObj;
+
+                        jObj = new JSONObject();
+                        jObj.put(start, 0);
+                        jObj.put(completeness, 0);
+
+                        JSONObject jObjLessons = jObject.getJSONObject("" + unitNumbers);
+
+                        int lessonLenght=jObjLessons.length()-1;
+
+                        for(int lessonNumb=0; lessonNumb<lessonLenght; lessonNumb++){
+
+                            JSONObject jObjLessonsNumb = jObjLessons.getJSONObject("" + lessonNumb);
+
+                            jArray.put(jObj);
+                        }
+
+                        jArray2.put(jArray);
+                    }
+
+                    String strForReplacing=jArray2.toString();
+                    strForReplacing.replace("","");
+                    strForReplacing.toCharArray();
+
+                    jObjStrComStart=jArray2.toString();
+                }
+
+                catch (Exception ex){
+                    Log.d("", "onResponse: ");
+                }
+
+
+            }
+            catch (Exception ex){
+                Log.d("", "doInBackground: ");
+            }
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            super.onPostExecute(result);
+
+        }
+
+        @Override
+        protected void onCancelled() {
+
+        }
     }
 }

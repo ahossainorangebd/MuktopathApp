@@ -319,11 +319,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
-
-
     }
-
 
 
     public class StartLogin extends AsyncTask<String, Void, String> {
@@ -353,9 +349,38 @@ public class LoginActivity extends AppCompatActivity {
 
             if(result!=""){
 
+                String token="";
+
                 try {
                     JSONObject jObject = new JSONObject(result);
 
+                    try {
+
+                        GlobalVar.gRecommendedCategories= new ArrayList<>();
+
+                        JSONObject jObjectData = jObject.getJSONObject("data");
+
+                        token = jObjectData.getString("token");
+                        JSONArray objectEnrollCourse =  jObjectData.getJSONArray("EnrollCourse");
+
+                        JSONArray favoriteCourseArray =  jObjectData.getJSONArray("FavoriteCategoryList");
+
+                        for(int favid=0; favid<favoriteCourseArray.length(); favid++){
+
+                            String ids=favoriteCourseArray.getString(favid);
+
+                            GlobalVar.gRecommendedCategories.add(ids);
+                        }
+
+                        GlobalVar.gTokenForSelectCatId=token;
+
+                        int favoriteCourseNumbers = favoriteCourseArray.length();
+                    }
+                    catch (Exception ex) {
+                        Log.d("", "onResponse: ");
+                    }
+
+                    String aaaaa="";
                 }
                 catch (Exception ex){
                     Log.d("", "onPostExecute: ");
@@ -363,8 +388,17 @@ public class LoginActivity extends AppCompatActivity {
 
                 mProgressDialog.dismiss();
 
-                Intent i = new Intent(mContext, SelectACategoryActivity.class);
-                startActivity(i);
+                if(GlobalVar.gRecommendedCategories.size()>1) {
+
+                    Intent i = new Intent(mContext, MyPageActivity.class);
+                    startActivity(i);
+                }
+                else {
+
+                    Intent i = new Intent(mContext, SelectACategoryActivity.class);
+                    startActivity(i);
+                }
+
             }
             else {
                 mEdtTxtPwd.setError("Wrong email or password");

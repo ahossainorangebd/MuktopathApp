@@ -118,9 +118,19 @@ public class DownloadActivity extends AppCompatActivity {
 
         recyclerView=findViewById(R.id.recyclerviewdownloadedvideolist);
 
+        int filesLength=0;
+
         File file=new File(subPath);
         File[] files=file.listFiles();
-        int filesLength =files.length;
+
+
+        if (files==null){
+            filesLength =0;
+        }
+        else {
+            filesLength =files.length;
+        }
+
 
         if(filesLength>0){
             GetDownloadedData();
@@ -152,6 +162,11 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
                 Intent i = new Intent(mContext, MainActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -160,6 +175,11 @@ public class DownloadActivity extends AppCompatActivity {
         recomendedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
 
                 Intent i = new Intent(mContext, RecomendedActivity.class);
                 v.getContext().startActivity(i);
@@ -170,6 +190,11 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
                 Intent i=new Intent(mContext,MyPageActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -178,6 +203,11 @@ public class DownloadActivity extends AppCompatActivity {
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
 
                 Intent i=new Intent(mContext,ProfileActivity.class);
                 v.getContext().startActivity(i);
@@ -189,6 +219,7 @@ public class DownloadActivity extends AppCompatActivity {
         mSplashActvtySearchSomething.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i=new Intent(mContext,MainActivity.class);
                 v.getContext().startActivity(i);
             }

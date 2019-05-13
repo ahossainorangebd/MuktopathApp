@@ -135,10 +135,10 @@ public class QuizFragment9 extends Fragment {
                 }
             }
             if(trueCount>1){
-                adapter=new RecyclerViewAdapterQuizOptions(optionTItles,context);
+                adapter=new RecyclerViewAdapterQuizOptions(nthQuiz, optionTItles,context);
             }
             else {
-                adapter=new RecyclerViewAdapterQuizRadioOptions(optionTItles,context);
+                adapter=new RecyclerViewAdapterQuizRadioOptions(nthQuiz, optionTItles,context);
             }
 
             recyclerView.setAdapter(adapter);

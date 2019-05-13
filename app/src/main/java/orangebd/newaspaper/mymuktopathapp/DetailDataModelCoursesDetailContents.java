@@ -181,6 +181,7 @@ public class DetailDataModelCoursesDetailContents
     private String mQuiz;
     private String mTimeUnit;
     private String mTitleAnother;
+    private String mContentSize;
 
 
     private String mQuizMarks;
@@ -836,6 +837,14 @@ public class DetailDataModelCoursesDetailContents
 
     public void setLessonCompletenessStatus(String lessonCompletenessStatus) {
         LessonCompletenessStatus = lessonCompletenessStatus;
+    }
+
+    public String getmContentSize() {
+        return mContentSize;
+    }
+
+    public void setmContentSize(String mContentSize) {
+        this.mContentSize = mContentSize;
     }
 
 

@@ -40,6 +40,9 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
     private int unitNumberSet;
     private String unitNumberSetStr;
+
+    private String unitIdStr;
+
     private String unitTitle;
 
     private ArrayList<DetailDataModelCoursesDetailContents> dataSet;
@@ -67,6 +70,8 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     private String videoCode;
     private String timeStatus;
     private String ownerId;
+    private String contentSize;
+    private String contentDuration;
 
     private Button downloadBtn;
 
@@ -152,11 +157,38 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         ImageView imageViewdot = holder.imageViewdotIconId;
 
 
+        String thisLessonCompleteness="";
 
-
-        String thisLessonCompleteness = dataSet.get(listPosition).getLessonCompletenessStatus();
+        try {
+            thisLessonCompleteness  = dataSet.get(listPosition).getLessonCompletenessStatus();
+        }
+        catch (Exception ex){
+            Log.d("", "onBindViewHolder: ");
+        }
 
         ImageView completedCheckbox = holder.mCheckBox;
+
+        //GlobalVar.gLessonCompleteTempUnitId
+        //GlobalVar.gLessonCompleteTempLessonId
+
+        if(GlobalVar.gLessonCompleteTempUnitId!=null) {
+
+            if (GlobalVar.gLessonCompleteTempUnitId.equalsIgnoreCase(String.valueOf(unitNumberSet + 1))) {
+
+                if (GlobalVar.gLessonCompleteTempLessonId != null) {
+
+                    if (GlobalVar.gLessonCompleteTempLessonId.equalsIgnoreCase(String.valueOf(listPosition + 1))) {
+
+                        completedCheckbox.setVisibility(View.VISIBLE);
+
+                        completedCheckbox.setImageResource(R.drawable.completed_checked_icon);
+
+                        mCompletedTextview.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        }
+
 
         if(thisLessonCompleteness.equalsIgnoreCase("100")){
             completedCheckbox.setVisibility(View.VISIBLE);
@@ -187,6 +219,8 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             videoCode = GlobalVar.thisFragmentContents.get(customListPosition).getFile_name();
             timeStatus = GlobalVar.thisFragmentContents.get(customListPosition).getStatus_content();
             ownerId = GlobalVar.thisFragmentContents.get(customListPosition).getOwner_id();
+            contentSize = GlobalVar.thisFragmentContents.get(customListPosition).getmContentSize();
+            contentDuration = GlobalVar.thisFragmentContents.get(customListPosition).getmDurationAnother();
         }
 
 
@@ -305,6 +339,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         /*Intent i = new Intent(mContext, CourseContentActivity.class);
                         v.getContext().startActivity(i);*/
 
+                        unitIdStr= String.valueOf(unitNumberSet+1);
 
                         Intent i = new Intent(mContext, CourseContentDetailActivity.class);
                         i.putExtra("ttl", titleText);
@@ -312,6 +347,9 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         i.putExtra("usernumber", ownerId);
                         i.putExtra("vcode", videoCode);
                         i.putExtra("videostatus", timeStatus);
+                        i.putExtra("unitid", unitIdStr);
+                        i.putExtra("csize", contentSize);
+                        i.putExtra("cduration", contentDuration);
 
                         GlobalVar.gListPosition=Integer.toString(listPosition);
 

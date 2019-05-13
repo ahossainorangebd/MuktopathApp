@@ -3,6 +3,8 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +35,8 @@ public class RecyclerViewAdapterQuizOptions extends RecyclerView.Adapter<Recycle
     private int trueCount;
     private boolean isSingle;
 
+    private int nNumberQuiz;
+
     ArrayList<DetailDataModelCoursesDetailContents> mPulseArrayList = new ArrayList<DetailDataModelCoursesDetailContents>();
 
     public static class MyViewHolder extends RecyclerView.ViewHolder
@@ -49,8 +53,9 @@ public class RecyclerViewAdapterQuizOptions extends RecyclerView.Adapter<Recycle
         }
     }
 
-    public RecyclerViewAdapterQuizOptions(ArrayList<DetailDataModelCoursesDetailContents> data, Context context) {
+    public RecyclerViewAdapterQuizOptions(int nthQuiz, ArrayList<DetailDataModelCoursesDetailContents> data, Context context) {
         this.dataSet = data;
+        this.nNumberQuiz = nthQuiz;
 
         this.mContext=context;
     }
@@ -79,6 +84,10 @@ public class RecyclerViewAdapterQuizOptions extends RecyclerView.Adapter<Recycle
         final TextView textViewName = holder.textViewName;
         final CheckBox checkViewName = holder.optionCheckBox;
 
+        checkViewName.setHighlightColor((Color.parseColor("#CC0000")));
+
+        //checkViewName.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#CC0000")));
+
         final String titleText=dataSet.get(listPosition).getmOptionBody();
         final String answer=dataSet.get(listPosition).getmOptionAnswer();
 
@@ -104,6 +113,12 @@ public class RecyclerViewAdapterQuizOptions extends RecyclerView.Adapter<Recycle
                         String selectedAnswer= textViewName.getText().toString();
 
                         final ArrayList<DetailDataModelCoursesDetailContents> mQListForId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
+
+
+                        // for a globalAnswer for checked report
+                        GlobalVar.gThisQuiz.add(String.valueOf(nNumberQuiz));
+                        GlobalVar.gSelectedAnsPostn.add(String.valueOf(listPosition));
+
 
                         if(GlobalVar.isRedirectFromQuizFragment1==true) {
                             String getAttendedQArray=mQListForId.get(GlobalVar.gNthQuiz).getmQuizId();

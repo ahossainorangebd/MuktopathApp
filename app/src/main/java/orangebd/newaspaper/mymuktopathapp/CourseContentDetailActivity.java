@@ -39,6 +39,7 @@ import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,6 +79,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     private String eCode;
     private String timeStatus;
+    private String unitId;
+    private String contentSize;
+    private String contentDuration;
     private String mListPosition;
     private String mUserNumber;
 
@@ -167,6 +171,20 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     private LinearLayout mVideoLayOut;
 
+
+    private int completedPercentage=97;
+
+
+    private int videoEndSecond;
+
+    // for posting completeness
+    private HashMap<String,String> mapSubmit;
+
+    String urlCompletenessSubmit = GlobalVar.gApiBaseUrl +"/api/journey/status/app/";
+
+
+    private int CountAUnitsLessons;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -229,10 +247,10 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             eCode = getIntent().getExtras().getString("vcode");
             mUserNumber = getIntent().getExtras().getString("usernumber");
             timeStatus = getIntent().getExtras().getString("videostatus");
-            //timeStatus = getIntent().getExtras().getString("videostatus");
+            unitId = getIntent().getExtras().getString("unitid");
+            contentSize = getIntent().getExtras().getString("csize");
+            contentDuration = getIntent().getExtras().getString("cduration");
         }
-
-
 
 
         GlobalVar.gLastReadLessonTitle=title;
@@ -422,10 +440,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     videoView.seekTo(seekbarProgress);
                 }
 
-
                 mProgressBar.postDelayed(onEverySecond, 1000);
-
-
 
             }
 
@@ -509,6 +524,14 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 }
 
+                videoEndSecond = Integer.parseInt(contentDuration)-5;
+
+                if(seconds==videoEndSecond){
+
+                    showPopUpCompletenessSubmit();
+
+                }
+
                 textView.setText(""+seconds);
                 seekbarProgress=progress;
 
@@ -523,6 +546,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                         videoView.seekTo(vprog);
                     }
                 }
+
+
+
 
             }
         });
@@ -912,7 +938,6 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
             return true;
 
-
             /*finish();
             return true;*/
 
@@ -1109,7 +1134,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String data = performPostCall(params[0], mapHit);
+            String data = performPostCallWithBearer(params[0], mapHit);
 
             return data;
         }
@@ -1244,4 +1269,153 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         dialog.show();
     }
+
+
+
+    public class CompletenessSubmit extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String data = performPostCallWithBearer(params[0], mapSubmit);
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+                JSONObject jObject = new JSONObject(result);
+
+                //Toast.makeText(context,"successfully submitted.",Toast.LENGTH_LONG).show();
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
+        }
+        @Override
+        protected void onCancelled() {
+
+        }
+    }
+
+
+
+
+    public String  performPostCallWithBearer(String requestURL, HashMap<String, String> postDataParams) {
+
+        URL url;
+        String response = "";
+
+        try {
+            url = new URL(requestURL);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty ("Authorization", "Bearer "+GlobalVar.gReplacingToken);
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getPostDataString(postDataParams));
+
+            writer.flush();
+            writer.close();
+            os.close();
+            int responseCode=conn.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line=br.readLine()) != null) {
+                    response+=line;
+                }
+            }
+
+            else {
+                response="";
+            }
+
+        }
+        catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+
+    private void showPopUpCompletenessSubmit()
+    {
+        final Dialog dialog = new Dialog(context, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforcompletenesssubmit);
+
+        Button okButton = dialog.findViewById(R.id.submitBtn);
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final String enrollId=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcId();
+
+                String enrollCourseCompltness=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcCompleteness();
+
+                // Let's count the total progress of a course
+                ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> units= GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse);
+
+
+                for(int incrUnits=0; incrUnits<units.size(); incrUnits++) {
+
+                    ArrayList <DetailDataModelCoursesDetailContents> lessons = units.get(incrUnits);
+
+                    CountAUnitsLessons = CountAUnitsLessons + lessons.size();
+                }
+
+                int eachLessonProgress = 100/CountAUnitsLessons;
+
+                int enrollCourseCompltnessInt = Integer.parseInt(enrollCourseCompltness);
+
+                int progressedEnrollCourseCompleteInt = enrollCourseCompltnessInt + eachLessonProgress;
+
+                enrollCourseCompltness = String.valueOf(progressedEnrollCourseCompleteInt);
+
+                if(Integer.parseInt(enrollCourseCompltness)>100){
+                    enrollCourseCompltness="100";
+                }
+
+                //String eachLessonProgressStr = String.valueOf(eachLessonProgress);
+
+                mapSubmit =  new HashMap<>();
+
+                mapSubmit.put("unit_id", unitId);
+                mapSubmit.put("lesson_id", GlobalVar.gLessonId);
+                mapSubmit.put("completeness", "100");
+                mapSubmit.put("start", String.valueOf(seconds));
+                mapSubmit.put("course_completeness", enrollCourseCompltness);
+
+                GlobalVar.gLessonCompleteTempUnitId = unitId;
+                GlobalVar.gLessonCompleteTempLessonId = GlobalVar.gLessonId;
+
+                new CompletenessSubmit().execute(urlCompletenessSubmit+enrollId);
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
 }

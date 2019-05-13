@@ -360,9 +360,4 @@ public class WelcomeActivity extends AppCompatActivity {
             Log.d("", "Something is : ");
         }
     }
-
-
-
-
-
 }

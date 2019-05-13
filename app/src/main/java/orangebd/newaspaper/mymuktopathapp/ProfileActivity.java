@@ -58,6 +58,16 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearLayout mYesCompleteCourseProfile;
 
     private TextView mNumberOfCompletedCourse;
+    private TextView mWishListNumberTV;
+    private TextView mIncompleteTV;
+    private TextView mNumberOfRunningCourseTV;
+
+
+
+    private LinearLayout mWishListCourseButton;
+    private LinearLayout mEndedCourseButton;
+    private LinearLayout mNonEndedCourseButton;
+    private LinearLayout mRunningCourseButton;
 
 
     @Override
@@ -81,6 +91,80 @@ public class ProfileActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
+
+
+        /** declaring ids of 4 buttons
+         * */
+
+        mWishListCourseButton=findViewById(R.id.wishListButtonId);
+        mEndedCourseButton=findViewById(R.id.endedCourseBtnId);
+        mNonEndedCourseButton=findViewById(R.id.nonEndedCourseBtnId);
+        mRunningCourseButton=findViewById(R.id.runningCourseBtnId);
+
+        mWishListCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                GlobalVar.isRedirectFromProfileWishListBtn=true;
+
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+
+                Intent i = new Intent(mContext, MyPageActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        mEndedCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileEndedBtn=true;
+
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+
+                Intent i = new Intent(mContext, MyPageActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        mNonEndedCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileNonEndedBtn=true;
+
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+
+                Intent i = new Intent(mContext, MyPageActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        mRunningCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileRunningBtn=true;
+
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
+
+                Intent i = new Intent(mContext, MyPageActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+
+
         /** Checking a user's profile completed or not
          * */
 
@@ -91,8 +175,9 @@ public class ProfileActivity extends AppCompatActivity {
         String getmCourseCompleted = mProfileInfoArrayList.get(0).getmCourseCompleted();
 
         int totalIncompletedCourseInt = Integer.parseInt(totalEnrolledCourse) - Integer.parseInt(getmCourseCompleted);
+
         //String totalIncompletedCourse =  totalIncompletedCourseInt;
-        String totalWishListCourse =  "0";
+        String totalWishListCourse =  convertEngToBn(String.valueOf(GlobalVar.gWishListNumber));
 
         for (int dynamicCourseNo=0; dynamicCourseNo < GlobalVar.gEnrollCourseId.size(); dynamicCourseNo++) {
 
@@ -106,9 +191,18 @@ public class ProfileActivity extends AppCompatActivity {
 
         mNotCompleteCourseProfile=findViewById(R.id.notCompleteCourseProfile);
         mYesCompleteCourseProfile=findViewById(R.id.yesCourseCompleteLayout);
-        mNumberOfCompletedCourse=findViewById(R.id.numberOfCompletedCourse);
 
-        if(Integer.parseInt(getmCourseCompleted)>0){
+        mNumberOfCompletedCourse=findViewById(R.id.numberOfCompletedCourse);
+        mWishListNumberTV=findViewById(R.id.numberOfWishlistCourse);
+        mIncompleteTV=findViewById(R.id.numberOfIncompletedCourse);
+        mNumberOfRunningCourseTV=findViewById(R.id.numberOfRunningCourse);
+
+
+        mWishListNumberTV.setText(totalWishListCourse);
+        mIncompleteTV.setText(convertEngToBn(String.valueOf(totalIncompletedCourseInt)));
+        mNumberOfRunningCourseTV.setText(convertEngToBn(String.valueOf(totalIncompletedCourseInt)));
+
+        if(Integer.parseInt(getmCourseCompleted)>0) {
             mYesCompleteCourseProfile.setVisibility(View.VISIBLE);
             mNumberOfCompletedCourse.setText(convertEngToBn(getmCourseCompleted));
 
@@ -117,11 +211,6 @@ public class ProfileActivity extends AppCompatActivity {
         else {
             mNotCompleteCourseProfile.setVisibility(View.VISIBLE);
         }
-
-
-
-
-
 
         /** Progress of progressBar
          * */
@@ -185,6 +274,11 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
                 Intent i = new Intent(mContext, MainActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -193,6 +287,11 @@ public class ProfileActivity extends AppCompatActivity {
         recomendedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
 
                 Intent i = new Intent(mContext, RecomendedActivity.class);
                 v.getContext().startActivity(i);
@@ -203,6 +302,12 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
                 Intent i=new Intent(mContext,MyPageActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -211,6 +316,11 @@ public class ProfileActivity extends AppCompatActivity {
         downloadsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
 
                 Intent i=new Intent(mContext,DownloadActivity.class);
                 v.getContext().startActivity(i);
@@ -221,6 +331,8 @@ public class ProfileActivity extends AppCompatActivity {
         mSplashActvtySearchSomething.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent i=new Intent(mContext,MainActivity.class);
                 v.getContext().startActivity(i);
             }

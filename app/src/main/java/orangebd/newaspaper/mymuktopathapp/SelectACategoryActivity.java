@@ -29,12 +29,19 @@ import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SelectACategoryActivity extends AppCompatActivity {
 
@@ -141,6 +148,12 @@ public class SelectACategoryActivity extends AppCompatActivity {
 
 
     String urlGetCourseCats = GlobalVar.gApiBaseUrl + "/api/course-categories";
+
+
+
+    String urlPostCourseCats = GlobalVar.gApiBaseUrl + "/api/favorite-user-cat-list";
+
+    private HashMap<String,String> mapCatSubmit;
 
     //All the detail Lists
     private ArrayList<DetailDataModelAll> detailListMainActivityCourseCat;
@@ -641,18 +654,41 @@ public class SelectACategoryActivity extends AppCompatActivity {
                     GlobalVar.gRecommendedCategoriesId.add(checkedStrCatEnId9);
 
                     chooseCategory9.setBackgroundColor(Color.parseColor("#a725ed"));
-
                 }
             }
         });
-
-
 
 
         mNextBtn=findViewById(R.id.nextBtnId);
         mNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                String jSelectedCatArray="";
+
+                try {
+                    for(int jSCCount=0; jSCCount<GlobalVar.gRecommendedCategoriesId.size(); jSCCount++) {
+
+                        String jAQObj=GlobalVar.gRecommendedCategoriesId.get(jSCCount);
+
+                        jSelectedCatArray=jSelectedCatArray+","+jAQObj;
+                    }
+                }
+                catch (Exception ex) {
+                    Log.d("", "onClick: ");
+                }
+                //String selectedCatId=jSelectedCatArray.toString();
+
+
+                mapCatSubmit =  new HashMap<>();
+
+                mapCatSubmit.put("category_id_list", jSelectedCatArray);
+
+
+                new PostCourseCategories().execute(urlPostCourseCats);
+
+
                 Intent i = new Intent(mContext, MyPageActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -660,6 +696,41 @@ public class SelectACategoryActivity extends AppCompatActivity {
 
         new GetCourseCategories().execute(urlGetCourseCats);
 
+    }
+
+
+    public class PostCourseCategories extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String data = performPostCallWithBearer(params[0], mapCatSubmit);
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+                JSONObject jObject = new JSONObject(result);
+
+                //Toast.makeText(context,"successfully submitted.",Toast.LENGTH_LONG).show();
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
+        }
+        @Override
+        protected void onCancelled() {
+
+        }
     }
 
     public class GetCourseCategories extends AsyncTask<String, Void, String> {
@@ -872,5 +943,73 @@ public class SelectACategoryActivity extends AppCompatActivity {
         }
 
         return sb.toString();
+    }
+
+    public String  performPostCallWithBearer(String requestURL, HashMap<String, String> postDataParams) {
+
+        URL url;
+        String response = "";
+
+        try {
+            url = new URL(requestURL);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty ("Authorization", "Bearer "+GlobalVar.gTokenForSelectCatId);
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getPostDataString(postDataParams));
+
+            writer.flush();
+            writer.close();
+            os.close();
+            int responseCode=conn.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line=br.readLine()) != null) {
+                    response+=line;
+                }
+            }
+
+            else {
+                response="";
+            }
+
+        }
+        catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+
+        boolean first = true;
+
+        for(Map.Entry<String, String> entry : params.entrySet()) {
+
+            if (first)
+                first = false;
+            else
+                result.append("&");
+
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        }
+
+        return result.toString();
     }
 }

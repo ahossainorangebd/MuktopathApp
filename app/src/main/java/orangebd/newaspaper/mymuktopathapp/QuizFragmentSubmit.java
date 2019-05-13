@@ -49,9 +49,7 @@ public class QuizFragmentSubmit extends Fragment {
 
     private Button submitAnswers;
 
-
     private int totalmark;
-
 
     private String quizMarks;
     private String quizTime;

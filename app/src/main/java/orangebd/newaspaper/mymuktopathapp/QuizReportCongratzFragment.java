@@ -41,14 +41,14 @@ public class QuizReportCongratzFragment extends Fragment {
 
         if(iPassMark <= iTotalGainedMark) {
             passOrFailImage.setBackgroundResource(R.drawable.congratz_passed_icon);
-            passOrFailText.setText("You passed.");
-            congratzTextView.setText("Congratz");
+            passOrFailText.setText("আপনি পাশ করেছেন।");
+            congratzTextView.setText("অভিনন্দন!");
         }
         else {
             passOrFailImage.setBackgroundResource(R.drawable.mukto_not_pass_icon);
-            passOrFailText.setText("You didn't pass.");
+            passOrFailText.setText("আপনি পাশ করেন নাই।");
 
-            passMarkTextview.setText("You have to score at least "+ GlobalVar.gPassMark +"%");
+            passMarkTextview.setText("আপনাকে অন্তত পক্ষে "+ GlobalVar.gPassMark +"% নাম্বার পেতে হবে।");
         }
 
         mPercentageTextView.setText(GlobalVar.gTotalGainedMark);

@@ -321,6 +321,8 @@ public class MyPageFragment4 extends Fragment {
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
                 }
+
+                GlobalVar.nNumberCourseBack=nthCourse;
             }
         });
 

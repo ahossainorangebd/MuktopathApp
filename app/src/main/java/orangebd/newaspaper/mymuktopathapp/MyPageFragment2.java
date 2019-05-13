@@ -86,8 +86,6 @@ public class MyPageFragment2 extends Fragment {
         /**for getting quiz numbers
          * */
 
-
-
         countQuizNumber=0;
 
         ArrayList<DetailDataModelCoursesDetailContents> unitArrs = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(GlobalVar.gNthCourse);
@@ -181,6 +179,7 @@ public class MyPageFragment2 extends Fragment {
         if(GlobalVar.gGoingDirection!=null) {
             if (GlobalVar.gGoingDirection.equalsIgnoreCase("right")) {
                 GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse - 1).size();
+
             } else {
                 GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse+1).size();
             }
@@ -335,6 +334,8 @@ public class MyPageFragment2 extends Fragment {
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
                 }
+
+                GlobalVar.nNumberCourseBack=nthCourse;
             }
         });
 

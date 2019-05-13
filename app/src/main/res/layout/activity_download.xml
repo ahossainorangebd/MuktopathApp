@@ -8,8 +8,6 @@
     android:background="@color/Colorpeace"
     >
 
-
-
     <LinearLayout
         android:id="@+id/noDownloadLayout"
         android:layout_width="match_parent"
@@ -33,6 +31,7 @@
             android:layout_width="270dp"
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="আপনি কোন কোর্স ডাউনলোড করেন নি। আপনি চাইলে কোর্স ডাউনলোড করতে কোর্স পেইজে যেতে পারেন।"
             />
 

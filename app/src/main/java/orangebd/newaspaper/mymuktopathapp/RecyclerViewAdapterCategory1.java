@@ -31,6 +31,10 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
     private String entryDate;
     private String updateDate;
 
+
+    private String categoryId;
+    private String categoryName;
+
     private Typeface tf;
 
     private ArrayList<DetailDataModel> mFilteredList;
@@ -58,8 +62,10 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         }
     }
 
-    public RecyclerViewAdapterCategory1(ArrayList<DetailDataModelCourses> data, Context context) {
+    public RecyclerViewAdapterCategory1(String catId, String catName,ArrayList<DetailDataModelCourses> data, Context context) {
         this.dataSet = data;
+        this.categoryId = catId;
+        this.categoryName = catName;
 
         this.mContext=context;
         stringPath = "file:///android_res/drawable/company_credit_logo.png";
@@ -92,6 +98,9 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         final String paymentStatus=dataSet.get(listPosition).getmPaymentStatus();
         final String batchId=dataSet.get(listPosition).getmId();
         final String DetailDescription=dataSet.get(listPosition).getmDetails();
+
+        final String categoryIdFinal=categoryId;
+        final String categoryNameFinal=categoryName;
 
         textViewName.setText(titleText);
 
@@ -150,6 +159,12 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
                 i.putExtra("pstatus", paymentStatus);
                 i.putExtra("scsize", sContentSize);
                 i.putExtra("usize", sUnitSize);
+                i.putExtra("catid", categoryIdFinal);
+                i.putExtra("catname", categoryNameFinal);
+                i.putExtra("lposition", listPosition);
+
+                String abcd="";
+
                 try {
                     v.getContext().startActivity(i);
                 }

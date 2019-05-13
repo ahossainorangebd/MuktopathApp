@@ -8,19 +8,37 @@
     tools:context=".MyPageDetailFragment3"
     android:orientation="vertical"
     android:background="@color/Colorpeace"
-    android:layout_gravity="center"
-    android:gravity="center"
     >
 
     <TextView
-        android:id="@+id/summeryDesc"
+        android:id="@+id/quizTitle"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz 1"
+        android:textSize="18sp"
+        android:textColor="@color/colorVoldemort"
+        android:textStyle="bold"
+        android:layout_marginLeft="12dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/quiz_options_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        />
+
+    <TextView
+        android:id="@+id/summeryDesc"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Summery"
         android:textSize="25sp"
-        android:textColor="@color/colorVoldemort"
-        android:layout_gravity="center"
         android:gravity="center"
+        android:textColor="@color/colorVoldemort"
         />
 
 </LinearLayout>

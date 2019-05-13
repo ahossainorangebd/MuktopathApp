@@ -61,6 +61,9 @@ public class MyPageFragment14 extends Fragment {
 
         context=getContext();
 
+
+
+
         /** Progress of progressBar
          * */
 
@@ -328,6 +331,9 @@ public class MyPageFragment14 extends Fragment {
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
                 }
+
+
+                GlobalVar.nNumberCourseBack=nthCourse;
             }
         });
 

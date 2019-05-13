@@ -2,9 +2,6 @@ package orangebd.newaspaper.mymuktopathapp;
 
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,19 +19,18 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<RecyclerViewAdapterQuizRadioOptions.MyViewHolder> {
+public class RecyclerViewAdapterQuizCheckboxOptionsReport extends RecyclerView.Adapter<RecyclerViewAdapterQuizCheckboxOptionsReport.MyViewHolder> {
 
     private ArrayList<DetailDataModelCoursesDetailContents> dataSet;
-
-    private int nNumberQuiz;
-
     private Context mContext;
 
-    private RadioButton mOptionCheckBox;
+    private CheckBox mOptionCheckBox;
     private boolean isChecked=false;
 
     private int trueCount;
     private boolean isSingle;
+
+    private int nNumberQuiz;
 
     ArrayList<DetailDataModelCoursesDetailContents> mPulseArrayList = new ArrayList<DetailDataModelCoursesDetailContents>();
 
@@ -43,7 +38,7 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
     {
         TextView textViewName;
 
-        RadioButton optionCheckBox;
+        CheckBox optionCheckBox;
 
         public MyViewHolder(View itemView)
         {
@@ -53,9 +48,8 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
         }
     }
 
-    public RecyclerViewAdapterQuizRadioOptions(int nthQuiz, ArrayList<DetailDataModelCoursesDetailContents> data, Context context) {
+    public RecyclerViewAdapterQuizCheckboxOptionsReport(int nthQuiz, ArrayList<DetailDataModelCoursesDetailContents> data, Context context) {
         this.dataSet = data;
-
         this.nNumberQuiz = nthQuiz;
 
         this.mContext=context;
@@ -67,7 +61,7 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
         View view= new View(mContext);
 
         try {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_quiz_radio_options, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_quiz_options, parent, false);
         }
         catch (Exception ex){
             Log.d("", ex.getMessage());
@@ -80,32 +74,25 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
+
+
+
+
         String aasasasasas="";
 
         final TextView textViewName = holder.textViewName;
-        final RadioButton checkViewName = holder.optionCheckBox;
+        final CheckBox checkViewName = holder.optionCheckBox;
 
 
-        if(Build.VERSION.SDK_INT>=21)
-        {
 
-            ColorStateList colorStateList = new ColorStateList(
-                    new int[][]{
 
-                            new int[]{-android.R.attr.state_enabled}, new int[]{android.R.attr.state_enabled} //enabled
-                    },
-                    new int[] {
-                            Color.BLACK ,Color.BLUE // blue enabled
-                    }
-            );
+        //String quizNumber = GlobalVar.gThisQuiz.get(nNumberQuiz);
+        String selectedAnsPosition = GlobalVar.gSelectedAnsPostn.get(nNumberQuiz);
 
-            checkViewName.setButtonTintList(colorStateList);//set the color tint list
-            checkViewName.invalidate(); //could not be necessary
+        if(listPosition==Integer.parseInt(selectedAnsPosition)){
+            checkViewName.setChecked(true);
         }
 
-
-        //checkViewName.setBackgroundTintList(colorStateList);
-        //setHighlightColor((Color.parseColor("#3d005e")));
 
         final String titleText=dataSet.get(listPosition).getmOptionBody();
         final String answer=dataSet.get(listPosition).getmOptionAnswer();
@@ -124,22 +111,15 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
         checkViewName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                String testing1="";
-
                 if(isChecked)
                 {
-
                     try {
                         Object something = buttonView.getTag();
 
-
                         String selectedAnswer= textViewName.getText().toString();
+
                         final ArrayList<DetailDataModelCoursesDetailContents> mQListForId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
 
-                        // for a globalAnswer for checked report
-                        GlobalVar.gThisQuiz.add(String.valueOf(nNumberQuiz));
-                        GlobalVar.gSelectedAnsPostn.add(String.valueOf(listPosition));
-                        //
 
                         if(GlobalVar.isRedirectFromQuizFragment1==true) {
                             String getAttendedQArray=mQListForId.get(GlobalVar.gNthQuiz).getmQuizId();
@@ -161,7 +141,6 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
 
                         }
                         else{
-
                             //TODO
                             //Toast.makeText(mContext,"Incorrect Answer",Toast.LENGTH_SHORT).show();
                         }
@@ -196,7 +175,7 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
             public void onClick(View v)
             {
 
-                String testing3="";
+                String testing="";
 
                 if(isSingle==true){
                     Toast.makeText(mContext,"You can't select more than one answer.",Toast.LENGTH_SHORT).show();

@@ -61,6 +61,10 @@ public class MyPageFragment11 extends Fragment {
 
         context=getContext();
 
+
+
+
+
         /** Progress of progressBar
          * */
 
@@ -181,9 +185,11 @@ public class MyPageFragment11 extends Fragment {
         if(GlobalVar.gGoingDirection.equalsIgnoreCase("right")) {
             GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse - 1).size();
         }
+
         else {
             GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse+1).size();
         }
+
         if(GlobalVar.gEnrollCourseNumber==11){
             GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();
         }
@@ -325,6 +331,8 @@ public class MyPageFragment11 extends Fragment {
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
                 }
+
+                GlobalVar.nNumberCourseBack=nthCourse;
             }
         });
 

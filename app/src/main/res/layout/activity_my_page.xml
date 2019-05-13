@@ -24,6 +24,7 @@
         >
 
         <TextView
+            android:id="@+id/myPageTextId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="আমার পাতা"
@@ -192,6 +193,7 @@
 
 
     <LinearLayout
+        android:id="@+id/fiveFooterBtnsLayOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

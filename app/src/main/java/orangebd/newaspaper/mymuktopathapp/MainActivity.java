@@ -117,6 +117,33 @@ public class MainActivity extends AppCompatActivity {
     private HashMap<String,String> map9;
     private HashMap<String,String> map10;
 
+
+
+
+    // For passing cat id and cat Name via parametres
+
+    private String catName1;
+    private String catName2;
+    private String catName3;
+    private String catName4;
+    private String catName5;
+    private String catName6;
+    private String catName7;
+    private String catName8;
+    private String catName9;
+    private String catName10;
+
+    private String catId1;
+    private String catId2;
+    private String catId3;
+    private String catId4;
+    private String catId5;
+    private String catId6;
+    private String catId7;
+    private String catId8;
+    private String catId9;
+    private String catId10;
+
     // arraylists
 
 
@@ -268,6 +295,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
                 Intent i = new Intent(mContext, RecomendedActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -276,6 +308,11 @@ public class MainActivity extends AppCompatActivity {
         myPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
 
                 Intent i=new Intent(mContext,MyPageActivity.class);
                 v.getContext().startActivity(i);
@@ -286,6 +323,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
                 Intent i=new Intent(mContext,DownloadActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -295,6 +337,11 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
 
                 Intent i=new Intent(mContext,ProfileActivity.class);
                 v.getContext().startActivity(i);
@@ -597,8 +644,6 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject jObject;
 
                 JSONArray objectCourse = (JSONArray) jObjectMain.getJSONArray("data");
-
-
 
                 try {
 
@@ -1030,7 +1075,12 @@ public class MainActivity extends AppCompatActivity {
         {
             super.onPostExecute(result);
 
-            adapter=new RecyclerViewAdapterCategory1(detailListMainActivityCourse,mContext);
+
+            catId1 = map1.get("id");
+            catName1 = map1.get("name");
+
+
+            adapter=new RecyclerViewAdapterCategory1( catId1, catName1 ,detailListMainActivityCourse,mContext);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -1094,7 +1144,6 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray objectCourse = (JSONArray) jObjectMain.getJSONArray("data");
 
                 try {
-
 
                     if(objectCourse.length()>0) {
 
@@ -1517,7 +1566,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView2();
 
-            adapter2=new RecyclerViewAdapterCategory2(detailListMainActivityCourse2,mContext);
+            catId2 = map2.get("id");
+            catName2 = map2.get("name");
+
+            adapter2=new RecyclerViewAdapterCategory1(catId2, catName2 ,detailListMainActivityCourse2,mContext);
 
             recyclerView2.setAdapter(adapter2);
             adapter2.notifyDataSetChanged();
@@ -2007,7 +2059,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView3();
 
-            adapter3=new RecyclerViewAdapterCategory3(detailListMainActivityCourse3,mContext);
+            catId3 = map3.get("id");
+            catName3 = map3.get("name");
+
+            adapter3=new RecyclerViewAdapterCategory1(catId3 , catName3, detailListMainActivityCourse3,mContext);
 
             recyclerView3.setAdapter(adapter3);
             adapter3.notifyDataSetChanged();
@@ -2496,7 +2551,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView4();
 
-            adapter4=new RecyclerViewAdapterCategory1(detailListMainActivityCourse4,mContext);
+            catId4 = map4.get("id");
+            catName4 = map4.get("name");
+
+            adapter4=new RecyclerViewAdapterCategory1(catId4, catName4 ,detailListMainActivityCourse4,mContext);
 
             recyclerView4.setAdapter(adapter4);
             adapter4.notifyDataSetChanged();
@@ -2985,7 +3043,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView5();
 
-            adapter5=new RecyclerViewAdapterCategory1(detailListMainActivityCourse5,mContext);
+            catId5 = map5.get("id");
+            catName5 = map5.get("name");
+
+            adapter5=new RecyclerViewAdapterCategory1(catId5, catName5, detailListMainActivityCourse5,mContext);
 
             recyclerView5.setAdapter(adapter5);
             adapter5.notifyDataSetChanged();
@@ -3482,7 +3543,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView6();
 
-            adapter6=new RecyclerViewAdapterCategory1(detailListMainActivityCourse6,mContext);
+            catId6 = map6.get("id");
+            catName6 = map6.get("name");
+
+            adapter6=new RecyclerViewAdapterCategory1(catId6 , catName6, detailListMainActivityCourse6,mContext);
 
             recyclerView6.setAdapter(adapter6);
             adapter6.notifyDataSetChanged();
@@ -3976,7 +4040,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView7();
 
-            adapter7=new RecyclerViewAdapterCategory1(detailListMainActivityCourse7,mContext);
+            catId7 = map7.get("id");
+            catName7 = map7.get("name");
+
+            adapter7=new RecyclerViewAdapterCategory1(catId7 ,catName7, detailListMainActivityCourse7,mContext);
 
             recyclerView7.setAdapter(adapter7);
             adapter7.notifyDataSetChanged();
@@ -4472,7 +4539,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView8();
 
-            adapter8=new RecyclerViewAdapterCategory1(detailListMainActivityCourse8,mContext);
+            catId8 = map8.get("id");
+            catName8 = map8.get("name");
+
+            adapter8=new RecyclerViewAdapterCategory1( catId8, catName8,detailListMainActivityCourse8,mContext);
 
             recyclerView8.setAdapter(adapter8);
             adapter8.notifyDataSetChanged();
@@ -4965,7 +5035,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView9();
 
-            adapter9=new RecyclerViewAdapterCategory1(detailListMainActivityCourse9,mContext);
+            catId9 = map9.get("id");
+            catName9 = map9.get("name");
+
+            adapter9=new RecyclerViewAdapterCategory1(catId9, catName9, detailListMainActivityCourse9,mContext);
 
             recyclerView9.setAdapter(adapter9);
             adapter9.notifyDataSetChanged();
@@ -5431,12 +5504,7 @@ public class MainActivity extends AppCompatActivity {
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
                         detailListMainActivityCourse10.add(modelAlterMainActivity);
-
-
                     }
-
-
-
                 }
                 catch (Exception ex) {
                     Log.d("", "onResponse: ");
@@ -5457,7 +5525,10 @@ public class MainActivity extends AppCompatActivity {
 
             setRecyclerView10();
 
-            adapter10=new RecyclerViewAdapterCategory1(detailListMainActivityCourse10,mContext);
+            catId10 = map10.get("id");
+            catName10 = map10.get("name");
+
+            adapter10=new RecyclerViewAdapterCategory1(catId10, catName10,detailListMainActivityCourse10,mContext);
 
             recyclerView10.setAdapter(adapter10);
             adapter10.notifyDataSetChanged();

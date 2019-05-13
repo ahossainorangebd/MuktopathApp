@@ -63,6 +63,9 @@ public class MyPageFragment6 extends Fragment {
         context=getContext();
 
 
+
+
+
         //For getting all unit data details
         //ArrayList<DetailDataModelCoursesDetailContents> unitsArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse);
 
@@ -327,6 +330,8 @@ public class MyPageFragment6 extends Fragment {
                     String msg=ex.getMessage();
                     Log.d("msg",msg);
                 }
+
+                GlobalVar.nNumberCourseBack=nthCourse;
             }
         });
 

@@ -66,6 +66,8 @@ public class MyPageActivity extends AppCompatActivity {
     private Context mContext;
     ImageView imageLogo;
 
+    private TextView mCustomLogoText;
+
     String url = GlobalVar.gApiBaseUrl + "/api/login";
     String ShareURL;
     String title;
@@ -207,22 +209,28 @@ public class MyPageActivity extends AppCompatActivity {
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> unitJourneyStatusList;
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> courseJourneyStatusList;
 
+
+
+
+    // for wishList
+
+    ArrayList<DetailDataModelProfileButtons> wishListArray;
+
+
+    private TextView myPageTextView;
+
+    private LinearLayout mFiveFooterBtnsLayOut;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
 
         mContext=this;
 
-        getSupportActionBar().hide();
-
-        View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.custom_logodetails, null, false);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(view);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().hide();
 
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
@@ -233,6 +241,10 @@ public class MyPageActivity extends AppCompatActivity {
 
         mRelativeBackground=findViewById(R.id.drawerLayout);
         mNoEnroledCourseFound=findViewById(R.id.noEnroledCourseFound);
+
+
+        myPageTextView=findViewById(R.id.myPageTextId);
+        mFiveFooterBtnsLayOut=findViewById(R.id.fiveFooterBtnsLayOut);
 
 
         /**get device height and width*/
@@ -642,6 +654,26 @@ public class MyPageActivity extends AppCompatActivity {
                                     JSONArray objectAgainAnother =  jObjectData.getJSONArray("RoleInstitution");
                                     JSONArray objectEnrollCourse =  jObjectData.getJSONArray("EnrollCourse");
 
+
+                                    JSONArray favoriteCourseArray =  jObjectData.getJSONArray("FavoriteCategoryList");
+
+                                    GlobalVar.gRecommendedCategories= new ArrayList<>();
+
+                                    try {
+                                        for (int favid = 0; favid < favoriteCourseArray.length(); favid++) {
+
+                                            String ids = favoriteCourseArray.getString(favid);
+
+                                            GlobalVar.gRecommendedCategories.add(ids);
+                                        }
+                                    }
+                                    catch (Exception ex){
+                                        Log.d("", "onResponse: ");
+                                    }
+
+
+                                    JSONArray objectWishList =  jObjectData.getJSONArray("WishList");
+
                                     JSONObject objectUserInformation = jObjectData.getJSONObject("UserInfo");
 
                                     String UserProfilePhoto = objectUserInformation.getString("photo_name");
@@ -652,9 +684,147 @@ public class MyPageActivity extends AppCompatActivity {
 
                                     detailListUserInformation.add(modelUserInformation);
 
+
+
+                                    //wishList
+
+                                    JSONObject ObjwListNumber = new JSONObject();
+
+                                    wishListArray = new ArrayList<>();
+
+                                    for(int wList=0; wList<objectWishList.length(); wList++){
+
+
+                                        DetailDataModelProfileButtons wishListModel = new DetailDataModelProfileButtons();
+
+                                        ObjwListNumber = objectWishList.getJSONObject(wList);
+
+
+                                        String getWishListIds= ObjwListNumber.getString("id");
+
+                                        wishListModel.setWishListId(getWishListIds);
+
+
+                                        wishListArray.add(wishListModel);
+
+                                        GlobalVar.gWishListArray=wishListArray;
+                                    }
+
+
                                     int enrolledCourseNumbers = objectEnrollCourse.length();
 
-                                    GlobalVar.gEnrollCourseNumber = enrolledCourseNumbers;
+
+                                    GlobalVar.gWishListNumber =objectWishList.length();
+
+
+
+
+
+
+                                    /** deciding the number of tabsPagerAdapter Fragments according to boolean var redirect from 4 buttons of profile*/
+
+
+                                    int totalIncompletedCourseInt = enrolledCourseNumbers - Integer.parseInt(coursecompleted);
+
+                                    if(GlobalVar.isRedirectFromProfileWishListBtn==true) {
+                                        GlobalVar.gEnrollCourseNumber = GlobalVar.gWishListNumber;
+
+
+                                        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_logodetails_for_profile_btns, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        mCustomLogoText=view.findViewById(R.id.centertitlenametv);
+
+                                        mCustomLogoText.setText("পছন্দের কোর্স");
+                                        myPageTextView.setVisibility(View.GONE);
+
+                                        mFiveFooterBtnsLayOut.setVisibility(View.GONE);
+
+
+                                        mSettingsBtn.setVisibility(View.GONE);
+                                    }
+
+                                    else if (GlobalVar.isRedirectFromProfileEndedBtn==true) {
+
+                                        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_logodetails_for_profile_btns, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        mCustomLogoText=view.findViewById(R.id.centertitlenametv);
+
+                                        GlobalVar.gEnrollCourseNumber = Integer.parseInt(coursecompleted);
+
+                                        mCustomLogoText.setText("সম্পন্ন কোর্স");
+                                        myPageTextView.setVisibility(View.GONE);
+
+                                        mFiveFooterBtnsLayOut.setVisibility(View.GONE);
+
+                                        mSettingsBtn.setVisibility(View.GONE);
+                                    }
+
+                                    else if(GlobalVar.isRedirectFromProfileNonEndedBtn==true) {
+
+                                        GlobalVar.gEnrollCourseNumber = totalIncompletedCourseInt;
+
+                                        getSupportActionBar().hide();
+
+                                        /*View view = LayoutInflater.from(mContext)
+                                                .inflate(R.layout.custom_logodetails, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
+                                    }
+
+                                    else if(GlobalVar.isRedirectFromProfileRunningBtn==true) {
+
+                                        GlobalVar.gEnrollCourseNumber = totalIncompletedCourseInt;
+
+
+                                        getSupportActionBar().hide();
+
+                                        /*View view = LayoutInflater.from(mContext)
+                                                .inflate(R.layout.custom_logodetails, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
+                                    }
+
+                                    else{
+                                        GlobalVar.gEnrollCourseNumber = enrolledCourseNumbers;
+
+                                        getSupportActionBar().hide();
+
+                                        /*View view = LayoutInflater.from(mContext)
+                                                .inflate(R.layout.custom_logodetails, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
+                                    }
+
+
+
+
+
+
 
                                     String aaaaaa = "";
 
@@ -672,6 +842,8 @@ public class MyPageActivity extends AppCompatActivity {
                                             String enrolCourseId= jObjEnrolledCourses.getString("id");
                                             String enrolCourseProgress= jObjEnrolledCourses.getString("course_completeness");
 
+                                            double completedCourseDouble=Double.parseDouble(enrolCourseProgress);
+
                                             JSONArray exams = jObjEnrolledCourses.getJSONArray("exam");
                                             JSONArray assignments = jObjEnrolledCourses.getJSONArray("assignment");
 
@@ -681,7 +853,10 @@ public class MyPageActivity extends AppCompatActivity {
                                             DetailDataModelCourses modelForLoginCourse = new DetailDataModelCourses();
 
                                             String featured = objectCourse2.getString("featured");
+
                                             String Eid = objectCourse2.getString("id");
+
+
                                             String Edetails = objectCourse2.getString("details");
                                             String Eadmission_status = objectCourse2.getString("admission_status");
                                             String averageRating = objectCourse2.getString("averageRating");
@@ -743,7 +918,48 @@ public class MyPageActivity extends AppCompatActivity {
                                                 modelCoursePassMark.setQuiz_pass_mark(courseQuizPassMark);
                                                 modelCoursePassMark.setExam_pass_mark(courseExamPassMark);
 
-                                                mPassPercentageArrayList.add(modelCoursePassMark);
+                                                if(GlobalVar.isRedirectFromProfileEndedBtn==true){
+
+                                                    if(enrolCourseProgress.equalsIgnoreCase("100")) {
+
+                                                        mPassPercentageArrayList.add(modelCoursePassMark);
+                                                    }
+                                                    else{
+
+                                                        String nothingtest="";
+                                                    }
+
+                                                }
+
+                                                else if(GlobalVar.isRedirectFromProfileRunningBtn==true) {
+
+                                                    if (completedCourseDouble<100) {
+
+                                                        mPassPercentageArrayList.add(modelCoursePassMark);
+                                                    }
+                                                    else{
+
+                                                        String nothingisimpo="";
+                                                    }
+                                                }
+
+                                                else if(GlobalVar.isRedirectFromProfileNonEndedBtn==true) {
+
+                                                    if (completedCourseDouble<100) {
+
+                                                        mPassPercentageArrayList.add(modelCoursePassMark);
+                                                    }
+                                                    else{
+
+                                                        String nothingisimpo="";
+                                                    }
+                                                }
+
+                                                else{
+                                                    mPassPercentageArrayList.add(modelCoursePassMark);
+                                                }
+
+
 
                                                 String awqwe="";
 
@@ -820,7 +1036,45 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                 modelCourseThumbnail.setCover_code_image(coverPhoto);
 
-                                                detailListCourseThumbnail.add(modelCourseThumbnail);
+                                                if(GlobalVar.isRedirectFromProfileEndedBtn==true) {
+
+                                                    if (enrolCourseProgress.equalsIgnoreCase("100")) {
+
+                                                        detailListCourseThumbnail.add(modelCourseThumbnail);
+                                                    }
+                                                    else{
+
+                                                        String nothingisimpo="";
+                                                    }
+                                                }
+
+                                                else if(GlobalVar.isRedirectFromProfileRunningBtn==true) {
+
+                                                    if (completedCourseDouble<100) {
+
+                                                        detailListCourseThumbnail.add(modelCourseThumbnail);
+                                                    }
+                                                    else{
+
+                                                        String nothingisimpo="";
+                                                    }
+                                                }
+
+                                                else if(GlobalVar.isRedirectFromProfileNonEndedBtn==true) {
+
+                                                    if (completedCourseDouble<100) {
+
+                                                        detailListCourseThumbnail.add(modelCourseThumbnail);
+                                                    }
+                                                    else{
+
+                                                        String nothingisimpo="";
+                                                    }
+                                                }
+                                                else{
+                                                    detailListCourseThumbnail.add(modelCourseThumbnail);
+                                                }
+
 
                                                 //model.setmArrayListThumbnails(detailListCourseThumbnail);
 
@@ -905,7 +1159,8 @@ public class MyPageActivity extends AppCompatActivity {
 
 
                                                     for (int ii = 0; ii < jObject.length() - 2; ii++)
-                                                    {//syllabus > 0,1,2
+                                                    {
+                                                        //syllabus > 0,1,2
                                                         JSONObject jSObject2 = jObject.getJSONObject("" + ii);
 
                                                         detailList6 = new ArrayList<DetailDataModelCourses>();
@@ -1078,6 +1333,7 @@ public class MyPageActivity extends AppCompatActivity {
                                                                         String type_content = jObjAgainContent.getString("type");
                                                                         String updated_at_content = jObjAgainContent.getString("updated_at");
                                                                         String updated_by_content = jObjAgainContent.getString("updated_by");
+                                                                        String contentSize = jObjAgainContent.getString("size");
 
                                                                         modelCourseContents.setPaid(paid);
                                                                         modelCourseContents.setPrice(price);
@@ -1105,6 +1361,8 @@ public class MyPageActivity extends AppCompatActivity {
                                                                         modelCourseContents.setTitle_content(mTitle);
                                                                         modelCourseContents.setCreated_at_content(created_at_content);
                                                                         modelCourseContents.setmContentType(content_type);
+                                                                        modelCourseContents.setmDurationAnother(mDuration);
+                                                                        modelCourseContents.setmContentSize(contentSize);
                                                                     }
                                                                     else {
                                                                         JSONArray jObjAgainContent = jSObject3.getJSONArray("content");
@@ -1412,53 +1670,262 @@ public class MyPageActivity extends AppCompatActivity {
                                                 Log.d("", "onResponse: ");
                                             }
 
+
+
                                             enrollCourseModel.setmEcId(enrolCourseId);
                                             enrollCourseModel.setmEcCompleteness(enrolCourseProgress);
                                             enrollCourseModel.setmCourseAliasName(course_alias_name);
 
-                                            courseJourneyStatusList.add(unitJourneyStatusList);
 
 
-                                            detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
-                                            detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
 
-                                            detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
+                                            // Setting custom array list for profile 4 buttons
 
-                                            //TODO
-                                            detailListCourseDetailContentss.add(mContentArrayListNew);
-                                            //detailListCourseDetailLesson.add(mLessonArrayListNew);
+                                            if(GlobalVar.isRedirectFromProfileEndedBtn==true)
+                                            {
 
-                                            //TODO
+                                                if(enrolCourseProgress.equalsIgnoreCase("100")) {
 
-                                            //detailListVideoPulse.add(mContentArrayListNewPulse);
+                                                    //detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                    //detailListCourseDetailContentss.remove(ec);
 
-                                            detailListCourseDetailUnits.add(mUnitArrayListNew);
-
-                                            detailListCourseDetailUnitQuizList.add(mUnitQuizList);
-                                            detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
-
-                                            //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
+                                                    detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                    courseJourneyStatusList.add(unitJourneyStatusList);
 
 
-                                            //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
+                                                    detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
+                                                    detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
 
-                                            // for unit arrays
-                                            detailListCourseUnit1Data.add(mUnit1DataArrayList);
-                                            detailListCourseUnit2Data.add(mUnit2DataArrayList);
-                                            detailListCourseUnit3Data.add(mUnit3DataArrayList);
-                                            detailListCourseUnit4Data.add(mUnit4DataArrayList);
+                                                    detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
+
+                                                    //TODO
+
+                                                    //detailListCourseDetailLesson.add(mLessonArrayListNew);
+
+                                                    //TODO
+
+                                                    //detailListVideoPulse.add(mContentArrayListNewPulse);
+
+                                                    detailListCourseDetailUnits.add(mUnitArrayListNew);
+
+                                                    detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+                                                    detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
+
+                                                    //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
 
 
-                                            detailListCourseUnitAllData.add(detailUnitArrayNumbers);
-                                            detailListCourseDetailLesson.add(lessonsIntoIndexs);
+                                                    //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
 
-                                            GlobalVar.gEnrolledInstitution = detailList10;
+                                                    // for unit arrays
+                                                    detailListCourseUnit1Data.add(mUnit1DataArrayList);
+                                                    detailListCourseUnit2Data.add(mUnit2DataArrayList);
+                                                    detailListCourseUnit3Data.add(mUnit3DataArrayList);
+                                                    detailListCourseUnit4Data.add(mUnit4DataArrayList);
 
 
-                                            GlobalVar.gEnrollCourseId.add(enrollCourseModel);
+                                                    detailListCourseUnitAllData.add(detailUnitArrayNumbers);
+                                                    detailListCourseDetailLesson.add(lessonsIntoIndexs);
 
-                                            String stp="";
+                                                    GlobalVar.gEnrolledInstitution = detailList10;
+
+
+                                                    GlobalVar.gEnrollCourseId.add(enrollCourseModel);
+
+                                                    String stp="";
+
+
+
+                                                    String whatwas6="";
+
+                                                }
+                                                else{
+
+                                                    String nothingabcd="abcd";
+
+                                                }
+
+                                            }
+
+
+
+                                            else if(GlobalVar.isRedirectFromProfileRunningBtn==true){
+
+                                                String nothingabcd="abcd";
+
+                                                if (completedCourseDouble<100) {
+
+                                                    //detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                    //detailListCourseDetailContentss.remove(ec);
+
+                                                    detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                    courseJourneyStatusList.add(unitJourneyStatusList);
+
+
+                                                    detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
+                                                    detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
+
+                                                    detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
+
+                                                    //TODO
+
+                                                    //detailListCourseDetailLesson.add(mLessonArrayListNew);
+
+                                                    //TODO
+
+                                                    //detailListVideoPulse.add(mContentArrayListNewPulse);
+
+                                                    detailListCourseDetailUnits.add(mUnitArrayListNew);
+
+                                                    detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+                                                    detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
+
+                                                    //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
+
+
+                                                    //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
+
+                                                    // for unit arrays
+                                                    detailListCourseUnit1Data.add(mUnit1DataArrayList);
+                                                    detailListCourseUnit2Data.add(mUnit2DataArrayList);
+                                                    detailListCourseUnit3Data.add(mUnit3DataArrayList);
+                                                    detailListCourseUnit4Data.add(mUnit4DataArrayList);
+
+
+                                                    detailListCourseUnitAllData.add(detailUnitArrayNumbers);
+                                                    detailListCourseDetailLesson.add(lessonsIntoIndexs);
+
+                                                    GlobalVar.gEnrolledInstitution = detailList10;
+
+
+                                                    GlobalVar.gEnrollCourseId.add(enrollCourseModel);
+
+                                                    String stp="";
+
+
+
+                                                    String whatwas6="";
+                                                }
+                                                else{
+
+                                                    String nothingisimport="";
+                                                }
+                                            }
+
+                                            else if(GlobalVar.isRedirectFromProfileNonEndedBtn==true){
+
+                                                if (completedCourseDouble<100) {
+
+                                                    //detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                    //detailListCourseDetailContentss.remove(ec);
+
+                                                    detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                    courseJourneyStatusList.add(unitJourneyStatusList);
+
+
+                                                    detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
+                                                    detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
+
+                                                    detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
+
+                                                    //TODO
+
+                                                    //detailListCourseDetailLesson.add(mLessonArrayListNew);
+
+                                                    //TODO
+
+                                                    //detailListVideoPulse.add(mContentArrayListNewPulse);
+
+                                                    detailListCourseDetailUnits.add(mUnitArrayListNew);
+
+                                                    detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+                                                    detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
+
+                                                    //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
+
+
+                                                    //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
+
+                                                    // for unit arrays
+                                                    detailListCourseUnit1Data.add(mUnit1DataArrayList);
+                                                    detailListCourseUnit2Data.add(mUnit2DataArrayList);
+                                                    detailListCourseUnit3Data.add(mUnit3DataArrayList);
+                                                    detailListCourseUnit4Data.add(mUnit4DataArrayList);
+
+
+                                                    detailListCourseUnitAllData.add(detailUnitArrayNumbers);
+                                                    detailListCourseDetailLesson.add(lessonsIntoIndexs);
+
+                                                    GlobalVar.gEnrolledInstitution = detailList10;
+
+
+                                                    GlobalVar.gEnrollCourseId.add(enrollCourseModel);
+
+                                                    String stp="";
+
+
+
+                                                    String whatwas6="";
+                                                }
+                                                else{
+
+                                                    String nothingisimport="";
+                                                }
+                                            }
+
+
+                                            else{
+                                                detailListCourseDetailContentss.add(mContentArrayListNew);
+
+                                                courseJourneyStatusList.add(unitJourneyStatusList);
+
+                                                detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
+                                                detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
+
+                                                detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
+
+                                                //TODO
+
+                                                //detailListCourseDetailLesson.add(mLessonArrayListNew);
+
+                                                //TODO
+
+                                                //detailListVideoPulse.add(mContentArrayListNewPulse);
+
+                                                detailListCourseDetailUnits.add(mUnitArrayListNew);
+
+                                                detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+                                                detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
+
+                                                //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
+
+
+                                                //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
+
+                                                // for unit arrays
+                                                detailListCourseUnit1Data.add(mUnit1DataArrayList);
+                                                detailListCourseUnit2Data.add(mUnit2DataArrayList);
+                                                detailListCourseUnit3Data.add(mUnit3DataArrayList);
+                                                detailListCourseUnit4Data.add(mUnit4DataArrayList);
+
+
+                                                detailListCourseUnitAllData.add(detailUnitArrayNumbers);
+                                                detailListCourseDetailLesson.add(lessonsIntoIndexs);
+
+                                                GlobalVar.gEnrolledInstitution = detailList10;
+
+
+                                                GlobalVar.gEnrollCourseId.add(enrollCourseModel);
+
+                                                String stp="";
+
+
+
+                                                String whatwas6="";
+
+                                            }
+
                                         }
+
                                     } catch (Exception ex) {
                                         Log.d("", "onResponse: ");
                                     }
@@ -1539,10 +2006,26 @@ public class MyPageActivity extends AppCompatActivity {
                             mNoEnroledCourseFound.setVisibility(View.VISIBLE);
                         }
 
+
+
+
+
+
                         final ViewPager vpPager = findViewById(R.id.VideoSliderviewPagerId);
 
                         myAdapter= new TabsPagerAdapterDetail(getSupportFragmentManager());
                         vpPager.setAdapter(myAdapter);
+
+
+                        String abcd="";
+
+
+                        /*if(GlobalVar.nNumberCourseBack==0){
+                            vpPager.setCurrentItem(0);
+                        }
+                        else {
+                            vpPager.setCurrentItem(GlobalVar.nNumberCourseBack);
+                        }*/
 
                     }
                 }, new Response.ErrorListener() {
@@ -1571,6 +2054,11 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
                 Intent i = new Intent(mContext, MainActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -1579,6 +2067,11 @@ public class MyPageActivity extends AppCompatActivity {
         recomendedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
 
                 Intent i = new Intent(mContext, RecomendedActivity.class);
                 v.getContext().startActivity(i);
@@ -1589,6 +2082,11 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
                 Intent i=new Intent(mContext,DownloadActivity.class);
                 v.getContext().startActivity(i);
             }
@@ -1598,13 +2096,63 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                GlobalVar.isRedirectFromProfileRunningBtn=false;
+                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                GlobalVar.isRedirectFromProfileEndedBtn=false;
+                GlobalVar.isRedirectFromProfileWishListBtn=false;
+
+
                 Intent i=new Intent(mContext,ProfileActivity.class);
                 v.getContext().startActivity(i);
             }
         });
 
-        imageLogo=view.findViewById(R.id.rtvheadlogo);
 
+        /*try {
+
+            for (int incrCourseWishIds = 0; incrCourseWishIds < wishListArray.size(); incrCourseWishIds++) {
+
+                String incrCourseBatchIdsStr = wishListArray.get(incrCourseWishIds).getWishListId();
+
+                try {
+
+                    ArrayList<String> wishEmptyArray = new ArrayList<>();
+
+                    for (int incrCourseBatchIds = 0; incrCourseBatchIds < detailListAnoPart3.size(); incrCourseBatchIds++) {
+
+                        String incrCourseWishIdsStr = detailListAnoPart3.get(incrCourseBatchIds).getmId();
+
+                        if (incrCourseBatchIdsStr.equalsIgnoreCase(incrCourseWishIdsStr)) {
+
+                            wishEmptyArray.add(incrCourseWishIdsStr);
+
+                            String abcd2="";
+                        }
+                        else {
+                            wishEmptyArray.add("");
+
+                            String abcd3="";
+                        }
+
+                        String abcd77="";
+                    }
+
+                    String abcd56765="";
+                }
+                catch (Exception ex){
+
+                    Log.d("", "onCreate: ");
+                }
+
+                String abc1212d="";
+            }
+        }
+        catch (Exception ex){
+            Log.d("", "onCreate: ");
+        }*/
+
+
+        String abcd="";
     }
 
     @Override
@@ -1613,7 +2161,7 @@ public class MyPageActivity extends AppCompatActivity {
         return;
     }
 
-    @Override
+    /*@Override
     protected boolean onPrepareOptionsPanel(View view, Menu menu) {
         if(menu != null){
             if(menu.getClass().getSimpleName().equals("MenuBuilder")){
@@ -1634,7 +2182,7 @@ public class MyPageActivity extends AppCompatActivity {
         return true;
         //return super.onPrepareOptionsPanel(view, menu);
         //return super.onPrepareOptionsPanel(view, menu);
-    }
+    }*/
 
     private void shareIt() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -1644,16 +2192,16 @@ public class MyPageActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.activity_main2_drawer, menu);
         //getMenuInflater().inflate(R.menu.main2, menu);
 
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
@@ -1664,6 +2212,21 @@ public class MyPageActivity extends AppCompatActivity {
         }
         else if (id==R.id.nav_share)
             shareIt();
+        return super.onOptionsItemSelected(item);
+    }*/
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+
+            finish();
+
+            return true;
+
+        }
         return super.onOptionsItemSelected(item);
     }
 

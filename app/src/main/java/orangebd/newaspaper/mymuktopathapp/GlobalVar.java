@@ -77,6 +77,9 @@ public class GlobalVar {
 
     public static String gReplacingToken;
     public static String gReplacingTokenForAllCategories;
+
+    public static String gTokenForSelectCatId;
+
     public static String gUserType;
 
     public static String gBaseUrl="http://muktopaath.orangebd.com";
@@ -100,6 +103,7 @@ public class GlobalVar {
     public static ArrayList<DetailDataModelCourses> allDataDetailList;
 
     public static int gEnrollCourseNumber;
+    public static int gWishListNumber;
 
 
 
@@ -209,4 +213,37 @@ public class GlobalVar {
     // Global ViewPager for Exam
     public static ViewPager gExamViewPager;
     public static ViewPager gQuizViewPager;
+
+
+
+    // Making temporary completed Unit id and lesson id for showing temp complete
+    public static String gLessonCompleteTempLessonId;
+    public static String gLessonCompleteTempUnitId;
+
+
+
+    // for answered quiz in report card
+
+    public static ArrayList<String> gThisQuiz = new ArrayList<>();
+    public static ArrayList<String> gSelectedAnsPostn= new ArrayList<>();
+
+
+    // for catching the course number for getting it when back
+
+    public static int nNumberCourseBack;
+
+
+
+
+    // booleans for profile 4 buttons
+
+    public static boolean isRedirectFromProfileWishListBtn;
+    public static boolean isRedirectFromProfileEndedBtn;
+    public static boolean isRedirectFromProfileNonEndedBtn;
+    public static boolean isRedirectFromProfileRunningBtn;
+
+
+    //
+
+    public static ArrayList<DetailDataModelProfileButtons> gWishListArray = new ArrayList<>();
 }

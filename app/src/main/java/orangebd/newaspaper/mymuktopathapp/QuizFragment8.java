@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class QuizFragment8 extends Fragment {
-    private TextView mQuizTitle;
+
 
     private View view;
     private Context context;
@@ -27,6 +27,7 @@ public class QuizFragment8 extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
+    private TextView mQuizTitle;
     ArrayList<DetailDataModelCoursesDetailContents> optionTItles = new ArrayList<>();
 
     private String answers;
@@ -134,10 +135,10 @@ public class QuizFragment8 extends Fragment {
                 }
             }
             if(trueCount>1){
-                adapter=new RecyclerViewAdapterQuizOptions(optionTItles,context);
+                adapter=new RecyclerViewAdapterQuizOptions(nthQuiz, optionTItles,context);
             }
             else {
-                adapter=new RecyclerViewAdapterQuizRadioOptions(optionTItles,context);
+                adapter=new RecyclerViewAdapterQuizRadioOptions(nthQuiz, optionTItles,context);
             }
 
             recyclerView.setAdapter(adapter);
