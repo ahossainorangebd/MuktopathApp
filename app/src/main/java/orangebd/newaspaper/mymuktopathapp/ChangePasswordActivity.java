@@ -9,8 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -26,58 +24,52 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VerifyAccountActivity extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
 
-    private TextView mReturnMessage;
-    private String getMsg;
-    private String getPhn;
-
-    private Button submitbtn;
-
-    private Context context;
-
-    private EditText mVericode;
-
-    private String vericodenumber;
 
     private HashMap<String,String> mapSubmit;
 
-    String urlVerificationCodeSubmit = GlobalVar.gApiBaseUrl +"/api/phone/verification";
+    private Context context;
+
+    private String email;
+    private String tokenStr;
+
+    String urlVerificationCodeSubmit = GlobalVar.gApiBaseUrl +"/api/forgot-password/Check";
+
+    private Button mSubmitBtn;
+
+    private EditText mEmailPhnEdtTxt;
+    private EditText mTokenEdtTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_verify_account);
+        setContentView(R.layout.activity_change_password);
+
 
         context=this;
 
-        getSupportActionBar().hide();
+        mSubmitBtn=findViewById(R.id.submitBtn);
+        mEmailPhnEdtTxt = findViewById(R.id.EmailPhnEdtTxtId);
+        mTokenEdtTxt = findViewById(R.id.tokenEdtBox);
 
-        mReturnMessage = findViewById(R.id.returnMessage);
-        submitbtn = findViewById(R.id.submitBtn);
-        mVericode = findViewById(R.id.vericode);
 
-        /*getMsg = getIntent().getExtras().getString("msg");
-        getPhn = getIntent().getExtras().getString("phn");*/
+        email=this.getIntent().getExtras().getString("email");
 
-        getMsg = getIntent().getExtras().getString("msg");
-        getPhn = getIntent().getExtras().getString("phn");
+        mEmailPhnEdtTxt.setText(email);
 
-        mReturnMessage.setText(getMsg);
-
-        submitbtn.setOnClickListener(new View.OnClickListener() {
+        mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                vericodenumber = mVericode.getText().toString();
+                tokenStr = mTokenEdtTxt.getText().toString();
 
                 mapSubmit =  new HashMap<>();
-                mapSubmit.put("token", vericodenumber);
-                mapSubmit.put("phone", getPhn);
+                mapSubmit.put("type", "2");
+                mapSubmit.put("email_or_phone", email);
+                mapSubmit.put("token", tokenStr);
 
                 new StartSubmit().execute(urlVerificationCodeSubmit);
-
-
             }
         });
 
@@ -110,7 +102,11 @@ public class VerifyAccountActivity extends AppCompatActivity {
                 //Toast.makeText(context,result,Toast.LENGTH_LONG).show();
 
                 if(result!=null){
-                    Intent i=new Intent(context,LoginActivity.class);
+                    Intent i=new Intent(context,ChangePasswordRetypeActivity.class);
+
+                    i.putExtra("email",email);
+                    i.putExtra("token",tokenStr);
+
                     startActivity(i);
                 }
 

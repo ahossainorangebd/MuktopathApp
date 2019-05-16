@@ -101,7 +101,7 @@ public class MyPageFragment1 extends Fragment {
         for(int cqn=0; cqn<unitArrs.size(); cqn++) {
             String unitTitle = unitArrs.get(cqn).getUnitNames();
 
-            if(unitTitle.equalsIgnoreCase("কুইজ")){
+            if(unitTitle.equalsIgnoreCase("কুইজ")) {
 
                 countQuizNumber++;
 
@@ -213,9 +213,15 @@ public class MyPageFragment1 extends Fragment {
         GlobalVar.gEnrolledCourseUnitSize=unitSize;
 
 
-        if(GlobalVar.gGoingDirection!=null) {
-            if (GlobalVar.gGoingDirection.equalsIgnoreCase("left")) {
-                GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse+1).size();
+        if(GlobalVar.isRedirectFromProfileNonEndedBtn==true) {
+            GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();
+        }
+        else{
+            if(GlobalVar.gGoingDirection!=null) {
+                if (GlobalVar.gGoingDirection.equalsIgnoreCase("left")) {
+
+                    GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse + 1).size();
+                }
             }
         }
 

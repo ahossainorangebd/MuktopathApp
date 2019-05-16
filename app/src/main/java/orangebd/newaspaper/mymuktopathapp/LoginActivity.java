@@ -160,6 +160,9 @@ public class LoginActivity extends AppCompatActivity {
     private String token="";
     String url= GlobalVar.gApiBaseUrl + "/api/login";
 
+
+    private TextView forgetPasswordTxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -171,6 +174,15 @@ public class LoginActivity extends AppCompatActivity {
 
         mEmailView =  findViewById(R.id.email);
         mEdtTxtPwd = findViewById(R.id.password);
+
+        forgetPasswordTxt=findViewById(R.id.resetPwdLebelId);
+        forgetPasswordTxt.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(mContext,ForgetPasswordActivity.class);
+                startActivity(i);
+            }
+        });
 
         mContext=this;
 
@@ -270,7 +282,6 @@ public class LoginActivity extends AppCompatActivity {
                     else if(mStrEmail.equalsIgnoreCase(mStrEmail))
                     {
 
-
                         if(mStrPwd.equalsIgnoreCase("")){
 
                             mEdtTxtPwd.setError("You must type your password.");
@@ -310,7 +321,83 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    mEmailView.setError("Invalid email");
+
+
+                    try {
+
+                        if(mStrEmail.contains("@")){
+
+                            mapSubmit.put("email", mStrEmail);
+                            mapSubmit.put("password", mStrPwd);
+                            mapSubmit.put("type", "1");
+                        }
+                        else {
+                            mapSubmit.put("phone", mStrEmail);
+                            mapSubmit.put("password", mStrPwd);
+                            mapSubmit.put("type", "2");
+                        }
+
+                    }
+                    catch (Exception ex){
+                        Log.d("", "onClick: ");
+                    }
+
+                    if(mStrEmail.equalsIgnoreCase("")){
+
+                        mEmailView.setError("You must type your email.");
+                        mEmailView.requestFocus();
+
+                        if(mStrPwd.equalsIgnoreCase("")){
+
+                            mEdtTxtPwd.setError("You must type your password.");
+                            mEdtTxtPwd.requestFocus();
+                        }
+                    }
+
+                    else if(mStrEmail.equalsIgnoreCase(mStrEmail))
+                    {
+
+                        if(mStrPwd.equalsIgnoreCase("")){
+
+                            mEdtTxtPwd.setError("You must type your password.");
+                            mEdtTxtPwd.requestFocus();
+                        }
+
+                        else if(mStrPwd.equalsIgnoreCase(mStrPwd)) {
+
+                            if (mStrEmail.contains("@"))
+                            {
+                                //GlobalVar.gIsLogin=sm.checkLogin();
+
+                                if(!GlobalVar.gIsLogin) {
+
+                                    sm.createLoginSession(mStrEmail, mStrPwd);
+                                    sm.isLoggedIn();
+                                }
+
+                                new StartLogin().execute(url);
+                            }
+                            else {
+
+                                if(!GlobalVar.gIsLogin) {
+
+                                    sm.createLoginSessionForPhone(mStrEmail, mStrPwd);
+                                    sm.isLoggedIn();
+                                }
+
+                                new StartLogin().execute(url);
+                            }
+                        }
+                        else {
+                            mEmailView.setError("Invalid email.");
+                            mEmailView.requestFocus();
+                        }
+                    }
+                    else{
+                        Toast.makeText(mContext, "Testing", Toast.LENGTH_LONG).show();
+                    }
+
+                    //mEmailView.setError("Invalid email");
                 }
 
 

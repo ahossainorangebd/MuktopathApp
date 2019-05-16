@@ -54,7 +54,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -222,6 +224,9 @@ public class MyPageActivity extends AppCompatActivity {
     private LinearLayout mFiveFooterBtnsLayOut;
 
 
+    private Button mFindNewCourseBtn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -230,6 +235,8 @@ public class MyPageActivity extends AppCompatActivity {
 
         mContext=this;
 
+        GlobalVar.gIncompletedCourseCount=0;
+
         //getSupportActionBar().hide();
 
         allCourseBtn = findViewById(R.id.allCourseBtnId);
@@ -237,6 +244,15 @@ public class MyPageActivity extends AppCompatActivity {
         myPageBtn = findViewById(R.id.myPageBtnId);
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
+
+        mFindNewCourseBtn=findViewById(R.id.findNewCourseBtn);
+        mFindNewCourseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, MainActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
 
         mRelativeBackground=findViewById(R.id.drawerLayout);
@@ -685,7 +701,6 @@ public class MyPageActivity extends AppCompatActivity {
                                     detailListUserInformation.add(modelUserInformation);
 
 
-
                                     //wishList
 
                                     JSONObject ObjwListNumber = new JSONObject();
@@ -708,6 +723,9 @@ public class MyPageActivity extends AppCompatActivity {
                                         wishListArray.add(wishListModel);
 
                                         GlobalVar.gWishListArray=wishListArray;
+
+
+                                        String abcdqwqwererrt="";
                                     }
 
 
@@ -715,113 +733,6 @@ public class MyPageActivity extends AppCompatActivity {
 
 
                                     GlobalVar.gWishListNumber =objectWishList.length();
-
-
-
-
-
-
-                                    /** deciding the number of tabsPagerAdapter Fragments according to boolean var redirect from 4 buttons of profile*/
-
-
-                                    int totalIncompletedCourseInt = enrolledCourseNumbers - Integer.parseInt(coursecompleted);
-
-                                    if(GlobalVar.isRedirectFromProfileWishListBtn==true) {
-                                        GlobalVar.gEnrollCourseNumber = GlobalVar.gWishListNumber;
-
-
-                                        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_logodetails_for_profile_btns, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-                                        mCustomLogoText=view.findViewById(R.id.centertitlenametv);
-
-                                        mCustomLogoText.setText("পছন্দের কোর্স");
-                                        myPageTextView.setVisibility(View.GONE);
-
-                                        mFiveFooterBtnsLayOut.setVisibility(View.GONE);
-
-
-                                        mSettingsBtn.setVisibility(View.GONE);
-                                    }
-
-                                    else if (GlobalVar.isRedirectFromProfileEndedBtn==true) {
-
-                                        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_logodetails_for_profile_btns, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-                                        mCustomLogoText=view.findViewById(R.id.centertitlenametv);
-
-                                        GlobalVar.gEnrollCourseNumber = Integer.parseInt(coursecompleted);
-
-                                        mCustomLogoText.setText("সম্পন্ন কোর্স");
-                                        myPageTextView.setVisibility(View.GONE);
-
-                                        mFiveFooterBtnsLayOut.setVisibility(View.GONE);
-
-                                        mSettingsBtn.setVisibility(View.GONE);
-                                    }
-
-                                    else if(GlobalVar.isRedirectFromProfileNonEndedBtn==true) {
-
-                                        GlobalVar.gEnrollCourseNumber = totalIncompletedCourseInt;
-
-                                        getSupportActionBar().hide();
-
-                                        /*View view = LayoutInflater.from(mContext)
-                                                .inflate(R.layout.custom_logodetails, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
-                                    }
-
-                                    else if(GlobalVar.isRedirectFromProfileRunningBtn==true) {
-
-                                        GlobalVar.gEnrollCourseNumber = totalIncompletedCourseInt;
-
-
-                                        getSupportActionBar().hide();
-
-                                        /*View view = LayoutInflater.from(mContext)
-                                                .inflate(R.layout.custom_logodetails, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
-                                    }
-
-                                    else{
-                                        GlobalVar.gEnrollCourseNumber = enrolledCourseNumbers;
-
-                                        getSupportActionBar().hide();
-
-                                        /*View view = LayoutInflater.from(mContext)
-                                                .inflate(R.layout.custom_logodetails, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
-                                    }
-
-
-
 
 
 
@@ -854,6 +765,29 @@ public class MyPageActivity extends AppCompatActivity {
 
                                             String featured = objectCourse2.getString("featured");
 
+                                            String admissionStatusForDate = objectCourse2.getString("admission_status");
+
+                                            String course_end_date="";
+
+                                            long courseEndDateInMillis=0;
+                                            long currentDateInMillis=0;
+
+                                            if(admissionStatusForDate.equalsIgnoreCase("0")) {
+                                                course_end_date = objectCourse2.getString("end_date");
+
+
+                                                String myDate = course_end_date;
+                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                                Date date = sdf.parse(myDate);
+                                                courseEndDateInMillis = date.getTime();
+
+                                                Date currentDate = new Date();
+                                                String myCurrentDate = new SimpleDateFormat("yyyy-MM-dd").format(currentDate);
+                                                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                                                Date date2 = sdf2.parse(myCurrentDate);
+                                                currentDateInMillis = date2.getTime();
+                                            }
+
                                             String Eid = objectCourse2.getString("id");
 
 
@@ -868,7 +802,7 @@ public class MyPageActivity extends AppCompatActivity {
                                             String course_motto = objectCourse2.getString("course_motto");
                                             String created_at = objectCourse2.getString("created_at");
                                             String duration = objectCourse2.getString("duration");
-                                            String end_date = objectCourse2.getString("end_date");
+                                            //String end_date = objectCourse2.getString("end_date");
                                             String enrolment_approval_status = objectCourse2.getString("enrolment_approval_status");
                                             String courseObjective = objectCourse2.getString("objective");
 
@@ -885,7 +819,7 @@ public class MyPageActivity extends AppCompatActivity {
                                             modelForLoginCourse.setmCode(code);
                                             modelForLoginCourse.setmCreatedAt(created_at);
                                             modelForLoginCourse.setmDuration(duration);
-                                            modelForLoginCourse.setmEndDate(end_date);
+                                            //modelForLoginCourse.setmEndDate(end_date);
                                             modelForLoginCourse.setmId(Eid);
                                             modelForLoginCourse.setmDetails(Edetails);
                                             modelForLoginCourse.setmFeatured(featured);
@@ -898,7 +832,70 @@ public class MyPageActivity extends AppCompatActivity {
                                             modelForLoginCourse.setmAssignmentNumbers(assignmentsNumbers);
                                             modelForLoginCourse.setmObjective(courseObjective);
 
-                                            detailListAnoPart3.add(modelForLoginCourse);
+
+                                            if(GlobalVar.isRedirectFromProfileEndedBtn==true){
+
+                                                if(enrolCourseProgress.equalsIgnoreCase("100")) {
+
+                                                    detailListAnoPart3.add(modelForLoginCourse);
+                                                }
+                                                else{
+
+                                                    String nothingtest="";
+                                                }
+
+                                            }
+
+                                            else if(GlobalVar.isRedirectFromProfileRunningBtn==true) {
+
+                                                if (completedCourseDouble<100) {
+
+                                                    detailListAnoPart3.add(modelForLoginCourse);
+                                                }
+                                                else{
+
+                                                    String nothingisimpo="";
+                                                }
+                                            }
+
+                                            else if(GlobalVar.isRedirectFromProfileNonEndedBtn==true) {
+
+                                                if (completedCourseDouble<100) {
+
+                                                    if(currentDateInMillis>courseEndDateInMillis) {
+
+                                                        detailListAnoPart3.add(modelForLoginCourse);
+
+                                                    }
+                                                }
+                                                else{
+
+                                                    String nothingisimpo="";
+                                                }
+                                            }
+
+                                            else if(GlobalVar.isRedirectFromProfileWishListBtn==true){
+
+                                                for(int checkWishListId=0; checkWishListId<GlobalVar.gWishListArray.size(); checkWishListId++){
+
+                                                    String getWishListIds = GlobalVar.gWishListArray.get(checkWishListId).getWishListId();
+
+                                                    if (Eid.equalsIgnoreCase(getWishListIds)){
+
+                                                        detailListAnoPart3.add(modelForLoginCourse);
+                                                    }
+                                                }
+                                            }
+
+                                            else if(completedCourseDouble<100) {
+
+                                                detailListAnoPart3.add(modelForLoginCourse);
+                                            }
+
+
+
+
+
 
                                             GlobalVar.gEnrollCourseList = detailListAnoPart3;
 
@@ -947,7 +944,11 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                     if (completedCourseDouble<100) {
 
-                                                        mPassPercentageArrayList.add(modelCoursePassMark);
+                                                        if(currentDateInMillis>courseEndDateInMillis) {
+
+                                                            mPassPercentageArrayList.add(modelCoursePassMark);
+
+                                                        }
                                                     }
                                                     else{
 
@@ -955,7 +956,21 @@ public class MyPageActivity extends AppCompatActivity {
                                                     }
                                                 }
 
-                                                else{
+                                                else if(GlobalVar.isRedirectFromProfileWishListBtn==true){
+
+                                                    for(int checkWishListId=0; checkWishListId<GlobalVar.gWishListArray.size(); checkWishListId++){
+
+                                                        String getWishListIds = GlobalVar.gWishListArray.get(checkWishListId).getWishListId();
+
+                                                        if (Eid.equalsIgnoreCase(getWishListIds)){
+
+                                                            mPassPercentageArrayList.add(modelCoursePassMark);
+                                                        }
+                                                    }
+                                                }
+
+                                                else if(completedCourseDouble<100) {
+
                                                     mPassPercentageArrayList.add(modelCoursePassMark);
                                                 }
 
@@ -1064,14 +1079,34 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                     if (completedCourseDouble<100) {
 
-                                                        detailListCourseThumbnail.add(modelCourseThumbnail);
+                                                        if(currentDateInMillis>courseEndDateInMillis) {
+
+                                                            detailListCourseThumbnail.add(modelCourseThumbnail);
+
+                                                        }
                                                     }
                                                     else{
 
                                                         String nothingisimpo="";
                                                     }
                                                 }
-                                                else{
+
+
+                                                else if(GlobalVar.isRedirectFromProfileWishListBtn==true){
+
+                                                    for(int checkWishListId=0; checkWishListId<GlobalVar.gWishListArray.size(); checkWishListId++){
+
+                                                        String getWishListIds = GlobalVar.gWishListArray.get(checkWishListId).getWishListId();
+
+                                                        if (Eid.equalsIgnoreCase(getWishListIds)){
+
+                                                            detailListCourseThumbnail.add(modelCourseThumbnail);
+                                                        }
+                                                    }
+                                                }
+
+                                                else if(completedCourseDouble<100) {
+
                                                     detailListCourseThumbnail.add(modelCourseThumbnail);
                                                 }
 
@@ -1815,56 +1850,60 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                 if (completedCourseDouble<100) {
 
-                                                    //detailListCourseDetailContentss.add(mContentArrayListNew);
-                                                    //detailListCourseDetailContentss.remove(ec);
+                                                    if(currentDateInMillis>courseEndDateInMillis){
+                                                        //detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                        //detailListCourseDetailContentss.remove(ec);
 
-                                                    detailListCourseDetailContentss.add(mContentArrayListNew);
-                                                    courseJourneyStatusList.add(unitJourneyStatusList);
-
-
-                                                    detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
-                                                    detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
-
-                                                    detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
-
-                                                    //TODO
-
-                                                    //detailListCourseDetailLesson.add(mLessonArrayListNew);
-
-                                                    //TODO
-
-                                                    //detailListVideoPulse.add(mContentArrayListNewPulse);
-
-                                                    detailListCourseDetailUnits.add(mUnitArrayListNew);
-
-                                                    detailListCourseDetailUnitQuizList.add(mUnitQuizList);
-                                                    detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
-
-                                                    //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
+                                                        detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                        courseJourneyStatusList.add(unitJourneyStatusList);
 
 
-                                                    //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
+                                                        detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
+                                                        detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
 
-                                                    // for unit arrays
-                                                    detailListCourseUnit1Data.add(mUnit1DataArrayList);
-                                                    detailListCourseUnit2Data.add(mUnit2DataArrayList);
-                                                    detailListCourseUnit3Data.add(mUnit3DataArrayList);
-                                                    detailListCourseUnit4Data.add(mUnit4DataArrayList);
+                                                        detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
+
+                                                        //TODO
+
+                                                        //detailListCourseDetailLesson.add(mLessonArrayListNew);
+
+                                                        //TODO
+
+                                                        //detailListVideoPulse.add(mContentArrayListNewPulse);
+
+                                                        detailListCourseDetailUnits.add(mUnitArrayListNew);
+
+                                                        detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+                                                        detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
+
+                                                        //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
 
 
-                                                    detailListCourseUnitAllData.add(detailUnitArrayNumbers);
-                                                    detailListCourseDetailLesson.add(lessonsIntoIndexs);
+                                                        //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
 
-                                                    GlobalVar.gEnrolledInstitution = detailList10;
-
-
-                                                    GlobalVar.gEnrollCourseId.add(enrollCourseModel);
-
-                                                    String stp="";
+                                                        // for unit arrays
+                                                        detailListCourseUnit1Data.add(mUnit1DataArrayList);
+                                                        detailListCourseUnit2Data.add(mUnit2DataArrayList);
+                                                        detailListCourseUnit3Data.add(mUnit3DataArrayList);
+                                                        detailListCourseUnit4Data.add(mUnit4DataArrayList);
 
 
+                                                        detailListCourseUnitAllData.add(detailUnitArrayNumbers);
+                                                        detailListCourseDetailLesson.add(lessonsIntoIndexs);
 
-                                                    String whatwas6="";
+                                                        GlobalVar.gEnrolledInstitution = detailList10;
+
+
+                                                        GlobalVar.gEnrollCourseId.add(enrollCourseModel);
+
+                                                        String stp="";
+
+
+
+                                                        String whatwas6="";
+                                                    }
+
+
                                                 }
                                                 else{
 
@@ -1872,11 +1911,72 @@ public class MyPageActivity extends AppCompatActivity {
                                                 }
                                             }
 
+                                            else if(GlobalVar.isRedirectFromProfileWishListBtn==true){
 
-                                            else{
+                                                for(int checkWishListId=0; checkWishListId<GlobalVar.gWishListArray.size(); checkWishListId++){
+
+                                                    String getWishListIds = GlobalVar.gWishListArray.get(checkWishListId).getWishListId();
+
+                                                    if (Eid.equalsIgnoreCase(getWishListIds)){
+
+                                                        //detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                        //detailListCourseDetailContentss.remove(ec);
+
+                                                        detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                        courseJourneyStatusList.add(unitJourneyStatusList);
+
+
+                                                        detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
+                                                        detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
+
+                                                        detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
+
+                                                        //TODO
+
+                                                        //detailListCourseDetailLesson.add(mLessonArrayListNew);
+
+                                                        //TODO
+
+                                                        //detailListVideoPulse.add(mContentArrayListNewPulse);
+
+                                                        detailListCourseDetailUnits.add(mUnitArrayListNew);
+
+                                                        detailListCourseDetailUnitQuizList.add(mUnitQuizList);
+                                                        detailListCourseDetailUnitQuizListExam.add(mUnitQuizListExam);
+
+                                                        //detailListCourseDetailUnitQuizOptList.add(mUnitQuizListWithOptions);
+
+
+                                                        //detailListCourseDetailUnitQuizOptList.add(mUnitQuizOptList);
+
+                                                        // for unit arrays
+                                                        detailListCourseUnit1Data.add(mUnit1DataArrayList);
+                                                        detailListCourseUnit2Data.add(mUnit2DataArrayList);
+                                                        detailListCourseUnit3Data.add(mUnit3DataArrayList);
+                                                        detailListCourseUnit4Data.add(mUnit4DataArrayList);
+
+
+                                                        detailListCourseUnitAllData.add(detailUnitArrayNumbers);
+                                                        detailListCourseDetailLesson.add(lessonsIntoIndexs);
+
+                                                        GlobalVar.gEnrolledInstitution = detailList10;
+
+
+                                                        GlobalVar.gEnrollCourseId.add(enrollCourseModel);
+                                                    }
+                                                }
+                                            }
+
+
+                                            else if (completedCourseDouble<100)
+                                            {
+
+                                                //detailListCourseDetailContentss.add(mContentArrayListNew);
+                                                //detailListCourseDetailContentss.remove(ec);
+
                                                 detailListCourseDetailContentss.add(mContentArrayListNew);
-
                                                 courseJourneyStatusList.add(unitJourneyStatusList);
+
 
                                                 detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
                                                 detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
@@ -1921,6 +2021,12 @@ public class MyPageActivity extends AppCompatActivity {
 
 
                                                 String whatwas6="";
+                                            }
+
+
+                                            if(currentDateInMillis>courseEndDateInMillis) {
+
+                                                GlobalVar.gIncompletedCourseCount++;
 
                                             }
 
@@ -1929,7 +2035,112 @@ public class MyPageActivity extends AppCompatActivity {
                                     } catch (Exception ex) {
                                         Log.d("", "onResponse: ");
                                     }
-                                } catch (Exception ex) {
+
+
+
+                                    /** deciding the number of tabsPagerAdapter Fragments according to boolean var redirect from 4 buttons of profile*/
+
+
+                                    int totalIncompletedCourseInt = enrolledCourseNumbers - Integer.parseInt(coursecompleted);
+
+                                    if(GlobalVar.isRedirectFromProfileWishListBtn==true) {
+                                        GlobalVar.gEnrollCourseNumber = GlobalVar.gWishListNumber;
+
+
+                                        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_logodetails_for_profile_btns, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        mCustomLogoText=view.findViewById(R.id.centertitlenametv);
+
+                                        mCustomLogoText.setText("পছন্দের কোর্স");
+                                        myPageTextView.setVisibility(View.GONE);
+
+                                        mFiveFooterBtnsLayOut.setVisibility(View.GONE);
+
+
+                                        mSettingsBtn.setVisibility(View.GONE);
+                                    }
+
+                                    else if (GlobalVar.isRedirectFromProfileEndedBtn==true) {
+
+                                        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_logodetails_for_profile_btns, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        mCustomLogoText=view.findViewById(R.id.centertitlenametv);
+
+                                        GlobalVar.gEnrollCourseNumber = Integer.parseInt(coursecompleted);
+
+                                        mCustomLogoText.setText("সম্পন্ন কোর্স");
+                                        myPageTextView.setVisibility(View.GONE);
+
+                                        mFiveFooterBtnsLayOut.setVisibility(View.GONE);
+
+                                        mSettingsBtn.setVisibility(View.GONE);
+                                    }
+
+                                    else if(GlobalVar.isRedirectFromProfileNonEndedBtn==true) {
+
+                                        GlobalVar.gEnrollCourseNumber = GlobalVar.gIncompletedCourseCount;
+
+                                        getSupportActionBar().hide();
+
+                                        /*View view = LayoutInflater.from(mContext)
+                                                .inflate(R.layout.custom_logodetails, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
+                                    }
+
+                                    else if(GlobalVar.isRedirectFromProfileRunningBtn==true) {
+
+                                        GlobalVar.gEnrollCourseNumber = totalIncompletedCourseInt;
+
+
+                                        getSupportActionBar().hide();
+
+                                        /*View view = LayoutInflater.from(mContext)
+                                                .inflate(R.layout.custom_logodetails, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
+                                    }
+
+                                    else{
+                                        GlobalVar.gEnrollCourseNumber = totalIncompletedCourseInt;
+
+                                        getSupportActionBar().hide();
+
+                                        /*View view = LayoutInflater.from(mContext)
+                                                .inflate(R.layout.custom_logodetails, null, false);
+                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                                        getSupportActionBar().setCustomView(view);
+                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
+                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
+                                    }
+
+
+                                }
+
+                                catch (Exception ex) {
                                     Log.d("", "onResponse: ");
                                 }
 

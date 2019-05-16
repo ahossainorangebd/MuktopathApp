@@ -76,7 +76,13 @@ public class SettingsActivity extends AppCompatActivity {
         String passwordFromChache = mSpInfo.get("password");
 
         mCustomContentTitle=view.findViewById(R.id.muktoCustomEmail);
-        mCustomContentTitle.setText(GlobalVar.gEmail);
+
+        if(GlobalVar.gEmail=="null"){
+            mCustomContentTitle.setText(GlobalVar.gMobile);
+        }
+        else{
+            mCustomContentTitle.setText(GlobalVar.gEmail);
+        }
 
         mOnOffPushNotificationSwitch=findViewById(R.id.onOffPushNotification);
         mOnOffPushNotificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

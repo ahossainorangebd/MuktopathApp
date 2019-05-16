@@ -199,7 +199,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         mWishListNumberTV.setText(totalWishListCourse);
-        mIncompleteTV.setText(convertEngToBn(String.valueOf(totalIncompletedCourseInt)));
+        mIncompleteTV.setText(convertEngToBn(String.valueOf(GlobalVar.gIncompletedCourseCount)));
         mNumberOfRunningCourseTV.setText(convertEngToBn(String.valueOf(totalIncompletedCourseInt)));
 
         if(Integer.parseInt(getmCourseCompleted)>0) {

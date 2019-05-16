@@ -2,15 +2,20 @@ package orangebd.newaspaper.mymuktopathapp;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import java.io.File;
 
 public class DownloadedContentActivity extends AppCompatActivity {
     private VideoView videoView;
@@ -30,6 +35,10 @@ public class DownloadedContentActivity extends AppCompatActivity {
 
     private TextView contentTitle;
     private TextView contentDetail;
+
+    private LinearLayout mVideoLayOut;
+
+    private int forwardable=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +61,6 @@ public class DownloadedContentActivity extends AppCompatActivity {
         contentDetail = findViewById(R.id.contentDetail);
         contentDetail.setText(cDetail);
 
-
         //mBackProgressBar=findViewById(R.id.Progressbar1);
         textView=findViewById(R.id.txtView);
         Uri uri = Uri.parse(vPath);
@@ -65,7 +73,8 @@ public class DownloadedContentActivity extends AppCompatActivity {
                     videoView.pause();
                     //imgPauseView.setImageResource(R.drawable.play);
                     isVideoStarted=true;
-                }else{
+                }
+                else{
                     videoView.seekTo(pausePosition);
                     videoView.start();
                     mProgressBar.setProgress(pausePosition);
@@ -97,6 +106,7 @@ public class DownloadedContentActivity extends AppCompatActivity {
         mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
                 int vprog=0;
                 if (isStartTrackingTouch) {
                     vprog = seekbarStartPosition;
@@ -112,9 +122,27 @@ public class DownloadedContentActivity extends AppCompatActivity {
                 else {
                     videoView.seekTo(vprog);
                     //mProgressBar.setSecondaryProgress(seekbarProgress);
-
                 }
+
+
+                if (forwardable !=1)
+                {
+                    if (prog < vprog) {
+                        videoView.seekTo(seekbarProgress);
+                        mProgressBar.setSecondaryProgress(vprog);
+                    } else {
+                        videoView.seekTo(vprog);
+                        //mProgressBar.setSecondaryProgress(seekbarProgress);
+                    }
+                }
+                else {
+                    int seekbarProgress=seekBar.getProgress();
+                    videoView.seekTo(seekbarProgress);
+                }
+
                 mProgressBar.postDelayed(onEverySecond, 1000);
+
+
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -123,8 +151,7 @@ public class DownloadedContentActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress,
-                                          boolean fromUser) {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 seconds=videoView.getCurrentPosition()/1000;
                 textView.setText(""+seconds);
                 seekbarProgress=progress;
@@ -147,6 +174,60 @@ public class DownloadedContentActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+
+        imgPauseView=findViewById(R.id.pause_button);
+        imgPauseView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!isVideoStarted) {
+
+                    pausePosition = videoView.getCurrentPosition();
+                    videoView.pause();
+                    imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
+                    isVideoStarted=true;
+                }
+
+                else{
+                    videoView.seekTo(pausePosition);
+                    videoView.start();
+                    mProgressBar.setProgress(pausePosition);
+                    mProgressBar.postDelayed(onEverySecond, 1000);
+                    imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
+                    isVideoStarted=false;
+
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            imgPauseView.setVisibility(View.GONE);
+                        }
+                    }, 2000);
+                }
+            }
+        });
+
+
+        mVideoLayOut=findViewById(R.id.videoLayOut);
+        mVideoLayOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgPauseView.setVisibility(View.VISIBLE);
+
+                final Handler handler3 = new Handler();
+                handler3.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imgPauseView.setVisibility(View.GONE);
+                    }
+                }, 2000);
+            }
+        });
+
     }
 
     private Runnable onEverySecond=new Runnable() {
@@ -165,4 +246,6 @@ public class DownloadedContentActivity extends AppCompatActivity {
 
         }
     };
+
+
 }

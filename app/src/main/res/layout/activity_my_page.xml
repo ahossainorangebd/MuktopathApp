@@ -60,7 +60,6 @@
             android:src="@drawable/mukto_settings_icon"
             />
 
-
     </RelativeLayout>
 
     <TextView
@@ -167,7 +166,7 @@
                 android:gravity="center"
                 android:textSize="18sp"
                 android:padding="20dp"
-                android:text="আপনার কম্পিউটার বা মোবাইল ডিভাইস যে কোন সময় যেকোন যায়গায় শিখতেচাইলে এপ্স টি ডাউনলোড করুন।"
+                android:text="আপনার কম্পিউটার বা মোবাইল ডিভাইস যে কোন সময় যেকোন জায়গায় শিখতে চাইলে অ্যাপস টি ডাউনলোড করুন।"
                 android:layout_gravity="center"
                 />
 
@@ -177,7 +176,7 @@
 
 
         <Button
-            android:id="@+id/regiPageSignUpId"
+            android:id="@+id/findNewCourseBtn"
             style="?android:textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

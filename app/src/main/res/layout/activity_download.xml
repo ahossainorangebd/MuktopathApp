@@ -32,7 +32,7 @@
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="আপনি কোন কোর্স ডাউনলোড করেন নি। আপনি চাইলে কোর্স ডাউনলোড করতে কোর্স পেইজে যেতে পারেন।"
+            android:text="আপনি কোন কোর্স ডাউনলোড করেন নি। আপনি চাইলে কোর্স ডাউনলোড করতে আমার পাতায় যেতে পারেন।"
             />
 
         <Button
@@ -40,7 +40,7 @@
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="নতুন কিছু শিখতে খুঁজুন"
+            android:text="আমার পাতা"
             android:textSize="16sp"
             android:focusable="true"
             android:textColor="#fff"

@@ -42,7 +42,7 @@
             android:id="@+id/searchViewId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ক্যাটালগ খুঁজুন"
+            android:hint="কোর্স খুঁজুন"
             android:textColor="@color/Colorpeace"
             android:singleLine="true"
             android:textColorHint="#fff"

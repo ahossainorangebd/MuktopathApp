@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="আপনার পছন্দের ক্যাটেগরি গুলো নির্বাচন করুন"
+                android:text="আপনার পছন্দের ক্যাটাগরি গুলো নির্বাচন করুন"
                 android:textSize="26sp"
                 android:gravity="center"
                 android:textColor="#000"

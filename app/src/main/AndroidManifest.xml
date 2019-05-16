@@ -15,18 +15,19 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
-    <!--android:hardwareAccelerated="false"-->
-
     <application
-        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@drawable/muktopath_logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/muktopath_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DownloadLessonActivity"></activity>
+        <activity android:name=".ChangePasswordRetypeActivity"></activity>
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".DownloadLessonActivity" />
         <activity android:name=".DownloadUnitActivity" />
         <activity android:name=".EmailRegiCompleteActivity" />
         <activity android:name=".VerifyAccountActivity" />

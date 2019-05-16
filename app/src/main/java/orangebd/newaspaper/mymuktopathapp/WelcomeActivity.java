@@ -41,8 +41,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -90,10 +94,16 @@ public class WelcomeActivity extends AppCompatActivity {
         logoLayout.startAnimation(animZoomin);
 
 
+        /** Test section*/
+
         /*DBHelper myDb = new DBHelper(mContext);
         myDb.deleteData();
         Cursor mCurse = myDb.getAllData();
-        int xount= mCurse.getCount();*/
+        int xount= mCurse.getCount();
+
+        String abtesting="";*/
+
+        /** Test section*/
 
         //Let's check the version code and redirect to playstore
 
@@ -223,7 +233,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 token = firstWord + " " + token;
 
-                //GlobalVar.gReplacingTokenForRegi=token;
+                GlobalVar.gWelcomeTokenForVerify=token;
             }
 
             catch (Exception ex){

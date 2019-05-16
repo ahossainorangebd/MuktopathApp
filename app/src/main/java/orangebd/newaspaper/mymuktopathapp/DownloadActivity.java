@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.SyncStateContract;
@@ -66,12 +67,8 @@ public class DownloadActivity extends AppCompatActivity {
 
 
     private ArrayList<String> mArrayLisCourseId;
-    private ArrayList<String> mArrayLisUnitId;
-    private ArrayList<String> mArrayLisUnitName;
-    private ArrayList<String> mArrayLisFilePath;
-    private ArrayList<String> mArrayLisLessonName;
-    private ArrayList<String> mArrayLisLessonDetail;
     private ArrayList<String> mArrayCourseName;
+    private ArrayList<String> mArrayCourseBanner;
 
 
     private ArrayList<ArrayList<String>> mArrayLisWholeData;
@@ -108,6 +105,24 @@ public class DownloadActivity extends AppCompatActivity {
         myList= new ArrayList<>();
 
         //filePathList= new ArrayList<>();
+
+
+        /** test */
+
+
+        /***/
+
+        File mImgPath=this.getExternalFilesDir(Environment.getExternalStorageDirectory().toString());
+        String subImgPath=mImgPath.toString();
+        subImgPath=subImgPath.substring(0,subImgPath.lastIndexOf("/storage"));
+        subImgPath=subImgPath+"/muktopaathimg";
+
+        File fileImg=new File(subImgPath);
+        File[] filesImgs=fileImg.listFiles();
+
+        String testing123="";
+
+
 
         /***/
 
@@ -162,13 +177,25 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                GlobalVar.isRedirectFromProfileRunningBtn=false;
-                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
-                GlobalVar.isRedirectFromProfileEndedBtn=false;
-                GlobalVar.isRedirectFromProfileWishListBtn=false;
+                ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-                Intent i = new Intent(mContext, MainActivity.class);
-                v.getContext().startActivity(i);
+                boolean isData = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
+                boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
+
+                if (!isData && !isWifi) {
+                    Toast.makeText(mContext,"Please on your network connection to see this page.",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    GlobalVar.isRedirectFromProfileRunningBtn=false;
+                    GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                    GlobalVar.isRedirectFromProfileEndedBtn=false;
+                    GlobalVar.isRedirectFromProfileWishListBtn=false;
+
+                    Intent i = new Intent(mContext, MainActivity.class);
+                    v.getContext().startActivity(i);
+                }
+
+
             }
         });
 
@@ -176,13 +203,23 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                GlobalVar.isRedirectFromProfileRunningBtn=false;
-                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
-                GlobalVar.isRedirectFromProfileEndedBtn=false;
-                GlobalVar.isRedirectFromProfileWishListBtn=false;
+                ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-                Intent i = new Intent(mContext, RecomendedActivity.class);
-                v.getContext().startActivity(i);
+                boolean isData = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
+                boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
+
+                if (!isData && !isWifi) {
+                    Toast.makeText(mContext,"Please on your network connection to see this page.",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    GlobalVar.isRedirectFromProfileRunningBtn = false;
+                    GlobalVar.isRedirectFromProfileNonEndedBtn = false;
+                    GlobalVar.isRedirectFromProfileEndedBtn = false;
+                    GlobalVar.isRedirectFromProfileWishListBtn = false;
+
+                    Intent i = new Intent(mContext, RecomendedActivity.class);
+                    v.getContext().startActivity(i);
+                }
             }
         });
 
@@ -190,13 +227,23 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                GlobalVar.isRedirectFromProfileRunningBtn=false;
-                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
-                GlobalVar.isRedirectFromProfileEndedBtn=false;
-                GlobalVar.isRedirectFromProfileWishListBtn=false;
+                ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-                Intent i=new Intent(mContext,MyPageActivity.class);
-                v.getContext().startActivity(i);
+                boolean isData = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
+                boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
+
+                if (!isData && !isWifi) {
+                    Toast.makeText(mContext,"Please on your network connection to see this page.",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    GlobalVar.isRedirectFromProfileRunningBtn = false;
+                    GlobalVar.isRedirectFromProfileNonEndedBtn = false;
+                    GlobalVar.isRedirectFromProfileEndedBtn = false;
+                    GlobalVar.isRedirectFromProfileWishListBtn = false;
+
+                    Intent i = new Intent(mContext, MyPageActivity.class);
+                    v.getContext().startActivity(i);
+                }
             }
         });
 
@@ -204,13 +251,25 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                GlobalVar.isRedirectFromProfileRunningBtn=false;
-                GlobalVar.isRedirectFromProfileNonEndedBtn=false;
-                GlobalVar.isRedirectFromProfileEndedBtn=false;
-                GlobalVar.isRedirectFromProfileWishListBtn=false;
+                ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-                Intent i=new Intent(mContext,ProfileActivity.class);
-                v.getContext().startActivity(i);
+                boolean isData = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
+                boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
+
+                if (!isData && !isWifi) {
+                    Toast.makeText(mContext,"Please on your network connection to see this page.",Toast.LENGTH_LONG).show();
+
+                }
+                else {
+
+                    GlobalVar.isRedirectFromProfileRunningBtn = false;
+                    GlobalVar.isRedirectFromProfileNonEndedBtn = false;
+                    GlobalVar.isRedirectFromProfileEndedBtn = false;
+                    GlobalVar.isRedirectFromProfileWishListBtn = false;
+
+                    Intent i = new Intent(mContext, ProfileActivity.class);
+                    v.getContext().startActivity(i);
+                }
             }
         });
 
@@ -220,7 +279,7 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i=new Intent(mContext,MainActivity.class);
+                Intent i=new Intent(mContext,MyPageActivity.class);
                 v.getContext().startActivity(i);
             }
         });
@@ -376,64 +435,24 @@ public class DownloadActivity extends AppCompatActivity {
 
         Cursor mCursorForCourseName = myDb.getGroupDataForCName();
 
-        Cursor mCursorForUnitNumber = myDb.getGroupDataForUID();
-        Cursor mCursorForUnitName = myDb.getGroupDataForUName();
-
-        Cursor mCursor = myDb.getAllData();
-
-        //Cursor mCursor = myDb.getAllData();
-
         mArrayLisWholeData = new ArrayList<>();
-
         mArrayLisCourseId = new ArrayList<>();
-        mArrayLisUnitId = new ArrayList<>();
-        mArrayLisUnitName = new ArrayList<>();
-        mArrayLisFilePath = new ArrayList<>();
-        mArrayLisLessonName = new ArrayList<>();
-        mArrayLisLessonDetail = new ArrayList<>();
         mArrayCourseName = new ArrayList<>();
-
-
-        StringBuffer buffer = new StringBuffer();
-        while (mCursor.moveToNext()) {
-
-            //buffer.append("Id :" + mCursor.getString(3) + "\n");
-
-            mArrayLisFilePath.add(mCursor.getString(3));
-            mArrayLisLessonName.add(mCursor.getString(4));
-            mArrayLisLessonDetail.add(mCursor.getString(5));
-
-        }
+        mArrayCourseBanner = new ArrayList<>();
 
         while (mCursorForCourseName.moveToNext()) {
 
             mArrayLisCourseId.add(mCursorForCourseName.getString(1));
             mArrayCourseName.add(mCursorForCourseName.getString(6));
-
-        }
-
-        while (mCursorForUnitNumber.moveToNext()) {
-
-            mArrayLisUnitId.add(mCursorForUnitNumber.getString(2));
-           //mArrayLisUnitName.add(mCursorForUnitName.getString(7));
-
+            mArrayCourseBanner.add(mCursorForCourseName.getString(8));
         }
 
         mArrayLisWholeData.add(mArrayLisCourseId);
         mArrayLisWholeData.add(mArrayCourseName);
-
-        mArrayLisWholeData.add(mArrayLisUnitId);
-        //mArrayLisWholeData.add(mArrayLisUnitName);
-
-        mArrayLisWholeData.add(mArrayLisFilePath);
-
-        mArrayLisWholeData.add(mArrayLisLessonName);
-        mArrayLisWholeData.add(mArrayLisLessonDetail);
-
+        mArrayLisWholeData.add(mArrayCourseBanner);
 
 
         String abcd2="";
-
     }
 
 }

@@ -20,26 +20,28 @@
             android:layout_height="wrap_content"
             android:background="@drawable/border"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="10dp"
+            >
+
+
+            <ImageView
+                android:id="@+id/bannerImageId"
+                android:layout_width="120dp"
+                android:layout_height="70dp"
+                android:src="@drawable/loadingimage"
+                android:layout_marginRight="20dp"
+                />
 
             <TextView
                 android:id="@+id/fileName"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:layout_gravity="center"
+
                 android:textSize="18sp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/colorVoldemort"
-                android:layout_gravity="center"
-                />
-
-            <ImageView
-                android:id="@+id/deleteContentId"
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:src="@drawable/delete_blue_icon"
-                android:layout_marginLeft="40dp"
-                android:layout_gravity="right"
                 />
 
         </LinearLayout>

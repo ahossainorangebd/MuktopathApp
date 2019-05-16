@@ -100,7 +100,6 @@ public class MyPageFragment17 extends Fragment {
 
                 countQuizNumber++;
 
-
                 String qwewrser="";
             }
         }

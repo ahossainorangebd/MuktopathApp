@@ -77,6 +77,7 @@ public class GlobalVar {
 
     public static String gReplacingToken;
     public static String gReplacingTokenForAllCategories;
+    public static String gWelcomeTokenForVerify;
 
     public static String gTokenForSelectCatId;
 
@@ -246,4 +247,7 @@ public class GlobalVar {
     //
 
     public static ArrayList<DetailDataModelProfileButtons> gWishListArray = new ArrayList<>();
+
+
+    public static int gIncompletedCourseCount;
 }

@@ -7,54 +7,95 @@
     android:orientation="vertical"
     tools:context=".DownloadedContentActivity">
 
-    <VideoView
-        android:id="@+id/vdVw"
+
+
+    <LinearLayout
+        android:id="@+id/videoLayOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:orientation="vertical"
+        >
 
-    <SeekBar
-        android:id="@+id/Progressbar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
+        <VideoView
+            android:id="@+id/vdVw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <SeekBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/Progressbar"/>
+
+        <TextView
+            android:id="@+id/txtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="-150dp"
+            >
+
+            <ImageButton
+                android:id="@+id/pause_button"
+                android:foregroundGravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorTransparent"
+                android:src="@drawable/mukto_video_pause_icon"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_gravity="bottom"
-        android:layout_height="25dp" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txtView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="bottom"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-    <ImageButton
-        android:id="@+id/pause_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+            <LinearLayout
+                android:id="@+id/descrLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/contentTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="contentTitle"
+                    android:textSize="26sp"
+                    android:textColor="@color/colorVoldemort"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    />
 
-        />
+                <TextView
+                    android:id="@+id/contentDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="contentTitle"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/contentTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="contentTitle"
-        android:textSize="26sp"
-        android:textColor="@color/colorVoldemort"
-        android:layout_marginLeft="10dp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"
-        />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/contentDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="contentTitle"
-        android:textSize="16sp"
-        android:layout_marginLeft="10dp"
-        android:textStyle="bold"
-        />
+    </ScrollView>
+
 
 </LinearLayout>

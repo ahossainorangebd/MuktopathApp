@@ -14,11 +14,16 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapterDownloadedCourseList extends RecyclerView.Adapter<RecyclerViewAdapterDownloadedCourseList.MyViewHolder> {
 
-    private ArrayList<ArrayList<String>> dataSet;
+    private ArrayList<String> dataSet;
 
     private Context mContext;
 
     private View view;
+
+
+    private String unitId;
+
+    private String mCourseId;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
@@ -31,8 +36,10 @@ public class RecyclerViewAdapterDownloadedCourseList extends RecyclerView.Adapte
         }
     }
 
-    public RecyclerViewAdapterDownloadedCourseList(ArrayList<ArrayList<String>> data, Context context) {
+    public RecyclerViewAdapterDownloadedCourseList(String courseId, ArrayList<String> data, Context context) {
         this.dataSet = data;
+
+        this.mCourseId = courseId;
 
         this.mContext=context;
     }
@@ -59,40 +66,39 @@ public class RecyclerViewAdapterDownloadedCourseList extends RecyclerView.Adapte
     {
         final TextView textViewName = holder.reportextView;
 
-        final ArrayList<String> mArrayLisUnitId=dataSet.get(0);
-        final ArrayList<String> filePathList=dataSet.get(1);
-        final ArrayList<String> mArrayLisLessonName=dataSet.get(2);
-        final ArrayList<String> mArrayLisLessonDetail=dataSet.get(3);
-
-        final String unitName=mArrayLisUnitId.get(listPosition);
+        final String unitName=dataSet.get(listPosition);
 
         textViewName.setText(unitName);
+
+
+        unitId = dataSet.get(listPosition);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //String action;
+
+
+                final String unitIdPut=dataSet.get(listPosition);
+
                 Intent i=new Intent(mContext, DownloadLessonActivity.class);
 
-                i.putExtra("pathlist",filePathList);
-                i.putExtra("lessonlist",mArrayLisLessonName);
-                i.putExtra("lessondetaillist",mArrayLisLessonDetail);
+                i.putExtra("unitid",unitIdPut);
+                i.putExtra("cid",mCourseId);
 
                 v.getContext().startActivity(i);
             }
         });
-
-
     }
 
 
     @Override
     public int getItemCount() {
-        if(dataSet.get(0)==null) {
+        if(dataSet==null) {
             return 0;
         }
         else
-            return dataSet.get(0).size();
+            return dataSet.size();
     }
 
     public String convertEngToBn(String num){
