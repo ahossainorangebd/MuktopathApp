@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -52,6 +53,8 @@ public class MyPageDetailFragment3 extends Fragment {
 
     ArrayList<DetailDataModelCoursesDetailContents> contentTypeArray;
 
+    private ImageView mLessonIconView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,7 +63,34 @@ public class MyPageDetailFragment3 extends Fragment {
         context=getContext();
 
 
+        mLessonIconView=view.findViewById(R.id.lessonIconDynamicId);
 
+        if(GlobalVar.gLastReadLessonTitle!=null){
+            if(GlobalVar.gLastReadLessonTitle.equalsIgnoreCase("video")){
+
+                mLessonIconView.setImageResource(R.drawable.play_button_round);
+            }
+            else if(GlobalVar.gLastReadLessonTitle.equalsIgnoreCase("exam")){
+
+                mLessonIconView.setImageResource(R.drawable.mukto_exam_icon);
+            }
+            else if(GlobalVar.gLastReadLessonTitle.equalsIgnoreCase("quiz")){
+
+                mLessonIconView.setImageResource(R.drawable.mukto_quiz_icon);
+            }
+            else if(GlobalVar.gLastReadLessonTitle.equalsIgnoreCase("assignment")){
+
+                mLessonIconView.setImageResource(R.drawable.mukto_assignment_icon);
+            }
+            else if(GlobalVar.gLastReadLessonTitle.equalsIgnoreCase("discussion")){
+
+                mLessonIconView.setImageResource(R.drawable.mukto_discussion_icon);
+            }
+            else if(GlobalVar.gLastReadLessonTitle.equalsIgnoreCase("live_class")){
+
+                mLessonIconView.setImageResource(R.drawable.mukto_live_class);
+            }
+        }
 
 
         mLastReadLesson=view.findViewById(R.id.lastReadLessonId);

@@ -132,6 +132,7 @@ public class RecyclerViewAdapterMyPageContents extends RecyclerView.Adapter<Recy
                 i.putExtra("usernumber", ownerId);
                 i.putExtra("vcode", videoCode);
                 i.putExtra("videostatus", timeStatus);
+                //i.putExtra("cduration", dura);
 
                 GlobalVar.gListPosition=Integer.toString(listPosition);
 

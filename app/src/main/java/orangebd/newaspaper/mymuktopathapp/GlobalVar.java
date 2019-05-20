@@ -2,6 +2,8 @@ package orangebd.newaspaper.mymuktopathapp;
 
 
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 
 import org.json.JSONArray;
 
@@ -73,6 +75,8 @@ public class GlobalVar {
     public static String gMobile;
     public static String gEmail;
     public static String gProfileCompleteness;
+
+    public static String gGamificationPoint;
 
 
     public static String gReplacingToken;
@@ -148,6 +152,7 @@ public class GlobalVar {
     public static String gUserNumber;
     public static String gVideoCode;
     public static String gTimeStatus;
+    public static String gContentDuration;
 
     // Unit & Lesson info
     public static String gUnitId;
@@ -250,4 +255,12 @@ public class GlobalVar {
 
 
     public static int gIncompletedCourseCount;
+
+
+
+    public static RecyclerView.Adapter gRlecomRecyclerViewAdapter;
+    public static RecyclerView gRecyclerViewCat;
+
+    public static ArrayList<DetailDataModelAll> gDetailListMainActivityCourseCat = new ArrayList<>();
+    public static ProgressBar gProgressSpinner;
 }

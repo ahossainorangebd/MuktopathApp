@@ -23,6 +23,7 @@
             android:padding="10dp">
 
             <CheckBox
+                android:id="@+id/flagCheckBox"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 />
@@ -31,7 +32,7 @@
                 android:id="@+id/reportText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="User Name"
+                android:text="Flag Name"
                 android:textSize="18sp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/colorVoldemort"

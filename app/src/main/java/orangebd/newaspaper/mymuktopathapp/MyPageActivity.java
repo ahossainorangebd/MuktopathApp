@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -226,6 +227,24 @@ public class MyPageActivity extends AppCompatActivity {
 
     private Button mFindNewCourseBtn;
 
+    private int backTapCount;
+
+
+
+    // for dynamic btn mypgae vs Profile
+
+    private ImageView myPageDyanmicBtn;
+    private ImageView myPageProfileDyanmicBtn;
+
+    private TextView myPageDyanmicText;
+    private TextView myPageProfileDyanmicText;
+
+
+
+
+    private TextView noCourseFoundtext;
+    private TextView sorryNoCourseFound;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -237,7 +256,7 @@ public class MyPageActivity extends AppCompatActivity {
 
         GlobalVar.gIncompletedCourseCount=0;
 
-        //getSupportActionBar().hide();
+        getSupportActionBar().hide();
 
         allCourseBtn = findViewById(R.id.allCourseBtnId);
         recomendedBtn = findViewById(R.id.recomendedBtnId);
@@ -441,6 +460,7 @@ public class MyPageActivity extends AppCompatActivity {
                                 String email = jObjectData.getString("email");
                                 String Completeness = jObjectData.getString("completeness");
                                 String profilecompleteness = jObjectData.getString("profilecompleteness");
+                                String gamification = jObjectData.getString("gamification");
                                 String name = jObjectData.getString("name");
 
                                 String lastLoginIpAddress = jObjectData.getString("last_login_ip_address");
@@ -458,6 +478,8 @@ public class MyPageActivity extends AppCompatActivity {
                                 GlobalVar.gEmail = email;
                                 GlobalVar.gReplacingToken = token;
                                 GlobalVar.gProfileCompleteness = profilecompleteness;
+
+                                GlobalVar.gGamificationPoint = gamification;
 
                                 model.setmId(id);
                                 model.setmUserName(username);
@@ -2047,22 +2069,26 @@ public class MyPageActivity extends AppCompatActivity {
                                         GlobalVar.gEnrollCourseNumber = GlobalVar.gWishListNumber;
 
 
-                                        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_logodetails_for_profile_btns, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-                                        mCustomLogoText=view.findViewById(R.id.centertitlenametv);
-
-                                        mCustomLogoText.setText("পছন্দের কোর্স");
-                                        myPageTextView.setVisibility(View.GONE);
-
-                                        mFiveFooterBtnsLayOut.setVisibility(View.GONE);
+                                        myPageTextView.setText("পছন্দের কোর্স");
 
 
-                                        mSettingsBtn.setVisibility(View.GONE);
+                                        // if came from profile page selection
+                                        myPageDyanmicBtn = findViewById(R.id.myPageDyanmicBtnId);
+                                        myPageProfileDyanmicBtn = findViewById(R.id.dynamicProfileIcon);
+
+                                        myPageDyanmicText = findViewById(R.id.myPageDyanmicTextId);
+                                        myPageProfileDyanmicText = findViewById(R.id.dynamicProfileText);
+
+
+                                        myPageDyanmicBtn.setImageResource(R.drawable.open_book);
+                                        myPageProfileDyanmicBtn.setImageResource(R.drawable.profile_purple);
+
+                                        myPageDyanmicText.setTextColor(Color.GRAY);
+                                        myPageProfileDyanmicText.setTextColor(Color.BLACK);
+                                        //
+
+
+                                        //mSettingsBtn.setVisibility(View.GONE);
                                     }
 
                                     else if (GlobalVar.isRedirectFromProfileEndedBtn==true) {
@@ -2078,63 +2104,76 @@ public class MyPageActivity extends AppCompatActivity {
 
                                         GlobalVar.gEnrollCourseNumber = Integer.parseInt(coursecompleted);
 
-                                        mCustomLogoText.setText("সম্পন্ন কোর্স");
-                                        myPageTextView.setVisibility(View.GONE);
+                                        myPageTextView.setText("সম্পন্ন কোর্স");
 
-                                        mFiveFooterBtnsLayOut.setVisibility(View.GONE);
+                                        //mFiveFooterBtnsLayOut.setVisibility(View.GONE);
 
-                                        mSettingsBtn.setVisibility(View.GONE);
+
+
+                                        // if came from profile page selection
+                                        myPageDyanmicBtn = findViewById(R.id.myPageDyanmicBtnId);
+                                        myPageProfileDyanmicBtn = findViewById(R.id.dynamicProfileIcon);
+
+                                        myPageDyanmicText = findViewById(R.id.myPageDyanmicTextId);
+                                        myPageProfileDyanmicText = findViewById(R.id.dynamicProfileText);
+
+
+                                        myPageDyanmicBtn.setImageResource(R.drawable.open_book);
+                                        myPageProfileDyanmicBtn.setImageResource(R.drawable.profile_purple);
+
+                                        myPageDyanmicText.setTextColor(Color.GRAY);
+                                        myPageProfileDyanmicText.setTextColor(Color.BLACK);
+                                        //
+
+                                        //mSettingsBtn.setVisibility(View.GONE);
                                     }
 
                                     else if(GlobalVar.isRedirectFromProfileNonEndedBtn==true) {
 
                                         GlobalVar.gEnrollCourseNumber = GlobalVar.gIncompletedCourseCount;
 
-                                        getSupportActionBar().hide();
+                                        myPageTextView.setText("অসমাপ্ত কোর্স");
 
-                                        /*View view = LayoutInflater.from(mContext)
-                                                .inflate(R.layout.custom_logodetails, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                                        // if came from profile page selection
+                                        myPageDyanmicBtn = findViewById(R.id.myPageDyanmicBtnId);
+                                        myPageProfileDyanmicBtn = findViewById(R.id.dynamicProfileIcon);
 
-                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
+                                        myPageDyanmicText = findViewById(R.id.myPageDyanmicTextId);
+                                        myPageProfileDyanmicText = findViewById(R.id.dynamicProfileText);
+
+
+                                        myPageDyanmicBtn.setImageResource(R.drawable.open_book);
+                                        myPageProfileDyanmicBtn.setImageResource(R.drawable.profile_purple);
+
+                                        myPageDyanmicText.setTextColor(Color.GRAY);
+                                        myPageProfileDyanmicText.setTextColor(Color.BLACK);
+                                        //
                                     }
 
                                     else if(GlobalVar.isRedirectFromProfileRunningBtn==true) {
 
                                         GlobalVar.gEnrollCourseNumber = totalIncompletedCourseInt;
 
+                                        myPageTextView.setText("চলমান কোর্স");
 
-                                        getSupportActionBar().hide();
+                                        // if came from profile page selection
+                                        myPageDyanmicBtn = findViewById(R.id.myPageDyanmicBtnId);
+                                        myPageProfileDyanmicBtn = findViewById(R.id.dynamicProfileIcon);
 
-                                        /*View view = LayoutInflater.from(mContext)
-                                                .inflate(R.layout.custom_logodetails, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                                        myPageDyanmicText = findViewById(R.id.myPageDyanmicTextId);
+                                        myPageProfileDyanmicText = findViewById(R.id.dynamicProfileText);
 
-                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
+
+                                        myPageDyanmicBtn.setImageResource(R.drawable.open_book);
+                                        myPageProfileDyanmicBtn.setImageResource(R.drawable.profile_purple);
+
+                                        myPageDyanmicText.setTextColor(Color.GRAY);
+                                        myPageProfileDyanmicText.setTextColor(Color.BLACK);
+                                        //
                                     }
 
                                     else{
                                         GlobalVar.gEnrollCourseNumber = totalIncompletedCourseInt;
-
-                                        getSupportActionBar().hide();
-
-                                        /*View view = LayoutInflater.from(mContext)
-                                                .inflate(R.layout.custom_logodetails, null, false);
-                                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                                        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                                        getSupportActionBar().setCustomView(view);
-                                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7a19aa")));
-                                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-                                        imageLogo=view.findViewById(R.id.rtvheadlogo);*/
                                     }
 
 
@@ -2212,9 +2251,49 @@ public class MyPageActivity extends AppCompatActivity {
 
                         if(GlobalVar.gEnrollCourseNumber>0){
                             mRelativeBackground.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.mukto_mypage_background_img_sharp));
+
+                            myPageBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+
+                                    GlobalVar.isRedirectFromProfileRunningBtn=false;
+                                    GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                                    GlobalVar.isRedirectFromProfileEndedBtn=false;
+                                    GlobalVar.isRedirectFromProfileWishListBtn=false;
+
+                                    Intent i=new Intent(mContext,MyPageActivity.class);
+                                    v.getContext().startActivity(i);
+                                }
+                            });
                         }
                         else {
                             mNoEnroledCourseFound.setVisibility(View.VISIBLE);
+                            mRelativeBackground.setBackgroundColor(Color.WHITE);
+
+                            noCourseFoundtext=findViewById(R.id.noCourseFoundtextId);
+                            sorryNoCourseFound=findViewById(R.id.sorryNoCourseFoundId);
+
+                            sorryNoCourseFound.setText("দুঃখিত");
+                            noCourseFoundtext.setText("কোন কোর্স পাওয়া যায়নি");
+
+                            myPageTextView.setTextColor(Color.BLACK);
+
+
+                            myPageBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+
+                                    GlobalVar.isRedirectFromProfileRunningBtn=false;
+                                    GlobalVar.isRedirectFromProfileNonEndedBtn=false;
+                                    GlobalVar.isRedirectFromProfileEndedBtn=false;
+                                    GlobalVar.isRedirectFromProfileWishListBtn=false;
+
+                                    Intent i=new Intent(mContext,MyPageActivity.class);
+                                    v.getContext().startActivity(i);
+                                }
+                            });
                         }
 
 
@@ -2440,6 +2519,30 @@ public class MyPageActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /*@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+
+                    backTapCount++;
+
+                    if(backTapCount>=2){
+                        finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    }
+                    else if (backTapCount==1){
+                        //A warning toast msg for double tapping exit
+                        Toast.makeText(getApplicationContext(),"Press back button again to exit from the app.", Toast.LENGTH_LONG).show();
+                    }
+
+                    return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
 
     private void showPopUpImageBox()
     {

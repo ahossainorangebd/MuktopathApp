@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -63,6 +65,8 @@ public class RecomendedActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
 
     private Context mContext;
+
+    private TextView mEditRecom;
 
     // Button Layout of footer
 
@@ -149,6 +153,10 @@ public class RecomendedActivity extends AppCompatActivity {
     private ArrayList<String> RecommendedCategoriesEn = new ArrayList<>();
     private ArrayList<String> RecommendedCategoriesBn = new ArrayList<>();
 
+
+    private int backTapCount;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,6 +184,18 @@ public class RecomendedActivity extends AppCompatActivity {
         downloadsBtn = findViewById(R.id.downloadsBtnId);
         profileBtn = findViewById(R.id.profilePageBtnId);
         mProgressSpinner=findViewById(R.id.loadingSpinnerId);
+
+        GlobalVar.gProgressSpinner = mProgressSpinner;
+
+
+        mEditRecom=findViewById(R.id.editRecomId);
+        mEditRecom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, SelectACategoryActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,6 +286,9 @@ public class RecomendedActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
+
+
+        GlobalVar.gRecyclerViewCat = recyclerView;
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
@@ -2680,6 +2703,10 @@ public class RecomendedActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
+
+
+            GlobalVar.gRlecomRecyclerViewAdapter = adapter;
+
 //            mProgressSpinner2.setVisibility(View.GONE);
 
             /*if(RecommendedCategoriesId.size()>4) {
@@ -2842,6 +2869,9 @@ public class RecomendedActivity extends AppCompatActivity {
 
                         detailListMainActivityCourseCat.add(modelCourseCatAll);
 
+
+                        GlobalVar.gDetailListMainActivityCourseCat = detailListMainActivityCourseCat;
+
                         String aaaa="";
                     }
                 } catch (Exception ex) {
@@ -2909,6 +2939,8 @@ public class RecomendedActivity extends AppCompatActivity {
                 sixthRecomCatName = RecommendedCategoriesEn.get(5);
                 seventhRecomCatName = RecommendedCategoriesEn.get(6);
                 eighthRecomCatName = RecommendedCategoriesEn.get(7);
+                eighthRecomCatName = RecommendedCategoriesEn.get(8);
+                eighthRecomCatName = RecommendedCategoriesEn.get(9);
             }
             catch (Exception ex){
                 Log.d("", "onCreate: ");
@@ -2923,6 +2955,8 @@ public class RecomendedActivity extends AppCompatActivity {
                 sixthRecomCatId = RecommendedCategoriesId.get(5);
                 seventhRecomCatId = RecommendedCategoriesId.get(6);
                 eighthRecomCatId = RecommendedCategoriesId.get(7);
+                eighthRecomCatId = RecommendedCategoriesId.get(8);
+                eighthRecomCatId = RecommendedCategoriesId.get(9);
             }
             catch (Exception ex){
                 Log.d("", "onCreate: ");
@@ -2967,4 +3001,27 @@ public class RecomendedActivity extends AppCompatActivity {
 
         return sb.toString();
     }
+
+    /*@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+
+                    backTapCount++;
+
+                    if(backTapCount>=2){
+                        this.finish();
+                    }
+                    else if (backTapCount==1){
+                        //A warning toast msg for double tapping exit
+                        Toast.makeText(getApplicationContext(),"Press back button again to exit from the app.", Toast.LENGTH_LONG).show();
+                    }
+
+                    return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
 }

@@ -14,37 +14,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="10dp"
             >
 
             <LinearLayout
                 android:id="@+id/historyContent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorLighterPain"
-                android:padding="6dp"
-                android:layout_marginTop="40dp"
+                android:layout_height="100dp"
+                android:background="@drawable/button_style_pain"
+                android:padding="12dp"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
                 >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/Colorpeace"
+                    android:textStyle="bold"
+                    android:text="শুরু করুন..."
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/Colorpeace"
+                    android:background="@drawable/button_style_edit_text"
                     android:orientation="horizontal"
-                    android:padding="2dp"
+                    android:padding="6dp"
+                    android:layout_gravity="bottom"
                     >
 
                     <ImageView
+                        android:id="@+id/lessonIconDynamicId"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:layout_marginRight="6dp"
-                        android:src="@drawable/history_icon"
+                        android:src="@drawable/play_button_round"
                         />
 
                     <TextView
                         android:id="@+id/lastReadLessonId"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="18dp"
                         android:text="Title loading..."
                         android:layout_marginTop="2dp"
                         android:layout_marginLeft="10dp"

@@ -79,6 +79,8 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     private String contentSize;
     private String contentDuration;
 
+    private String contentIconType;
+
     private Button downloadBtn;
 
     private DBHelper myDb;
@@ -256,31 +258,43 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
 
                 imageView.setImageResource(R.drawable.play_button_round);
+
+                contentIconType="video";
             }
             else if(titleText.equalsIgnoreCase("exam")){
                 titleText="Exam";
 
                 imageView.setImageResource(R.drawable.mukto_exam_icon);
+
+                contentIconType="exam";
             }
             else if(titleText.equalsIgnoreCase("quiz")){
                 titleText="Quiz";
 
                 imageView.setImageResource(R.drawable.mukto_quiz_icon);
+
+                contentIconType="quiz";
             }
             else if(titleText.equalsIgnoreCase("assignment")){
                 titleText="Assignment";
 
                 imageView.setImageResource(R.drawable.mukto_assignment_icon);
+
+                contentIconType="assignment";
             }
             else if(titleText.equalsIgnoreCase("discussion")){
                 titleText="Discussion";
 
                 imageView.setImageResource(R.drawable.mukto_discussion_icon);
+
+                contentIconType="discussion";
             }
             else if(titleText.equalsIgnoreCase("live_class")){
                 titleText="Live class";
 
                 imageView.setImageResource(R.drawable.mukto_live_class);
+
+                contentIconType="live_class";
             }
 
             textViewName.setText(titleText);
@@ -299,6 +313,9 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         imageViewdown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                contentIconType=textViewName.getText().toString();
 
 
                 // Get Course id
@@ -440,6 +457,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         GlobalVar.gUserNumber=ownerId;
                         GlobalVar.gVideoCode=videoCode;
                         GlobalVar.gTimeStatus=timeStatus;
+                        GlobalVar.gContentDuration=contentDuration;
 
                         String aqwqw="";
 

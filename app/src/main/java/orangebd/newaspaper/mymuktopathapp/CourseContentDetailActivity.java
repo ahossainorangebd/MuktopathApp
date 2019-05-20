@@ -82,6 +82,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private String unitId;
     private String contentSize;
     private String contentDuration;
+
+    private String contentIconType;
+
     private String mListPosition;
     private String mUserNumber;
 
@@ -240,6 +243,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             eCode = GlobalVar.gVideoCode;
             mUserNumber = GlobalVar.gUserNumber;
             timeStatus = GlobalVar.gTimeStatus;
+            contentDuration = GlobalVar.gContentDuration;
+
+            String testing123="";
         }
         else {
             DetailDescription=getIntent().getExtras().getString("detail");
@@ -250,6 +256,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             unitId = getIntent().getExtras().getString("unitid");
             contentSize = getIntent().getExtras().getString("csize");
             contentDuration = getIntent().getExtras().getString("cduration");
+
+            String testing123="";
         }
 
 
@@ -1224,6 +1232,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(mFlagged.equalsIgnoreCase("1")){
+
+
 
                     GlobalVar.gFlagReportStr="";
 

@@ -30,14 +30,37 @@
                 android:background="#fff"
                 android:layout_marginTop="5dp"
                 >
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="আমার রিকমেন্ডেড কোর্সসমূহ"
-                    android:textSize="20sp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_marginBottom="12dp"
-                    android:textColor="@color/colorVoldemort"
-                    />
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="আমার রিকমেন্ডেড কোর্সসমূহ"
+                        android:textSize="20sp"
+
+                        android:textColor="@color/colorVoldemort"
+                        />
+
+                    <TextView
+                        android:id="@+id/editRecomId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:textSize="20sp"
+                        android:layout_marginLeft="80dp"
+                        android:textColor="@color/colorPain"
+                        />
+
+                </LinearLayout>
+
+
 
                     <android.support.v7.widget.RecyclerView
                         android:layout_marginBottom="10dp"
@@ -950,7 +973,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/recommended_icon_blue"/>
+                    android:src="@drawable/ricomended_purple"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

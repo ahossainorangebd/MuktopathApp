@@ -267,15 +267,14 @@ public class SearchActivity extends AppCompatActivity {
                     DetailDataModelAll idNameOfSelectedItem = GlobalVar.gAllCourseCategories.get(si);
                     String matchName=idNameOfSelectedItem.getmCourseCategoryNameBn();
 
-                    if (selectedItem.equalsIgnoreCase(matchName)){
+                    if (selectedItem.equalsIgnoreCase(matchName)) {
+
                         IdOfSelectedItem=idNameOfSelectedItem.getmCourseCategoryId();
 
-                        Toast.makeText(mContext,IdOfSelectedItem,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(mContext,IdOfSelectedItem,Toast.LENGTH_LONG).show();
                     }
 
                 }
-
-
 
                 String breakpoint="gradle";
             }

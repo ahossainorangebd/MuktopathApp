@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -72,6 +73,8 @@ public class DownloadActivity extends AppCompatActivity {
 
 
     private ArrayList<ArrayList<String>> mArrayLisWholeData;
+
+    private int backTapCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -454,6 +457,29 @@ public class DownloadActivity extends AppCompatActivity {
 
         String abcd2="";
     }
+
+    /*@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+
+                    backTapCount++;
+
+                    if(backTapCount>=2){
+                        this.finish();
+                    }
+                    else if (backTapCount==1){
+                        //A warning toast msg for double tapping exit
+                        Toast.makeText(getApplicationContext(),"Press back button again to exit from the app.", Toast.LENGTH_LONG).show();
+                    }
+
+                    return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
 
 }
 

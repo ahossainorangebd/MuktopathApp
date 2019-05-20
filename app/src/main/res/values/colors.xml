@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#7a19aa</color>
-    <color name="colorPrimaryDark">#7a19aa</color>
+    <color name="colorPrimary">#683091</color>
+    <!--<color name="colorPrimaryDark">#7a19aa</color>-->
+    <color name="colorPrimaryDark">#683091</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="colorPain">#004fce</color>
-    <color name="colorLighterPain">#3d72c6</color>
+
+    <!--<color name="colorLighterPain">#3d72c6</color>-->
+
     <color name="colorVoldemort">#000000</color>
     <color name="AppBackgroundColor2">#b3bbd1</color>
     <color name="AppBackgroundColor">#f3f3f3</color>
     <color name="FooterBtnsColorOld">#eeeeee</color>
     <color name="FooterBtnsColor">#fafafa</color>
     <color name="Colorpeace">#fff</color>
-    <color name="AppTextColor">#7a19aa</color>
+    <color name="AppTextColor">#683091</color>
 
     <color name="colorFadedBlack">#282828</color>
     <color name="colorTransparent">#00303F9F</color>

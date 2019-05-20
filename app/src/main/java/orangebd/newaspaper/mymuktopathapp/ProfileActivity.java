@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -70,6 +72,13 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearLayout mRunningCourseButton;
 
 
+    private int backTapCount;
+
+    private ImageView mSettingsBtn;
+
+    private TextView mGamificationPoint;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +100,20 @@ public class ProfileActivity extends AppCompatActivity {
         mLoadAnimation.setDuration(1000);
         view2.startAnimation(mLoadAnimation);
 
+        mGamificationPoint=findViewById(R.id.gamificationPoint);
+
+        mGamificationPoint.setText(GlobalVar.gGamificationPoint);
+
+
+        mSettingsBtn=findViewById(R.id.settingsBtn);
+        mSettingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(mContext, SettingsActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
 
 
         /** declaring ids of 4 buttons
@@ -261,10 +284,21 @@ public class ProfileActivity extends AppCompatActivity {
         }
         catch (Exception ex){}
 
-        try {
-            Picasso.with(mContext).load(mUserProfilePhoto).into(mUserProfileImage);
+        String testingabcd="";
+
+        String imgprofileurl = GlobalVar.courseContentDetailList.get(0).getmUserInformationArrayList().get(0).getmUserProfilePhoto();
+
+        if(imgprofileurl=="null"){
+
+            mUserProfileImage.setImageResource(R.drawable.profileicon);
         }
-        catch (Exception ex){}
+        else{
+            try {
+                Picasso.with(mContext).load(mUserProfilePhoto).into(mUserProfileImage);
+            }
+            catch (Exception ex){}
+        }
+
 
 
 
@@ -404,5 +438,28 @@ public class ProfileActivity extends AppCompatActivity {
 
         return num;
     }
+
+    /*@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+
+                    backTapCount++;
+
+                    if(backTapCount>=2){
+                        this.finish();
+                    }
+                    else if (backTapCount==1){
+                        //A warning toast msg for double tapping exit
+                        Toast.makeText(getApplicationContext(),"Press back button again to exit from the app.", Toast.LENGTH_LONG).show();
+                    }
+
+                    return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
 
 }

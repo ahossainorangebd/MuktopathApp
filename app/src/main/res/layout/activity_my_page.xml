@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="আমার পাতা"
+            android:layout_marginTop="10dp"
             android:textColor="@color/Colorpeace"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -148,6 +149,7 @@
             >
 
             <TextView
+                android:id="@+id/sorryNoCourseFoundId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="সবার জন্য অনলাইন শিক্ষা"
@@ -160,6 +162,7 @@
                 />
 
             <TextView
+                android:id="@+id/noCourseFoundtextId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorVoldemort"
@@ -277,13 +280,15 @@
                     >
 
                     <ImageView
+                        android:id="@+id/myPageDyanmicBtnId"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/shokol_course_icon_blue"
+                        android:src="@drawable/allcourse_purple"
                         />
 
                     <TextView
+                        android:id="@+id/myPageDyanmicTextId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
@@ -322,11 +327,13 @@
                     android:orientation="vertical"
                     >
                     <ImageView
+                        android:id="@+id/dynamicProfileIcon"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:src="@drawable/profileicon"/>
                     <TextView
+                        android:id="@+id/dynamicProfileText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#bdbdbd"

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -110,17 +111,15 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
                         startActivity(i);
                     }
-
-
-
+                }
+                else{
+                    Toast.makeText(context,"Something's wrong",Toast.LENGTH_LONG).show();
                 }
 
             }
             catch (Exception ex){
                 Log.d("", "onPostExecute: ");
             }
-
-
 
         }
         @Override

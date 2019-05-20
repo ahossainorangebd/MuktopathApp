@@ -287,7 +287,7 @@
                             android:id="@+id/password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="পাসওয়ার্ড"
+                            android:hint="পাসওয়ার্ড (কমপক্ষে আট অক্ষর)"
                             android:background="#fff"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"

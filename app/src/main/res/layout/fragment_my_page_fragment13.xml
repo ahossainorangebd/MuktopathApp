@@ -330,7 +330,7 @@
                     android:layout_marginTop="8dp"
                     android:text="শুরু করুন"
                     android:textColor="@color/Colorpeace"
-                    android:background="#4c9ee1"
+                    android:background="@color/colorPrimaryDark"
                     android:elevation="20dp"
                     />
             </LinearLayout>

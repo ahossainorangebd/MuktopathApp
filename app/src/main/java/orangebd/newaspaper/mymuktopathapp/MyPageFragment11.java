@@ -182,7 +182,7 @@ public class MyPageFragment11 extends Fragment {
         final ArrayList<DetailDataModelCoursesDetailContents> mContent = GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent().get(nthCourse);
 
         // Let's count the number of Units
-        if(GlobalVar.gGoingDirection.equalsIgnoreCase("right")) {
+        /*if(GlobalVar.gGoingDirection.equalsIgnoreCase("right")) {
             GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse - 1).size();
         }
 
@@ -192,7 +192,7 @@ public class MyPageFragment11 extends Fragment {
 
         if(GlobalVar.gEnrollCourseNumber==11){
             GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();
-        }
+        }*/
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse-1);
 
@@ -306,6 +306,9 @@ public class MyPageFragment11 extends Fragment {
         startMyPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Let's count the number of Units
+                GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();
 
                 GlobalVar.isRedirectFromContentPage=false;
 
