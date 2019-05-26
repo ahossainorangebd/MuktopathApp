@@ -33,11 +33,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
         String imageUri = remoteMessage.getData().get("image");
         bitmap = getBitmapfromUrl(imageUri);
 
-        sendNotification(message, strUrl, bitmap);
+    sendNotification(message, strUrl, bitmap);
     }
     private void sendNotification(String messageBody,String url, Bitmap image) {
 
-        Intent intent = new Intent(this, SplashActivity.class);
+        Intent intent = new Intent(this, WelcomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("url", url);
         intent.putExtra("content",messageBody);

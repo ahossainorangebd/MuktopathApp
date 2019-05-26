@@ -96,7 +96,7 @@ public class RecyclerViewAdapterCategory9 extends RecyclerView.Adapter<RecyclerV
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
 
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
 
 
         final int sUnitSize= dataSet.get(listPosition).getmArrayListCourseUnits().size();

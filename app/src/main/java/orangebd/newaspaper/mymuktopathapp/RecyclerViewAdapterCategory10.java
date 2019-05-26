@@ -50,8 +50,10 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
         public MyViewHolder(View itemView) {
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.textViewName);
-           // this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
+
+            // this.textViewVersion = itemView.findViewById(R.id.textViewVersion);
            // this.textViewVersion2 = itemView.findViewById(R.id.textViewVersion2);
+
             this.imageViewIcon = itemView.findViewById(R.id.imageView);
             //this.typeface=Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/SolaimanLipi.ttf");
             //textViewVersion.setTypeface(typeface);
@@ -95,7 +97,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
 
 
         final int sUnitSize= dataSet.get(listPosition).getmArrayListCourseUnits().size();
@@ -133,6 +135,7 @@ public class RecyclerViewAdapterCategory10 extends RecyclerView.Adapter<Recycler
                 GlobalVar.gChildArrayOfContent = mArrayList;
 
                 Intent i = new Intent(mContext, CourseDetailActivity.class);
+
                 i.putExtra("ttl", titleText);
                 i.putExtra("img", CoverPhoto);
                 i.putExtra("detail", DetailDescription);

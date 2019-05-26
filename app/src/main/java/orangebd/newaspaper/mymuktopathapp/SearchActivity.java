@@ -832,7 +832,11 @@ public class SearchActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 

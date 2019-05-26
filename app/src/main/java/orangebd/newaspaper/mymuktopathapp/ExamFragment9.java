@@ -20,6 +20,7 @@ public class ExamFragment9 extends Fragment {
 
     private int prevExam=7;
     private int nextExam=9;
+
     private Button nextButton;
     private Button prevButton;
 

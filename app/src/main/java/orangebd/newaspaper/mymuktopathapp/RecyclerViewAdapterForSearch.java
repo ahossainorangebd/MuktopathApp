@@ -93,7 +93,7 @@ public class RecyclerViewAdapterForSearch extends RecyclerView.Adapter<RecyclerV
 
         textViewName.setText(titleText);
 
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
         final String sContentSize= Integer.toString(contentArray.size());
 
         final Object[] mArrayList = contentArray.get(listPosition).toArray();

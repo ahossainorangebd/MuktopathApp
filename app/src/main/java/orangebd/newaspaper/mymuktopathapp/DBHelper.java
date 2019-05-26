@@ -98,6 +98,17 @@ public class DBHelper extends SQLiteOpenHelper {
         return res2;
     }
 
+    public Cursor GetUnitNameFromDB(String mCourseId){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String[] asColumnsToReturn = new String[] {COL_2};
+        //Cursor cursor = db.query(false, TABLE_NAME, asColumnsToReturn, COL_2 + "=" + mCourseId + " AND " + COL_3 + "=" + unitId , null, null, null, null, null);
+
+        Cursor cursor = db.rawQuery("select UNITNAME from " + TABLE_NAME + " where " + COL_2 + " = ? ", new String[] { mCourseId });
+
+        return cursor;
+    }
+
 
 
 
@@ -121,6 +132,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 */
+
+
 
 
     public Cursor GetLessonDataFromDB(String unitId, String mCourseId){

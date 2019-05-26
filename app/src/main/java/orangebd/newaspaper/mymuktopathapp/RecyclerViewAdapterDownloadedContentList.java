@@ -105,7 +105,7 @@ public class RecyclerViewAdapterDownloadedContentList extends RecyclerView.Adapt
 
                 String abtesting="";
 
-                Toast.makeText(mContext,"অফলাইনের " + convertEngToBn(String.valueOf(listPosition+1)) + " তম কোর্স টি মুছে ফেলা সম্পন্ন হয়েছে", Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext,"অফলাইনের " + convertEngToBn(String.valueOf(listPosition+1)) + " তম অনুশীলনী টি মুছে ফেলা সম্পন্ন হয়েছে", Toast.LENGTH_LONG).show();
 
                 Intent i=new Intent(mContext, DownloadActivity.class);
                 v.getContext().startActivity(i);

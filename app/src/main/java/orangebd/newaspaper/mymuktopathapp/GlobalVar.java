@@ -33,7 +33,7 @@ public class GlobalVar {
 
     public static ArrayList<DetailDataModelCourses> gRecommendedDetailList10;
     public static ArrayList<DetailDataModelCourses> gEnrolledInstitution;
-    public static ArrayList<DetailDataModelCoursesDetailContents> thisFragmentContents;
+    public static ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> thisFragmentContents;
     public static ArrayList<DetailDataModelCoursesDetailContents> thisFragmentQuizes;
 
     public static ArrayList<DetailDataModelCoursesDetailContents> gThisVideoPulses;
@@ -60,6 +60,8 @@ public class GlobalVar {
     //arrayList of Course Content
     public static ArrayList<DetailDataModelCourses> courseContentDetailList;
     public static ArrayList<DetailDataModelCourses> gEnrollCourseList;
+
+    public static ArrayList<DetailDataModelCourses> gCourseIdListForCourseId;
 
 
     //
@@ -88,12 +90,11 @@ public class GlobalVar {
     public static String gUserType;
 
     public static String gBaseUrl="http://muktopaath.orangebd.com";
-    public static String gBaseUrlForProfile="http://testadmin.muktopaath.orangebd.com";
+    //public static String gBaseUrlForProfile="http://testadmin.muktopaath.orangebd.com";
+    public static String gBaseUrlForProfile="http://muktopaath.orangebd.com";
 
-    public static String gApiBaseUrl="http://testapi.muktopaath.orangebd.com";
-   //TODO
-    //TODO
     //public static String gApiBaseUrl="http://testapi.muktopaath.orangebd.com";
+    public static String gApiBaseUrl="http://api.muktopaath.orangebd.com";
 
     public static int gNthCourse;
 
@@ -153,6 +154,9 @@ public class GlobalVar {
     public static String gVideoCode;
     public static String gTimeStatus;
     public static String gContentDuration;
+    public static String gChooseVideoType;
+    public static String gContentIconType;
+    public static String gLessonCompleteness;
 
     // Unit & Lesson info
     public static String gUnitId;

@@ -136,7 +136,7 @@
                         android:layout_height="35dp"
                         android:src="@drawable/cloud_download_icon_black"
                         android:foregroundGravity="right"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="12dp"
                         />
 
                 </LinearLayout>

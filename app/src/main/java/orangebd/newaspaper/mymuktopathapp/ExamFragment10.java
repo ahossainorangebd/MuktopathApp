@@ -20,12 +20,16 @@ public class ExamFragment10 extends Fragment {
 
     private int prevExam=8;
 
+    private int nthExam=9;
+
+    private int nextExam=10;
+
     private TextView mExamTitle;
 
     private View view;
     private Context context;
 
-    private int nthExam=9;
+
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -80,7 +84,7 @@ public class ExamFragment10 extends Fragment {
 
                 }
 
-                GlobalVar.gExamViewPager.setCurrentItem(10);
+                GlobalVar.gExamViewPager.setCurrentItem(nextExam);
 
             }
         });

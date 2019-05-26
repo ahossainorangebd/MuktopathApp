@@ -110,8 +110,14 @@ public class VerifyAccountActivity extends AppCompatActivity {
                 //Toast.makeText(context,result,Toast.LENGTH_LONG).show();
 
                 if(result!=null){
+
+                    Toast.makeText(context,"আপনার ভেরিফিকেশন সম্পন্ন হয়েছে।",Toast.LENGTH_LONG).show();
+
                     Intent i=new Intent(context,LoginActivity.class);
                     startActivity(i);
+                }
+                else{
+                    Toast.makeText(context,"Verification incomplete.",Toast.LENGTH_LONG).show();
                 }
 
             }

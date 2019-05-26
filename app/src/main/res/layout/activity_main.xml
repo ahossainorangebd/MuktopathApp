@@ -116,11 +116,11 @@
                 >
 
 
-                <HorizontalScrollView
+                <!--<HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:scrollbars="none"
-                    >
+                    >-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -378,7 +378,7 @@
 
                     </LinearLayout>
 
-                </HorizontalScrollView>
+                <!--</HorizontalScrollView>-->
 
 
             </LinearLayout>
@@ -418,11 +418,11 @@
 
 
 
-            <HorizontalScrollView
+           <!-- <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
 
 
 
@@ -683,7 +683,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>
@@ -722,11 +722,11 @@
 
 
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
 
 
 
@@ -785,7 +785,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>
@@ -825,11 +825,11 @@
 
 
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
 
 
 
@@ -888,7 +888,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>
@@ -925,11 +925,11 @@
             android:layout_marginTop="7dp"
             >
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -985,7 +985,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>
@@ -1025,11 +1025,11 @@
 
 
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
 
 
 
@@ -1088,7 +1088,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>
@@ -1125,11 +1125,11 @@
             android:layout_marginTop="7dp"
             >
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
 
 
 
@@ -1188,7 +1188,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>
@@ -1226,11 +1226,11 @@
             android:layout_marginTop="7dp"
             >
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -1287,7 +1287,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>
@@ -1330,11 +1330,11 @@
 
 
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
 
 
 
@@ -1393,7 +1393,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>
@@ -1437,11 +1437,11 @@
 
 
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                >
+                >-->
 
 
 
@@ -1499,7 +1499,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            <!--</HorizontalScrollView>-->
 
 
         </LinearLayout>

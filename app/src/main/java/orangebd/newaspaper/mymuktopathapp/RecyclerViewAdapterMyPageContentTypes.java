@@ -42,7 +42,7 @@ import java.util.TimeZone;
 
 public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<RecyclerViewAdapterMyPageContentTypes.MyViewHolder> {
 
-    private String BASE_URL = "http://testadmin.muktopaath.orangebd.com";
+    private String BASE_URL = "http://muktopaath.orangebd.com";
 
     private int unitNumberSet;
     private String unitNumberSetStr;
@@ -61,6 +61,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     private String updateDate;
 
     private String titleText;
+    private String titleType;
 
     private Typeface tf;
 
@@ -79,6 +80,8 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     private String contentSize;
     private String contentDuration;
 
+    private String youTubeVideoLink;
+
     private String contentIconType;
 
     private Button downloadBtn;
@@ -93,6 +96,12 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
     private String courseName;
 
     private String subImgPath;
+
+
+    private String videoType;
+
+
+    private String thisLessonCompleteness;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
@@ -171,8 +180,6 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         ImageView imageViewdot = holder.imageViewdotIconId;
 
 
-        String thisLessonCompleteness="";
-
         try {
             thisLessonCompleteness  = dataSet.get(listPosition).getLessonCompletenessStatus();
         }
@@ -226,20 +233,25 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         //This section is for getting content array List
 
 
+        final ArrayList<DetailDataModelCoursesDetailContents> thisFragmentContents = GlobalVar.thisFragmentContents.get(unitNumberSet);
 
-        for(int customListPosition=0; customListPosition<GlobalVar.thisFragmentContents.size(); customListPosition++) {
-            mtitleText = GlobalVar.thisFragmentContents.get(customListPosition).getTitle_content();
-            descriptionText = GlobalVar.thisFragmentContents.get(customListPosition).getmDesc();
-            videoCode = GlobalVar.thisFragmentContents.get(customListPosition).getFile_name();
-            timeStatus = GlobalVar.thisFragmentContents.get(customListPosition).getStatus_content();
-            ownerId = GlobalVar.thisFragmentContents.get(customListPosition).getOwner_id();
-            contentSize = GlobalVar.thisFragmentContents.get(customListPosition).getmContentSize();
-            contentDuration = GlobalVar.thisFragmentContents.get(customListPosition).getmDurationAnother();
+
+        for(int customListPosition=0; customListPosition<thisFragmentContents.size(); customListPosition++) {
+            mtitleText = thisFragmentContents.get(customListPosition).getTitle_content();
+            descriptionText = thisFragmentContents.get(customListPosition).getmDesc();
+            videoCode = thisFragmentContents.get(customListPosition).getFile_name();
+            timeStatus = thisFragmentContents.get(customListPosition).getStatus_content();
+            ownerId = thisFragmentContents.get(customListPosition).getOwner_id();
+            contentSize = thisFragmentContents.get(customListPosition).getmContentSize();
+            contentDuration = thisFragmentContents.get(customListPosition).getmDurationAnother();
+
+            youTubeVideoLink = thisFragmentContents.get(customListPosition).getExternal_Link();
         }
 
 
         final int lPosition=listPosition;
 
+        String lessonName="";
 
         if(titleText==null){
             textViewName.setText(". . . . .");
@@ -247,7 +259,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         else {
             if(titleText.equalsIgnoreCase("video")){
                 //titleText="Lessons";
-                String lessonName=dataSet2.get(listPosition).getTitle_content();
+                lessonName=dataSet2.get(listPosition).getTitle_content();
 
                 if(lessonName==null){
                     titleText=". . . . .";
@@ -289,12 +301,20 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
                 contentIconType="discussion";
             }
-            else if(titleText.equalsIgnoreCase("live_class")){
+            else if(titleText.equalsIgnoreCase("live_class")) {
                 titleText="Live class";
 
                 imageView.setImageResource(R.drawable.mukto_live_class);
 
                 contentIconType="live_class";
+            }
+            else if(titleText.equalsIgnoreCase("manual_content")) {
+
+                titleText="Manual Content";
+
+                imageView.setImageResource(R.drawable.mukto_assignment_icon);
+
+                contentIconType="manual_content";
             }
 
             textViewName.setText(titleText);
@@ -309,91 +329,116 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
         myDb = new DBHelper(mContext);
 
+        videoType = thisFragmentContents.get(listPosition).getmChooseVideoType();
+
+        if(contentIconType.equalsIgnoreCase("video")) {
+            if (videoType.equalsIgnoreCase("0")) {
+                imageViewdown.setImageResource(R.drawable.lock_icon);
+            }
+        }
 
         imageViewdown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                contentIconType=textViewName.getText().toString();
-
-
-                // Get Course id
-                courseId=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcId();
-                courseName=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmCourseAliasName();
-
-                String courseBannerName =GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails().get(GlobalVar.gNthCourse).getCover_code_image();
-
-                courseBanner = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + courseBannerName;
+                /*if(GlobalVar.isDownloadOnWifyOnly==true){*/
+                    if(videoType.equalsIgnoreCase("0")){
+                        Toast.makeText(mContext,"Download is locked for this lesson",Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        contentIconType=textViewName.getText().toString();
 
 
-                DownloadManager.Request request2 = new DownloadManager.Request(Uri.parse(courseBanner));
-                request2.setDescription("Downloading...");   //appears the same in Notification bar while downloading
-                request2.setTitle("banner_"+courseName);
-                request2.setVisibleInDownloadsUi(false);
+                        // Get Course id
+                        courseId=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcId();
+                        courseName=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmCourseAliasName();
+
+                        String courseBannerName =GlobalVar.courseContentDetailList.get(0).getmArrayListThumbnails().get(GlobalVar.gNthCourse).getCover_code_image();
+
+                        courseBanner = GlobalVar.gBaseUrl + "/cache-images/" + "219x145x1" + "/uploads/images/" + courseBannerName;
 
 
-                String ontesting="";
+                        DownloadManager.Request request2 = new DownloadManager.Request(Uri.parse(courseBanner));
+                        request2.setDescription("Downloading...");   //appears the same in Notification bar while downloading
+                        request2.setTitle("banner_"+courseName);
+                        request2.setVisibleInDownloadsUi(false);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                    request2.allowScanningByMediaScanner();
-                    request2.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
-                }
-                request2.setDestinationInExternalFilesDir(mContext, "/muktopaathimg", "banner_"+courseName+".jpg");
+                        String ontesting="";
 
-                DownloadManager manager2 = (DownloadManager)mContext.getSystemService(Context.DOWNLOAD_SERVICE);
-                Objects.requireNonNull(manager2).enqueue(request2);
-                if (DownloadManager.STATUS_SUCCESSFUL == 8) {
-                    //DownloadSuccess();
-                }
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                            request2.allowScanningByMediaScanner();
+                            request2.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+                        }
+                        request2.setDestinationInExternalFilesDir(mContext, "/muktopaathimg", "banner_"+courseName+".jpg");
 
-
-                Picasso.with(mContext).load(courseBanner).into(new Target() {
-                                                                   @Override
-                                                                   public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                                                                       try {
-
-
-                                                                           File mImgPath=mContext.getExternalFilesDir(Environment.getExternalStorageDirectory().toString());
-                                                                           subImgPath = mImgPath.toString();
-                                                                           subImgPath=subImgPath.substring(0,subImgPath.lastIndexOf("/storage"));
-                                                                           subImgPath=subImgPath+"/muktopaathimg";
-
-                                                                           subImgPath=subImgPath+"/"+ "banner_"+courseName+".jpg";
+                        DownloadManager manager2 = (DownloadManager)mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+                        Objects.requireNonNull(manager2).enqueue(request2);
+                        if (DownloadManager.STATUS_SUCCESSFUL == 8) {
+                            //DownloadSuccess();
+                        }
 
 
-                                                                           String ontest="";
+                        Picasso.with(mContext).load(courseBanner).into(new Target() {
+                                                                           @Override
+                                                                           public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                                                               try {
 
+
+                                                                                   File mImgPath=mContext.getExternalFilesDir(Environment.getExternalStorageDirectory().toString());
+                                                                                   subImgPath = mImgPath.toString();
+                                                                                   subImgPath=subImgPath.substring(0,subImgPath.lastIndexOf("/storage"));
+                                                                                   subImgPath=subImgPath+"/muktopaathimg";
+
+                                                                                   subImgPath=subImgPath+"/"+ "banner_"+courseName+".jpg";
+
+
+                                                                                   String ontest="";
+
+                                                                               }
+                                                                               catch(Exception e){
+                                                                                   Toast.makeText(mContext,"Banner download failed for some reasone",Toast.LENGTH_LONG).show();
+                                                                               }
+                                                                           }
+
+                                                                           @Override
+                                                                           public void onBitmapFailed(Drawable errorDrawable) {
+                                                                               Toast.makeText(mContext,"Banner download failed for some reasone",Toast.LENGTH_LONG).show();
+                                                                           }
+
+                                                                           @Override
+                                                                           public void onPrepareLoad(Drawable placeHolderDrawable) {
+                                                                               Toast.makeText(mContext,"Banner download successful",Toast.LENGTH_LONG).show();
+                                                                           }
                                                                        }
-                                                                       catch(Exception e){
-                                                                           Toast.makeText(mContext,"Banner download failed for some reasone",Toast.LENGTH_LONG).show();
-                                                                       }
-                                                                   }
+                        );
 
-                                                                   @Override
-                                                                   public void onBitmapFailed(Drawable errorDrawable) {
-                                                                       Toast.makeText(mContext,"Banner download failed for some reasone",Toast.LENGTH_LONG).show();
-                                                                   }
+                        videoType = thisFragmentContents.get(listPosition).getmChooseVideoType();
 
-                                                                   @Override
-                                                                   public void onPrepareLoad(Drawable placeHolderDrawable) {
-                                                                       Toast.makeText(mContext,"Banner download successful",Toast.LENGTH_LONG).show();
-                                                                   }
-                                                               }
-                );
+                        if(videoType.equalsIgnoreCase("1")){
+                            videoCode = thisFragmentContents.get(listPosition).getFile_name();
+                        }
+                        else{
+                            videoCode = thisFragmentContents.get(listPosition).getExternal_Link();
+                        }
+
+                        videoCode = thisFragmentContents.get(listPosition).getFile_name();
 
 
+                        titleText = dataSet2.get(listPosition).getTitle_content();
+
+                        descriptionText = dataSet2.get(listPosition).getmDesc();
+
+                        videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + ownerId + "/"+ videoCode;
+
+                        new DownloadFileAsync().execute();
+                    }
+                /*}
+                else {
+                    Toast.makeText(mContext,"দয়া করে ওয়াইফাই চালু করুন",Toast.LENGTH_LONG).show();
+                }*/
 
 
 
-                videoCode = GlobalVar.thisFragmentContents.get(listPosition).getFile_name();
-                titleText = dataSet2.get(listPosition).getTitle_content();
-
-                descriptionText = dataSet2.get(listPosition).getmDesc();
-
-                videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + ownerId + "/"+ videoCode;
-
-                new DownloadFileAsync().execute();
             }
         });
 
@@ -403,6 +448,27 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             @Override
             public void onClick(View v)
             {
+
+
+                thisLessonCompleteness  = dataSet.get(listPosition).getLessonCompletenessStatus();
+
+
+                videoType = thisFragmentContents.get(listPosition).getmChooseVideoType();
+
+                contentDuration = thisFragmentContents.get(listPosition).getmDurationAnother();
+
+                ownerId = thisFragmentContents.get(listPosition).getOwner_id();
+
+                descriptionText = dataSet2.get(listPosition).getmDesc();
+
+
+                if(videoType.equalsIgnoreCase("1")){
+                    videoCode = thisFragmentContents.get(listPosition).getFile_name();
+                }
+                else{
+                    videoCode = thisFragmentContents.get(listPosition).getExternal_Link();
+                }
+
 
                 String titleText=textViewName.getText().toString();
 
@@ -431,6 +497,10 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         Intent i = new Intent(mContext, DiscussionActivity.class);
                         v.getContext().startActivity(i);
                     }
+                    else if(titleText.equalsIgnoreCase("Manual Content")){
+                        Intent i = new Intent(mContext, DiscussionActivity.class);
+                        v.getContext().startActivity(i);
+                    }
 
                     else{
 
@@ -438,6 +508,16 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         v.getContext().startActivity(i);*/
 
                         unitIdStr= String.valueOf(unitNumberSet+1);
+
+
+                        contentIconType = thisFragmentContents.get(listPosition).getmContentType();
+
+                        if(contentIconType.equalsIgnoreCase("manual_content")){
+                            contentIconType="manual_content";
+                        }
+                        else{
+                            contentIconType="video";
+                        }
 
                         Intent i = new Intent(mContext, CourseContentDetailActivity.class);
                         i.putExtra("ttl", titleText);
@@ -448,6 +528,9 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         i.putExtra("unitid", unitIdStr);
                         i.putExtra("csize", contentSize);
                         i.putExtra("cduration", contentDuration);
+                        i.putExtra("cvtype", videoType);
+                        i.putExtra("ciconype", contentIconType);
+                        i.putExtra("thislessoncompltness", thisLessonCompleteness);
 
                         GlobalVar.gListPosition=Integer.toString(listPosition);
 
@@ -458,6 +541,9 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         GlobalVar.gVideoCode=videoCode;
                         GlobalVar.gTimeStatus=timeStatus;
                         GlobalVar.gContentDuration=contentDuration;
+                        GlobalVar.gChooseVideoType=videoType;
+                        GlobalVar.gContentIconType=contentIconType;
+                        GlobalVar.gLessonCompleteness=thisLessonCompleteness;
 
                         String aqwqw="";
 

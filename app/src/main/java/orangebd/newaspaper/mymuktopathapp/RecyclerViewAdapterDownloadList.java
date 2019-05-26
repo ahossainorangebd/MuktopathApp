@@ -85,8 +85,10 @@ public class RecyclerViewAdapterDownloadList extends RecyclerView.Adapter<Recycl
         holder.mBannerImg.setImageBitmap(bitmap);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
                 //String action;
                 Intent i=new Intent(mContext, DownloadUnitActivity.class);
 

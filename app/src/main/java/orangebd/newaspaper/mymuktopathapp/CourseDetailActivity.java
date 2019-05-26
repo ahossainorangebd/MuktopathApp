@@ -374,23 +374,31 @@ public class CourseDetailActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            try {
-                JSONObject jObject = new JSONObject(result);
+            String working="";
 
-                String returnMessage = jObject.getString("message");
-
-                Toast.makeText(context,returnMessage,Toast.LENGTH_LONG).show();
-
-
-                deleteCache(context);
-
-
-                Intent i=new Intent(context,MyPageActivity.class);
-                startActivity(i);
+            if(result.equalsIgnoreCase("")){
+                Toast.makeText(context,"Enrollment unsuccessfull",Toast.LENGTH_LONG).show();
             }
-            catch (Exception ex){
-                Log.d("", "onPostExecute: ");
+            else{
+                try {
+                    JSONObject jObject = new JSONObject(result);
+
+                    String returnMessage = jObject.getString("message");
+
+                    Toast.makeText(context,returnMessage,Toast.LENGTH_LONG).show();
+
+
+                    deleteCache(context);
+
+
+                    Intent i=new Intent(context,MyPageActivity.class);
+                    startActivity(i);
+                }
+                catch (Exception ex){
+                    Log.d("", "onPostExecute: ");
+                }
             }
+
 
         }
 

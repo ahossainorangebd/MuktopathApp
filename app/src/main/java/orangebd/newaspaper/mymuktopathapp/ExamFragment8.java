@@ -28,8 +28,6 @@ public class ExamFragment8 extends Fragment {
 
     private int nthExam=7;
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
 
     private Button nextButton;
     private Button prevButton;
@@ -37,8 +35,6 @@ public class ExamFragment8 extends Fragment {
 
     ArrayList<DetailDataModelCoursesDetailContents> optionTItles = new ArrayList<>();
 
-    private String answers;
-    private int trueCount;
 
     private TextInputEditText examPaperField;
     private String getAttendedQArray;

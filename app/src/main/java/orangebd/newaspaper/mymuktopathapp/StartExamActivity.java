@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -48,7 +49,14 @@ public class StartExamActivity extends AppCompatActivity {
         examSummeryLinLayout.setVisibility(View.VISIBLE);
 
         totalEQ.setText(convertEngToBn(Integer.toString(mExamQs.size())));
-        totalETime.setText(convertEngToBn(stringForTime(Integer.parseInt(examTime))));
+
+        try {
+            totalETime.setText(convertEngToBn(stringForTime(Integer.parseInt(examTime))));
+        }
+        catch (Exception ex){
+            Log.d("", "setExam: ");
+        }
+
         totalEMarks.setText(convertEngToBn(examMarks));
 
         examMarks = mExamInfo.get(0).getmExamMarks();

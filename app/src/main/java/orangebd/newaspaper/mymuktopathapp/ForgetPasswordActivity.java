@@ -63,7 +63,14 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 mapSubmit =  new HashMap<>();
 
                 mapSubmit.put("email_or_phone", emailOrPhoneStr);
-                mapSubmit.put("type", "1");
+
+                if(emailOrPhoneStr.contains("@")){
+                    mapSubmit.put("type", "1");
+                }
+                else {
+                    mapSubmit.put("type", "2");
+                }
+
 
                 new StartSubmit().execute(urlVerificationCodeSubmit);
             }
@@ -97,8 +104,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
                 //Toast.makeText(context,result,Toast.LENGTH_LONG).show();
 
-                if(result!=null){
-
+                if(result!=null) {
 
                     if(emailOrPhoneStr.contains("@")){
                         Intent i=new Intent(context,LoginActivity.class);

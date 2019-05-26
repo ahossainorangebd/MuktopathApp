@@ -492,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(true);
 
 
         if(detailListMainActivityCourseCat.size()>0){
@@ -514,7 +514,7 @@ public class MainActivity extends AppCompatActivity {
 
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
-        recyclerView2.setNestedScrollingEnabled(false);
+        recyclerView2.setNestedScrollingEnabled(true);
     }
 
     private void setRecyclerView3() {
@@ -528,7 +528,7 @@ public class MainActivity extends AppCompatActivity {
 
         //nestedScrollView.setSmoothScrollingEnabled(true);
         //nestedScrollView.fullScroll(View.FOCUS_UP);
-        recyclerView3.setNestedScrollingEnabled(false);
+        recyclerView3.setNestedScrollingEnabled(true);
     }
 
     private void setRecyclerView4() {
@@ -538,7 +538,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView4.setLayoutManager(layoutManager);
-        recyclerView4.setNestedScrollingEnabled(false);
+        recyclerView4.setNestedScrollingEnabled(true);
     }
 
     private void setRecyclerView5() {
@@ -549,7 +549,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView5.setLayoutManager(layoutManager);
 
-        recyclerView5.setNestedScrollingEnabled(false);
+        recyclerView5.setNestedScrollingEnabled(true);
     }
 
     private void setRecyclerView6() {
@@ -561,7 +561,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView6.setLayoutManager(layoutManager);
 
-        recyclerView6.setNestedScrollingEnabled(false);
+        recyclerView6.setNestedScrollingEnabled(true);
     }
 
     private void setRecyclerView7() {
@@ -573,7 +573,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView7.setLayoutManager(layoutManager);
 
-        recyclerView7.setNestedScrollingEnabled(false);
+        recyclerView7.setNestedScrollingEnabled(true);
     }
 
     private void setRecyclerView8() {
@@ -584,7 +584,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView8.setLayoutManager(layoutManager);
 
-        recyclerView8.setNestedScrollingEnabled(false);
+        recyclerView8.setNestedScrollingEnabled(true);
     }
 
     private void setRecyclerView9() {
@@ -596,7 +596,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView9.setLayoutManager(layoutManager);
 
-        recyclerView9.setNestedScrollingEnabled(false);
+        recyclerView9.setNestedScrollingEnabled(true);
     }
 
     private void setRecyclerView10() {
@@ -608,7 +608,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView10.setLayoutManager(layoutManager);
 
-        recyclerView10.setNestedScrollingEnabled(false);
+        recyclerView10.setNestedScrollingEnabled(true);
     }
 
     //Category call
@@ -1041,7 +1041,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        // modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -1531,7 +1535,11 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                            modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                            //TODO
+                            //TODO
+                           //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                             modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                             modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -2028,7 +2036,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -2520,7 +2532,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -3012,7 +3028,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -3512,7 +3532,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -4009,7 +4033,12 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -4508,7 +4537,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -5004,7 +5037,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -5502,7 +5539,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 

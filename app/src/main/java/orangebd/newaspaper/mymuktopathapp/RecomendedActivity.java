@@ -764,7 +764,11 @@ public class RecomendedActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -1248,7 +1252,11 @@ public class RecomendedActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -1725,7 +1733,12 @@ public class RecomendedActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -2202,7 +2215,11 @@ public class RecomendedActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 
@@ -2675,7 +2692,11 @@ public class RecomendedActivity extends AppCompatActivity {
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 

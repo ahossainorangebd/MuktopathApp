@@ -54,6 +54,8 @@ public class MyPageFragment14 extends Fragment {
 
     private int countQuizNumber;
 
+    private int mQuizNumbers=0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -169,10 +171,10 @@ public class MyPageFragment14 extends Fragment {
         final String enrolledCourseMotto=GlobalVar.gEnrollCourseList.get(nthCourse).getmCourseMotto();
         final String enrolledCourseObjective=GlobalVar.gEnrollCourseList.get(nthCourse).getmCourseObjective();
 
-        ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
+        ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> contentArray = GlobalVar.courseContentDetailList.get(0).getmArrayListContentDetails();
 
         final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseMultiArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseVideoPulseMulti().get(nthCourse);
-        final ArrayList<DetailDataModelCoursesDetailContents> contents = contentArray.get(nthCourse);
+        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contents = contentArray.get(nthCourse);
 
         ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> quizArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs();
         final ArrayList<DetailDataModelCoursesDetailContents> quizes = quizArray.get(nthCourse);
@@ -201,7 +203,13 @@ public class MyPageFragment14 extends Fragment {
         int mAssignmentNumbers = mAssignment.size();
         int mExamNumbers = mExam.size();
         int mContentNumbers = mContent.size();
-        final int mQuizNumbers = mQuizParents.size();
+
+        try {
+            mQuizNumbers = mQuizParents.size();
+        }
+        catch (Exception ex){
+            Log.d("", "onCreateView: ");
+        }
 
         mCourseTitle.setText(enrolledCourseTitle);
         //TODO
@@ -325,6 +333,7 @@ public class MyPageFragment14 extends Fragment {
                 GlobalVar.thisFragmentContents=contents;
                 GlobalVar.thisFragmentQuizes=quizes;
                 GlobalVar.thisFragmentPulses=pulseMultiArray;
+                GlobalVar.thisFragmentPulseQs=pulseQuesListWithAns;
                 GlobalVar.gTotalQuizNumberThisCourse=mQuizNumbers+1;
 
                 try {

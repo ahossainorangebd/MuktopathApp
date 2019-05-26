@@ -102,7 +102,7 @@ public class RecyclerViewAdapterRecommended extends RecyclerView.Adapter<Recycle
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
 
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
 
         final Object[] mArrayList = contentArray.get(listPosition).toArray();
 

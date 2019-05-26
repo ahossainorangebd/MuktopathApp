@@ -282,6 +282,7 @@ public class DetailDataModelCoursesDetailContents
     private String deleted_at_content;
     private String description_content;
     private String file_encode_path;
+    private String External_Link;
 
     private ArrayList<DetailDataModelCourses3rdGrandFather> mVideoMultiPulse;
 
@@ -845,6 +846,14 @@ public class DetailDataModelCoursesDetailContents
 
     public void setmContentSize(String mContentSize) {
         this.mContentSize = mContentSize;
+    }
+
+    public String getExternal_Link() {
+        return External_Link;
+    }
+
+    public void setExternal_Link(String external_Link) {
+        External_Link = external_Link;
     }
 
 

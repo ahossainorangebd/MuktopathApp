@@ -99,9 +99,9 @@ public class WelcomeActivity extends AppCompatActivity {
         /*DBHelper myDb = new DBHelper(mContext);
         myDb.deleteData();
         Cursor mCurse = myDb.getAllData();
-        int xount= mCurse.getCount();
+        int xount= mCurse.getCount();*/
 
-        String abtesting="";*/
+        String abtesting="";
 
         /** Test section*/
 
@@ -240,7 +240,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 Log.d("", "onPostExecute: ");
             }
 
-            GlobalVar.gIsLogin=sm.checkLogin();
+            GlobalVar.gIsLogin = sm.checkLogin();
+
 
             if(GlobalVar.gIsLogin==true) {
 
@@ -345,7 +346,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         final AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 
-        builder1.setTitle("মাত্র পাওয়া");
+        builder1.setTitle("Reminder");
         builder1.setMessage(GlobalVar.gData);
         builder1.setCancelable(true);
         builder1.setPositiveButton(

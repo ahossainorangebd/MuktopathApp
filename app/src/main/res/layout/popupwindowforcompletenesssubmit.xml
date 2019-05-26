@@ -19,7 +19,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorVoldemort"
-                    android:text="আপনি কোর্স টি সম্পন্ন করেছেন"
+                    android:text="আপনি অনুশীলনী টি সম্পন্ন করেছেন"
                     android:gravity="center"
                     android:textSize="20sp"
                     />

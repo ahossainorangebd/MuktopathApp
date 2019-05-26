@@ -1469,7 +1469,9 @@ public class MyPageActivityTemp extends AppCompatActivity {
 
 
                                 //TODO
-                                modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
+                                //TODO
+                                //modelAlter.setmArrayListContentDetails(detailListCourseDetailContentss);
+
                                 modelAlter.setmArrayListCourseLesson(detailListCourseDetailLesson);
                                 //TODO
 

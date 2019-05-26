@@ -67,10 +67,12 @@ public class CourseContentActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
+            //TODO
+            //TODO
+            /*adapter=new RecyclerViewAdapterMyPageContents(GlobalVar.thisFragmentContents,context);
 
             recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();*/
 
             //mProgressSpinner.setVisibility(View.GONE);
         }

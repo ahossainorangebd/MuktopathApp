@@ -40,6 +40,7 @@ import android.widget.MediaController;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +67,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static android.net.sip.SipErrorCode.TIME_OUT;
+
 public class CourseContentDetailActivity extends AppCompatActivity {
 
     private Context context;
@@ -82,14 +85,19 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private String unitId;
     private String contentSize;
     private String contentDuration;
+    private String chooseVideoType;
 
     private String contentIconType;
+    private String lessonCompleteness;
 
     private String mListPosition;
     private String mUserNumber;
 
     private TextView mPulseQuesText;
     private WebView detailDescTextView;
+    private WebView detailDescManualContent;
+
+    private WebView mToutubeWebView;
 
     private boolean isGotQuestion;
     private boolean isNoQuestion;
@@ -104,7 +112,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private String finalVideoUrl;
 
     //private String BASE_URL = "http://muktopaath.orangebd.com";
-    private String BASE_URL = "http://testadmin.muktopaath.orangebd.com";
+    //private String BASE_URL = "http://testadmin.muktopaath.orangebd.com";
+
+    private String BASE_URL = "http://muktopaath.orangebd.com";
 
     private VideoView vView;
     Uri videoUri;
@@ -137,9 +147,12 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     DBHelper dbHelper;
 
+    private HashMap<String,String> mapHitGamification;
+
     private int targetPopUp;
 
     private HashMap<String,String> mapHit;
+
 
     private ImageView mHitLikeBtn;
     private ImageView mHitDislikeBtn;
@@ -151,7 +164,10 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     private String getLikeUnlikeDetailUrl = GlobalVar.gApiBaseUrl + "/api/content/feedback/";
 
+    private String hitGamificationForLessonComplete = GlobalVar.gApiBaseUrl + "/api/gamification/course";
+
     private String thisCourseId;
+    private String thisBatchId;
 
 
 
@@ -173,6 +189,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
 
     private LinearLayout mVideoLayOut;
+    private LinearLayout mYoutubeVideoLayOut;
 
 
     private int completedPercentage=97;
@@ -187,6 +204,17 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
 
     private int CountAUnitsLessons;
+
+    private String htmlText;
+
+
+    private ScrollView mDetailPageScrollView;
+
+
+    private static int TIME_OUT = 1000;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -209,32 +237,19 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         mFlagNumberTv=findViewById(R.id.flagNumber);
 
         mVideoLayOut=findViewById(R.id.videoLayOut);
-        mVideoLayOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imgPauseView.setVisibility(View.VISIBLE);
+        mYoutubeVideoLayOut=findViewById(R.id.youtubeVideoLayOut);
+        mDetailPageScrollView=findViewById(R.id.detailPageScrollView);
 
-                final Handler handler3 = new Handler();
-                handler3.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgPauseView.setVisibility(View.GONE);
-                    }
-                }, 2000);
-            }
-        });
 
-        final Handler handler2 = new Handler();
-        handler2.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                imgPauseView.setVisibility(View.GONE);
-            }
-        }, 2000);
+        videoView = findViewById(R.id.vdVw);
 
 
         //titleTextView=findViewById(R.id.courseTitle);
+        detailDescManualContent=findViewById(R.id.detailDescManualContent);
+
         detailDescTextView=findViewById(R.id.detailDesc);
+
+        mToutubeWebView=findViewById(R.id.youtubeWebViewId);
 
         if(GlobalVar.isRedirectFromContentPage){
 
@@ -244,6 +259,9 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             mUserNumber = GlobalVar.gUserNumber;
             timeStatus = GlobalVar.gTimeStatus;
             contentDuration = GlobalVar.gContentDuration;
+            chooseVideoType = GlobalVar.gChooseVideoType;
+            contentIconType = GlobalVar.gContentIconType;
+            lessonCompleteness = GlobalVar.gLessonCompleteness;
 
             String testing123="";
         }
@@ -256,9 +274,42 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             unitId = getIntent().getExtras().getString("unitid");
             contentSize = getIntent().getExtras().getString("csize");
             contentDuration = getIntent().getExtras().getString("cduration");
+            chooseVideoType = getIntent().getExtras().getString("cvtype");
+            contentIconType = getIntent().getExtras().getString("ciconype");
+            lessonCompleteness = getIntent().getExtras().getString("thislessoncompltness");
 
             String testing123="";
         }
+
+
+
+        if(contentIconType.equalsIgnoreCase("video")) {
+            if (chooseVideoType.equalsIgnoreCase("1")) {
+                mVideoLayOut.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        imgPauseView.setVisibility(View.VISIBLE);
+
+                        final Handler handler3 = new Handler();
+                        handler3.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                imgPauseView.setVisibility(View.GONE);
+                            }
+                        }, 2000);
+                    }
+                });
+
+                final Handler handler2 = new Handler();
+                handler2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imgPauseView.setVisibility(View.GONE);
+                    }
+                }, 2000);
+            }
+        }
+
 
 
         GlobalVar.gLastReadLessonTitle=title;
@@ -278,6 +329,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
             ArrayList<DetailDataModelCoursesDetailContents> optionArray = pulseQuesListWithAns.get(Integer.parseInt(GlobalVar.gListPosition));
             GlobalVar.gPulseAnswerArray=optionArray;
+
+            String exing1224sf="";
         }
         catch (Exception ex) {
             Log.d("", "onCreate: ");
@@ -344,124 +397,171 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         //String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode;
         //finalVideoUrl = "<video controls='controls' autoplay='1' src="+ videoUrl+ " height='220' width='350' type='video/mp4' " + "#t=" + timeStatus +  "></video>";
 
+        if(contentIconType.equalsIgnoreCase("video")) {
+            if (chooseVideoType.equalsIgnoreCase("0")) {
+                mYoutubeVideoLayOut.setVisibility(View.VISIBLE);
+                mDetailPageScrollView.setVisibility(View.INVISIBLE);
+                mVideoLayOut.setVisibility(View.INVISIBLE);
+                videoView.setVisibility(View.INVISIBLE);
+
+                htmlText = "<div class='container'>" + "<div class='row'>" +
+                        "<iframe src=\"" + eCode + "\" style=\"width:100%; height:200px\"> </iframe>" +
+                        "<br/>" + "<br/>" + DetailDescription + "<br/>" + "</div>" + "</div>";
+
+                String abcd = "";
+
+            } else {
+                mYoutubeVideoLayOut.setVisibility(View.INVISIBLE);
+                mVideoLayOut.setVisibility(View.VISIBLE);
+                mDetailPageScrollView.setVisibility(View.VISIBLE);
+                videoView.setVisibility(View.VISIBLE);
+            }
+        }
+        else{
+            mYoutubeVideoLayOut.setVisibility(View.GONE);
+            mVideoLayOut.setVisibility(View.GONE);
+            mDetailPageScrollView.setVisibility(View.GONE);
+            videoView.setVisibility(View.GONE);
+        }
+
+
         videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode+"#t=" + timeStatus;
 
         GlobalVar.gEcode=eCode;
 
-        imgPauseView=findViewById(R.id.pause_button);
-        imgPauseView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if(contentIconType.equalsIgnoreCase("video")) {
+            if (chooseVideoType.equalsIgnoreCase("1")) {
+                imgPauseView = findViewById(R.id.pause_button);
+                imgPauseView.setOnClickListener(new View.OnClickListener() {
 
-                if (!isVideoStarted) {
+                    @Override
+                    public void onClick(View v) {
 
-                    pausePosition = videoView.getCurrentPosition();
-                    videoView.pause();
-                    imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
-                    isVideoStarted=true;
-                }
+                        if (!isVideoStarted) {
 
-                else{
-                    videoView.seekTo(pausePosition);
-                    videoView.start();
-                    mProgressBar.setProgress(pausePosition);
-                    mProgressBar.postDelayed(onEverySecond, 1000);
-                    imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
-                    isVideoStarted=false;
-
-
-                    final Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            imgPauseView.setVisibility(View.GONE);
+                            pausePosition = videoView.getCurrentPosition();
+                            videoView.pause();
+                            imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
+                            isVideoStarted = true;
                         }
-                    }, 2000);
-                }
+                        else {
+                            videoView.seekTo(pausePosition);
+                            videoView.start();
+                            mProgressBar.setProgress(pausePosition);
+                            mProgressBar.postDelayed(onEverySecond, 1000);
+                            imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
+                            isVideoStarted = false;
+
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    imgPauseView.setVisibility(View.GONE);
+                                }
+                            }, 2000);
+                        }
+                    }
+                });
+            } else {
+                imgPauseView = findViewById(R.id.pause_button);
+                imgPauseView.setVisibility(View.GONE);
             }
-        });
+        }
+        else{
+            imgPauseView = findViewById(R.id.pause_button);
+            imgPauseView.setVisibility(View.GONE);
+        }
 
 
         //titleTextView.setText(title);
+
+        detailDescManualContent.getSettings().setJavaScriptEnabled(true);
+        detailDescManualContent.getSettings().setDomStorageEnabled(true);
+        detailDescManualContent.loadDataWithBaseURL("",htmlText, "text/html", "utf-8", "");
 
         detailDescTextView.getSettings().setJavaScriptEnabled(true);
         detailDescTextView.getSettings().setDomStorageEnabled(true);
         detailDescTextView.loadDataWithBaseURL("",DetailDescription, "text/html", "utf-8", "");
 
-        videoView = findViewById(R.id.vdVw);
+        mToutubeWebView.getSettings().setJavaScriptEnabled(true);
+        mToutubeWebView.getSettings().setDomStorageEnabled(true);
+        mToutubeWebView.loadDataWithBaseURL("",htmlText, "text/html", "utf-8", "");
+
+
         mProgressBar = findViewById(R.id.Progressbar);
         textView=findViewById(R.id.txtView);
 
-        Uri uri = Uri.parse(videoUrl);
-        videoView.setVideoURI(uri);
-        videoView.requestFocus();
-        videoView.start();
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
-        {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                duration=videoView.getDuration();
-                mProgressBar.setMax(videoView.getDuration());
-                mProgressBar.postDelayed(onEverySecond, 1000);
+        if(contentIconType.equalsIgnoreCase("video")) {
+            if (chooseVideoType.equalsIgnoreCase("1")) {
+                Uri uri = Uri.parse(videoUrl);
+                videoView.setVideoURI(uri);
+                videoView.requestFocus();
+                videoView.start();
+                videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+                        duration = videoView.getDuration();
+                        mProgressBar.setMax(videoView.getDuration());
+                        mProgressBar.postDelayed(onEverySecond, 1000);
+                    }
+                });
             }
-        });
+        }
         //mProgressBar.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_progress));
         //mProgressBar.setThumb(getResources().getDrawable(R.drawable.seekbar_thumb));
 
 
 
-        mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
-        {
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+        if(contentIconType.equalsIgnoreCase("video")) {
+            if (chooseVideoType.equalsIgnoreCase("1")) {
+                mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
 
-                int vprog=0;
-                if (isStartTrackingTouch) {
-                    vprog = seekbarStartPosition;
-                    isStartTrackingTouch=false;
-                }
-                else
-                    vprog = videoView.getCurrentPosition();
-                int prog=seekbarProgress;
-                if(prog<vprog) {
-                    videoView.seekTo(seekbarProgress);
-                    mProgressBar.setSecondaryProgress(vprog);
-                }
-                else {
-                    videoView.seekTo(vprog);
-                    //mProgressBar.setSecondaryProgress(seekbarProgress);
-                }
+                        int vprog = 0;
+                        if (isStartTrackingTouch) {
+                            vprog = seekbarStartPosition;
+                            isStartTrackingTouch = false;
+                        } else
+                            vprog = videoView.getCurrentPosition();
+                        int prog = seekbarProgress;
+                        if (prog < vprog) {
+                            videoView.seekTo(seekbarProgress);
+                            mProgressBar.setSecondaryProgress(vprog);
+                        } else {
+                            videoView.seekTo(vprog);
+                            //mProgressBar.setSecondaryProgress(seekbarProgress);
+                        }
 
 
-                if (forwardable !=1)
-                {
-                    if (prog < vprog) {
-                        videoView.seekTo(seekbarProgress);
-                        mProgressBar.setSecondaryProgress(vprog);
-                    } else {
-                        videoView.seekTo(vprog);
-                        //mProgressBar.setSecondaryProgress(seekbarProgress);
+                        if (forwardable != 1) {
+                            if (prog < vprog) {
+                                videoView.seekTo(seekbarProgress);
+                                mProgressBar.setSecondaryProgress(vprog);
+                            } else {
+                                videoView.seekTo(vprog);
+                                //mProgressBar.setSecondaryProgress(seekbarProgress);
+                            }
+                        } else {
+                            int seekbarProgress = seekBar.getProgress();
+                            videoView.seekTo(seekbarProgress);
+                        }
+
+                        mProgressBar.postDelayed(onEverySecond, 1000);
+
                     }
-                }
-                else {
-                    int seekbarProgress=seekBar.getProgress();
-                    videoView.seekTo(seekbarProgress);
-                }
 
-                mProgressBar.postDelayed(onEverySecond, 1000);
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                        isStartTrackingTouch = true;
+                        seekbarStartPosition = videoView.getCurrentPosition();
+                    }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-                isStartTrackingTouch=true;
-                seekbarStartPosition=videoView.getCurrentPosition();
-            }
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress,
-                                          boolean fromUser) {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress,
+                                                  boolean fromUser) {
                 /*seconds=videoView.getCurrentPosition()/1000;
 
 
@@ -484,88 +584,110 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     Toast.makeText(context,"th Position",Toast.LENGTH_SHORT).show();
                 }*/
 
-                seconds=videoView.getCurrentPosition()/1000;
+                        seconds = videoView.getCurrentPosition() / 1000;
 
-                //TODO
-                //TODO
-
-
-                if(getPulse!=null) {
-                    targetPopUp = Integer.parseInt(getPulse);
-                }
-                else {
-                    targetPopUp = -1;
-                }
-
-                //int targetPopUp=5;
-
-                if(seconds==targetPopUp)
-                {
-                    //Toast.makeText(context,"A multiple question will pop up on "+firstPulse+"th Second",Toast.LENGTH_SHORT).show();
-
-                    String wwww="";
-
-                    isVideoStarted=false;
-
-                    if (!isVideoStarted) {
-
-                        pausePosition = videoView.getCurrentPosition();
-                        videoView.pause();
-                        imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
-                        isVideoStarted=true;
+                        //TODO
+                        //TODO
 
 
-                        if(GlobalVar.gPulseMultiMarkCount==0) {
-                            showPopUpQuestionBox();
+                        if (getPulse != null) {
+                            targetPopUp = Integer.parseInt(getPulse);
+
+
+                            String exing="";
+                        } else {
+                            targetPopUp = -1;
                         }
 
+                        String exing1="11";
+
+                        //int targetPopUp=5;
+
+                        if (seconds == targetPopUp) {
+                            //Toast.makeText(context,"A multiple question will pop up on "+firstPulse+"th Second",Toast.LENGTH_SHORT).show();
+
+                            String wwww = "";
+
+                            isVideoStarted = false;
+
+                            if (!isVideoStarted) {
+
+                                if (GlobalVar.gPulseMultiMarkCount == 0) {
+                                    pausePosition = videoView.getCurrentPosition();
+                                    videoView.pause();
+                                    imgPauseView.setImageResource(R.drawable.mukto_video_play_icon);
+                                    isVideoStarted = true;
+
+                                }
+
+                                if (GlobalVar.gPulseMultiMarkCount == 0) {
+
+                                    showPopUpQuestionBox();
+                                }
+
+                            } else {
+                                videoView.seekTo(pausePosition);
+                                videoView.start();
+                                mProgressBar.setProgress(pausePosition);
+                                mProgressBar.postDelayed(onEverySecond, 1000);
+                                imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
+                                isVideoStarted = false;
+                            }
+
+                        }
+
+                        videoEndSecond = Integer.parseInt(contentDuration);
+
+                        if (seconds == videoEndSecond) {
+
+                            mProgressBar.setProgress(100);
+
+                            if(lessonCompleteness.equalsIgnoreCase("100")) {
+                                String testingabcd ="";
+                            }
+                            else{
+                                showPopUpCompletenessSubmit();
+                            }
+
+                        }
+
+                        textView.setText("" + seconds);
+
+
+                        /*d minutes = (seconds % 3600) / 60;
+                        int seconds2 = seconds % 60;
+
+                        seconds = String.format("%02d:%02d", minutes, seconds2);*/
+
+
+                        String HH= String.format("%02d",seconds/3600)+":";
+                        String MM = String.format("%02d",seconds/60%60)+":";
+                        String SS = String.format("%02d",seconds%60);
+
+                        textView.setText(HH+MM+SS);
+                        seekbarProgress = progress;
+
+                        if (fromUser) {
+                            int vprog = videoView.getCurrentPosition();
+                            int prog = progress;
+                            if (prog < vprog) {
+                                videoView.seekTo(progress);
+                                mProgressBar.setSecondaryProgress(vprog);
+                            } else {
+                                videoView.seekTo(vprog);
+                            }
+                        }
                     }
-
-                    else{
-                        videoView.seekTo(pausePosition);
-                        videoView.start();
-                        mProgressBar.setProgress(pausePosition);
-                        mProgressBar.postDelayed(onEverySecond, 1000);
-                        imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
-                        isVideoStarted=false;
-                    }
-
-                }
-
-                videoEndSecond = Integer.parseInt(contentDuration)-5;
-
-                if(seconds==videoEndSecond){
-
-                    showPopUpCompletenessSubmit();
-
-                }
-
-                textView.setText(""+seconds);
-                seekbarProgress=progress;
-
-                if(fromUser) {
-                    int vprog=videoView.getCurrentPosition();
-                    int prog=progress;
-                    if(prog<vprog) {
-                        videoView.seekTo(progress);
-                        mProgressBar.setSecondaryProgress(vprog);
-                    }
-                    else {
-                        videoView.seekTo(vprog);
-                    }
-                }
-
-
-
-
+                });
             }
-        });
+        }
 
-        thisCourseId=GlobalVar.gEnrollCourseList.get(GlobalVar.gNthCourse).getmId();
+        //thisCourseId=GlobalVar.gEnrollCourseList.get(GlobalVar.gNthCourse).getmId();
 
+        thisCourseId=GlobalVar.gCourseIdListForCourseId.get(GlobalVar.gNthCourse).getIdCourse();
+        thisBatchId=GlobalVar.gEnrollCourseList.get(GlobalVar.gNthCourse).getmId();
 
         new GetLykUnlykHistory().execute(getLikeUnlikeDetailUrl+ thisCourseId + "/" + GlobalVar.gUnitId + "/" + GlobalVar.gLessonId);
-
 
         mHitLikeBtn=findViewById(R.id.hitlikebtn);
         mHitLikeBtn.setOnClickListener(new View.OnClickListener() {
@@ -574,7 +696,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 mapHit =  new HashMap<>();
 
-                if(mLiked.equalsIgnoreCase("1")){
+                if(mLiked.equalsIgnoreCase("1")) {
                     mapHit.put("action_type", "like");
                     mapHit.put("liked", "0");
                     mapHit.put("disliked", "0");
@@ -681,6 +803,48 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 //new DownloadFileAsync().execute();
             }
         });*/
+
+        /*try {
+            TIME_OUT = 1000 * (Integer.parseInt(contentDuration) - 5);
+        }
+        catch (Exception ex) {
+            Log.d("", "onCreate: ");
+        }*/
+
+
+        try {
+            TIME_OUT = 1000 * (Integer.parseInt(contentDuration));
+        }
+        catch (Exception ex){
+            Log.d("", "onCreate: ");
+        }
+
+
+        String stepOver="";
+
+        if(contentIconType.equalsIgnoreCase("video")) {
+            if (chooseVideoType.equalsIgnoreCase("0")) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (getPulse != null) {
+                            targetPopUp = Integer.parseInt(getPulse);
+
+                            String exing="";
+                        }
+                        else {
+                            targetPopUp = -1;
+                        }
+
+
+                        if (TIME_OUT == targetPopUp){
+                            showPopUpQuestionBox();
+                        }
+                    }
+                }, TIME_OUT);
+            }
+        }
 
 
     }
@@ -814,6 +978,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         mPulseQuesText.setText(GlobalVar.gPulseTitle);
 
+        String exing1212="";
+
         final Button mPulseQuizCrossBtn = dialog.findViewById(R.id.MainAdCrossBtn);
         mPulseQuizCrossBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -827,7 +993,6 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         myAdapter= new TabsPagerAdapterPulseQuiz(getSupportFragmentManager());
         vpPager.setAdapter(myAdapter);*/
-
 
         //dialog.show();
 
@@ -849,6 +1014,18 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     mProgressBar.postDelayed(onEverySecond, 1000);
                     imgPauseView.setImageResource(R.drawable.mukto_video_pause_icon);
                     isVideoStarted=false;
+
+
+                    if (chooseVideoType.equalsIgnoreCase("0")){
+
+                        if(contentIconType.equalsIgnoreCase("video")) {
+                            if (lessonCompleteness.equalsIgnoreCase("100")) {
+                                String testingabcd = "";
+                            } else {
+                                showPopUpCompletenessSubmit();
+                            }
+                        }
+                    }
 
                 }
                 else{
@@ -1165,6 +1342,39 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         }
     }
 
+    public class HitGamificationOnCompleteLesson extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String data = performPostCallWithBearer(params[0], mapHitGamification);
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            /*try {
+                JSONArray jsonArray = new JSONArray(result);
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }*/
+        }
+
+        @Override
+        protected void onCancelled() {
+
+        }
+    }
+
 
     private String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -1309,6 +1519,16 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             catch (Exception ex){
                 Log.d("", "onPostExecute: ");
             }
+
+
+            mapHitGamification =  new HashMap<>();
+
+            mapHitGamification.put("unit_id", GlobalVar.gUnitId);
+            mapHitGamification.put("lesson_id", GlobalVar.gLessonId);
+            mapHitGamification.put("course_batch_id", thisBatchId);
+            mapHitGamification.put("slug", "vlc");
+
+            new HitGamificationOnCompleteLesson().execute(hitGamificationForLessonComplete);
         }
         @Override
         protected void onCancelled() {
@@ -1377,7 +1597,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         Button okButton = dialog.findViewById(R.id.submitBtn);
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
                 final String enrollId=GlobalVar.gEnrollCourseId.get(GlobalVar.gNthCourse).getmEcId();
 
@@ -1396,13 +1617,16 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                 int eachLessonProgress = 100/CountAUnitsLessons;
 
-                int enrollCourseCompltnessInt = Integer.parseInt(enrollCourseCompltness);
+                double enrollCourseCompltnessDouble = Double.parseDouble(enrollCourseCompltness);
 
-                int progressedEnrollCourseCompleteInt = enrollCourseCompltnessInt + eachLessonProgress;
+                double progressedEnrollCourseCompleteDouble = enrollCourseCompltnessDouble + eachLessonProgress;
 
-                enrollCourseCompltness = String.valueOf(progressedEnrollCourseCompleteInt);
+                enrollCourseCompltness = String.valueOf(progressedEnrollCourseCompleteDouble);
 
-                if(Integer.parseInt(enrollCourseCompltness)>100){
+
+                enrollCourseCompltness = String.format("%.0f", progressedEnrollCourseCompleteDouble);
+
+                if(Integer.parseInt(enrollCourseCompltness)>100) {
                     enrollCourseCompltness="100";
                 }
 
@@ -1426,6 +1650,13 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        mToutubeWebView.onPause();
     }
 
 }

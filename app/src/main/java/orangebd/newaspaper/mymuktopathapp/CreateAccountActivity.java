@@ -407,7 +407,8 @@ public class CreateAccountActivity extends AppCompatActivity{
             super.onPostExecute(result);
 
 
-            if(result!=""){
+            if(result!="")
+            {
 
                 try {
                     JSONObject jObject = new JSONObject(result);

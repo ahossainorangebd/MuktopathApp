@@ -63,14 +63,12 @@ public class ChangePasswordRetypeActivity extends AppCompatActivity {
 
         String abcd="";
 
-
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 pwdStr = mPwdEdtTxt.getText().toString();
                 pwdStrRe = mRePwdEdtTxt.getText().toString();
-
 
                 mapSubmit =  new HashMap<>();
 
@@ -122,10 +120,8 @@ public class ChangePasswordRetypeActivity extends AppCompatActivity {
             catch (Exception ex){
                 Log.d("", "onPostExecute: ");
             }
-
-
-
         }
+
         @Override
         protected void onCancelled() {
 

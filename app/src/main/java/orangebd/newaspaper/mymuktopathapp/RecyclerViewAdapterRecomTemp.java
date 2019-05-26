@@ -95,7 +95,7 @@ public class RecyclerViewAdapterRecomTemp extends RecyclerView.Adapter<RecyclerV
 
         textViewName.setText(titleText);
 
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
         final String sContentSize= Integer.toString(contentArray.size());
 
         String imgUrl="";

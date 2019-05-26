@@ -41,6 +41,10 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
 
     private Object[] mArrayList;
 
+
+
+    String sContentSize="0";
+
     //private String copyRightText;
     // private ImageView mainImage;
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -104,16 +108,22 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
 
         textViewName.setText(titleText);
 
-        final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
+        final ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
 
         final int sUnitSize= dataSet.get(listPosition).getmArrayListCourseUnits().size();
 
-        final String sContentSize= Integer.toString(contentArray.size());
+
+        if(contentArray==null) {
+
+        }
+        else{
+            sContentSize = Integer.toString(contentArray.size());
+        }
 
         String imgUrl="";
 
         try {
-            mArrayList = contentArray.get(listPosition).toArray();
+
 
 
         ArrayList<DetailDataModelCoursesThumbnails> imgArray=dataSet.get(listPosition).getmArrayListThumbnails();
@@ -121,6 +131,8 @@ public class RecyclerViewAdapterCategory1 extends RecyclerView.Adapter<RecyclerV
         DetailDataModelCoursesThumbnails imgUrlModel = imgArray.get(listPosition);
 
             imgUrl = imgUrlModel.getCover_code_image();
+
+            mArrayList = contentArray.get(listPosition).toArray();
 
         }
         catch (Exception ex){

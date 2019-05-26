@@ -34,6 +34,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -93,6 +94,7 @@ public class MyPageDetailFragment1 extends Fragment {
         context=getContext();
 
 
+
         mLessonIconView=view.findViewById(R.id.lessonIconDynamicId);
 
         if(GlobalVar.gLastReadLessonTitle!=null){
@@ -122,8 +124,6 @@ public class MyPageDetailFragment1 extends Fragment {
             }
         }
 
-
-
         mLastReadLesson=view.findViewById(R.id.lastReadLessonId);
         startMyQuiz=view.findViewById(R.id.startMyQuizId);
 
@@ -142,8 +142,15 @@ public class MyPageDetailFragment1 extends Fragment {
         mHistoryContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(context,CourseContentDetailActivity.class);
-                startActivity(i);
+
+                if(GlobalVar.isRedirectFromContentPage==true) {
+                    Intent i=new Intent(context,CourseContentDetailActivity.class);
+                    startActivity(i);
+                }
+                else{
+                    Toast.makeText(context,"শুরু করার জন্য কোন কোর্স খুঁজে পাওয়া যায়নি", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -290,7 +297,9 @@ public class MyPageDetailFragment1 extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setNestedScrollingEnabled(false);
+        //recyclerView.setNestedScrollingEnabled(false);
+
+        recyclerView.setNestedScrollingEnabled(true);
 
         new GetCoursesContents().execute();
     }
@@ -333,7 +342,7 @@ public class MyPageDetailFragment1 extends Fragment {
             //for content type array
             contentTypeArray = GlobalVar.courseContentDetailList.get(0).getmUnitAllArrayList().get(GlobalVar.gNthCourse).get(thisFragmentUniNumber);
 
-            adapter=new RecyclerViewAdapterMyPageContentTypes(unitTitle, thisFragmentUniNumber,lessonNamesCompleteness,contentTypeArray,context);
+            adapter=new RecyclerViewAdapterMyPageContentTypes(unitTitle, thisFragmentUniNumber,lessonNamesCompleteness ,contentTypeArray, context);
 
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();

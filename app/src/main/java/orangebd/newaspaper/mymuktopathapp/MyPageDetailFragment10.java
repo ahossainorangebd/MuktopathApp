@@ -102,17 +102,25 @@ public class MyPageDetailFragment10 extends Fragment {
         startMyQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i=new Intent(context,SlidingQuizActivity.class);
                 startActivity(i);
             }
         });
 
         LinearLayout mHistoryContent=view.findViewById(R.id.historyContent);
+
         mHistoryContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(context,CourseContentDetailActivity.class);
-                startActivity(i);
+
+                if(GlobalVar.isRedirectFromContentPage==true) {
+                    Intent i=new Intent(context,CourseContentDetailActivity.class);
+                    startActivity(i);
+                }
+                else{
+                    Toast.makeText(context,"শুরু করার জন্য কোন কোর্স খুঁজে পাওয়া যায়নি", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -209,7 +217,7 @@ public class MyPageDetailFragment10 extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(true);
 
         new GetCoursesContents().execute();
     }

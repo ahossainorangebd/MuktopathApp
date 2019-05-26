@@ -150,7 +150,8 @@ public class DetailDataModelCourses
     /*private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;*/
 
 
-    private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails;
+    private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListContentDetails;
+
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseUnits;
     private ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListCourseLesson;
     private ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListCourseQuizs;
@@ -717,11 +718,11 @@ public class DetailDataModelCourses
         this.mArrayListThumbnails = mArrayListThumbnails;
     }
 
-    public ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> getmArrayListContentDetails() {
+    public ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> getmArrayListContentDetails() {
         return mArrayListContentDetails;
     }
 
-    public void setmArrayListContentDetails(ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> mArrayListContentDetails) {
+    public void setmArrayListContentDetails(ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> mArrayListContentDetails) {
         this.mArrayListContentDetails = mArrayListContentDetails;
     }
 

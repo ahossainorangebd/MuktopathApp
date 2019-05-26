@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class RecyclerViewAdapterDownloadedCourseList extends RecyclerView.Adapter<RecyclerViewAdapterDownloadedCourseList.MyViewHolder> {
 
     private ArrayList<String> dataSet;
+    private ArrayList<String> dataSet2;
 
     private Context mContext;
 
@@ -36,8 +37,10 @@ public class RecyclerViewAdapterDownloadedCourseList extends RecyclerView.Adapte
         }
     }
 
-    public RecyclerViewAdapterDownloadedCourseList(String courseId, ArrayList<String> data, Context context) {
+    public RecyclerViewAdapterDownloadedCourseList(String courseId, ArrayList<String> data, ArrayList<String> dataUnitName, Context context) {
+
         this.dataSet = data;
+        this.dataSet2 = dataUnitName;
 
         this.mCourseId = courseId;
 
@@ -67,8 +70,9 @@ public class RecyclerViewAdapterDownloadedCourseList extends RecyclerView.Adapte
         final TextView textViewName = holder.reportextView;
 
         final String unitName=dataSet.get(listPosition);
+        final String unitNameBn=dataSet2.get(listPosition);
 
-        textViewName.setText(unitName);
+        textViewName.setText(unitNameBn);
 
 
         unitId = dataSet.get(listPosition);

@@ -24,6 +24,7 @@ public class DownloadUnitActivity extends AppCompatActivity {
 
 
     private ArrayList<String> mArrayLisUnitId;
+    private ArrayList<String> mArrayLisUnitName;
 
     private String courseId;
 
@@ -83,13 +84,11 @@ public class DownloadUnitActivity extends AppCompatActivity {
             filesLength =files.length;
         }
 
-
         GetDownloadedData();
-
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter=new RecyclerViewAdapterDownloadedCourseList( courseId ,mArrayLisUnitId,this);
+        adapter=new RecyclerViewAdapterDownloadedCourseList( courseId ,mArrayLisUnitId, mArrayLisUnitName,this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -101,13 +100,26 @@ public class DownloadUnitActivity extends AppCompatActivity {
         Cursor mCursorForUnitNumber = myDb.getGroupDataForUName(courseId);
 
 
-
         mArrayLisUnitId = new ArrayList<>();
+        mArrayLisUnitName = new ArrayList<>();
 
         while (mCursorForUnitNumber.moveToNext()) {
 
             mArrayLisUnitId.add(mCursorForUnitNumber.getString(2));
         }
+
+
+
+        Cursor mCursorForUnitName = myDb.GetUnitNameFromDB(courseId);
+
+        while (mCursorForUnitName.moveToNext()) {
+
+            mArrayLisUnitName.add(mCursorForUnitName.getString(0));
+
+            String abcd222="";
+        }
+
+
 
         String abcd2="";
 

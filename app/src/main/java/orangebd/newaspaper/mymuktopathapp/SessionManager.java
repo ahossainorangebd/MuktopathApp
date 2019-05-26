@@ -86,9 +86,13 @@ public class SessionManager {
 
     public boolean checkLogin(){
         // Check login status
+
+        String abcd="";
+
         if(!this.isLoggedIn()){
             // user is not logged in redirect him to Login Activity
 
+            String abcd2="";
 
             Intent i = new Intent(_context, SplashActivity.class);
 

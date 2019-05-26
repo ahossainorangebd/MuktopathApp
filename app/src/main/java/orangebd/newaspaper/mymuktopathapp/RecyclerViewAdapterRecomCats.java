@@ -650,7 +650,11 @@ public class RecyclerViewAdapterRecomCats extends RecyclerView.Adapter<RecyclerV
                         }
 
                         modelAlterMainActivity.setmArrayListThumbnails(detailListMainActivityCourseThumbnail);
-                        modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
+                        //TODO
+                        //TODO
+                        //modelAlterMainActivity.setmArrayListContentDetails(detailListMainActivityCourseDetailContentss);
+
                         modelAlterMainActivity.setmArrayListCourseUnits(detailListMainActivityCourseDetailUnits);
                         modelAlterMainActivity.setmArrayListCourseQuizs(detailListMainActivityCourseDetailUnitQuizList);
 

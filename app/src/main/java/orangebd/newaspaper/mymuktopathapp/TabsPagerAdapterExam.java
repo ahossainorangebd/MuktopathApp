@@ -279,27 +279,27 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
                     return new ExamFragmentSubmit();
                 default:
@@ -313,29 +313,29 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
                     return new ExamFragmentSubmit();
                 default:
@@ -348,31 +348,31 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
                     return new ExamFragmentSubmit();
                 default:
@@ -385,33 +385,33 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
                     return new ExamFragmentSubmit();
                 default:
@@ -424,33 +424,35 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
+                case 9:
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new ExamFragment15();
                 case 15:
                     return new ExamFragmentSubmit();
                 default:
@@ -463,37 +465,37 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new ExamFragment15();
                 case 15:
-                    return new MyPageFragment16();
+                    return new ExamFragment15();
                 case 16:
                     return new ExamFragmentSubmit();
                 default:
@@ -506,39 +508,39 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new ExamFragment15();
                 case 15:
-                    return new MyPageFragment16();
+                    return new ExamFragment15();
                 case 16:
-                    return new MyPageFragment17();
+                    return new ExamFragment15();
                 case 17:
                     return new ExamFragmentSubmit();
                 default:
@@ -551,41 +553,41 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new ExamFragment15();
                 case 15:
-                    return new MyPageFragment16();
+                    return new ExamFragment15();
                 case 16:
-                    return new MyPageFragment17();
+                    return new ExamFragment15();
                 case 17:
-                    return new MyPageFragment18();
+                    return new ExamFragment15();
                 case 18:
                     return new ExamFragmentSubmit();
                 default:
@@ -598,43 +600,43 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new ExamFragment15();
                 case 15:
-                    return new MyPageFragment16();
+                    return new ExamFragment15();
                 case 16:
-                    return new MyPageFragment17();
+                    return new ExamFragment15();
                 case 17:
-                    return new MyPageFragment18();
+                    return new ExamFragment15();
                 case 18:
-                    return new MyPageFragment19();
+                    return new ExamFragment15();
                 case 19:
                     return new ExamFragmentSubmit();
 
@@ -648,45 +650,45 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new ExamFragment15();
                 case 15:
-                    return new MyPageFragment16();
+                    return new ExamFragment15();
                 case 16:
-                    return new MyPageFragment17();
+                    return new ExamFragment15();
                 case 17:
-                    return new MyPageFragment18();
+                    return new ExamFragment15();
                 case 18:
-                    return new MyPageFragment19();
+                    return new ExamFragment15();
                 case 19:
-                    return new MyPageFragment20();
+                    return new ExamFragment15();
                 case 20:
                     return new ExamFragmentSubmit();
                 default:
@@ -699,47 +701,47 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
             switch (position) {
 
                 case 0:
-                    return new MyPageFragment1();
+                    return new ExamFragment1();
                 case 1:
-                    return new MyPageFragment2();
+                    return new ExamFragment2();
                 case 2:
-                    return new MyPageFragment3();
+                    return new ExamFragment3();
                 case 3:
-                    return new MyPageFragment4();
+                    return new ExamFragment4();
                 case 4:
-                    return new MyPageFragment5();
+                    return new ExamFragment5();
                 case 5:
-                    return new MyPageFragment6();
+                    return new ExamFragment6();
                 case 6:
-                    return new MyPageFragment7();
+                    return new ExamFragment7();
                 case 7:
-                    return new MyPageFragment8();
+                    return new ExamFragment8();
                 case 8:
-                    return new MyPageFragment9();
+                    return new ExamFragment9();
                 case 9:
-                    return new MyPageFragment10();
+                    return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new ExamFragment15();
                 case 15:
-                    return new MyPageFragment16();
+                    return new ExamFragment15();
                 case 16:
-                    return new MyPageFragment17();
+                    return new ExamFragment15();
                 case 17:
-                    return new MyPageFragment18();
+                    return new ExamFragment15();
                 case 18:
-                    return new MyPageFragment19();
+                    return new ExamFragment15();
                 case 19:
-                    return new MyPageFragment20();
+                    return new ExamFragment15();
                 case 20:
-                    return new MyPageFragment21();
+                    return new ExamFragment15();
                 case 21:
                     return new ExamFragmentSubmit();
                 default:
@@ -772,29 +774,29 @@ public class TabsPagerAdapterExam extends FragmentPagerAdapter {
                 case 9:
                     return new ExamFragment10();
                 case 10:
-                    return new MyPageFragment11();
+                    return new ExamFragment11();
                 case 11:
-                    return new MyPageFragment12();
+                    return new ExamFragment12();
                 case 12:
-                    return new MyPageFragment13();
+                    return new ExamFragment13();
                 case 13:
-                    return new MyPageFragment14();
+                    return new ExamFragment14();
                 case 14:
-                    return new MyPageFragment15();
+                    return new ExamFragment15();
                 case 15:
-                    return new MyPageFragment16();
+                    return new ExamFragment15();
                 case 16:
-                    return new MyPageFragment17();
+                    return new ExamFragment15();
                 case 17:
-                    return new MyPageFragment18();
+                    return new ExamFragment15();
                 case 18:
-                    return new MyPageFragment19();
+                    return new ExamFragment15();
                 case 19:
-                    return new MyPageFragment20();
+                    return new ExamFragment15();
                 case 20:
-                    return new MyPageFragment21();
+                    return new ExamFragment15();
                 case 21:
-                    return new MyPageFragment22();
+                    return new ExamFragment15();
                 case 22:
                     return new ExamFragmentSubmit();
                 default:

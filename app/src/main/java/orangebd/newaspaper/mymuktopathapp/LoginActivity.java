@@ -1,15 +1,18 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -155,13 +158,22 @@ public class LoginActivity extends AppCompatActivity {
 
     private HashMap<String,String> mapSubmit;
 
+    private HashMap<String,String> mapSubmitCheckUser;
+
     //private boolean isLogin;
 
     private String token="";
     String url= GlobalVar.gApiBaseUrl + "/api/login";
 
+    String oldUserCheckUrl = GlobalVar.gApiBaseUrl + "/api/old_user_check";
+
 
     private TextView forgetPasswordTxt;
+
+    private TextView verifyAccountTxt;
+
+
+    private TextInputLayout mPwdTextInputLayOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -175,11 +187,23 @@ public class LoginActivity extends AppCompatActivity {
         mEmailView =  findViewById(R.id.email);
         mEdtTxtPwd = findViewById(R.id.password);
 
+        mPwdTextInputLayOut = findViewById(R.id.pwdTextInputLayOut);
+
         forgetPasswordTxt=findViewById(R.id.resetPwdLebelId);
         forgetPasswordTxt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(mContext,ForgetPasswordActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+        verifyAccountTxt=findViewById(R.id.verifyAccountTextId);
+        verifyAccountTxt.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(mContext,VerifyAccountActivity.class);
                 startActivity(i);
             }
         });
@@ -197,6 +221,52 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        mEdtTxtPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                mStrEmail=mEmailView.getText().toString();
+
+
+                token = GlobalVar.getTokenArray.get(0).getmAccessToken();
+                String firstWord = GlobalVar.getTokenArray.get(0).getmTokenType();
+
+                token = firstWord + " " + token;
+
+                GlobalVar.gReplacingTokenForAllCategories=token;
+
+
+                //attemptLogin();
+
+                /*finish();
+                Intent i=new Intent(mContext,WelcomeActivity.class);
+                view.getContext().startActivity(i);*/
+
+                mapSubmitCheckUser = new HashMap<>();
+
+                if(mStrEmail.contains("@")){
+
+                    mapSubmitCheckUser.put("email", mStrEmail);
+                    mapSubmitCheckUser.put("type", "1");
+                }
+                else {
+                    mapSubmitCheckUser.put("phone", mStrEmail);
+                    mapSubmitCheckUser.put("type", "2");
+                }
+
+
+                new StartCheckOldUser().execute(oldUserCheckUrl);
+            }
+        });
+
+        /*mEdtTxtPwd.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });*/
 
         mEdtTxtPwd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -224,11 +294,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                //attemptLogin();
-
-                /*finish();
-                Intent i=new Intent(mContext,WelcomeActivity.class);
-                view.getContext().startActivity(i);*/
 
                 mStrEmail=mEmailView.getText().toString();
                 mStrPwd=mEdtTxtPwd.getText().toString();
@@ -236,13 +301,6 @@ public class LoginActivity extends AppCompatActivity {
                 sm = new SessionManager(mContext);
 
                 map = new HashMap<String, String>();
-
-                token = GlobalVar.getTokenArray.get(0).getmAccessToken();
-                String firstWord = GlobalVar.getTokenArray.get(0).getmTokenType();
-
-                token = firstWord + " " + token;
-
-                GlobalVar.gReplacingTokenForAllCategories=token;
 
                 mapSubmit =  new HashMap<>();
 
@@ -292,22 +350,32 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (mStrEmail.contains("@"))
                             {
-                                //GlobalVar.gIsLogin=sm.checkLogin();
 
-                                if(!GlobalVar.gIsLogin) {
+                                if(!GlobalVar.gIsLogin==true) {
 
-                                    sm.createLoginSession(mStrEmail, mStrPwd);
-                                    sm.isLoggedIn();
+
+                                }
+                                else{
+                                    /*sm.createLoginSession(mStrEmail, mStrPwd);
+                                    sm.isLoggedIn();*/
+
+                                    String abcdpp="";
                                 }
 
                                 new StartLogin().execute(url);
                             }
                             else {
 
-                                if(!GlobalVar.gIsLogin) {
+                                if(!GlobalVar.gIsLogin==true) {
 
-                                    sm.createLoginSessionForPhone(mStrEmail, mStrPwd);
-                                    sm.isLoggedIn();
+
+                                }
+                                else{
+                                    /*sm.createLoginSessionForPhone(mStrEmail, mStrPwd);
+                                    sm.isLoggedIn();*/
+
+
+                                    String abcdpp="";
                                 }
                             }
                         }
@@ -371,8 +439,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if(!GlobalVar.gIsLogin) {
 
-                                    sm.createLoginSession(mStrEmail, mStrPwd);
-                                    sm.isLoggedIn();
+                                    /*sm.createLoginSession(mStrEmail, mStrPwd);
+                                    sm.isLoggedIn();*/
                                 }
 
                                 new StartLogin().execute(url);
@@ -381,8 +449,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if(!GlobalVar.gIsLogin) {
 
-                                    sm.createLoginSessionForPhone(mStrEmail, mStrPwd);
-                                    sm.isLoggedIn();
+                                    /*sm.createLoginSessionForPhone(mStrEmail, mStrPwd);
+                                    sm.isLoggedIn();*/
                                 }
 
                                 new StartLogin().execute(url);
@@ -399,9 +467,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     //mEmailView.setError("Invalid email");
                 }
-
-
-
             }
         });
 
@@ -415,10 +480,6 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            mProgressDialog=new ProgressDialog(mContext);
-            mProgressDialog.setIndeterminate(true);
-            mProgressDialog.setMessage("Please wait...");
-            mProgressDialog.show();
         }
 
         @Override
@@ -433,8 +494,30 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
+            String abcwwwwd="";
 
-            if(result!=""){
+            if(result!="")
+            {
+
+                if (mStrEmail.contains("@"))
+                {
+                    sm.createLoginSession(mStrEmail, mStrPwd);
+                    sm.isLoggedIn();
+
+
+                    String testingok="";
+                }
+                else {
+                    sm.createLoginSessionForPhone(mStrEmail, mStrPwd);
+                    sm.isLoggedIn();
+
+                    String testingok="";
+                }
+
+                mProgressDialog = new ProgressDialog(mContext);
+                mProgressDialog.setIndeterminate(true);
+                mProgressDialog.setMessage("Please wait...");
+                mProgressDialog.show();
 
                 String token="";
 
@@ -442,7 +525,6 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject jObject = new JSONObject(result);
 
                     try {
-
                         GlobalVar.gRecommendedCategories= new ArrayList<>();
 
                         JSONObject jObjectData = jObject.getJSONObject("data");
@@ -485,7 +567,6 @@ public class LoginActivity extends AppCompatActivity {
                     Intent i = new Intent(mContext, SelectACategoryActivity.class);
                     startActivity(i);
                 }
-
             }
             else {
                 mEdtTxtPwd.setError("Wrong email or password");
@@ -529,29 +610,39 @@ public class LoginActivity extends AppCompatActivity {
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 String line;
                 BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+
                 while ((line=br.readLine()) != null) {
                     response+=line;
                 }
             }
 
             else {
-                if(mStrEmail.contains("@")){
-                    String message="আপনার ই-মেইল চেক করুন এবং অ্যাকাউন্ট সক্রিয় করুন।";
 
-                    Intent i=new Intent(mContext,EmailRegiCompleteActivity.class);
 
-                    i.putExtra("msg", message);
-
-                    startActivity(i);
+                if(String.valueOf(responseCode).equalsIgnoreCase("401")){
+                    mEdtTxtPwd.setError("Wrong email or password");
                 }
-                else{
-                    String message="আপনার ফোন চেক করুন এবং অ্যাকাউন্ট সক্রিয় করুন।";
+                else if(String.valueOf(responseCode).equalsIgnoreCase("400")){
+                    if(mStrEmail.contains("@")){
+                        String message="আপনার ই-মেইল চেক করুন এবং অ্যাকাউন্ট সক্রিয় করুন।";
 
-                    Intent i=new Intent(mContext,VerifyAccountActivity.class);
+                        Intent i=new Intent(mContext,EmailRegiCompleteActivity.class);
 
-                    i.putExtra("msg", message);
+                        i.putExtra("msg", message);
 
-                    startActivity(i);
+                        startActivity(i);
+                    }
+                    else{
+                        String message="আপনার ফোন চেক করুন এবং অ্যাকাউন্ট সক্রিয় করুন।";
+
+                        Intent i=new Intent(mContext,VerifyAccountActivity.class);
+
+                        i.putExtra("msg", message);
+                        i.putExtra("phn", mStrEmail);
+
+                        startActivity(i);
+                    }
                 }
             }
 
@@ -582,6 +673,95 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return result.toString();
+    }
+
+
+    public class StartCheckOldUser extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String data = performPostCall(params[0], mapSubmitCheckUser);
+
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            String checking1="";
+
+            if(result!="")
+            {
+                String checking="";
+
+                try {
+                    JSONObject jObjectData = new JSONObject();
+
+                    JSONObject jObjectResult = new JSONObject(result);
+
+                    try {
+                        String oldUserOrNot = jObjectResult.getString("old_user_status");
+
+                        if(oldUserOrNot.equalsIgnoreCase("0")) {
+
+                            showPopUpForOldUser();
+                        }
+                        else{
+
+
+                        }
+                    }
+                    catch (Exception ex) {
+                        Log.d("", "onResponse: ");
+                    }
+                }
+                catch (Exception ex){
+                    Log.d("", "onPostExecute: ");
+                }
+
+            }
+
+
+        }
+        @Override
+        protected void onCancelled() {
+
+        }
+    }
+
+
+
+    private void showPopUpForOldUser()
+    {
+        final Dialog dialog = new Dialog(mContext, R.style.DialogCustomTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popupwindowforoldusermsg);
+
+        Button okButton = dialog.findViewById(R.id.submitBtn);
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+                Intent i=new Intent(mContext,ForgetPasswordActivity.class);
+
+                i.putExtra("email",mStrEmail);
+
+                startActivity(i);
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }
 

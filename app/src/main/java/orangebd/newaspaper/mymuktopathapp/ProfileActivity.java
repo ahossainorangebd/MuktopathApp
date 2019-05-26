@@ -102,7 +102,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         mGamificationPoint=findViewById(R.id.gamificationPoint);
 
-        mGamificationPoint.setText(GlobalVar.gGamificationPoint);
+        mGamificationPoint.setText(convertEngToBn(GlobalVar.gGamificationPoint));
 
 
         mSettingsBtn=findViewById(R.id.settingsBtn);
@@ -202,13 +202,15 @@ public class ProfileActivity extends AppCompatActivity {
         //String totalIncompletedCourse =  totalIncompletedCourseInt;
         String totalWishListCourse =  convertEngToBn(String.valueOf(GlobalVar.gWishListNumber));
 
-        for (int dynamicCourseNo=0; dynamicCourseNo < GlobalVar.gEnrollCourseId.size(); dynamicCourseNo++) {
+        if(GlobalVar.gEnrollCourseId.size()>0) {
+            for (int dynamicCourseNo = 0; dynamicCourseNo < GlobalVar.gEnrollCourseId.size(); dynamicCourseNo++) {
 
-            enrollCourseCompltness=GlobalVar.gEnrollCourseId.get(dynamicCourseNo).getmEcCompleteness();
+                enrollCourseCompltness = GlobalVar.gEnrollCourseId.get(dynamicCourseNo).getmEcCompleteness();
 
-            if(enrollCourseCompltness.equalsIgnoreCase("100")) {
+                if (enrollCourseCompltness.equalsIgnoreCase("100")) {
 
-                GlobalVar.isCompletedCourseActivity=true;
+                    GlobalVar.isCompletedCourseActivity = true;
+                }
             }
         }
 
@@ -256,6 +258,17 @@ public class ProfileActivity extends AppCompatActivity {
 
         ProgressBar mProgBar=findViewById(R.id.determinateBar);
         mProgBar.getIndeterminateDrawable().setColorFilter(0xFF009109,android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        if(enrollCourseCompltness.equalsIgnoreCase("null")){
+            enrollCourseCompltness="28";
+        }
+        if(GlobalVar.gProfileCompleteness.equalsIgnoreCase("null")){
+
+            GlobalVar.gProfileCompleteness="28";
+        }
+
+        String abcdppp="";
+
         mProgBar.setProgress(Integer.parseInt(enrollCourseCompltness));
 
 
@@ -298,10 +311,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
             catch (Exception ex){}
         }
-
-
-
-
 
 
         allCourseBtn.setOnClickListener(new View.OnClickListener() {
