@@ -169,6 +169,7 @@ public class DetailDataModelCoursesDetailContents
     private String mAnsRand;
     private String mAttempt;
     private String mChooseVideoType;
+    private String mChooseDocType;
     private String mContentType;
     private String mDesc;
     private String mDownloadable;
@@ -182,6 +183,9 @@ public class DetailDataModelCoursesDetailContents
     private String mTimeUnit;
     private String mTitleAnother;
     private String mContentSize;
+
+
+    private String Qtype;
 
 
     private String mQuizMarks;
@@ -854,6 +858,22 @@ public class DetailDataModelCoursesDetailContents
 
     public void setExternal_Link(String external_Link) {
         External_Link = external_Link;
+    }
+
+    public String getmChooseDocType() {
+        return mChooseDocType;
+    }
+
+    public void setmChooseDocType(String mChooseDocType) {
+        this.mChooseDocType = mChooseDocType;
+    }
+
+    public String getQtype() {
+        return Qtype;
+    }
+
+    public void setQtype(String qtype) {
+        Qtype = qtype;
     }
 
 

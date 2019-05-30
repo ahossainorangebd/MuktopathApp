@@ -1,5 +1,6 @@
 package orangebd.newaspaper.mymuktopathapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -40,6 +41,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     private EditText mEmailPhnEdtTxt;
 
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
 
                 new StartSubmit().execute(urlVerificationCodeSubmit);
+
+
+                mSubmitBtn.setVisibility(View.GONE);
             }
         });
     }
@@ -83,6 +88,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+
+            mProgressDialog = new ProgressDialog(context);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setMessage("Please wait...");
+            mProgressDialog.show();
+
         }
 
         @Override
@@ -114,6 +126,8 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                         Intent i=new Intent(context,ChangePasswordActivity.class);
 
                         i.putExtra("email",emailOrPhoneStr);
+
+                        mProgressDialog.dismiss();
 
                         startActivity(i);
                     }

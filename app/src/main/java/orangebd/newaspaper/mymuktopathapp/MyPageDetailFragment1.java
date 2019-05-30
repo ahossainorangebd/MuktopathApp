@@ -93,6 +93,8 @@ public class MyPageDetailFragment1 extends Fragment {
 
         context=getContext();
 
+        String thisCourseId=GlobalVar.gCourseIdListForCourseId.get(GlobalVar.gNthCourse).getIdCourse();
+
 
 
         mLessonIconView=view.findViewById(R.id.lessonIconDynamicId);
@@ -127,7 +129,16 @@ public class MyPageDetailFragment1 extends Fragment {
         mLastReadLesson=view.findViewById(R.id.lastReadLessonId);
         startMyQuiz=view.findViewById(R.id.startMyQuizId);
 
-        mLastReadLesson.setText(GlobalVar.gLastReadLessonTitle);
+
+        if(thisCourseId.equalsIgnoreCase(GlobalVar.gLastReadLessonCourseId)) {
+            mLastReadLesson.setText(GlobalVar.gLastReadLessonTitle);
+        }
+        else{
+            mLastReadLesson.setText("");
+        }
+
+
+
         startMyQuiz.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -144,8 +155,17 @@ public class MyPageDetailFragment1 extends Fragment {
             public void onClick(View v) {
 
                 if(GlobalVar.isRedirectFromContentPage==true) {
-                    Intent i=new Intent(context,CourseContentDetailActivity.class);
-                    startActivity(i);
+
+                    String contentType = GlobalVar.gContentIconType;
+
+                    if(contentType.equalsIgnoreCase("manual_content")){
+                        Intent i=new Intent(context,ManualContentActivity.class);
+                        startActivity(i);
+                    }
+                    else {
+                        Intent i = new Intent(context, CourseContentDetailActivity.class);
+                        startActivity(i);
+                    }
                 }
                 else{
                     Toast.makeText(context,"শুরু করার জন্য কোন কোর্স খুঁজে পাওয়া যায়নি", Toast.LENGTH_LONG).show();

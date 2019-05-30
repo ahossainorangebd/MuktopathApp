@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 
 import org.json.JSONArray;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GlobalVar {
@@ -14,6 +15,7 @@ public class GlobalVar {
     public static String getParentName;
 
     public static String gLastReadLessonTitle;
+    public static String gLastReadLessonCourseId;
 
     public static String gPulseTitle;
 
@@ -155,6 +157,7 @@ public class GlobalVar {
     public static String gTimeStatus;
     public static String gContentDuration;
     public static String gChooseVideoType;
+    public static String gChooseDocType;
     public static String gContentIconType;
     public static String gLessonCompleteness;
 
@@ -229,6 +232,9 @@ public class GlobalVar {
     // Making temporary completed Unit id and lesson id for showing temp complete
     public static String gLessonCompleteTempLessonId;
     public static String gLessonCompleteTempUnitId;
+
+    public static ArrayList<String> gLessonCompleteTempLessonArrayId = new ArrayList<>();
+    public static ArrayList<String> gLessonCompleteTempUnitArrayId = new ArrayList<>();
 
 
 

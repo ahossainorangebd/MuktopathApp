@@ -34,6 +34,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -86,6 +87,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private String contentSize;
     private String contentDuration;
     private String chooseVideoType;
+    private String chooseDocType;
 
     private String contentIconType;
     private String lessonCompleteness;
@@ -125,6 +127,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
     private int seconds;
     private int duration;
     private TextView textView;
+    private TextView textViewTt;
 
     private int seekbarProgress;
 
@@ -168,8 +171,6 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
     private String thisCourseId;
     private String thisBatchId;
-
-
 
     private String mTotal_dislikes;
     private String mTotal_flags;
@@ -215,6 +216,40 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
 
 
+    // For the pop up quiz lines
+
+    private FrameLayout mQuizLine1;
+    private FrameLayout mQuizLine2;
+    private FrameLayout mQuizLine3;
+    private FrameLayout mQuizLine4;
+    private FrameLayout mQuizLine5;
+    private FrameLayout mQuizLine6;
+    private FrameLayout mQuizLine7;
+    private FrameLayout mQuizLine8;
+    private FrameLayout mQuizLine9;
+    private FrameLayout mQuizLine10;
+    private FrameLayout mQuizLine11;
+    private FrameLayout mQuizLine12;
+    private FrameLayout mQuizLine13;
+    private FrameLayout mQuizLine14;
+    private FrameLayout mQuizLine15;
+    private FrameLayout mQuizLine16;
+    private FrameLayout mQuizLine17;
+    private FrameLayout mQuizLine18;
+    private FrameLayout mQuizLine19;
+    private FrameLayout mQuizLine20;
+    private FrameLayout mQuizLine21;
+    private FrameLayout mQuizLine22;
+    private FrameLayout mQuizLine23;
+    private FrameLayout mQuizLine24;
+    private FrameLayout mQuizLine25;
+
+
+    private LinearLayout mFrameLay;
+
+
+
+    private boolean isPopUpComplenessShowed=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -260,6 +295,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             timeStatus = GlobalVar.gTimeStatus;
             contentDuration = GlobalVar.gContentDuration;
             chooseVideoType = GlobalVar.gChooseVideoType;
+            chooseDocType = GlobalVar.gChooseDocType;
             contentIconType = GlobalVar.gContentIconType;
             lessonCompleteness = GlobalVar.gLessonCompleteness;
 
@@ -275,6 +311,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             contentSize = getIntent().getExtras().getString("csize");
             contentDuration = getIntent().getExtras().getString("cduration");
             chooseVideoType = getIntent().getExtras().getString("cvtype");
+            chooseDocType = getIntent().getExtras().getString("cdtype");
             contentIconType = getIntent().getExtras().getString("ciconype");
             lessonCompleteness = getIntent().getExtras().getString("thislessoncompltness");
 
@@ -283,7 +320,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
 
 
-        if(contentIconType.equalsIgnoreCase("video")) {
+        if(contentIconType.equalsIgnoreCase("video"))
+        {
             if (chooseVideoType.equalsIgnoreCase("1")) {
                 mVideoLayOut.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -314,7 +352,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         GlobalVar.gLastReadLessonTitle=title;
 
-        int listPositionNumber = Integer.parseInt(GlobalVar.gListPosition);
+
+        final int listPositionNumber = Integer.parseInt(GlobalVar.gListPosition);
 
         mCustomContentTitle=view.findViewById(R.id.muktoCustomContentTitle);
         mCustomContentTitle.setText(title);
@@ -361,51 +400,79 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         }*/
 
 
+        /** previously the loop of getting pulse was here */
 
 
-        for(int allPulse=0; allPulse<GlobalVar.thisFragmentPulses.size(); allPulse++) {
-
-            int eachPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMultiId();
-
-            if(eachPulse==listPositionNumber) {
-                getPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMulti();
-
-                //TODO
-                //Toast.makeText(context,"This video has question.",Toast.LENGTH_SHORT).show();
-
-                isGotQuestion=true;
-            }
-            else {
-
-                if(isNoQuestion==false){
-
-                    if(isGotQuestion==true){
-                        String nothing="Nothing";
-                    }
-                    else {
-                        //TODO
-                        //Toast.makeText(context, "This video has no question.", Toast.LENGTH_SHORT).show();
-                        isNoQuestion=true;
-                    }
-                }
-                else {
-                    String mNothing="nothing";
-                }
-            }
-        }
 
         //String videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode;
         //finalVideoUrl = "<video controls='controls' autoplay='1' src="+ videoUrl+ " height='220' width='350' type='video/mp4' " + "#t=" + timeStatus +  "></video>";
 
-        if(contentIconType.equalsIgnoreCase("video")) {
+        String abcdpqwpqw="";
+
+        if(contentIconType.equalsIgnoreCase("video"))
+        {
             if (chooseVideoType.equalsIgnoreCase("0")) {
+
+
                 mYoutubeVideoLayOut.setVisibility(View.VISIBLE);
                 mDetailPageScrollView.setVisibility(View.INVISIBLE);
                 mVideoLayOut.setVisibility(View.INVISIBLE);
                 videoView.setVisibility(View.INVISIBLE);
 
                 htmlText = "<div class='container'>" + "<div class='row'>" +
-                        "<iframe src=\"" + eCode + "\" style=\"width:100%; height:200px\"> </iframe>" +
+                        "<iframe src=\"" + eCode+ "?autoplay=1" + "\" style=\"width:100%; height:200px\"> </iframe>" +
+                        "<br/>" + "<br/>" + DetailDescription + "<br/>" + "</div>" + "</div>";
+
+                String abcd = "";
+
+            } else {
+
+                /** Let's set the quiz lines */
+
+
+
+
+                mYoutubeVideoLayOut.setVisibility(View.INVISIBLE);
+                mVideoLayOut.setVisibility(View.VISIBLE);
+                mDetailPageScrollView.setVisibility(View.VISIBLE);
+                videoView.setVisibility(View.VISIBLE);
+            }
+        }
+        else if(contentIconType.equalsIgnoreCase("document")){
+            if (chooseDocType.equalsIgnoreCase("0")) {
+
+                eCode = eCode.replace("width=\"722px\"", "width=\"322px\"");
+                eCode = eCode.replace("height=\"565px\"", "height=\"200px\"");
+
+                mYoutubeVideoLayOut.setVisibility(View.VISIBLE);
+                mDetailPageScrollView.setVisibility(View.INVISIBLE);
+                mVideoLayOut.setVisibility(View.INVISIBLE);
+                videoView.setVisibility(View.INVISIBLE);
+
+                htmlText = "<div class='container'>" + "<div class='row'>" +
+                        eCode +
+                        "<br/>" + "<br/>" + DetailDescription + "<br/>" + "</div>" + "</div>";
+
+                String abcd = "";
+
+            }
+            else {
+
+                mYoutubeVideoLayOut.setVisibility(View.INVISIBLE);
+                mVideoLayOut.setVisibility(View.VISIBLE);
+                mDetailPageScrollView.setVisibility(View.VISIBLE);
+                videoView.setVisibility(View.VISIBLE);
+            }
+        }
+        else{
+            if (chooseVideoType.equalsIgnoreCase("1")) {
+                mYoutubeVideoLayOut.setVisibility(View.VISIBLE);
+                mDetailPageScrollView.setVisibility(View.INVISIBLE);
+                mVideoLayOut.setVisibility(View.INVISIBLE);
+                videoView.setVisibility(View.INVISIBLE);
+
+                htmlText = "<div class='container'>" + "<div class='row'>" +
+                        "<iframe src=\"" + eCode+ "?autoplay=1" + "\" style=\"width:100%; height:200px\"> </iframe>" +
                         "<br/>" + "<br/>" + DetailDescription + "<br/>" + "</div>" + "</div>";
 
                 String abcd = "";
@@ -417,19 +484,14 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 videoView.setVisibility(View.VISIBLE);
             }
         }
-        else{
-            mYoutubeVideoLayOut.setVisibility(View.GONE);
-            mVideoLayOut.setVisibility(View.GONE);
-            mDetailPageScrollView.setVisibility(View.GONE);
-            videoView.setVisibility(View.GONE);
-        }
 
 
         videoUrl = BASE_URL + "/storage/uploads/videos/" + "user-" + mUserNumber + "/"+ eCode+"#t=" + timeStatus;
 
         GlobalVar.gEcode=eCode;
 
-        if(contentIconType.equalsIgnoreCase("video")) {
+        if(contentIconType.equalsIgnoreCase("video"))
+        {
             if (chooseVideoType.equalsIgnoreCase("1")) {
                 imgPauseView = findViewById(R.id.pause_button);
                 imgPauseView.setOnClickListener(new View.OnClickListener() {
@@ -473,7 +535,6 @@ public class CourseContentDetailActivity extends AppCompatActivity {
             imgPauseView.setVisibility(View.GONE);
         }
 
-
         //titleTextView.setText(title);
 
         detailDescManualContent.getSettings().setJavaScriptEnabled(true);
@@ -491,8 +552,10 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
         mProgressBar = findViewById(R.id.Progressbar);
         textView=findViewById(R.id.txtView);
+        textViewTt=findViewById(R.id.txtViewTt);
 
-        if(contentIconType.equalsIgnoreCase("video")) {
+        if(contentIconType.equalsIgnoreCase("video"))
+        {
             if (chooseVideoType.equalsIgnoreCase("1")) {
                 Uri uri = Uri.parse(videoUrl);
                 videoView.setVideoURI(uri);
@@ -513,7 +576,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
 
 
-        if(contentIconType.equalsIgnoreCase("video")) {
+        if(contentIconType.equalsIgnoreCase("video"))
+        {
             if (chooseVideoType.equalsIgnoreCase("1")) {
                 mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
@@ -589,15 +653,50 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                         //TODO
                         //TODO
 
+                        /** a later version of get Pulse section */
+
+                        for(int allPulse=0; allPulse<GlobalVar.thisFragmentPulses.size(); allPulse++)
+                        {
+
+                            int eachPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMultiId();
+
+                            if(eachPulse==listPositionNumber) {
+                                getPulse = GlobalVar.thisFragmentPulses.get(allPulse).get(0).getmPulseOfVideoMulti();
+
+                                //TODO
+                                //Toast.makeText(context,"This video has question.",Toast.LENGTH_SHORT).show();
+
+                                isGotQuestion=true;
+                            }
+                            else {
+
+                                if(isNoQuestion==false){
+
+                                    if(isGotQuestion==true){
+                                        String nothing="Nothing";
+                                    }
+                                    else {
+                                        //TODO
+                                        //Toast.makeText(context, "This video has no question.", Toast.LENGTH_SHORT).show();
+                                        isNoQuestion=true;
+                                    }
+                                }
+                                else {
+                                    String mNothing="nothing";
+                                }
+                            }
+                        }
 
                         if (getPulse != null) {
-                            targetPopUp = Integer.parseInt(getPulse);
 
+                            targetPopUp = Integer.parseInt(getPulse);
 
                             String exing="";
                         } else {
                             targetPopUp = -1;
                         }
+
+
 
                         String exing1="11";
 
@@ -638,7 +737,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
 
                         videoEndSecond = Integer.parseInt(contentDuration);
 
-                        if (seconds == videoEndSecond) {
+                        if (seconds == videoEndSecond-1) {
 
                             mProgressBar.setProgress(100);
 
@@ -646,7 +745,20 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                                 String testingabcd ="";
                             }
                             else{
-                                showPopUpCompletenessSubmit();
+
+                                if(isPopUpComplenessShowed==false) {
+
+                                    showPopUpCompletenessSubmit();
+                                    isPopUpComplenessShowed=true;
+                                }
+                                else{
+                                    String testingabcd121212 ="";
+                                }
+
+
+
+
+
                             }
 
                         }
@@ -677,7 +789,121 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                                 videoView.seekTo(vprog);
                             }
                         }
+
+
+                        if(getPulse!=null) {
+                            double firstPopUpTimeAsPercentage = ((100 / Double.parseDouble(contentDuration)) * Double.parseDouble(getPulse)) / 2;
+
+                            int firstPopUpTimeAsPercentageInt = (Integer.parseInt(String.format("%.0f", firstPopUpTimeAsPercentage)));
+
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine1 = findViewById(R.id.quizLine1);
+                                mQuizLine1.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==2) {
+                                mQuizLine2 = findViewById(R.id.quizLine2);
+                                mQuizLine2.setVisibility(View.VISIBLE);
+                            }
+
+                            if(firstPopUpTimeAsPercentageInt==3) {
+                                mQuizLine3 = findViewById(R.id.quizLine3);
+                                mQuizLine3.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==4) {
+                                mQuizLine4 = findViewById(R.id.quizLine4);
+                                mQuizLine4.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine5 = findViewById(R.id.quizLine5);
+                                mQuizLine5.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine6 = findViewById(R.id.quizLine6);
+                                mQuizLine6.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine7 = findViewById(R.id.quizLine7);
+                                mQuizLine7.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine8 = findViewById(R.id.quizLine8);
+                                mQuizLine8.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine9 = findViewById(R.id.quizLine9);
+                                mQuizLine9.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine10 = findViewById(R.id.quizLine10);
+                                mQuizLine10.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine11 = findViewById(R.id.quizLine11);
+                                mQuizLine11.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine12 = findViewById(R.id.quizLine12);
+                                mQuizLine12.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine13 = findViewById(R.id.quizLine13);
+                                mQuizLine13.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine14 = findViewById(R.id.quizLine14);
+                                mQuizLine14.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine15 = findViewById(R.id.quizLine15);
+                                mQuizLine15.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine16 = findViewById(R.id.quizLine16);
+                                mQuizLine16.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==1) {
+                                mQuizLine17 = findViewById(R.id.quizLine17);
+                                mQuizLine17.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==18) {
+                                mQuizLine18 = findViewById(R.id.quizLine18);
+                                mQuizLine18.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==19) {
+                                mQuizLine19 = findViewById(R.id.quizLine19);
+                                mQuizLine19.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==20) {
+                                mQuizLine20 = findViewById(R.id.quizLine20);
+                                mQuizLine20.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==21) {
+                                mQuizLine21 = findViewById(R.id.quizLine21);
+                                mQuizLine21.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==22) {
+                                mQuizLine22 = findViewById(R.id.quizLine22);
+                                mQuizLine22.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==23) {
+                                mQuizLine23 = findViewById(R.id.quizLine23);
+                                mQuizLine23.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==24) {
+                                mQuizLine24 = findViewById(R.id.quizLine24);
+                                mQuizLine24.setVisibility(View.VISIBLE);
+                            }
+                            if(firstPopUpTimeAsPercentageInt==25) {
+                                mQuizLine25 = findViewById(R.id.quizLine25);
+                                mQuizLine25.setVisibility(View.VISIBLE);
+                            }
+
+                        }
+
                     }
+
+
+
                 });
             }
         }
@@ -687,7 +913,10 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         thisCourseId=GlobalVar.gCourseIdListForCourseId.get(GlobalVar.gNthCourse).getIdCourse();
         thisBatchId=GlobalVar.gEnrollCourseList.get(GlobalVar.gNthCourse).getmId();
 
-        new GetLykUnlykHistory().execute(getLikeUnlikeDetailUrl+ thisCourseId + "/" + GlobalVar.gUnitId + "/" + GlobalVar.gLessonId);
+        new GetLykUnlykHistory().execute(getLikeUnlikeDetailUrl+ thisCourseId + "/" + unitId + "/" + GlobalVar.gLessonId);
+
+
+        GlobalVar.gLastReadLessonCourseId=thisCourseId;
 
         mHitLikeBtn=findViewById(R.id.hitlikebtn);
         mHitLikeBtn.setOnClickListener(new View.OnClickListener() {
@@ -700,7 +929,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     mapHit.put("action_type", "like");
                     mapHit.put("liked", "0");
                     mapHit.put("disliked", "0");
-                    mapHit.put("unit_id", GlobalVar.gUnitId);
+                    mapHit.put("unit_id", unitId);
                     mapHit.put("lesson_id", GlobalVar.gLessonId);
 
                     mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon_fade);
@@ -717,7 +946,7 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     mapHit.put("action_type", "like");
                     mapHit.put("liked", "1");
                     mapHit.put("disliked", "0");
-                    mapHit.put("unit_id", GlobalVar.gUnitId);
+                    mapHit.put("unit_id", unitId);
                     mapHit.put("lesson_id", GlobalVar.gLessonId);
 
                     mHitLikeBtn.setImageResource(R.drawable.mukto_like_icon_tap);
@@ -812,13 +1041,14 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         }*/
 
 
+        String abcd="";
+
         try {
             TIME_OUT = 1000 * (Integer.parseInt(contentDuration));
         }
         catch (Exception ex){
             Log.d("", "onCreate: ");
         }
-
 
         String stepOver="";
 
@@ -828,24 +1058,17 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        if (getPulse != null) {
-                            targetPopUp = Integer.parseInt(getPulse);
-
-                            String exing="";
-                        }
-                        else {
-                            targetPopUp = -1;
-                        }
-
-
-                        if (TIME_OUT == targetPopUp){
-                            showPopUpQuestionBox();
-                        }
+                        showPopUpQuestionBox();
                     }
                 }, TIME_OUT);
             }
         }
 
+        String HHtt= String.format("%02d", Integer.parseInt(contentDuration) /3600)+":";
+        String MMtt = String.format("%02d",Integer.parseInt(contentDuration)/60%60)+":";
+        String SStt = String.format("%02d",Integer.parseInt(contentDuration)%60);
+
+        textViewTt.setText(HHtt+MMtt+SStt);
 
     }
 
@@ -854,14 +1077,16 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            if(mProgressBar != null) {
-                time = (videoView.getCurrentPosition()*100)/duration;
-                seconds=videoView.getCurrentPosition()/1000;
-                mProgressBar.setProgress(videoView.getCurrentPosition());
-            }
+            if(chooseVideoType.equalsIgnoreCase("1")) {
+                if (mProgressBar != null) {
+                    time = (videoView.getCurrentPosition() * 100) / duration;
+                    seconds = videoView.getCurrentPosition() / 1000;
+                    mProgressBar.setProgress(videoView.getCurrentPosition());
+                }
 
-            if(videoView.isPlaying()) {
-                mProgressBar.postDelayed(onEverySecond, 1000);
+                if (videoView.isPlaying()) {
+                    mProgressBar.postDelayed(onEverySecond, 1000);
+                }
             }
 
         }
@@ -1595,7 +1820,8 @@ public class CourseContentDetailActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.popupwindowforcompletenesssubmit);
 
         Button okButton = dialog.findViewById(R.id.submitBtn);
-        okButton.setOnClickListener(new View.OnClickListener() {
+        okButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
@@ -1640,8 +1866,11 @@ public class CourseContentDetailActivity extends AppCompatActivity {
                 mapSubmit.put("start", String.valueOf(seconds));
                 mapSubmit.put("course_completeness", enrollCourseCompltness);
 
-                GlobalVar.gLessonCompleteTempUnitId = unitId;
-                GlobalVar.gLessonCompleteTempLessonId = GlobalVar.gLessonId;
+                //GlobalVar.gLessonCompleteTempUnitId = unitId;
+                //GlobalVar.gLessonCompleteTempLessonId = GlobalVar.gLessonId;
+
+                GlobalVar.gLessonCompleteTempLessonArrayId.add(GlobalVar.gLessonId);
+                GlobalVar.gLessonCompleteTempUnitArrayId.add(unitId);
 
                 new CompletenessSubmit().execute(urlCompletenessSubmit+enrollId);
 

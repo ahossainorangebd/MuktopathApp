@@ -222,6 +222,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /*mEmailView.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+
+                    mEdtTxtPwd.requestFocus();
+
+                    return true;
+                }
+                return false;
+            }
+        });*/
+
         mEdtTxtPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -250,6 +263,11 @@ public class LoginActivity extends AppCompatActivity {
                     mapSubmitCheckUser.put("type", "1");
                 }
                 else {
+
+                    if(mStrEmail.contains("০")){
+                        mStrEmail=convertBnToEng(mStrEmail);
+                    }
+
                     mapSubmitCheckUser.put("phone", mStrEmail);
                     mapSubmitCheckUser.put("type", "2");
                 }
@@ -315,6 +333,11 @@ public class LoginActivity extends AppCompatActivity {
                             mapSubmit.put("type", "1");
                         }
                         else {
+
+                            if(mStrEmail.contains("০")){
+                                mStrEmail=convertBnToEng(mStrEmail);
+                            }
+
                             mapSubmit.put("phone", mStrEmail);
                             mapSubmit.put("password", mStrPwd);
                             mapSubmit.put("type", "2");
@@ -400,6 +423,11 @@ public class LoginActivity extends AppCompatActivity {
                             mapSubmit.put("type", "1");
                         }
                         else {
+
+                            if(mStrEmail.contains("০")){
+                                mStrEmail=convertBnToEng(mStrEmail);
+                            }
+
                             mapSubmit.put("phone", mStrEmail);
                             mapSubmit.put("password", mStrPwd);
                             mapSubmit.put("type", "2");
@@ -569,7 +597,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
             else {
-                mEdtTxtPwd.setError("Wrong email or password");
+                 mEdtTxtPwd.setError("Wrong email or password");
             }
 
 
@@ -762,6 +790,22 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    public String convertBnToEng(String num) {
+
+        num = num.replace("০","0");
+        num = num.replace("১","1");
+        num = num.replace("২","2");
+        num = num.replace("৩","3");
+        num = num.replace("৪","4");
+        num = num.replace("৫","5");
+        num = num.replace("৬","6");
+        num = num.replace("৭","7");
+        num = num.replace("৮","8");
+        num = num.replace("৯","9");
+
+        return num;
     }
 }
 

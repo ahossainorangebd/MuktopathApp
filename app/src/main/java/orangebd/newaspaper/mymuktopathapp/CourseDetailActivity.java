@@ -131,14 +131,17 @@ public class CourseDetailActivity extends AppCompatActivity {
         paymentStatus = getIntent().getExtras().getString("pstatus");
         batchId = getIntent().getExtras().getString("batchid");
 
-        scSize = getIntent().getExtras().getString("scsize");
+        //TODO
+        //scSize = getIntent().getExtras().getString("scsize");
+
         sUnitSize = getIntent().getExtras().getInt("usize");
         sCatId = getIntent().getExtras().getString("catid");
         sCatName = getIntent().getExtras().getString("catname");
 
         courseIndex = getIntent().getExtras().getInt("lposition");
 
-        final int scSizeConv = Integer.parseInt(scSize);
+        //TODO
+        //final int scSizeConv = Integer.parseInt(scSize);
 
         titleTextView.setText(title);
 

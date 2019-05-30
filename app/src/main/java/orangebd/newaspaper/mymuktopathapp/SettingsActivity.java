@@ -29,6 +29,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -133,7 +136,34 @@ public class SettingsActivity extends AppCompatActivity {
                     requestCalendarSync();
 
                     Toast.makeText(mContext, "From now calender is synced with muktopaath.", Toast.LENGTH_LONG).show();
+
+
+                    /*Date currentDate = new Date();
+                    String myCurrentDate = new SimpleDateFormat("yyyy-MM-dd").format(currentDate);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+
+
+
+                    Intent calIntent = new Intent(Intent.ACTION_INSERT);
+
+                    calIntent.setData(CalendarContract.Events.CONTENT_URI);
+                    calIntent.putExtra(CalendarContract.Events.TITLE, "Google IO Afterparty");
+                    calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Hello Muktopaath");
+                    calIntent.putExtra(CalendarContract.Events.DESCRIPTION, "Hang on a second");
+                    Calendar startTime = Calendar.getInstance();
+                    startTime.set(2012, 5, 29, 18, 0);
+                    Calendar endTime = Calendar.getInstance();
+                    endTime.set(2012, 5, 29, 22, 30);
+                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                            startTime.getTimeInMillis());
+                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                            endTime.getTimeInMillis());
+                    startActivity(calIntent);*/
                 }
+
+
+
+
             }
         });
 

@@ -26,10 +26,316 @@
             android:layout_height="25dp"
             android:id="@+id/Progressbar"/>
 
-        <TextView
-            android:id="@+id/txtView"
+        <LinearLayout
+            android:id="@+id/questionLines"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="25dp"
+            android:layout_marginTop="-25dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+
+            <FrameLayout
+                android:id="@+id/quizLine1"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine2"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine3"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine4"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine5"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine6"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine7"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine8"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine9"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine10"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine11"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine12"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine13"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine14"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine15"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine16"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine17"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine18"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine19"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine20"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/quizLine21"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine22"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine23"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine24"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quizLine25"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                >
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/txtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="210dp"/>
+
+            <TextView
+                android:id="@+id/txtViewTt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 

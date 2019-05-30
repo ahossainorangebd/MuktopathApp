@@ -53,16 +53,49 @@ public class StartQuizActivity extends AppCompatActivity {
         totalTime=findViewById(R.id.timeDurationId);
         totalMarks=findViewById(R.id.totalMarksId);
 
-        final ArrayList<DetailDataModelCoursesDetailContents> mQuizInfo = GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent4().get(GlobalVar.gNthCourse);
+
+        ArrayList<DetailDataModelCoursesDetailContents> mQuizInfo = GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent4().get(GlobalVar.gNthCourse);
+
+        ArrayList<DetailDataModelCoursesDetailContents> mQuizInfo1 = new ArrayList<>();
+
+        if(mQuizInfo.size() == 0 ){
+            mQuizInfo1 = GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent2().get(GlobalVar.gNthCourse);
+        }
+
+
+
 
         if(mQuizInfo.size()>0) {
+
+
+
             String quizMarks = mQuizInfo.get(0).getmQuizMarks();
             String quizTime = mQuizInfo.get(0).getmQuizTime();
+
+            if(quizTime.equalsIgnoreCase("null")){
+                quizTime="200";
+            }
+
 
             totalQ.setText(convertEngToBn(Integer.toString(GlobalVar.gTotalQuizNumberThisCourse-1)));
             totalTime.setText(convertEngToBn(stringForTime(Integer.parseInt(quizTime))));
             totalMarks.setText(convertEngToBn(quizMarks));
         }
+        else{
+            String quizMarks = mQuizInfo1.get(0).getmExamMarks();
+            String quizTime = mQuizInfo1.get(0).getmExamTime();
+
+            if(quizTime.equalsIgnoreCase("null")){
+                quizTime="200";
+            }
+
+            totalQ.setText(convertEngToBn(Integer.toString(GlobalVar.gTotalQuizNumberThisCourse-1)));
+            totalTime.setText(convertEngToBn(stringForTime(Integer.parseInt(quizTime))));
+            totalMarks.setText(convertEngToBn(quizMarks));
+
+            String work="";
+        }
+
 
     }
 

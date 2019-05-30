@@ -80,11 +80,21 @@ public class QuizFragmentSubmit extends Fragment {
         final ArrayList<DetailDataModelCoursesMarks> mQuizPassInfo = GlobalVar.courseContentDetailList.get(0).getmArrayListMarks();
         //.get(GlobalVar.gNthCourse);
 
+        ArrayList<DetailDataModelCoursesDetailContents> mQuizInfo1 = new ArrayList<>();
+
+        if(mQuizInfo.size() == 0 ){
+            mQuizInfo1 = GlobalVar.courseContentDetailList.get(0).getmUnitDataArrayListContent2().get(GlobalVar.gNthCourse);
+        }
+
 
         if(mQuizInfo.size()>0) {
             quizMarks = mQuizInfo.get(0).getmQuizMarks();
             quizTime = mQuizInfo.get(0).getmQuizTime();
             passPercentageMarks = mQuizPassInfo.get(0).getQuiz_pass_mark();
+
+            if(quizTime.equalsIgnoreCase("null")){
+                quizTime="200";
+            }
 
             double passPercentageMarksInt = Double.parseDouble(passPercentageMarks);
             double passQuizeMarksInt = Double.parseDouble(quizMarks);
@@ -98,6 +108,28 @@ public class QuizFragmentSubmit extends Fragment {
             passMarksTextView.setText(convertEngToBn(passMarks));
 
             String abtqtq = "";
+        }
+        else{
+            quizMarks = mQuizInfo1.get(0).getmExamMarks();
+            quizTime = mQuizInfo1.get(0).getmExamTime();
+            passPercentageMarks = mQuizPassInfo.get(0).getQuiz_pass_mark();
+
+            if(quizTime!=null) {
+                if (quizTime.equalsIgnoreCase("null")) {
+                    quizTime = "200";
+                }
+            }
+
+            double passPercentageMarksInt = Double.parseDouble(passPercentageMarks);
+            double passQuizeMarksInt = Double.parseDouble(quizMarks);
+
+            double passMarksInt = passQuizeMarksInt/passPercentageMarksInt;
+            passMarks = Double.toString(passMarksInt);
+
+            totalQ.setText(convertEngToBn(Integer.toString(GlobalVar.gTotalQuizNumberThisCourse-1)));
+            totalTime.setText(convertEngToBn(stringForTime(parseInt(quizTime))));
+            totalMarks.setText(convertEngToBn(quizMarks));
+            passMarksTextView.setText(convertEngToBn(passMarks));
         }
 
         final ArrayList<DetailDataModelCoursesDetailContents> mQListForId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);

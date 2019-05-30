@@ -99,6 +99,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
 
     private String videoType;
+    private String docType;
 
 
     private String thisLessonCompleteness;
@@ -192,7 +193,35 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         //GlobalVar.gLessonCompleteTempUnitId
         //GlobalVar.gLessonCompleteTempLessonId
 
-        if(GlobalVar.gLessonCompleteTempUnitId!=null) {
+
+        for(int incrTemLesId=0; incrTemLesId<GlobalVar.gLessonCompleteTempLessonArrayId.size(); incrTemLesId++){
+
+
+            GlobalVar.gLessonCompleteTempUnitId = GlobalVar.gLessonCompleteTempUnitArrayId.get(incrTemLesId);
+            GlobalVar.gLessonCompleteTempLessonId = GlobalVar.gLessonCompleteTempLessonArrayId.get(incrTemLesId);
+
+            if(GlobalVar.gLessonCompleteTempUnitId!=null) {
+
+                if (GlobalVar.gLessonCompleteTempUnitId.equalsIgnoreCase(String.valueOf(unitNumberSet + 1))) {
+
+                    if (GlobalVar.gLessonCompleteTempLessonId != null) {
+
+                        if (GlobalVar.gLessonCompleteTempLessonId.equalsIgnoreCase(String.valueOf(listPosition + 1))) {
+
+                            completedCheckbox.setVisibility(View.VISIBLE);
+
+                            completedCheckbox.setImageResource(R.drawable.completed_checked_icon);
+
+                            mCompletedTextview.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        /*if(GlobalVar.gLessonCompleteTempUnitId!=null) {
 
             if (GlobalVar.gLessonCompleteTempUnitId.equalsIgnoreCase(String.valueOf(unitNumberSet + 1))) {
 
@@ -208,7 +237,9 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                     }
                 }
             }
-        }
+        }*/
+
+
 
 
         if(thisLessonCompleteness.equalsIgnoreCase("100")){
@@ -316,6 +347,13 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
                 contentIconType="manual_content";
             }
+            else if(titleText.equalsIgnoreCase("document")){
+                lessonName=dataSet2.get(listPosition).getTitle_content();
+
+                imageView.setImageResource(R.drawable.mukto_assignment_icon);
+
+                contentIconType="document";
+            }
 
             textViewName.setText(titleText);
 
@@ -330,10 +368,27 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
         myDb = new DBHelper(mContext);
 
         videoType = thisFragmentContents.get(listPosition).getmChooseVideoType();
+        docType = thisFragmentContents.get(listPosition).getmChooseDocType();
 
-        if(contentIconType.equalsIgnoreCase("video")) {
-            if (videoType.equalsIgnoreCase("0")) {
-                imageViewdown.setImageResource(R.drawable.lock_icon);
+        if(contentIconType!=null) {
+            if (contentIconType.equalsIgnoreCase("video")) {
+
+                String abcd="";
+
+                if(videoType!=null) {
+                    if (videoType.equalsIgnoreCase("0")) {
+                        imageViewdown.setImageResource(R.drawable.lock_icon);
+                    }
+                }
+            }
+            else if(contentIconType.equalsIgnoreCase("document")){
+                String abcd="";
+
+                if(docType!=null) {
+                    if (docType.equalsIgnoreCase("0")) {
+                        imageViewdown.setImageResource(R.drawable.lock_icon);
+                    }
+                }
             }
         }
 
@@ -342,6 +397,10 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             public void onClick(View v) {
 
                 /*if(GlobalVar.isDownloadOnWifyOnly==true){*/
+
+
+                String wwww="";
+
                     if(videoType.equalsIgnoreCase("0")){
                         Toast.makeText(mContext,"Download is locked for this lesson",Toast.LENGTH_LONG).show();
                     }
@@ -450,10 +509,22 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
             {
 
 
-                thisLessonCompleteness  = dataSet.get(listPosition).getLessonCompletenessStatus();
+                try {
+                    thisLessonCompleteness = dataSet.get(listPosition).getLessonCompletenessStatus();
+                }
+                catch (Exception ex){
+                    Log.d("", "onClick: ");
+                }
+
+                if(thisLessonCompleteness.equalsIgnoreCase("")){
+                    thisLessonCompleteness="0";
+                }
+
+                contentIconType  = thisFragmentContents.get(listPosition).getmContentType();
 
 
                 videoType = thisFragmentContents.get(listPosition).getmChooseVideoType();
+                docType = thisFragmentContents.get(listPosition).getmChooseDocType();
 
                 contentDuration = thisFragmentContents.get(listPosition).getmDurationAnother();
 
@@ -461,14 +532,35 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
 
                 descriptionText = dataSet2.get(listPosition).getmDesc();
 
+                if(videoType!=null) {
 
-                if(videoType.equalsIgnoreCase("1")){
-                    videoCode = thisFragmentContents.get(listPosition).getFile_name();
-                }
-                else{
-                    videoCode = thisFragmentContents.get(listPosition).getExternal_Link();
+                    if (videoType.equalsIgnoreCase("1")) {
+                        videoCode = thisFragmentContents.get(listPosition).getFile_name();
+                    } else {
+                        videoCode = thisFragmentContents.get(listPosition).getExternal_Link();
+                    }
                 }
 
+                if(contentIconType!=null) {
+                    if (contentIconType.equalsIgnoreCase("document")) {
+                        if (docType.equalsIgnoreCase("0")) {
+                            videoCode = thisFragmentContents.get(listPosition).getExternal_Link();
+
+
+                            String aaapp = "";
+                        } else {
+                            videoCode = thisFragmentContents.get(listPosition).getFile_name();
+
+                            String wwww = "";
+                        }
+                    }
+                }
+
+
+
+                ///for knowing quizType
+
+                final String examType = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse).get(0).getQtype();
 
                 String titleText=textViewName.getText().toString();
 
@@ -483,8 +575,17 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                 else {
 
                     if(titleText.equalsIgnoreCase("Exam")){
-                        Intent i = new Intent(mContext, StartExamActivity.class);
-                        v.getContext().startActivity(i);
+
+                        if(examType.equalsIgnoreCase("multiple")){
+                            Intent i = new Intent(mContext, StartQuizActivity.class);
+                            v.getContext().startActivity(i);
+                        }
+                        else{
+                            Intent i = new Intent(mContext, StartExamActivity.class);
+                            v.getContext().startActivity(i);
+                        }
+
+
                     }
                     else if(titleText.equalsIgnoreCase("Quiz")){
                         Intent i = new Intent(mContext, StartQuizActivity.class);
@@ -498,25 +599,66 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         v.getContext().startActivity(i);
                     }
                     else if(titleText.equalsIgnoreCase("Manual Content")){
-                        Intent i = new Intent(mContext, DiscussionActivity.class);
-                        v.getContext().startActivity(i);
+
+                        unitIdStr= String.valueOf(unitNumberSet+1);
+
+                        contentIconType = thisFragmentContents.get(listPosition).getmContentType();
+
+                        if (contentIconType != null) {
+
+
+                            if (contentIconType.equalsIgnoreCase("manual_content")) {
+                                contentIconType = "manual_content";
+                            } else {
+                                contentIconType = "video";
+                            }
+                        }
+
+
+                        Intent i = new Intent(mContext, ManualContentActivity.class);
+                        i.putExtra("ttl", titleText);
+                        i.putExtra("detail", descriptionText);
+                        i.putExtra("unitid", unitIdStr);
+                        i.putExtra("thislessoncompltness", thisLessonCompleteness);
+                        i.putExtra("ciconype", contentIconType);
+
+                        GlobalVar.gListPosition=Integer.toString(listPosition);
+
+                        //For History data
+
+                        GlobalVar.gDescriptionText=descriptionText;
+                        GlobalVar.gLessonCompleteness=thisLessonCompleteness;
+                        GlobalVar.gContentIconType=contentIconType;
+
+                        String aqwqw="";
+
+                        try {
+                            v.getContext().startActivity(i);
+                        }
+                        catch (Exception ex){
+                            String msg=ex.getMessage();
+                            Log.d("msg",msg);
+                        }
+
                     }
 
                     else{
-
-                        /*Intent i = new Intent(mContext, CourseContentActivity.class);
-                        v.getContext().startActivity(i);*/
 
                         unitIdStr= String.valueOf(unitNumberSet+1);
 
 
                         contentIconType = thisFragmentContents.get(listPosition).getmContentType();
 
-                        if(contentIconType.equalsIgnoreCase("manual_content")){
-                            contentIconType="manual_content";
-                        }
-                        else{
-                            contentIconType="video";
+                        if (contentIconType != null) {
+
+
+                            if (contentIconType.equalsIgnoreCase("manual_content")) {
+                                contentIconType = "manual_content";
+                            } else if (contentIconType.equalsIgnoreCase("document")) {
+                                contentIconType = "document";
+                            } else {
+                                contentIconType = "video";
+                            }
                         }
 
                         Intent i = new Intent(mContext, CourseContentDetailActivity.class);
@@ -529,6 +671,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         i.putExtra("csize", contentSize);
                         i.putExtra("cduration", contentDuration);
                         i.putExtra("cvtype", videoType);
+                        i.putExtra("cdtype", docType);
                         i.putExtra("ciconype", contentIconType);
                         i.putExtra("thislessoncompltness", thisLessonCompleteness);
 
@@ -542,6 +685,7 @@ public class RecyclerViewAdapterMyPageContentTypes extends RecyclerView.Adapter<
                         GlobalVar.gTimeStatus=timeStatus;
                         GlobalVar.gContentDuration=contentDuration;
                         GlobalVar.gChooseVideoType=videoType;
+                        GlobalVar.gChooseDocType=docType;
                         GlobalVar.gContentIconType=contentIconType;
                         GlobalVar.gLessonCompleteness=thisLessonCompleteness;
 

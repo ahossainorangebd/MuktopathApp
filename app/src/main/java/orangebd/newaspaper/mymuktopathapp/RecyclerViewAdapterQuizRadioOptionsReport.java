@@ -94,6 +94,11 @@ public class RecyclerViewAdapterQuizRadioOptionsReport extends RecyclerView.Adap
             Log.d("", "onBindViewHolder: ");
         }
 
+        if(selectedAnsPosition.equalsIgnoreCase("")){
+            selectedAnsPosition="0";
+        }
+
+
         if(listPosition==Integer.parseInt(selectedAnsPosition)) {
             checkViewName.setChecked(true);
 

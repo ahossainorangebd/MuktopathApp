@@ -61,6 +61,7 @@ public class MyPageDetailFragment9 extends Fragment {
 
         context=getContext();
 
+        String thisCourseId=GlobalVar.gCourseIdListForCourseId.get(GlobalVar.gNthCourse).getIdCourse();
 
         mLessonIconView=view.findViewById(R.id.lessonIconDynamicId);
 
@@ -95,7 +96,14 @@ public class MyPageDetailFragment9 extends Fragment {
 
         mLastReadLesson=view.findViewById(R.id.lastReadLessonId);
         startMyQuiz=view.findViewById(R.id.startMyQuizId);
-        mLastReadLesson.setText(GlobalVar.gLastReadLessonTitle);
+
+
+        if(thisCourseId.equalsIgnoreCase(GlobalVar.gLastReadLessonCourseId)) {
+            mLastReadLesson.setText(GlobalVar.gLastReadLessonTitle);
+        }
+        else{
+            mLastReadLesson.setText("");
+        }
 
 
         startMyQuiz.setOnClickListener(new View.OnClickListener() {

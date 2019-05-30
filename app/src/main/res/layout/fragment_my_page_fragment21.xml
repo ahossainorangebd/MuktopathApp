@@ -360,6 +360,26 @@
         android:elevation="10dp"
         android:background="#88000000"
         >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="2dp"
+            android:layout_marginRight="8dp"
+            >
+
+            <ImageView
+                android:id="@+id/addtocalenderbtn"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:gravity="right"
+                android:foregroundGravity="right"
+                android:text="Settings"
+                android:layout_gravity="right"
+                android:src="@drawable/calendericon"
+                />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/courseTitle"
@@ -386,7 +406,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="25dp"
             android:orientation="vertical"
             >
 

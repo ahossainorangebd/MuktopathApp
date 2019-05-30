@@ -37,6 +37,8 @@ public class RecyclerViewAdapterRecomTemp extends RecyclerView.Adapter<RecyclerV
 
     private Object[] mArrayList;
 
+    private String sContentSize="";
+
     //private String copyRightText;
     // private ImageView mainImage;
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -96,7 +98,12 @@ public class RecyclerViewAdapterRecomTemp extends RecyclerView.Adapter<RecyclerV
         textViewName.setText(titleText);
 
         final ArrayList<ArrayList<ArrayList<DetailDataModelCoursesDetailContents>>> contentArray = dataSet.get(listPosition).getmArrayListContentDetails();
-        final String sContentSize= Integer.toString(contentArray.size());
+
+
+        
+        if(contentArray!=null) {
+            sContentSize = Integer.toString(contentArray.size());
+        }
 
         String imgUrl="";
 
@@ -145,7 +152,9 @@ public class RecyclerViewAdapterRecomTemp extends RecyclerView.Adapter<RecyclerV
                 i.putExtra("detail", DetailDescription);
                 i.putExtra("batchid", batchId);
                 i.putExtra("pstatus", paymentStatus);
-                i.putExtra("scsize", sContentSize);
+
+                //TODO
+                //i.putExtra("scsize", sContentSize);
                 try {
                     v.getContext().startActivity(i);
                 }

@@ -35,7 +35,7 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
     private boolean isChecked=false;
 
     private int trueCount;
-    private boolean isSingle;
+    private boolean isSingle=false; 
 
     ArrayList<DetailDataModelCoursesDetailContents> mPulseArrayList = new ArrayList<DetailDataModelCoursesDetailContents>();
 
@@ -120,70 +120,84 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
             trueCount++;
         }
 
+        isSingle=false;
+
         String testing="";
         checkViewName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 String testing1="";
 
-                if(isChecked)
-                {
+                if(isSingle==true){
 
-                    try {
-                        Object something = buttonView.getTag();
+                    checkViewName.setChecked(false);
+
+                    Toast.makeText(mContext,"You can't select more than one answer.",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    if(isChecked)
+                    {
+
+                        isSingle=true;
+
+                        try {
+                            Object something = buttonView.getTag();
 
 
-                        String selectedAnswer= textViewName.getText().toString();
-                        final ArrayList<DetailDataModelCoursesDetailContents> mQListForId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
+                            String selectedAnswer= textViewName.getText().toString();
+                            final ArrayList<DetailDataModelCoursesDetailContents> mQListForId = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(GlobalVar.gNthCourse);
 
-                        // for a globalAnswer for checked report
-                        GlobalVar.gThisQuiz.add(String.valueOf(nNumberQuiz));
-                        GlobalVar.gSelectedAnsPostn.add(String.valueOf(listPosition));
-                        //
+                            // for a globalAnswer for checked report
+                            GlobalVar.gThisQuiz.add(String.valueOf(nNumberQuiz));
+                            GlobalVar.gSelectedAnsPostn.add(String.valueOf(listPosition));
+                            //
 
-                        if(GlobalVar.isRedirectFromQuizFragment1==true) {
-                            String getAttendedQArray=mQListForId.get(GlobalVar.gNthQuiz).getmQuizId();
-                            GlobalVar.attendedQArrayQuiz.add(getAttendedQArray);
+                            if(GlobalVar.isRedirectFromQuizFragment1==true) {
+                                String getAttendedQArray=mQListForId.get(GlobalVar.gNthQuiz).getmQuizId();
+                                GlobalVar.attendedQArrayQuiz.add(getAttendedQArray);
+                            }
+
+                            else{
+                                String getAttendedQArray=mQListForId.get(GlobalVar.gNthQuiz-1).getmQuizId();
+                                GlobalVar.attendedQArrayQuiz.add(getAttendedQArray);
+                            }
+
+                            GlobalVar.answerArrayQuiz.add(selectedAnswer);
+
+                            if (something.equals("true")) {
+                                //TODO
+                                //Toast.makeText(mContext,"Correct Answer",Toast.LENGTH_SHORT).show();
+
+                                GlobalVar.gMultiMarkCount++;
+
+                            }
+                            else{
+
+                                //TODO
+                                //Toast.makeText(mContext,"Incorrect Answer",Toast.LENGTH_SHORT).show();
+                            }
+
+                            String abcd = something.toString();
+                        }
+                        catch (Exception ex){
+                            Log.d("", "onCheckedChanged: ");
                         }
 
-                        else{
-                            String getAttendedQArray=mQListForId.get(GlobalVar.gNthQuiz-1).getmQuizId();
-                            GlobalVar.attendedQArrayQuiz.add(getAttendedQArray);
+                        String abcd="";
+
+                        for(int tap=0; tap<dataSet.size(); tap++) {
+                            CharSequence checkedAns=buttonView.getText();
+                            String ans=dataSet.get(tap).getmOptionAnswer();
+
+                            if(checkedAns.equals(ans)) {
+
+
+                            }
                         }
 
-                        GlobalVar.answerArrayQuiz.add(selectedAnswer);
-
-                        if (something.equals("true")) {
-                            //TODO
-                            //Toast.makeText(mContext,"Correct Answer",Toast.LENGTH_SHORT).show();
-
-                            GlobalVar.gMultiMarkCount++;
-
-                        }
-                        else{
-
-                            //TODO
-                            //Toast.makeText(mContext,"Incorrect Answer",Toast.LENGTH_SHORT).show();
-                        }
-
-                        String abcd = something.toString();
-                    }
-                    catch (Exception ex){
-                        Log.d("", "onCheckedChanged: ");
-                    }
-
-                    String abcd="";
-
-                    for(int tap=0; tap<dataSet.size(); tap++) {
-                        CharSequence checkedAns=buttonView.getText();
-                        String ans=dataSet.get(tap).getmOptionAnswer();
-
-                        if(checkedAns.equals(ans)) {
-
-
-                        }
                     }
                 }
+
             }
         }
         );
@@ -201,7 +215,8 @@ public class RecyclerViewAdapterQuizRadioOptions extends RecyclerView.Adapter<Re
                 if(isSingle==true){
                     Toast.makeText(mContext,"You can't select more than one answer.",Toast.LENGTH_SHORT).show();
                 }
-                else {
+                else
+                    {
                     if(trueCount>1){
 
                         if(isChecked==true) {

@@ -361,7 +361,6 @@ public class MyPageActivity extends AppCompatActivity {
                 if (checkDirection) {
                     if (thresholdOffset > positionOffset) {
 
-
                         GlobalVar.gGoingDirection="right";
                     }
                     else {
@@ -735,6 +734,7 @@ public class MyPageActivity extends AppCompatActivity {
 
             if (result != null) try
             {
+
                 detailListCourse = new ArrayList<DetailDataModelCourses>();
 
                 detailList = new ArrayList<DetailDataModelCoursesDetailContents>();
@@ -766,7 +766,9 @@ public class MyPageActivity extends AppCompatActivity {
                 detailListCourseDetailUnitQuizList2 = new ArrayList<>();
 
                 detailListCourseDetailUnitQuizOptList = new ArrayList<>();
+
                 detailListCourseDetailPulseQuizOptList = new ArrayList<>();
+
                 detailListCourseDetailVideoPulseMulti = new ArrayList<>();
 
                 detailListCourseDetailUnitQuizListExam = new ArrayList<>();
@@ -1200,6 +1202,10 @@ public class MyPageActivity extends AppCompatActivity {
                                 modelForLoginCourse.setmExamNumbers(examNumbers);
                                 modelForLoginCourse.setmAssignmentNumbers(assignmentsNumbers);
                                 modelForLoginCourse.setmObjective(courseObjective);
+                                modelForLoginCourse.setmEndDate(course_end_date);
+
+
+                                String working121212="";
 
 
                                 if(GlobalVar.isRedirectFromProfileEndedBtn==true){
@@ -1623,8 +1629,10 @@ public class MyPageActivity extends AppCompatActivity {
 
                                         mUnitAllArrayList = new ArrayList<>();
 
-                                        mVideoPulseMulti = new ArrayList<>();
 
+                                        // here it was
+
+                                        mVideoPulseMulti = new ArrayList<>();
 
 
                                         for (int ii = 0; ii < jObject.length() - 2; ii++)
@@ -1673,6 +1681,8 @@ public class MyPageActivity extends AppCompatActivity {
                                                 //TODO
 //                                                               mContentArrayListNew = new ArrayList<>();
 
+
+
                                                 mContentArrayListNew = new ArrayList<>();
                                                 detailUnitNumbers = new ArrayList<>();
 
@@ -1704,6 +1714,7 @@ public class MyPageActivity extends AppCompatActivity {
                                                     String content_type = jObjAgain.getString("content_type");
 
                                                     String externalLinkYesOrNot="";
+
 
 
                                                     if(content_type.equalsIgnoreCase("video")) {
@@ -1752,6 +1763,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                         modelUnitCourseContents.setmExamMarks(mExamMakrs);
                                                         modelUnitCourseContents.setmExamTime(mExamTime);
+
 
                                                         mUnit2DataArrayList.add(modelUnitCourseContents);
                                                     }
@@ -1864,6 +1876,7 @@ public class MyPageActivity extends AppCompatActivity {
                                                                 modelCourseContents.setmDurationAnother(mDuration);
                                                                 modelCourseContents.setmContentSize(contentSize);
                                                                 modelCourseContents.setmChooseVideoType(choose_video_type);
+                                                                modelCourseContents.setmChooseDocType(choose_doc_type);
                                                             }
                                                             else{
                                                                 modelCourseContents.setmDesc(desc);
@@ -1882,6 +1895,10 @@ public class MyPageActivity extends AppCompatActivity {
                                                                 modelCourseContents.setmChooseVideoType(choose_video_type);
                                                                 modelCourseContents.setmDurationAnother(mDuration);
                                                                 modelCourseContents.setExternal_Link(externalLinkYesOrNot);
+                                                                modelCourseContents.setmChooseDocType(choose_doc_type);
+
+
+                                                                String working1212="";
                                                             }
                                                         }
                                                         else {
@@ -1940,7 +1957,8 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                 mUnitQuizListWithOptions = new ArrayList<>();
 
-                                                                for (int qlist2 = 0; qlist2 < jSonObjMultiQ2.length(); qlist2++) {
+                                                                for (int qlist2 = 0; qlist2 < jSonObjMultiQ2.length(); qlist2++)
+                                                                {
 
                                                                     DetailDataModelCoursesDetailContents modelUnitQuizElements2 = new DetailDataModelCoursesDetailContents();
 
@@ -2011,6 +2029,12 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                 mUnitQuizListExam = new ArrayList<>();
 
+                                                                mUnitQuizList = new ArrayList<>();
+                                                                mUnitQuizList2 = new ArrayList<>();
+
+
+                                                                mUnitQuizListWithOptions = new ArrayList<>();
+
                                                                 for (int qlist2 = 0; qlist2 < jSonObjMultiQ2exam.length(); qlist2++) {
 
                                                                     DetailDataModelCoursesDetailContents modelUnitQuizElements2 = new DetailDataModelCoursesDetailContents();
@@ -2019,16 +2043,78 @@ public class MyPageActivity extends AppCompatActivity {
 
                                                                     String qTitle = objectAgainAnother2.getString("title");
                                                                     String qId = objectAgainAnother2.getString("id");
+                                                                    String qDesc = objectAgainAnother2.getString("description");
+                                                                    String qType = objectAgainAnother2.getString("type");
 
-                                                                    qTitle = qTitle.replace("<p>", "");
-                                                                    qTitle = qTitle.replace("</p>", "");
 
-                                                                    modelUnitQuizElements2.setmQuizTitle(qTitle);
-                                                                    modelUnitQuizElements2.setmQuizId(qId);
-                                                                    modelUnitQuizElements2.setmQuesList(jSonObjMultiQ2exam);
-                                                                    modelUnitQuizElements2.setmContentType(content_type);
+                                                                    if(qType.equalsIgnoreCase("multiple"))
+                                                                    {
+                                                                        DetailDataModelCoursesDetailContents modelUnitQuizListWithOptions = new DetailDataModelCoursesDetailContents();
 
-                                                                    mUnitQuizListExam.add(modelUnitQuizElements2);
+                                                                        qTitle = qTitle.replace("<p>", "");
+                                                                        qTitle = qTitle.replace("</p>", "");
+
+                                                                        qDesc = qDesc.replace("<p>", "");
+                                                                        qDesc = qDesc.replace("</p>", "");
+
+                                                                        modelUnitQuizElements2.setmQuizTitle(qTitle);
+                                                                        modelUnitQuizElements2.setmSummeryDesc(qDesc);
+                                                                        modelUnitQuizElements2.setmQuizId(qId);
+                                                                        modelUnitQuizElements2.setmContentType(content_type);
+                                                                        modelUnitQuizElements2.setQtype(qType);
+                                                                        mUnitQuizList.add(modelUnitQuizElements2);
+
+                                                                        modelUnitQuizListWithOptions.setmQuizTitle(qTitle);
+                                                                        modelUnitQuizListWithOptions.setQtype(qType);
+                                                                        mUnitQuizListWithOptions.add(modelUnitQuizListWithOptions);
+
+
+                                                                        JSONArray jSonObjMultiQOptions = (JSONArray) objectAgainAnother2.getJSONArray("options");
+
+                                                                        try {
+
+                                                                            mUnitQuizOptList = new ArrayList<>();
+
+                                                                            for (int optionList = 0; optionList < jSonObjMultiQOptions.length(); optionList++) {
+
+                                                                                //DetailDataModelCoursesDetailContents modelUnitQuizOptions = new DetailDataModelCoursesDetailContents();
+                                                                                DetailDataModelCoursesDetailContents modelUnitQuizOptions = new DetailDataModelCoursesDetailContents();
+
+                                                                                JSONObject jObjectQuesOpt = (JSONObject) jSonObjMultiQOptions.get(optionList);
+
+                                                                                String optionBody = jObjectQuesOpt.getString("body");
+                                                                                String optionAnswer = jObjectQuesOpt.getString("answer");
+
+                                                                                modelUnitQuizOptions.setmOptionBody(optionBody);
+                                                                                modelUnitQuizOptions.setmOptionAnswer(optionAnswer);
+                                                                                modelUnitQuizOptions.setmContentType(content_type);
+
+                                                                                mUnitQuizOptList.add(modelUnitQuizOptions);
+                                                                            }
+                                                                        } catch (Exception ex) {
+                                                                            Log.d("", "onResponse: ");
+                                                                        }
+
+                                                                        mUnitQuizList2.add(mUnitQuizOptList);
+
+
+                                                                        String working12wrt= "";
+                                                                    }
+                                                                    else{
+                                                                        qTitle = qTitle.replace("<p>", "");
+                                                                        qTitle = qTitle.replace("</p>", "");
+
+                                                                        modelUnitQuizElements2.setmQuizTitle(qTitle);
+                                                                        modelUnitQuizElements2.setmQuizId(qId);
+                                                                        modelUnitQuizElements2.setmQuesList(jSonObjMultiQ2exam);
+                                                                        modelUnitQuizElements2.setmContentType(content_type);
+
+                                                                        mUnitQuizListExam.add(modelUnitQuizElements2);
+                                                                    }
+
+
+
+
                                                                 }
                                                             }
                                                         } catch (Exception ex) {
@@ -2176,6 +2262,7 @@ public class MyPageActivity extends AppCompatActivity {
                                                                                                     modelPulseQuizOptions.setMpOptionBody(optionPulseBody);
                                                                                                     modelPulseQuizOptions.setMpOptionAnswer(optionPulseAnswer);
                                                                                                     modelPulseQuizOptions.setMpQuizTitle(mqTitle);
+                                                                                                    modelPulseQuizOptions.setmPulseOfVideoMulti(mPulse);
 
                                                                                                     mPulseQuizOptList.add(modelPulseQuizOptions);
                                                                                                 }
@@ -2197,8 +2284,14 @@ public class MyPageActivity extends AppCompatActivity {
                                                                     } catch (Exception ex) {
                                                                         Log.d("", "onResponse: ");
                                                                     }
+
+
                                                                 }
-                                                                mVideoPulseMulti.add(mContentArrayListNewPulse);
+
+
+
+                                                                // previous array end add
+
                                                             } catch (Exception ex) {
                                                                 Log.d("", "onResponse: ");
                                                             }
@@ -2207,6 +2300,8 @@ public class MyPageActivity extends AppCompatActivity {
                                                     else {
 
                                                     }
+
+
                                                 }
 
                                             } catch (Exception ex) {
@@ -2219,6 +2314,7 @@ public class MyPageActivity extends AppCompatActivity {
                                             detailListCourseDetailContentss.add(mContentArrayListNew);
 
 
+                                            mVideoPulseMulti.add(mContentArrayListNewPulse);
                                         }
 
                                     } catch (Exception ex) {
@@ -2594,8 +2690,8 @@ public class MyPageActivity extends AppCompatActivity {
 
 
                                     detailListCourseDetailUnitQuizOptList.add(mUnitQuizList2);
-                                    detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
 
+                                    detailListCourseDetailPulseQuizOptList.add(mPulseQuizList2);
                                     detailListCourseDetailVideoPulseMulti.add(mVideoPulseMulti);
 
                                     //TODO
@@ -2811,6 +2907,7 @@ public class MyPageActivity extends AppCompatActivity {
 
                     //for option list of quest list
                     modelAlter.setmArrayListCourseQuizOptions(detailListCourseDetailUnitQuizOptList);
+
                     modelAlter.setmArrayListCoursePulseQuizOptions(detailListCourseDetailPulseQuizOptList);
 
                     modelAlter.setmArrayListCourseVideoPulseMulti(detailListCourseDetailVideoPulseMulti);
@@ -2901,9 +2998,20 @@ public class MyPageActivity extends AppCompatActivity {
             vpPager.setAdapter(myAdapter);
 
 
-            String abcd="";
+            try {
+                int nNumberCourseBack = getIntent().getExtras().getInt("coursenumber");
 
+                String abcd = "";
 
+                if (GlobalVar.nNumberCourseBack == 0) {
+                    vpPager.setCurrentItem(0);
+                } else {
+                    vpPager.setCurrentItem(nNumberCourseBack);
+                }
+            }
+            catch (Exception ex){
+                Log.d("", "onPostExecute: ");
+            }
         }
         @Override
         protected void onCancelled() {

@@ -63,13 +63,14 @@ public class MyPageCourseDetail extends AppCompatActivity {
 
         mContext=this;
 
-
         goBackFromThisActivity=findViewById(R.id.goBackFromThisActivityId);
         goBackFromThisActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent i=new Intent(mContext,MyPageActivity.class);
+
+                i.putExtra("coursenumber", GlobalVar.nNumberCourseBack);
 
                 startActivity(i);
 

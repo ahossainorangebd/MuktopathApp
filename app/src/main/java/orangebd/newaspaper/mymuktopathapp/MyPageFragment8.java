@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +17,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Formatter;
 
 public class MyPageFragment8 extends Fragment {
@@ -55,6 +61,8 @@ public class MyPageFragment8 extends Fragment {
 
     private int mQuizNumbers=0;
 
+    private ImageView mAddToCalenderBtn;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,7 +71,7 @@ public class MyPageFragment8 extends Fragment {
 
         context=getContext();
 
-
+        mAddToCalenderBtn=view.findViewById(R.id.addtocalenderbtn);
 
 
         /** Progress of progressBar
@@ -185,6 +193,10 @@ public class MyPageFragment8 extends Fragment {
 
 
         // Let's count the number of Units
+
+        final String examType = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseQuizs().get(nthCourse).get(0).getQtype();
+
+
         /*if(GlobalVar.gGoingDirection.equalsIgnoreCase("right")) {
 
             GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse - 1).size();
@@ -305,7 +317,13 @@ public class MyPageFragment8 extends Fragment {
 
             String contentDurationNew= stringForTime(contentDuration);
 
-            mQuizNumberSection.setVisibility(View.VISIBLE);
+            if(examType!=null) {
+                if (examType.equalsIgnoreCase("multiple")) {
+                    mQuizNumberSection.setVisibility(View.GONE);
+                } else {
+                    mQuizNumberSection.setVisibility(View.VISIBLE);
+                }
+            }
         }
 
         //setting text for hours
@@ -315,6 +333,11 @@ public class MyPageFragment8 extends Fragment {
         startMyPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // let's get the accurate pulse and video ques array
+
+                final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseQuesListWithAns = GlobalVar.courseContentDetailList.get(0).getmArrayListCoursePulseQuizOptions().get(nthCourse);
+                final ArrayList<ArrayList<DetailDataModelCoursesDetailContents>> pulseMultiArray = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseVideoPulseMulti().get(nthCourse);
 
                 // Let's count the number of Units
                 GlobalVar.gEnrolledCourseUnitSize = GlobalVar.courseContentDetailList.get(0).getmArrayListCourseUnits().get(nthCourse).size();
@@ -346,6 +369,64 @@ public class MyPageFragment8 extends Fragment {
                 }
 
                 GlobalVar.nNumberCourseBack=nthCourse;
+            }
+        });
+
+        mAddToCalenderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "", Snackbar.LENGTH_LONG)
+                        .setAction("Add to Calendar", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                long enrolledCourseEndDateLong=0;
+                                long currentDateInMillis=0;
+
+                                final String enrolledCourseEndDate=GlobalVar.gEnrollCourseList.get(nthCourse).getmEndDate();
+
+                                if(enrolledCourseEndDate.equalsIgnoreCase("")){
+                                    Toast.makeText(context, "No end date for this course", Toast.LENGTH_LONG).show();
+                                }
+                                else{
+                                    try {
+
+                                        Date currentDate = new Date();
+                                        String myCurrentDate = new SimpleDateFormat("yyyy-MM-dd").format(currentDate);
+                                        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                                        Date date2 = sdf2.parse(myCurrentDate);
+                                        currentDateInMillis = date2.getTime();
+
+
+                                        String myDate = enrolledCourseEndDate;
+                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                        Date date = sdf.parse(myDate);
+                                        enrolledCourseEndDateLong = date.getTime();
+                                    }
+                                    catch (Exception ex){
+                                        Log.d("", "onClick: ");
+                                    }
+
+                                    Intent calIntent = new Intent(Intent.ACTION_INSERT);
+
+                                    calIntent.setData(CalendarContract.Events.CONTENT_URI);
+                                    calIntent.putExtra(CalendarContract.Events.TITLE, enrolledCourseTitle);
+                                    calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "মুক্তপাঠ");
+                                    calIntent.putExtra(CalendarContract.Events.DESCRIPTION, enrolledCourseDetails);
+                                    Calendar startTime = Calendar.getInstance();
+                                    startTime.set(2012, 5, 29, 18, 0);
+                                    Calendar endTime = Calendar.getInstance();
+                                    endTime.set(2012, 5, 29, 11, 59, 59);
+                                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                                            currentDateInMillis);
+                                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                                            enrolledCourseEndDateLong);
+                                    startActivity(calIntent);
+                                }
+
+                            }
+                        })
+                        .show();
             }
         });
 
